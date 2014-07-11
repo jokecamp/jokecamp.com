@@ -10,17 +10,21 @@
       </h2>
 
       <nav class="nav">
-        {% assign pages_list = site.pages %}
-        {% for node in pages_list %}
-          {% if node.title != null %}
-            {% if node.layout == "page" %}
-                  <a class="{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}" title="{{node.title}}">{{ node.title }}</a>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-        <a href="{{ site.github }}" title="Joe's github page - commit all the things">GitHub</a>
-        <a href="{{ site.stackoverflow }}" title="Joe's stackoverflow account - aka street credit">StackOverflow</a>
-        <a href="{{ site.twitter }}" title="Joe's twitter account">Twitter</a>
+        <ul>
+
+{% assign pages_list = site.pages %}
+{% for node in pages_list %}
+  {% if node.title != null %}
+    {% if node.layout == "page" %}
+          <li><a class="{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}" title="{{node.title}}">{{ node.title }}</a></li>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+          <li><a href="{{ site.github }}" title="Joe's github page - commit all the things">GitHub</a></li>
+          <li><a href="{{ site.stackoverflow }}" title="Joe's stackoverflow account - aka street credit">StackOverflow</a></li>
+          <li><a href="{{ site.twitter }}" title="Joe's twitter account">Twitter</a></li>
+        </ul>
       </div>
       </nav>
     </div>
