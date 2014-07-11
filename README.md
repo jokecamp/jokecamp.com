@@ -1,6 +1,12 @@
-# Joe Kampschmidt (@jokecamp) Personal Website
+# Joe Kampschmidt's (Joe's Code) Personal Website/Blog
 
-Built with ![Poole](https://f.cloud.github.com/assets/98681/1834359/71ae4048-73db-11e3-9a3c-df38eb170537.png) and [Jekyll](http://jekyllrb.com), a static site generator.
 
-To test locall run the following
-  jekyll serve --watch
+The website is a static site built with [Poole](https://github.com/poole/poole) and [Jekyll](http://jekyllrb.com).
+
+To test change to the project directory and run the following command
+
+    jekyll serve --watch
+
+Then browse to <http://localhost:4000/>
+
+Pull requests will be accepted for any typos or editing and your contribution will be credited.
