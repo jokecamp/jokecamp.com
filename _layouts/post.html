@@ -8,6 +8,11 @@ layout: default
   {{ content }}
 </div>
 
+<div class="tags">
+Tags
+{% for tag in page.tags %} <div class='tag'>{{tag}}</div> {% endfor %}
+</div>
+
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">

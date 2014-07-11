@@ -1,4 +1,4 @@
-# Joe Kampschmidt's (Joe's Code) Personal Website/Blog
+## Joe Kampschmidt's (Joe's Code) Personal Website/Blog
 
 
 The website is a static site built with [Poole](https://github.com/poole/poole) and [Jekyll](http://jekyllrb.com).

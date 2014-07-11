@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>Joe Kampschmidt</title>
+ <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-07-10T20:48:52-04:00</updated>
+ <updated>2014-07-10T22:53:15-04:00</updated>
  <id>http://www.jokecamp.com</id>
  <author>
    <name>Joe Kampschmidt</name>

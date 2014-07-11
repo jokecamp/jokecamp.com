@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title></title>
-		<description>Joe&#39;s Code - a pragmatic approach to web and software development</description>
+		<description>a pragmatic approach to web and software development</description>
 		<link>http://www.jokecamp.com</link>
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		

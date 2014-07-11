@@ -3,11 +3,18 @@ layout: default
 title: Home
 ---
 
-Open Source and Community Involvement:
+### About
 
- - [ServiceStack](https://servicestack.net/) Experts Group Member
- - [OpenFootball Member/Contributor](https://github.com/openfootball)
+I am a developer. I write code and occasionally blog.
 
-What do I write about?
+---
 
- - show tag cloud with counts?
+### Recent Blog Posts
+
+<ul class="posts-list">
+{% for post in site.posts limit:3 %}
+  <li><a href="{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %-d"  }}</span></li>
+{% endfor %}
+</ul>
+
+---

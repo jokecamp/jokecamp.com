@@ -5,18 +5,16 @@
     <div class="masthead">
       <div class="container center">
 
-      <h3 class="masthead-title">
+      <h2 class="masthead-title">
         <a href="{{ site.baseurl }}" title="also known as @jokecamp">{{ site.title }}</a>
-      </h3>
-      <div class="center"><small>{{ site.description}}</small></div>
+      </h2>
 
       <nav class="nav">
-        <a class="{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
         {% assign pages_list = site.pages %}
         {% for node in pages_list %}
           {% if node.title != null %}
             {% if node.layout == "page" %}
-              <a class="{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}" title="{{node.title}}">{{ node.title }}</a>
+                  <a class="{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}" title="{{node.title}}">{{ node.title }}</a>
             {% endif %}
           {% endif %}
         {% endfor %}
@@ -29,9 +27,13 @@
     <div class="container content">
       {{ content }}
       <div class="footer">
-        <p><a href="/atom.xml" title="Atom Feed">Atom</a> | <a href="/rss.xml" title="RSS Feed">RSS</a></p>
+        <p>
+          <a href="https://github.com/jokecamp/jokecamp.com">View Source on GitHub</a> |
+          <a href="/atom.xml" title="Atom Feed">Atom</a> | <a href="/rss.xml" title="RSS Feed">RSS</a></p>
         <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</p>
       </div>
     </div>
+
+    {% include tracking.html %}
   </body>
 </html>

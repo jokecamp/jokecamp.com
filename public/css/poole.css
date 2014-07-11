@@ -66,6 +66,7 @@ body {
 }
 
 .footer {
+  margin-top:2rem;
   font-size:.8rem;
   text-align:center;
 }
@@ -94,7 +95,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {
   font-size: 1.8rem;
-  text-align:center;
 }
 h2 {
   margin-top: 1rem;
@@ -309,13 +309,14 @@ tbody tr:nth-child(odd) th {
 .masthead {
   padding: .75rem;
   margin-bottom: 2rem;
-  background-color:#222;
+  background-color:#232323;
   border-bottom: solid 2px #CCC;
 }
 .masthead-title {
   margin-top: 0;
   margin-bottom: 0;
-  color: #FFF;
+  padding:.2rem;
+  color: #EEE;
 }
 .masthead a {
   color: #FFF;
@@ -358,6 +359,8 @@ tbody tr:nth-child(odd) th {
   margin-bottom: 1rem;
 }
 
+.page-title { text-align:center; }
+
 /* Meta data line below post title */
 .post-date {
   display: block;
@@ -368,9 +371,8 @@ tbody tr:nth-child(odd) th {
 
 /* Related posts */
 .related {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .related-posts {
   padding-left: 0;
@@ -394,3 +396,5 @@ tbody tr:nth-child(odd) th {
 .center { text-align:center;}
 .posts-list li { margin-bottom:.5rem;}
 .date { color:#888; padding-left:1rem; font-size:.8rem;}
+.bio { padding-top:1.8rem; padding-bottom:1.8rem; font-size:1.3rem; }
+.tag { background-color:#EEE; color:#333; display:inline; padding:4px; }

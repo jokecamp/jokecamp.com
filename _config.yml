@@ -6,8 +6,8 @@ highlighter:      pygments
 permalink:        pretty
 
 # Setup
-title:            Joe Kampschmidt
-description:      "Joe's Code - a pragmatic approach to web and software development"
+title:            Joe Kampschmidt's Code
+description:      "a pragmatic approach to web and software development"
 url:              http://www.jokecamp.com
 baseurl:          /
 
