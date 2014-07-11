@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Simplest code needed to create an Excel 2010 file with Open XML SDK 2.0 &middot; Joe Kampschmidt
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+
+      <h3 class="masthead-title">
+        <a href="/" title="also known as @jokecamp">Joe Kampschmidt</a>
+      </h3>
+      <div class="center"><small>Joe's Code - a pragmatic approach to web and software development</small></div>
+
+      <nav class="nav">
+        <a class="" href="/">Home</a>
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <a class="" href="/posts/" title="Blog Posts">Blog Posts</a>
+            
+          
+        
+          
+            
+              <a class="" href="/projects/" title="Projects">Projects</a>
+            
+          
+        
+          
+        
+        <a href="https://github.com/jokecamp" title="Joe's github page - commit all the things">GitHub</a>
+        <a href="http://stackoverflow.com/users/215502/kampsj" title="Joe's stackoverflow account - aka street credit">StackOverflow</a>
+        <a href="https://twitter.com/jokecamp" title="Joe's twitter account">Twitter</a>
+      </div>
+      </nav>
+    </div>
+    <div class="container content">
+      <div class="post">
+  <h1 class="post-title">Simplest code needed to create an Excel 2010 file with Open XML SDK 2.0</h1>
+  <span class="post-date">06 Apr 2012</span>
+  <p>Open XML can be very frustrating. In order to help myself understand the package, parts and relationships I have tried to find the <strong>bare minimum</strong> amount of C# code needed to generate a <strong>valid empty excel file</strong>. The inline constructors help to show the hierarchy.</p>
+
+<p>Please let me know if you have found a simpler and less verbose way.</p>
+
+<p><strong>The bare minimum code required:</strong></p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="c1">// By default AutoSave will be true and Editable = true, and Type = xlsx</span>
+<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">doc</span> <span class="p">=</span> <span class="n">SpreadsheetDocument</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="s">&quot;Empty.xlsx&quot;</span><span class="p">,</span> <span class="n">SpreadsheetDocumentType</span><span class="p">.</span><span class="n">Workbook</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="c1">// Creates 4 things: WorkBookPart, WorkSheetPart, WorkSheet, SheetData</span>
+  <span class="n">doc</span><span class="p">.</span><span class="n">AddWorkbookPart</span><span class="p">().</span><span class="n">AddNewPart</span><span class="p">&lt;</span><span class="n">WorksheetPart</span><span class="p">&gt;().</span><span class="n">Worksheet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Worksheet</span><span class="p">(</span><span class="k">new</span> <span class="n">SheetData</span><span class="p">());</span>
+
+  <span class="n">doc</span><span class="p">.</span><span class="n">WorkbookPart</span><span class="p">.</span><span class="n">Workbook</span> <span class="p">=</span>
+    <span class="k">new</span> <span class="nf">Workbook</span><span class="p">(</span>
+      <span class="k">new</span> <span class="nf">Sheets</span><span class="p">(</span>
+        <span class="k">new</span> <span class="n">Sheet</span>
+          <span class="p">{</span>
+            <span class="c1">// Id is used to create Sheet to WorksheetPart relationship</span>
+            <span class="n">Id</span> <span class="p">=</span> <span class="n">doc</span><span class="p">.</span><span class="n">WorkbookPart</span><span class="p">.</span><span class="n">GetIdOfPart</span><span class="p">(</span><span class="n">doc</span><span class="p">.</span><span class="n">WorkbookPart</span><span class="p">.</span><span class="n">WorksheetParts</span><span class="p">.</span><span class="n">First</span><span class="p">()),</span>
+            <span class="c1">// SheetId and Name are both required</span>
+            <span class="n">SheetId</span> <span class="p">=</span> <span class="m">1</span><span class="p">,</span>
+            <span class="n">Name</span> <span class="p">=</span> <span class="s">&quot;Empty Sheet&quot;</span>
+          <span class="p">}));</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This will create a file called Empty.xlsx in the directory you ran the code from. If you wanted to work from this code you could start by injecting your own data into the SheetData() constructor.</p>
+
+<p>Other Open XML sources:</p>
+
+<ul>
+<li><a href="http://blogs.msdn.com/b/chrisquon/archive/2009/07/22/creating-an-excel-spreadsheet-from-scratch-using-openxml.aspx">MSDN Blog: Creating an Excel spreadsheet from scratch using OpenXML</a></li>
+<li><a href="http://www.lateral8.com/articles/2010/3/5/openxml-sdk-20-export-a-datatable-to-excel.aspx">OpenXML SDK 2.0: Export a DataTable to Exc</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/documentformat.openxml.spreadsheet.cell.aspx">MSDN: Open XML Cell Class</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/ff478153.aspx">MSDN: How to: Create a Spreadsheet Document by Providing a Filename</a></li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+          <a href="//code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/">
+            Alternate way to build your own football.db sqlite database
+            <small>28 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//fun/2014/06/07/building-a-raspberry-pi-photo-frame/">
+            Building a Raspberry Pi Photo Frame
+            <small>07 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/">
+            Resolving AngularJS paths in a ASP.NET MVC SPA and IIS
+            <small>06 Jun 2014</small>
+          </a>
+      </li>
+    
+  </ul>
+</div>
+
+      <div class="footer">
+        <p><a href="/atom.xml" title="Atom Feed">Atom</a> | <a href="/rss.xml" title="RSS Feed">RSS</a></p>
+        <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</p>
+      </div>
+    </div>
+  </body>
+</html>

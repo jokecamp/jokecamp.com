@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Querying the TeamCity Rest API with Powershell &middot; Joe Kampschmidt
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+
+      <h3 class="masthead-title">
+        <a href="/" title="also known as @jokecamp">Joe Kampschmidt</a>
+      </h3>
+      <div class="center"><small>Joe's Code - a pragmatic approach to web and software development</small></div>
+
+      <nav class="nav">
+        <a class="" href="/">Home</a>
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <a class="" href="/posts/" title="Blog Posts">Blog Posts</a>
+            
+          
+        
+          
+            
+              <a class="" href="/projects/" title="Projects">Projects</a>
+            
+          
+        
+          
+        
+        <a href="https://github.com/jokecamp" title="Joe's github page - commit all the things">GitHub</a>
+        <a href="http://stackoverflow.com/users/215502/kampsj" title="Joe's stackoverflow account - aka street credit">StackOverflow</a>
+        <a href="https://twitter.com/jokecamp" title="Joe's twitter account">Twitter</a>
+      </div>
+      </nav>
+    </div>
+    <div class="container content">
+      <div class="post">
+  <h1 class="post-title">Querying the TeamCity Rest API with Powershell</h1>
+  <span class="post-date">25 Nov 2013</span>
+  <p>The following powershell function demonstrates how to get the last successful TeamCity build number using the TeamCity REST API. This is a useful tool for continuous deployment to dev/test environments. I only cared about the build number but with some minor modifications of the XPath parsing you can get a lot of different information.</p>
+
+<p>Requirements</p>
+
+<ul>
+<li><p>REST API Plugin: Ensure you have the plugin installed. On the build server website go to
+    <code>Administration &gt; Server Administration &gt; Plugins List</code>
+    You should see the entry &quot;REST API.&quot;</p></li>
+<li><p>Authentication: You will need to either <a href="http://confluence.jetbrains.com/display/TCD7/Enabling+Guest+Login">enable guest access in TeamCity settings</a> or first authenticate via the TeamCity API. Guest access allows a read-only view of our build server website and API.</p></li>
+<li><p>Parameters: You will need to know your project id and TeamCity base url. You can determine the project id by seperate queries but for the simplicity of this example I have hard coded the id.</p></li>
+</ul>
+<div class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="cm">&lt;#</span>
+<span class="cm">    Uses guest access to get the lastest successful build for a given project (project id is bt30)</span>
+
+<span class="cm">    Guest Access needs to be enabled on TeamCity server or you will need to provide your</span>
+<span class="cm">    own authentication.</span>
+
+<span class="cm">    Example usage:</span>
+<span class="cm">        Get-Latest-TeamCity-Build &quot;http://teamcityserver/ &quot;bt30&quot; | Write-Output</span>
+
+<span class="cm">#&gt;</span>
+<span class="k">Function</span> <span class="nb">Get-Latest</span><span class="n">-TeamCity-Build</span><span class="p">(</span><span class="no">[string]</span><span class="nv">$baseUrl</span><span class="p">,</span> <span class="no">[string]</span><span class="nv">$projectId</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nv">$url</span> <span class="p">=</span> <span class="s2">&quot;${baseUrl}guestAuth/app/rest/buildTypes/id:${projectId}/builds?status=SUCCESS&quot;</span>
+
+    <span class="nv">$xml</span> <span class="p">=</span> <span class="no">[xml]</span><span class="p">(</span><span class="nb">invoke-RestMethod</span> <span class="n">-Uri</span> <span class="nv">$url</span> <span class="n">-Method</span> <span class="n">GET</span><span class="p">)</span>
+    <span class="nv">$xpath</span> <span class="p">=</span> <span class="s2">&quot;/builds/build[1]&quot;</span>
+    <span class="nv">$latestBuild</span> <span class="p">=</span> <span class="nb">Select-xml</span> <span class="n">-xpath</span> <span class="nv">$xpath</span> <span class="n">-xml</span> <span class="nv">$xml</span>
+
+    <span class="k">return</span> <span class="p">@{</span>
+        <span class="s2">&quot;Build&quot;</span> <span class="p">=</span> <span class="nv">$latestBuild</span><span class="p">.</span><span class="n">Node</span><span class="p">.</span><span class="n">GetAttribute</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">);</span>
+        <span class="s2">&quot;Revision&quot;</span> <span class="p">=</span> <span class="nv">$latestBuild</span><span class="p">.</span><span class="n">Node</span><span class="p">.</span><span class="n">GetAttribute</span><span class="p">(</span><span class="s2">&quot;number&quot;</span><span class="p">);</span>
+        <span class="s2">&quot;Url&quot;</span> <span class="p">=</span> <span class="nv">$url</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a href="https://github.com/jokecamp/PowerShell.ToolBelt/blob/master/TeamCityFunctions.ps1">View the latest version of this function on GitHub</a>.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+          <a href="//code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/">
+            Alternate way to build your own football.db sqlite database
+            <small>28 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//fun/2014/06/07/building-a-raspberry-pi-photo-frame/">
+            Building a Raspberry Pi Photo Frame
+            <small>07 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/">
+            Resolving AngularJS paths in a ASP.NET MVC SPA and IIS
+            <small>06 Jun 2014</small>
+          </a>
+      </li>
+    
+  </ul>
+</div>
+
+      <div class="footer">
+        <p><a href="/atom.xml" title="Atom Feed">Atom</a> | <a href="/rss.xml" title="RSS Feed">RSS</a></p>
+        <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</p>
+      </div>
+    </div>
+  </body>
+</html>

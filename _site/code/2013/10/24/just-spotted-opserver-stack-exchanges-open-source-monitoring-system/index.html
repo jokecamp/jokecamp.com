@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Just spotted Opserver - Stack Exchange's open source .NET monitoring system &middot; Joe Kampschmidt
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+
+      <h3 class="masthead-title">
+        <a href="/" title="also known as @jokecamp">Joe Kampschmidt</a>
+      </h3>
+      <div class="center"><small>Joe's Code - a pragmatic approach to web and software development</small></div>
+
+      <nav class="nav">
+        <a class="" href="/">Home</a>
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <a class="" href="/posts/" title="Blog Posts">Blog Posts</a>
+            
+          
+        
+          
+            
+              <a class="" href="/projects/" title="Projects">Projects</a>
+            
+          
+        
+          
+        
+        <a href="https://github.com/jokecamp" title="Joe's github page - commit all the things">GitHub</a>
+        <a href="http://stackoverflow.com/users/215502/kampsj" title="Joe's stackoverflow account - aka street credit">StackOverflow</a>
+        <a href="https://twitter.com/jokecamp" title="Joe's twitter account">Twitter</a>
+      </div>
+      </nav>
+    </div>
+    <div class="container content">
+      <div class="post">
+  <h1 class="post-title">Just spotted Opserver - Stack Exchange's open source .NET monitoring system</h1>
+  <span class="post-date">24 Oct 2013</span>
+  <p>As a .NET developer were are used to finding ourselves left out in the cold when it comes to awesome open source projects. However, over the last few years there has been a lot of momentum gaining around C# to reverse that trend. We now have awesome things like the <a href="http://www.mono-project.com/Main_Page">Mono project</a>, <a href="http://scriptcs.net/">scriptcs</a>, <a href="http://www.servicestack.net/">ServiceStack</a>, <a href="https://github.com/restsharp/RestSharp">RestSharp</a> and everyone&#39;s favorite friend <a href="http://www.nuget.org/">NuGet</a>!</p>
+
+<p>Periodically, I like to check out the <a href="https://github.com/trending?l=csharp&amp;since=weekly">GitHub trending repositories for C#</a>. It is great to see what projects are most popular in the open source community for any given language.</p>
+
+<p>The current trending list for the week of 10/24/13 is below.</p>
+
+<ol>
+<li><a href="https://github.com/opserver/Opserver">opserver/Opserver</a> C# -Stack Exchange&#39;s Monitoring System</li>
+<li><a href="https://github.com/ServiceStack/ServiceStack">ServiceStack/ServiceStack</a> C# - Thoughtfully architected, obscenely fast, thoroughly enjoyable web services for all</li>
+<li><a href="https://github.com/SignalR/SignalR">SignalR/SignalR</a> C# - Incredibly simple real-time web for .NET</li>
+<li><a href="https://github.com/restsharp/RestSharp">restsharp/RestSharp</a> C# - Simple REST and HTTP API Client for .NET</li>
+<li><a href="https://github.com/Squirrel/Squirrel.Windows">Squirrel/Squirrel.Windows</a> C# - It&#39;s like ClickOnce but Works</li>
+<li><a href="https://github.com/proletariatgames/CUDLR">proletariatgames/CUDLR</a> C# - Console for Unity Debugging and Logging Remotely</li>
+</ol>
+
+<p><strong>It is an exciting time to be a C# .NET developer.</strong></p>
+
+<p>At the top of that list is a new project called <strong>Opserver</strong> that has recently been added by <a href="http://stackexchange.com/">StackExchange</a>. StackExchange, the creators of <a href="http://stackoverflow.com/">StackOverflow</a> are strong proponents of open-source projects. While they will <a href="http://meta.stackoverflow.com/questions/3086/will-open-sourcing-stack-overflow-destroy-our-business-model">not be open sourcing there Q&amp;A engine</a> they have used and contributed to many other open source projects. As a C# .NET developer I have always taken solace and pride that the StackOverflow website was a product of C# .NET. Among the horde of unpolished enterprise applications and government websites it was always nice to point to StackOverflow as a great example.</p>
+
+<p>I&#39;ve been excited ever since the <a href="http://blog.stackoverflow.com/2012/02/stack-exchange-open-source-projects/">announcement </a>that StackExchange would be trying to <a href="http://nickcraver.com/blog/2012/04/12/what-weve-been-up-to/">open source more of their projects</a>. Looks like they are getting ready to unleash their server monitoring application. There is a not a lot of documentation yet but it does not take much to get started.</p>
+
+<p>Here are some more <a href="http://imgur.com/a/dawwf">detailed screenshots</a> posted by Nick Craver.</p>
+
+<p>*<em>The steps I took to get the website running in VisualStudio 2012 *</em></p>
+
+<ul>
+<li>Copied repository to my machine via Windows GitHub</li>
+<li>Renamed the file Config/SecuritySettings.config.example to SecuritySettings.config</li>
+<li><p>Commented out the AD provider and un-commented the following</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;SecuritySettings provider=&quot;alladmin&quot; /&gt;
+</code></pre></div></li>
+<li><p>Renamed the file Config/SQLSettings.json.example to SQLSettings.json</p></li>
+<li><p>In SQLSettings I made the clusters an empty string and just added two databases names to the instances list</p></li>
+<li><p>The same for the Config/RedisSettings.json.example file</p></li>
+<li><p>Start debugging the website. You might need to be running as admin and/or have permission to access the servers you listed.</p></li>
+</ul>
+
+<p><strong>Screenshots of the Opserver Dashboards for SQL Databases and Redis</strong></p>
+
+<p><a href="http://jokecamp.files.wordpress.com/2013/10/all-servers.png"><img src="http://jokecamp.files.wordpress.com/2013/10/all-servers.png?w=300" alt="all-servers"></a></p>
+
+<p><a href="http://jokecamp.files.wordpress.com/2013/10/databases.png"><img src="http://jokecamp.files.wordpress.com/2013/10/databases.png?w=300" alt="databases"></a></p>
+
+<p><a href="http://jokecamp.files.wordpress.com/2013/10/redis.png"><img src="http://jokecamp.files.wordpress.com/2013/10/redis.png?w=300" alt="redis"></a></p>
+
+<p><a href="http://jokecamp.files.wordpress.com/2013/10/top.png"><img src="http://jokecamp.files.wordpress.com/2013/10/top.png?w=300" alt="top"></a></p>
+
+<p>As you can see from the screenshots there is a lot of reports and data available and this is only a couple of the many different types of dashboards. <strong>This is a repository to keep your eye on. I can easily see it become the devops dashboard of choice for .NET environments.</strong></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+          <a href="//code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/">
+            Alternate way to build your own football.db sqlite database
+            <small>28 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//fun/2014/06/07/building-a-raspberry-pi-photo-frame/">
+            Building a Raspberry Pi Photo Frame
+            <small>07 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/">
+            Resolving AngularJS paths in a ASP.NET MVC SPA and IIS
+            <small>06 Jun 2014</small>
+          </a>
+      </li>
+    
+  </ul>
+</div>
+
+      <div class="footer">
+        <p><a href="/atom.xml" title="Atom Feed">Atom</a> | <a href="/rss.xml" title="RSS Feed">RSS</a></p>
+        <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</p>
+      </div>
+    </div>
+  </body>
+</html>

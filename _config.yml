@@ -1,0 +1,25 @@
+# Dependencies
+markdown:         redcarpet
+highlighter:      pygments
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Joe Kampschmidt
+description:      "Joe's Code - a pragmatic approach to web and software development"
+url:              http://www.jokecamp.com
+baseurl:          /
+
+author:
+  name:           'Joe Kampschmidt'
+  url:            https://twitter.com/jokecamp
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:           https://github.com/jokecamp
+twitter:          https://twitter.com/jokecamp
+stackoverflow:    http://stackoverflow.com/users/215502/kampsj

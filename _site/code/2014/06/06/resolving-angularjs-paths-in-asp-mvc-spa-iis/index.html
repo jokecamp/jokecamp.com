@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Resolving AngularJS paths in a ASP.NET MVC SPA and IIS &middot; Joe Kampschmidt
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+
+      <h3 class="masthead-title">
+        <a href="/" title="also known as @jokecamp">Joe Kampschmidt</a>
+      </h3>
+      <div class="center"><small>Joe's Code - a pragmatic approach to web and software development</small></div>
+
+      <nav class="nav">
+        <a class="" href="/">Home</a>
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <a class="" href="/posts/" title="Blog Posts">Blog Posts</a>
+            
+          
+        
+          
+            
+              <a class="" href="/projects/" title="Projects">Projects</a>
+            
+          
+        
+          
+        
+        <a href="https://github.com/jokecamp" title="Joe's github page - commit all the things">GitHub</a>
+        <a href="http://stackoverflow.com/users/215502/kampsj" title="Joe's stackoverflow account - aka street credit">StackOverflow</a>
+        <a href="https://twitter.com/jokecamp" title="Joe's twitter account">Twitter</a>
+      </div>
+      </nav>
+    </div>
+    <div class="container content">
+      <div class="post">
+  <h1 class="post-title">Resolving AngularJS paths in a ASP.NET MVC SPA and IIS</h1>
+  <span class="post-date">06 Jun 2014</span>
+  <p>[caption id=&quot;attachment_1509&quot; align=&quot;alignright&quot; width=&quot;212&quot;]<a href="https://jokecamp.files.wordpress.com/2014/06/iis-application.png"><img src="http://jokecamp.files.wordpress.com/2014/06/iis-application.png" alt="Example IIS Application Setup"></a> Problems when your IIS Application is not at the root[/caption]</p>
+
+<p>Routing in the development of a AngularJS SPA (single page application) inside an ASP.NET MVC application can be problematic. Trying to resolve relative file paths when developing locally vs deploying to a remote server can have different behaviors, especially when your deployed application does not live at the root of your IIS website. Below is the problem I encountered and my solution.</p>
+
+<h2>The Problem with Relative URLs</h2>
+
+<p>For example you may have the following navigation links inside an MVC cshtml file.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/home&quot;</span><span class="nt">&gt;</span>Home<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/pages/1&quot;</span><span class="nt">&gt;</span>Page One<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/admins&quot;</span><span class="nt">&gt;</span>Admins<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div>
+<p>Then if you define your AngularJS routes with the following</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$routeProvider</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">&#39;/angularApp/home/home.html&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;homeCtrl&#39;</span> <span class="p">});</span>
+
+<span class="nx">$routeProvider</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="s1">&#39;/pages/:id&#39;</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">&#39;/angularApp/pages/pages.html&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;pagesCtrl&#39;</span> <span class="p">});</span>
+
+<span class="nx">$routeProvider</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="s1">&#39;/admins&#39;</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">templateUrl</span><span class="o">:</span> <span class="s1">&#39;/angularApp/admins/admins.html&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;adminCtrl&#39;</span> <span class="p">});</span>
+</code></pre></div>
+<p>If you deploy this to IIS as a new application (named &quot;app&quot; for instance) instead of under the root of the website then you will encounter the following issues:</p>
+
+<ul>
+<li><strong>The navigation links will not work on the deployed server</strong>. The links will end up point to http://server/home instead of the correct http://server/app/home.</li>
+<li><strong>The templateUrl will not resolve correctly inside AngularJS</strong>. AngularJS will look for “http://server//angularApp/admins/admins.html instead of the correct location of http://server/app/angularApp/admins/admins.html</li>
+</ul>
+
+<p>[caption id=&quot;attachment_1510&quot; align=&quot;alignright&quot; width=&quot;85&quot;]<a href="https://jokecamp.files.wordpress.com/2014/06/directory-structure.png"><img src="http://jokecamp.files.wordpress.com/2014/06/directory-structure.png?w=85" alt="My AngularJS SPA Visual Studio Project Structure"></a> My AngularJS SPA Visual Studio Project Structure[/caption]</p>
+
+<h2>Solution</h2>
+
+<p>There are probably a few different solutions but I will outline the one that worked for me and allowed to work locally and deploy without any configuration changes. To avoid configuration changes we can use a couple tricks involving the an HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">base tag</a> and a <a href="http://msdn.microsoft.com/en-us/library/aa691099(v=vs.71).aspx">C# conditional compilation directive</a>. For this to work we have to assume we will always compile in DEBUG for localhost and compile in RELEASE for remote deployment.</p>
+
+<ul>
+<li>Create a base html tag and conditionally set the href value based DEBUG vs RELEASE. If in DEBUG then use href = &#39;/&#39; otherwise use href = &#39;/app/&#39;</li>
+<li>Change all html links to be relative paths therefore utilizing the base url</li>
+<li>In AngularJS change the $routeProvider templateUrls to prepend the base url</li>
+</ul>
+
+<p>Here is the conditional code in the Razor file ( _Layout.cshtml)</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content=</span><span class="s">&quot;IE=edge&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;title&gt;</span>@ViewBag.Title<span class="nt">&lt;/title&gt;</span>
+    @Styles.Render(&quot;~/bundles/css&quot;)
+
+    @if (!Html.IsDebug()) {
+       <span class="nt">&lt;base</span> <span class="na">href=</span><span class="s">&quot;/app/&quot;</span> <span class="nt">/&gt;</span>
+    } else {
+       <span class="nt">&lt;base</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span> <span class="nt">/&gt;</span>
+    }
+<span class="nt">&lt;/head&gt;</span>
+</code></pre></div>
+<p>Here is the AngularJS routing code. It uses jQuery to find the first base tag and retrieve the href value</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">baseUrl</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">).</span><span class="nx">first</span><span class="p">().</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;base url for relative links = &quot;</span> <span class="o">+</span> <span class="nx">baseUrl</span><span class="p">);</span>
+
+<span class="nx">$routeProvider</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="s1">&#39;/home&#39;</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">templateUrl</span><span class="o">:</span> <span class="nx">baseUrl</span> <span class="o">+</span> <span class="s1">&#39;angularApp/home/home.html&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;homeCtrl&#39;</span> <span class="p">});</span>
+
+<span class="nx">$routeProvider</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="s1">&#39;/admins&#39;</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">templateUrl</span><span class="o">:</span> <span class="nx">baseUrl</span> <span class="o">+</span> <span class="s1">&#39;angularApp/admins/admins.html&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;adminsCtrl&#39;</span> <span class="p">});</span>
+
+<span class="nx">$routeProvider</span><span class="p">.</span><span class="nx">when</span><span class="p">(</span><span class="s1">&#39;/pages/:id&#39;</span><span class="p">,</span>
+  <span class="p">{</span> <span class="nx">templateUrl</span><span class="o">:</span> <span class="nx">baseUrl</span> <span class="o">+</span> <span class="s1">&#39;angularApp/endpoints/pages.html&#39;</span><span class="p">,</span> <span class="nx">controller</span><span class="o">:</span> <span class="s1">&#39;pagesCtrl&#39;</span> <span class="p">});</span>
+</code></pre></div>
+<p>Here is my BundleConfig.cs for reference. We can still use virtual paths.</p>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">bundles</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">Bundle</span><span class="p">(</span><span class="s">&quot;~/bundles/app-scripts&quot;</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="s">&quot;~/angularApp/app.js&quot;</span><span class="p">)</span>
+
+  <span class="c1">// Modules/Components</span>
+  <span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="s">&quot;~/angularApp/admins/*.js&quot;</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="s">&quot;~/angularApp/home/*.js&quot;</span><span class="p">)</span>
+  <span class="p">.</span><span class="n">Include</span><span class="p">(</span><span class="s">&quot;~/angularApp/pages/*.js&quot;</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>I arrived at this solution thanks to the answers to these SO questions</p>
+
+<ul>
+<li><a href="http://stackoverflow.com/a/17013430/215502">Using a Relative Path for a Service Call in AngularJS</a> this answer has better guidance on properly injecting the base url for the routes. I have simplified my example and use the base tag instead of the link tag.</li>
+<li><a href="http://stackoverflow.com/a/7135343/215502">Razor view engine, how to enter preprocessor #if debug</a></li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+          <a href="//code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/">
+            Alternate way to build your own football.db sqlite database
+            <small>28 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//fun/2014/06/07/building-a-raspberry-pi-photo-frame/">
+            Building a Raspberry Pi Photo Frame
+            <small>07 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//opinion/2014/03/27/setup-up-your-mac-for-net-development/">
+            Setup up your Mac for .NET Development
+            <small>27 Mar 2014</small>
+          </a>
+      </li>
+    
+  </ul>
+</div>
+
+      <div class="footer">
+        <p><a href="/atom.xml" title="Atom Feed">Atom</a> | <a href="/rss.xml" title="RSS Feed">RSS</a></p>
+        <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</p>
+      </div>
+    </div>
+  </body>
+</html>

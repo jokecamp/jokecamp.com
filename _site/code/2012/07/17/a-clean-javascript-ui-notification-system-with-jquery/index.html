@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      A Clean Javascript UI Notification System with jQuery &middot; Joe Kampschmidt
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+
+      <h3 class="masthead-title">
+        <a href="/" title="also known as @jokecamp">Joe Kampschmidt</a>
+      </h3>
+      <div class="center"><small>Joe's Code - a pragmatic approach to web and software development</small></div>
+
+      <nav class="nav">
+        <a class="" href="/">Home</a>
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <a class="" href="/posts/" title="Blog Posts">Blog Posts</a>
+            
+          
+        
+          
+            
+              <a class="" href="/projects/" title="Projects">Projects</a>
+            
+          
+        
+          
+        
+        <a href="https://github.com/jokecamp" title="Joe's github page - commit all the things">GitHub</a>
+        <a href="http://stackoverflow.com/users/215502/kampsj" title="Joe's stackoverflow account - aka street credit">StackOverflow</a>
+        <a href="https://twitter.com/jokecamp" title="Joe's twitter account">Twitter</a>
+      </div>
+      </nav>
+    </div>
+    <div class="container content">
+      <div class="post">
+  <h1 class="post-title">A Clean Javascript UI Notification System with jQuery</h1>
+  <span class="post-date">17 Jul 2012</span>
+  <p><a href="http://jokecamp.files.wordpress.com/2012/07/notifications.png"><img src="http://jokecamp.files.wordpress.com/2012/07/notifications.png" alt="Javascript UI notifications"></a></p>
+
+<p>I&#39;ve created a pretty simple javascript notification system for letting the users know what is going on and what is happening. UIs should be always keep the user informed to what going on. This notification system is particulaly useful for displaying the outcome of AJAX updates. The code uses the jQuery library.</p>
+
+<p>I use three different types of notifications and their respective colors:</p>
+
+<ol>
+<li>Success (Green)</li>
+<li>Error (Red)</li>
+<li>Information (Blue)</li>
+</ol>
+
+<p>I have the notifications set to pop into the top right corner of the page. Show for a period of time then disapear. The notifications nicely stack on top of each other.</p>
+
+<p>The methods to add the notes:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">AddInformNote</span><span class="p">(</span><span class="s2">&quot;Caution&quot;</span><span class="p">);</span>
+<span class="nx">AddSuccessNote</span><span class="p">(</span><span class="s2">&quot;The data was successfully saved.&quot;</span><span class="p">);</span>
+<span class="nx">AddFailedNote</span><span class="p">(</span><span class="s2">&quot;Error: The record could not be updated.&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p><a href="http://www.jokecamp.com/lab/javascriptNotifications.html">View Online Example and Code</a>. All the js and CSS source code can be viewed inline in the HTML file.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+          <a href="//code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/">
+            Alternate way to build your own football.db sqlite database
+            <small>28 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//fun/2014/06/07/building-a-raspberry-pi-photo-frame/">
+            Building a Raspberry Pi Photo Frame
+            <small>07 Jun 2014</small>
+          </a>
+      </li>
+    
+      <li>
+          <a href="//code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/">
+            Resolving AngularJS paths in a ASP.NET MVC SPA and IIS
+            <small>06 Jun 2014</small>
+          </a>
+      </li>
+    
+  </ul>
+</div>
+
+      <div class="footer">
+        <p><a href="/atom.xml" title="Atom Feed">Atom</a> | <a href="/rss.xml" title="RSS Feed">RSS</a></p>
+        <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</p>
+      </div>
+    </div>
+  </body>
+</html>

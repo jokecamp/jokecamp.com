@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title></title>
+		<description>Joe&#39;s Code - a pragmatic approach to web and software development</description>
+		<link>http://www.jokecamp.com</link>
+		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Alternate way to build your own football.db sqlite database</title>
+				<description>&lt;p&gt;Documentation has been moved to https://github.com/jokecamp/sportdb-build-scripts&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;ve preserved the original text below.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Below I will describe a set or procedures to generate your own database from scratch. I do not believe this is better than the &lt;a href=&quot;https://github.com/openfootball/build&quot;&gt;openfootball/build&lt;/a&gt; script but I believe it will help clarify any confusion for people that are unfamiliar with ruby and rake.&lt;/p&gt;
+
+&lt;p&gt;Requirements:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;git&lt;/li&gt;
+&lt;li&gt;Ruby and RubyGems&lt;/li&gt;
+&lt;li&gt;SQLite3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;1) Create a new folder&lt;/h3&gt;
+
+&lt;p&gt;The new folder will hold the numerous open football repositories. For this example we will use &amp;quot;openfootball.&amp;quot; Other instructions use a slightly different folder format. We will execute all commands below inside this directory.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;mkdir openfootball
+cd openfootball
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;2) Install sportdb tool&lt;/h3&gt;
+
+&lt;p&gt;We need to install the sportdb command line tool. We can easily do this with the Ruby package manager &lt;a href=&quot;https://rubygems.org/&quot;&gt;RubyGems&lt;/a&gt;. We need to install the gem &lt;a href=&quot;https://rubygems.org/gems/sportdb&quot;&gt;sportdb&lt;/a&gt;. You can view source code on &lt;a href=&quot;https://github.com/sportdb/sport.db.ruby&quot;&gt;github.com/sportdb/sport.db.ruby&lt;/a&gt;
+Run the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gem install sportdb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Expected Ouput:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Successfully installed sportdb-1.9.2
+Parsing documentation for sportdb-1.9.2
+Done installing documentation for sportdb after 1 seconds
+1 gem installed
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you already have sportdb installed you may want to ensure you have the latest with &lt;code&gt;gem update sportdb&lt;/code&gt;  Whenever the parser is changed (last change was for the addition of goals to the data template) you will need to update sportdb.&lt;/p&gt;
+
+&lt;h3&gt;3) Working with the sportdb command line tool&lt;/h3&gt;
+
+&lt;p&gt;Now run the following to see your options:
+&lt;code&gt;sportdb --help&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Run:
+&lt;code&gt;sportdb create&lt;/code&gt;
+You will now see a new sqlite database file in your new directory called &lt;code&gt;sport.db&lt;/code&gt;. sport.db is default filename. I will show how to specify a different name elsewhere. You can connect to the database with sqlite3.exe and browse the schema and tables.
+From our openfootball dir run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sqlite3 sport.db
+// then in the sqlite prompt run:
+sqlite&amp;gt; .tables
+// the output will look something like this:
+lltime_standing_entries  games                     props
+alltime_standings         goals                     races
+assocs                    grounds                   records
+assocs_assocs             group_standing_entries    regions
+badges                    group_standings           rosters
+cities                    groups                    rounds
+continents                groups_teams              runs
+countries                 langs                     seasons
+event_standing_entries    leagues                   taggings
+event_standings           logs                      tags
+events                    names                     teams
+events_grounds            persons                   tracks
+events_teams              places                    usages
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;However, the tables are still empty. We can get a quick snapshot of the database by running &lt;code&gt;sportdb stats&lt;/code&gt; too see a quick summary of table counts.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sportdb stat
+// example output
+  0 leagues  /  56 seasons
+  0 events (league+season recs)  /  0 rounds  /  0 groups
+  0 teams
+  0 games
+  0 badges
+  0 tracks / 0 races (track+event recs) / 0 runs
+  0 records (race|run+person recs)
+  0 rosters (person+team+event recs)
+  0 goals (person+game recs)
+  0  assocs|orgs
+  0  grounds|stadiums
+Stats:
+     0 continents
+     0 countries (0 supras, 0 deps)
+     0 regions
+     0 metros
+     0 cities (0 metros)
+     0 districts
+     0 places
+     0 names
+     0 langs
+     0 usages
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;4) Downloading the raw data from github&lt;/h3&gt;
+
+&lt;p&gt;At this point we only have the ruby parser. We need to download the raw data stored in various github repos. It important where you put the repos and how you refrence them in the scripts. In this example I will be putting everything in the &lt;code&gt;openfootball&lt;/code&gt; folder. However, if you are using the official rake file to build you will &lt;strong&gt;need&lt;/strong&gt; to have the expected folder structure as described in this &lt;a href=&quot;https://groups.google.com/forum/#!searchin/opensport/league$20with$20key$20missing/opensport/TA3a2OUBKMc/H9v-1AaMGK8J&quot;&gt;thread&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our first &lt;strong&gt;required dependency&lt;/strong&gt; is &lt;a href=&quot;https://github.com/openmundi/world.db&quot;&gt;github.com/openmundi/world.db&lt;/a&gt;. It contains geographic information including country names and codes.&lt;/p&gt;
+
+&lt;p&gt;From inside the &lt;code&gt;/openfootball&lt;/code&gt; folder run the following:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;git clone git://github.com/openmundi/world.db.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This creates a new folder in our repo called world.db. Now if we run the setup command
+we can setup the database with our world.db data.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;sportdb setup --worldinclude world.db
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This time in the output we can see our sportdb parser doing actual work. Here is a snippet of the logs&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[info] parsing data &amp;#39;pacific/nz-new-zealand/cities&amp;#39; (world.db/pacific/nz-new-zealand/cities.txt)...
+[info] parsing data &amp;#39;south-america/1-codes/fifa&amp;#39; (world.db/south-america/1-codes/fifa.yml)...
+[info] parsing data &amp;#39;south-america/1-codes/internet&amp;#39; (world.db/south-america/1-codes/internet.yml)...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now run &lt;code&gt;sportdb stat&lt;/code&gt; and you will see the new data included in the summary. I prefer to delete the existing database and start over. You will need to do this is you are using the &lt;code&gt;create&lt;/code&gt; or &lt;code&gt;setup&lt;/code&gt; commands. If you use the &lt;code&gt;update&lt;/code&gt; command this is not required.&lt;/p&gt;
+
+&lt;p&gt;When including files you can use relative paths. Since I am using one folder I can keep this simple, otherwise I would need to have something like &lt;code&gt;--worldinclude ./world.db&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3&gt;5) Putting it all together. Download and build the entire football.db&lt;/h3&gt;
+
+&lt;p&gt;The below download.sh script will clone all the current data repos. If the repos already exist you will see errors. You can only clone a repo once. I usually delete the folders and re-download them when I want updated data.&lt;/p&gt;
+
+&lt;p&gt;Create &lt;strong&gt;download.sh&lt;/strong&gt; and run &lt;code&gt;sh download.sh&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;git clone https://github.com/openmundi/world.db.git
+git clone https://github.com/openfootball/stadiums.git
+git clone https://github.com/openfootball/players.git
+git clone https://github.com/openfootball/national-teams
+git clone https://github.com/openfootball/world-cup.git
+git clone https://github.com/openfootball/euro-cup.git
+git clone https://github.com/openfootball/africa-cup.git
+git clone https://github.com/openfootball/north-america-gold-cup.git
+git clone https://github.com/openfootball/copa-america.git
+git clone https://github.com/openfootball/at-austria.git
+git clone https://github.com/openfootball/de-deutschland.git
+git clone https://github.com/openfootball/en-england.git
+git clone https://github.com/openfootball/es-espana.git
+git clone https://github.com/openfootball/it-italy.git
+git clone https://github.com/openfootball/europe-champions-league.git
+git clone https://github.com/openfootball/mx-mexico.git
+git clone https://github.com/openfootball/br-brazil.git
+git clone https://github.com/openfootball/north-america-champions-league.git
+git clone https://github.com/openfootball/copa-libertadores.git
+git clone https://github.com/openfootball/copa-sudamericana.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create &lt;strong&gt;build.sh&lt;/strong&gt; and run &lt;code&gt;sh build.sh&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;# delete the existing sqlite db
+rm football.db
+
+# Setup the database with world data
+sportdb --dbname football.db setup --worldinclude world.db
+
+sportdb --dbname football.db update --include &amp;#39;stadiums&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;players&amp;#39;
+
+# World Cup is dependent on national-teams
+sportdb --dbname football.db update --include &amp;#39;national-teams&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;world-cup&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;euro-cup&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;africa-cup&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;north-america-goldf-cup&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;copa-america&amp;#39;
+
+sportdb --dbname football.db update --include &amp;#39;world&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;at-austria&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;de-deutschland&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;en-england&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;es-espana&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;it-italy&amp;#39;
+
+sportdb --dbname football.db update --include &amp;#39;europe-champions-league&amp;#39;
+
+sportdb --dbname football.db update --include &amp;#39;mx-mexico&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;br-brazil&amp;#39;
+
+sportdb --dbname football.db update --include &amp;#39;north-america-champions-league&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;copa-libertadores&amp;#39;
+sportdb --dbname football.db update --include &amp;#39;copa-sudamericana&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;strong&gt;order of updates&lt;/strong&gt; can be important. See the rake build script for recommended order. https://github.com/openfootball/build/blob/master/settings.rb&lt;/p&gt;
+
+&lt;p&gt;Now check the stats for your football.db with
+&lt;code&gt;sportdb --dbname football.db stat&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Example Output&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;  41 leagues  /  56 seasons
+  35 events (league+season recs)  /  531 rounds  /  63 groups
+  505 teams
+  3886 games
+  0 badges
+  0 tracks / 0 races (track+event recs) / 0 runs
+  0 records (race|run+person recs)
+  0 rosters (person+team+event recs)
+  136 goals (person+game recs)
+  0  assocs|orgs
+  200  grounds|stadiums
+Stats:
+    10 continents
+   245 countries (1 supras, 48 deps)
+   446 regions
+     6 metros
+  1073 cities (365 metros)
+     0 districts
+  1780 places
+     0 names
+     0 langs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Discuss and Ask questions for project at &lt;a href=&quot;https://groups.google.com/group/opensport&quot;&gt;Google Groups&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Sat, 28 Jun 2014 16:50:15 -0400</pubDate>
+				<link>http://www.jokecamp.com/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/</guid>
+			</item>
+		
+			<item>
+				<title>Building a Raspberry Pi Photo Frame</title>
+				<description>&lt;p&gt;First off, my inspiration and instructions came from this article &lt;a href=&quot;http://www.ofbrooklyn.com/2014/01/2/building-photo-frame-raspberry-pi-motion-detector&quot;&gt;Building a living photo frame with a Raspberry Pi and a motion detector&lt;/a&gt;. The author is more knowledgeable and the article is more in-depth than mine. See that article for specific configuration and for the actual contents of the python script to pull photos from flickr. I hope my post will help others by sharing my first time experiences with the pi and the issues/frustrations I encountered.&lt;/p&gt;
+
+&lt;h2&gt;The shopping list&lt;/h2&gt;
+
+&lt;p&gt;Purchased from &lt;a href=&quot;http://www.adafruit.com/&quot;&gt;Adafruit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;1 x Raspberry Pi Model A 256MB RAM[ID:1344] = $29.95&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1 x RCA coupler - Male to Male[ID:951] = $1.50&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1 x Miniature WiFi (802.11b/g/n) Module: For Raspberry Pi and more[ID:814] = $11.95&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1 x NTSC/PAL (Television) TFT Display - 3.5&amp;quot; Diagonal[ID:913] = $44.95&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1 x PIR (motion) sensor[ID:189] = $9.95&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1 x 4GB SD card for Raspberry Pi preinstalled with Raspbian Wheezy[ID:1121] = $9.95&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;1 x Micro USB cable - free - I used an old phone power charger to power the pi board&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A total of about $120 after taxes. Expensive for a digital picture frame but relatively cheap after for a hobby.&lt;/p&gt;
+
+&lt;p&gt;[caption id=&amp;quot;attachment_1541&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;225&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/2014-06-07-16-13-54.jpg&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/2014-06-07-16-13-54.jpg?w=225&quot; alt=&quot;Raspberry pi&quot;&gt;&lt;/a&gt; Raspberry Pi[/caption]&lt;/p&gt;
+
+&lt;h2&gt;My issues and frustrations&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;My WIFI dongle is finicky&lt;/strong&gt;. It only works when I insert it half-way and it will often drop the connection. I knew when it was working by watching for the flashing blue light. When the light turns a solid blue light the connection no longer works. This was my must frustrating experience. I am unsure if the root of the issue is software, the dongle, or the actual pi. I hope to replace the dongle soon and also try some pi firmware upgrades.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A bluetooth keyboard and mouse did not work with the pi.&lt;/strong&gt; The pi would miss key presses and stutter. The devices were running low on power and the bluetooth was a bad idea. The solution was to use a basic wired USB keyboard and mouse. I ended up picking up a basic USB splitter for about $12. After reading up it looks like there are a lot of advocates for USB hubs with independent power sources but I was hoping to keep not introduce a cumbersome USB hub.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Remoting into the pi from my mac was tricky at first&lt;/strong&gt;. I needed to find the pi&amp;#39;s ip address and in my case I needed to do this without having access to the pi. In the end I did this by logging into the remote administration web console for my wireless router. From there I could see a list of connected devices via the &amp;quot;DHCP Reservations&amp;quot; section. Once you have the ip it as a simple as opening the mac terminal and running [code]ssh pi@192.168.1.125[/code] then entering the password.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The LDC screen was too small for dev work.&lt;/strong&gt; After connecting everything and powering on the pi I realized that my 3.5 inch display was going to be too small to read anything. It was a bit anticlimactic and ended my development work for the day. &lt;strong&gt;Roadblocks that ended the days work were common&lt;/strong&gt;. Be prepared to have to wait a few days for new parts or to research. I ended up connecting my pi directly to my TV in the living room via my really long HDMI cable. This made it readable but a bit hard and impractical for working on. Luckily, I only needed to use the TV until I could get the WIFI dongle setup. Once connected to the local network I could switch to controlling the pi via my mac laptop using SSH.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Getting familiar with UNIX&lt;/strong&gt;. Some common commands I utilized:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo reboot&lt;/li&gt;
+&lt;li&gt;sudo halt&lt;/li&gt;
+&lt;li&gt;raspi-config - menu for setting common pi settings. It looks like a BIOS menu&lt;/li&gt;
+&lt;li&gt;startx - start the GUI. I ended up using the terminal more&lt;/li&gt;
+&lt;li&gt;df -h - check the disk space&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Installing the dependent software&lt;/strong&gt; to power the python script to download the flickr photos.
+Install &lt;a href=&quot;https://pypi.python.org/pypi/pip&quot;&gt;pip&lt;/a&gt; a python package manager. We will need the flickrarpi and requests packages.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+sudo python get-pip.py
+# ready to install the packages
+sudo pip install flickrapi
+sudo pip install requests
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Installing fbi - frame buffer imageviewer&lt;/strong&gt;. This is the program that actually displays the slideshow.
+&lt;code&gt;sudo apt-get install fbi&lt;/code&gt; Once fbi is running you can kill it by getting the pid with &lt;code&gt;pidof fbi&lt;/code&gt; and then killing it by &lt;code&gt;kill #pid&lt;/code&gt; where #pid is the process id.&lt;/p&gt;
+
+&lt;h2&gt;Fully Operational!&lt;/h2&gt;
+
+&lt;p&gt;The slideshow is operational now and pulling images directly from my flickr stream. I still have some work to do with a proper display and fixing my wifi issues but the project has been very satisfying. It was fun to make something tangible again. As I have been writing this post I have been quite distracted. Distracted by my new pi slideshow.&lt;/p&gt;
+
+&lt;p&gt;[caption id=&amp;quot;attachment_1572&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;225&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/2014-06-09-21-53-58.jpg&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/2014-06-09-21-53-58.jpg?w=225&quot; alt=&quot;Final Frame&quot;&gt;&lt;/a&gt; Final Frame[/caption]&lt;/p&gt;
+</description>
+				<pubDate>Sat, 07 Jun 2014 21:34:58 -0400</pubDate>
+				<link>http://www.jokecamp.com/fun/2014/06/07/building-a-raspberry-pi-photo-frame/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/fun/2014/06/07/building-a-raspberry-pi-photo-frame/</guid>
+			</item>
+		
+			<item>
+				<title>Resolving AngularJS paths in a ASP.NET MVC SPA and IIS</title>
+				<description>&lt;p&gt;[caption id=&amp;quot;attachment_1509&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;212&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/iis-application.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/iis-application.png&quot; alt=&quot;Example IIS Application Setup&quot;&gt;&lt;/a&gt; Problems when your IIS Application is not at the root[/caption]&lt;/p&gt;
+
+&lt;p&gt;Routing in the development of a AngularJS SPA (single page application) inside an ASP.NET MVC application can be problematic. Trying to resolve relative file paths when developing locally vs deploying to a remote server can have different behaviors, especially when your deployed application does not live at the root of your IIS website. Below is the problem I encountered and my solution.&lt;/p&gt;
+
+&lt;h2&gt;The Problem with Relative URLs&lt;/h2&gt;
+
+&lt;p&gt;For example you may have the following navigation links inside an MVC cshtml file.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/home&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Home&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/pages/1&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Page One&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/admins&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Admins&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then if you define your AngularJS routes with the following&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$routeProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/home&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;templateUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/angularApp/home/home.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;homeCtrl&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$routeProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/pages/:id&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;templateUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/angularApp/pages/pages.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;pagesCtrl&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$routeProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/admins&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;templateUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/angularApp/admins/admins.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;adminCtrl&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you deploy this to IIS as a new application (named &amp;quot;app&amp;quot; for instance) instead of under the root of the website then you will encounter the following issues:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;The navigation links will not work on the deployed server&lt;/strong&gt;. The links will end up point to http://server/home instead of the correct http://server/app/home.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The templateUrl will not resolve correctly inside AngularJS&lt;/strong&gt;. AngularJS will look for “http://server//angularApp/admins/admins.html instead of the correct location of http://server/app/angularApp/admins/admins.html&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;[caption id=&amp;quot;attachment_1510&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;85&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/directory-structure.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/directory-structure.png?w=85&quot; alt=&quot;My AngularJS SPA Visual Studio Project Structure&quot;&gt;&lt;/a&gt; My AngularJS SPA Visual Studio Project Structure[/caption]&lt;/p&gt;
+
+&lt;h2&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;There are probably a few different solutions but I will outline the one that worked for me and allowed to work locally and deploy without any configuration changes. To avoid configuration changes we can use a couple tricks involving the an HTML &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base&quot;&gt;base tag&lt;/a&gt; and a &lt;a href=&quot;http://msdn.microsoft.com/en-us/library/aa691099(v=vs.71).aspx&quot;&gt;C# conditional compilation directive&lt;/a&gt;. For this to work we have to assume we will always compile in DEBUG for localhost and compile in RELEASE for remote deployment.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a base html tag and conditionally set the href value based DEBUG vs RELEASE. If in DEBUG then use href = &amp;#39;/&amp;#39; otherwise use href = &amp;#39;/app/&amp;#39;&lt;/li&gt;
+&lt;li&gt;Change all html links to be relative paths therefore utilizing the base url&lt;/li&gt;
+&lt;li&gt;In AngularJS change the $routeProvider templateUrls to prepend the base url&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is the conditional code in the Razor file ( _Layout.cshtml)&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;http-equiv=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;X-UA-Compatible&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;IE=edge&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;viewport&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;width=device-width, initial-scale=1&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;description&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;@ViewBag.Title&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+    @Styles.Render(&amp;quot;~/bundles/css&amp;quot;)
+
+    @if (!Html.IsDebug()) {
+       &lt;span class=&quot;nt&quot;&gt;&amp;lt;base&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/app/&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    } else {
+       &lt;span class=&quot;nt&quot;&gt;&amp;lt;base&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    }
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here is the AngularJS routing code. It uses jQuery to find the first base tag and retrieve the href value&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;baseUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;base&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;href&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;base url for relative links = &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;baseUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$routeProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/home&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;templateUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;baseUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;angularApp/home/home.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;homeCtrl&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$routeProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/admins&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;templateUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;baseUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;angularApp/admins/admins.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;adminsCtrl&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;$routeProvider&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;when&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/pages/:id&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;templateUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;baseUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;angularApp/endpoints/pages.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;pagesCtrl&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here is my BundleConfig.cs for reference. We can still use virtual paths.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;bundles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Bundle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;~/bundles/app-scripts&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;~/angularApp/app.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// Modules/Components&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;~/angularApp/admins/*.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;~/angularApp/home/*.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;~/angularApp/pages/*.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I arrived at this solution thanks to the answers to these SO questions&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/17013430/215502&quot;&gt;Using a Relative Path for a Service Call in AngularJS&lt;/a&gt; this answer has better guidance on properly injecting the base url for the routes. I have simplified my example and use the base tag instead of the link tag.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/7135343/215502&quot;&gt;Razor view engine, how to enter preprocessor #if debug&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Fri, 06 Jun 2014 19:49:35 -0400</pubDate>
+				<link>http://www.jokecamp.com/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/</guid>
+			</item>
+		
+			<item>
+				<title>Setup up your Mac for .NET Development</title>
+				<description>&lt;h3&gt;Making the Switch from Windows to OSX&lt;/h3&gt;
+
+&lt;p&gt;I&amp;#39;m a windows .NET developer and I recently bought a new laptop. A Macbook Pro retina. Years ago that would not of been practical decision but it is now a growing trend with the help of virtualization.&lt;/p&gt;
+
+&lt;p&gt;The decision was not difficult once you commit to the overall price. In the end I wanted a powerful machine  with a great screen that would allow me to develop against Windows, Android and OS X. I also liked the idea of a unix based operating system as my backend.&lt;/p&gt;
+
+&lt;h3&gt;Setting up your OSX developer environment&lt;/h3&gt;
+
+&lt;p&gt;Enough of the boring reasons. Lets get started with how I setup my new environment. Below are the steps I took in more or less this order.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Perform OSX System Updates&lt;/li&gt;
+&lt;li&gt;Download and Install &lt;a href=&quot;https://www.google.com/intl/en/chrome/browser/&quot;&gt;Chrome&lt;/a&gt; and sign into your google account to sync all your bookmarks.&lt;/li&gt;
+&lt;li&gt;Install the &lt;a href=&quot;https://chrome.google.com/webstore/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd?hl=en-US&quot;&gt;LastPass chrome extension&lt;/a&gt; and sign in. You do use a password manager, right?&lt;/li&gt;
+&lt;li&gt;Install &lt;a href=&quot;http://www.parallels.com/downloads/desktop/&quot;&gt;Parallels 9&lt;/a&gt; - There is a trial period available but the cost is around $80.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.microsoftstore.com/store/msusa/en_US/pdp/Windows-8.1/productID.288401200&quot;&gt;Buy and Download Windows 8.1 ISO&lt;/a&gt; - This turned out to be a little tricky. I had to first buy Windows 8.1 from the Microsoft Store and it was a little confused what version to choose. Their directions are not that straight forward for new users. They assume everyone is updating from Win 7 to Win 8. If you are performing a clean install you will want to buy and download Windows 8.1. The purchased download is a 6 MB exe file that helps you download the install files. However you cannot run this helper exe on your Mac. I had to run the exe on my old Windows 7 machine. After a few steps of entering your serial key and downloading the installation files it will ask you if you want to save the installation as an iso. Once you have the iso (which was around 3 GB I think) you can then transfer it to your macbook (usb stick, removable drive or network transfer).&lt;/li&gt;
+&lt;li&gt;Install Windows 8.1 in a new VM via Parallels  - You can then use the iso to create a new VM with Parallels 9. Once you have the ISO you can install windows in about 10-15 minutes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2014/01/windows-vm-config.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/01/windows-vm-config.png?w=300&quot; alt=&quot;Windows VM Config&quot;&gt;&lt;/a&gt;
+My VM resource settings&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2014/01/vm-installation.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/01/vm-installation.png?w=300&quot; alt=&quot;Paralles VM Installation&quot;&gt;&lt;/a&gt;
+Installing Windows 8.1 via Paralells&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2014/01/windows-inside-mac.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/01/windows-inside-mac.png?w=300&quot; alt=&quot;Windows inside mac&quot;&gt;&lt;/a&gt;
+We now have Windows inside OSX. I usually run it in full screen in a separate desktop. It does eat through the battery so I usually try to stay plugged in when doing any heavy virtualization.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install XCode via the Apple App Store&lt;/li&gt;
+&lt;li&gt;Install Visual Studio (and ReSharper if you got it) on your Windows vm&lt;/li&gt;
+&lt;li&gt;Install &lt;a href=&quot;http://xamarin.com/download&quot;&gt;Xamarin&lt;/a&gt; for your C# fix. I installed the starter trail on my Windows VM and Mac system.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Call in the experts&lt;/h3&gt;
+
+&lt;p&gt;At this point I needed to find some advice from experienced Mac developers.&lt;/p&gt;
+
+&lt;p&gt;If you take away anything from these guides. It would be to install and use &lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;. The &amp;quot;missing package manager for OS X.&amp;quot;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/nicolashery/mac-dev-setup&quot;&gt;nicolashery / mac-dev-setup&lt;/a&gt; by Nicolas Hery&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html&quot;&gt;NPR - How to Setup Your Mac to Develop News Applications Like We Do&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A few quick tips:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.alfredapp.com/#download&quot;&gt;Alfred&lt;/a&gt; is  good spotlight replacement. After installing you might want to swap the spotlight shortcuts with the Alfred shortcuts.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://mattgemmell.com/using-spaces-on-os-x-lion/&quot;&gt;Spaces/mutliple desktops&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Use the multiple spaces (desktops) feature. It is a vast improvement to fighting with windows sizes. Especially if you have limited real estate like the laptop. Use the Control plus left/right keys to quickly navigation to different spaces (desktops).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can&amp;#39;t directly cut and paste files in OSX. You have to move. You can do this with a copy then a special paste with Option+Command+V&lt;/p&gt;
+
+&lt;h2&gt;The Hardest Part of Switching was the shortcuts&lt;/h2&gt;
+
+&lt;p&gt;The hardest part and what still remains the hardest part of switching is switching back and forth from windows to OSX shortcuts. It can be quite painful especially if you switch often from OSX to your Windows VM.&lt;/p&gt;
+
+&lt;p&gt;A quick reminder about the cryptic Apple keys.
+⌘   Command key
+⌃   Control key
+⌥   Option key
+⇧   Shift Key
+⇪   Caps Lock
+Fn  Function Key&lt;/p&gt;
+</description>
+				<pubDate>Thu, 27 Mar 2014 00:02:40 -0400</pubDate>
+				<link>http://www.jokecamp.com/opinion/2014/03/27/setup-up-your-mac-for-net-development/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/opinion/2014/03/27/setup-up-your-mac-for-net-development/</guid>
+			</item>
+		
+			<item>
+				<title>Guide to Football/Soccer data and APIs</title>
+				<description>&lt;h3&gt;Where can I actually find football/soccer data?&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://openfootball.github.io/&quot;&gt;openfootball&lt;/a&gt;&lt;/strong&gt; has started a free (open source) public domain football database. The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the upcoming 2014 World Cup along with global league data. This is a very promising project and has the &lt;strong&gt;potential to be the definitive source for historical data for the public&lt;/strong&gt;. The data is stored in various repos on github. Start browsing and contributing at &lt;a href=&quot;https://github.com/openfootball/&quot;&gt;github.com/openfootball&lt;/a&gt;. See the &lt;a href=&quot;https://groups.google.com/forum/#!forum/opensport&quot;&gt;opensport Google Group&lt;/a&gt; for discussion and questions.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.footballsquads.co.uk/&quot;&gt;footballsquads.co.uk&lt;/a&gt; has current and historical squad details for clubs and national teams from all across the world for many leagues and competitions, including the 2014 World Cup squads.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.rsssf.com/&quot;&gt;Rec.Sport.Soccer Statistics Foundation&lt;/a&gt; (RSSSF) has massive collection of formatted plain text statistics. &lt;a href=&quot;http://www.rsssf.com/tablese/eng2014.html#premier&quot;&gt;An example of English Premier leagues results&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://developer.espn.com/docs&quot;&gt;ESPN API&lt;/a&gt; has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to &amp;quot;strategic partners.&amp;quot; However, you can get lists of players and teams.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.optasports.com/playground-section.aspx&quot;&gt;opta Playground&lt;/a&gt; has a developer program that provides very limited access to historical data. The site reads &amp;quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&amp;quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&amp;#39;m not sure why an indie developer would spend time working on a data set they could never afford.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://statsfc.com/&quot;&gt;StatsFC&lt;/a&gt; used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their &lt;a href=&quot;https://statsfc.com/statements&quot;&gt;official statement&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://crowdscores.com/&quot;&gt;CrowdScores beta&lt;/a&gt; is UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top reporter with a season ticket. They data collection process is ideal but they might have to work on the incentives. I believe a better incentive would be to allow the reporters who contribute access to an API of all the data collected.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.footytube.com/openfooty/&quot;&gt;openfooty API&lt;/a&gt; had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.football-data.co.uk/data.php&quot;&gt;football-data.co.uk&lt;/a&gt; has made a lot of historical league data available as csv files. The data includes results and a lot of betting/odds related data. I have tried to aggregate and clean up the data in the following repo &lt;a href=&quot;https://github.com/jokecamp/FootballData&quot;&gt;github.com/jokecamp/FootballData&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.european-football-statistics.co.uk/&quot;&gt;www.european-football-statistics.co.uk&lt;/a&gt; is a visually dated website but has a lot of historical football data (mostly an overview of league/tournament results) displayed in nice clean HTML tables. Looks like they already have 2014 EPL stats.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.openligadb.de/Webservices/Sportsdata.asmx&quot;&gt;openligadb.db&lt;/a&gt; has an old-school windows asmx web service with methods such as &amp;quot;GetGoalsByMatch()&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ceur-ws.org/Vol-1026/paper6.pdf&quot;&gt;Linked Soccer Data&lt;/a&gt; is a white paper on one group&amp;#39;s attempt to &amp;quot;create a dataset including reliable information about soccer
+events covering as many historical data as available including recent competition
+results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics&quot;&gt;Are there any open datasets for Soccer statistics?&lt;/a&gt; - keep your eye on this open data forum for more answers.&lt;/p&gt;
+
+&lt;h3&gt;2014 World Cup APIs&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.kimonolabs.com/worldcup/explorer&quot;&gt;kimono labs 2014 World Cup Api&lt;/a&gt; - has a very nice restful API available. Free registration required to access the API. The API has a player, team, club, matches, and player&lt;em&gt;season&lt;/em&gt;stats endpoints. See the &lt;a href=&quot;https://www.kimonolabs.com/worldcup/docs&quot;&gt;documentation&lt;/a&gt; and start making calls withe the &lt;a href=&quot;https://www.kimonolabs.com/worldcup/explorer&quot;&gt;API explorer&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://softwareforgood.com/soccer-good/&quot;&gt;2014 World Cup JSON API - Soccer for Good&lt;/a&gt; - The API is available now. The author explains that the data is from a scraper so the availability is not guaranteed but should be available throughout the tournament. There are endpoints for &lt;a href=&quot;http://worldcup.sfg.io/teams&quot;&gt;teams&lt;/a&gt;, &lt;a href=&quot;http://worldcup.sfg.io/matches&quot;&gt;matches&lt;/a&gt;, &lt;a href=&quot;http://worldcup.sfg.io/matches/today&quot;&gt;today&lt;/a&gt;, &lt;a href=&quot;http://worldcup.sfg.io/matches/tomorrow&quot;&gt;tomorrow&lt;/a&gt; and &lt;a href=&quot;http://worldcup.sfg.io/matches/current&quot;&gt;current&lt;/a&gt;. The Ruby on Rails source code is available on &lt;a href=&quot;https://github.com/estiens/world_cup_json&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://worldcup.sfg.io/&quot;&gt;World Cup in JSON&lt;/a&gt; - an open source ruby project available at &lt;a href=&quot;https://github.com/estiens/world_cup_json&quot;&gt;github.com/estiens/world&lt;em&gt;cup&lt;/em&gt;json&lt;/a&gt; that scrapes a few sources and combines into an API. API is available at http://worldcup.sfg.io/matches&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/matches&quot;&gt;Unofficial FIFA.com JSON API for Mobile Apps&lt;/a&gt;  This is unofficial and I wouldn&amp;#39;t be surprised if it is protected/unavailable soon. Until then its nice to see data straight from the source. Known endpoints: &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/matches&quot;&gt;matches&lt;/a&gt;, &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/teams&quot;&gt;teams&lt;/a&gt; or detailed &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/match/300186492/en&quot;&gt;match info&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Please let me know about your own data sources in the comments. I have mainly search for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;
+</description>
+				<pubDate>Sat, 08 Mar 2014 12:08:40 -0500</pubDate>
+				<link>http://www.jokecamp.com/api/opinion/2014/03/08/guide-to-football-and-soccer-data-and-apis/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/api/opinion/2014/03/08/guide-to-football-and-soccer-data-and-apis/</guid>
+			</item>
+		
+			<item>
+				<title>Staying current with Tech/Developer News</title>
+				<description>&lt;h3&gt;&lt;a href=&quot;http://news.ycombinator.com&quot;&gt;Hacker News&lt;/a&gt; and Newsletter - News and Articles&lt;/h3&gt;
+
+&lt;p&gt;There is a lot of love and hate for &lt;a href=&quot;http://news.ycombinator.com&quot;&gt;Hacker News&lt;/a&gt;. Regardless you should be reading it to see what is trending in the tech world. The site is not really what the names implies. It is geared towards the tech startup/founder who develops. This is no surprise since it was created by &lt;a href=&quot;http://ycombinator.com/&quot;&gt;Y Combinator&lt;/a&gt; but really the site is visited by all different types of developers and innovators. A lot of industry experts read and participate in the comments. Just remember when digging through the comments to read a few on both sides of the debate. I strongly recommend you &lt;strong&gt;signup for the &lt;a href=&quot;http://www.hackernewsletter.com/&quot;&gt;newsletter&lt;/a&gt;&lt;/strong&gt; and avoid constantly visiting the website and hitting refresh. The newsletter is a great weekly email that highlights the best articles and comments. Here is the MailChimp archive of &lt;a href=&quot;http://us1.campaign-archive1.com/home/?u=faa8eb4ef3a111cef92c4f3d4&amp;amp;id=e505c88a2e&quot;&gt;past issues&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;&lt;a href=&quot;https://github.com/explore&quot;&gt;Explore GitHub&lt;/a&gt; - Trending Repos&lt;/h3&gt;
+
+&lt;p&gt;I really enjoy seeing the open source repositories that are trending on GitHub. It is a quick way to see what other developers in your language are staring and forking. For instance you can quickly see the &lt;a href=&quot;https://github.com/trending?l=csharp&quot;&gt;trending repositories for C#&lt;/a&gt; for a given day, week or month. Sometimes I will peruse other languages and see what problems they are solving. I might ask myself &amp;quot;what are people using golang for?&amp;quot; and then I see the answer by checking the &lt;a href=&quot;https://github.com/trending?l=go&amp;amp;since=monthly&quot;&gt;golang trending repositories&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Subscribe to the &lt;a href=&quot;https://github.com/explore/subscribe&quot;&gt;GitHub digest&lt;/a&gt;&lt;/strong&gt; and don&amp;#39;t worry about missing anything. I recommend the weekly email. The email will also include what repos were starred by who your are following so be sure you are following other developers.&lt;/p&gt;
+
+&lt;h3&gt;Using Twitter Lists&lt;/h3&gt;
+
+&lt;p&gt;A often overlooked feature of Twitter are the lists. Most users follow a mix of friends, family, peers and notable people. In order to filter out the social noise we can use the lists to restrict the timeline to only developers. I don&amp;#39;t browse this as much as the above two methods but I do like seeing specific people&amp;#39;s opinions as things happen. And since lists can be public there is no point in trying to build your own. There are a lot of public lists. If you have some good ones please share in the comments.&lt;/p&gt;
+
+&lt;p&gt;A good way to find new lists is to start with a popular twitter user and see what lists already belong to. For example here are all the lists that Scott Hanselman is a member of &lt;a href=&quot;https://twitter.com/shanselman/memberships&quot;&gt;twitter.com/shanselman/memberships&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here are some examples.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://twitter.com/jokecamp/coders&quot;&gt;coders&lt;/a&gt; - my list with a C#/.NET bias&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://twitter.com/shanselman/lists/programmers&quot;&gt;programmers&lt;/a&gt; by Scott Hanselman&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://twitter.com/JeremyCMorgan/lists/microsoft-net-developers&quot;&gt;microsoft-net-developers&lt;/a&gt; by Jeremy Morgan&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Others&lt;/h3&gt;
+
+&lt;p&gt;Quora is useful if you want to learn about the tech world culture. For questions like:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.quora.com/Working-at-Google-1/Whats-the-worst-part-about-working-at-Google&quot;&gt;What&amp;#39;s the worst part about working at Google?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.quora.com/Y-Combinator/What-was-the-most-valuable-experience-you-gained-from-Y-Combinator&quot;&gt;What was the most valuable experience you gained from Y Combinator?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.quora.com/Netflix/How-does-Netflix-run-their-interview-process&quot;&gt;How does Netflix run their interview process?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I am subscribed to the newsletter but not sure I would recommend it for a tech news source. They tailor their newsletter and the algorithm needs some work.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Podcasts&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.dotnetrocks.com/&quot;&gt;.NET Rocks!&lt;/a&gt; Podcast - can get quite technical&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://thisdeveloperslife.com/&quot;&gt;This Developer&amp;#39;s Life&lt;/a&gt; Podcast - A podcast about developers and their lives.&lt;/li&gt;
+&lt;li&gt;A more comprehensive &lt;a href=&quot;http://stackoverflow.com/a/531590/215502&quot;&gt;list of developer podcasts&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Humor&lt;/strong&gt;. Be sure to check out &lt;a href=&quot;http://xkcd.com/&quot;&gt;xkcd&lt;/a&gt; to keep your geeky sense of humor.&lt;/p&gt;
+</description>
+				<pubDate>Mon, 30 Dec 2013 20:02:46 -0500</pubDate>
+				<link>http://www.jokecamp.com/opinion/2013/12/30/staying-current-with-techdeveloper-news/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/opinion/2013/12/30/staying-current-with-techdeveloper-news/</guid>
+			</item>
+		
+			<item>
+				<title>Experiment in Restful API Partial Updates via PATCH verb in ServiceStack</title>
+				<description>&lt;p&gt;I&amp;#39;ve recently been thinking about how to implement partial updates in a restful API. Partial updates can be achieved in ServiceStack with very little code using OrmLite. See this old google groups post &lt;a href=&quot;https://groups.google.com/forum/#!topic/servicestack/H9lov15rR14&quot;&gt;Partial Updates via HTTP Patch (or X-HTTP-Method-Override:PATCH)&lt;/a&gt; for my starting point.&lt;/p&gt;
+
+&lt;h3&gt;Restful Implementations&lt;/h3&gt;
+
+&lt;p&gt;We usually see two different approaches in restful APIs when it comes to partial updates.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Use the PATCH verb on a single resource&lt;/strong&gt;. Not all browsers play nice with PATCH. You may need to use the &lt;code&gt;X-HTTP-Method-Override:PATCH&lt;/code&gt; header. I will be using this approach.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Use the POST verb on a single resource&lt;/strong&gt;. In this alternative setup the HTTP methods typically perform the following:
+
+&lt;ul&gt;
+&lt;li&gt;POST to list resource for inserts.&lt;/li&gt;
+&lt;li&gt;PUT to single resource for updates.&lt;/li&gt;
+&lt;li&gt;POST to single resource with fields you want for updates.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This could also work but I feel like it is not as clear to the consumers. The PUT vs POST argument does not seem to be over yet.&lt;/p&gt;
+
+&lt;h3&gt;Basic Implementation via PATCH&lt;/h3&gt;
+
+&lt;p&gt;Using the first approach, PATCH method my code will operate via the following&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The consumer must provide the fields they wish to update in the querystring as a comma separated value&lt;/li&gt;
+&lt;li&gt;The consumer will request a PATCH to /resource/{id} (/Leagues/1 in our example code)&lt;/li&gt;
+&lt;li&gt;The Service PATCH method will build the SQL by using reflection and OrmLite. We can utilize the built in ModelDefinition and use the OrmLite UpdateOnly method.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Before looking at the code, a couple notes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The use of the querystring to provide a ?fields=Name,Abbreviation allows us to use the common practice in ServiceStack of passing the entire DTO. Our JSON can   contain all the fields but the service will only update the fields provided in the querystring. It would be great to remove this condition and update all fields that are provided in the JSON. I would love to see someone adapt this code and get that working. However, for this experiment it was far simpler to use the querystring.&lt;/li&gt;
+&lt;li&gt;You are able to PATCH partial JSON DTOs as long as ServiceStack succeeds in deserializing the JSON into your DTO.&lt;/li&gt;
+&lt;li&gt;I&amp;#39;ve only tested this with simple DTOs. It would need to be tested and modified to work with more complex DTOs and DTO properties.&lt;/li&gt;
+&lt;li&gt;The code was written with ServiceStack v4 but can easily be adapted to v3.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Clone and run the example yourself on Github via &lt;a href=&quot;https://github.com/jokecamp/ServiceStackv4-Demo-TeamsApi/blob/master/LeagueService.cs&quot;&gt;jokecamp/ServiceStackv4-Demo-TeamsApi&lt;/a&gt; or just view the important code below.&lt;/p&gt;
+
+&lt;p&gt;Below are the League DTO and League Service:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[Route(&amp;quot;/leagues/{Id}&amp;quot;)]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;League&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;    [AutoIncrement, PrimaryKey]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Abbreviation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateCreated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LeagueService&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Service&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;League&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;QueryString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;fields&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&amp;#39;,&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Provide the fields to update via ?fields= in querystring&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UpdateOnly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;delegate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SqlExpression&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModelDefinition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Definition&lt;/span&gt;
+                    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FieldDefinitions&lt;/span&gt;
+                    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstOrDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FieldName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToLower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToLower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UpdateFields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FieldName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// returning entire object. You may want to do a different response code&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SingleById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// omitting the other HTTP verbs methods. use your imagination.&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Example Integration Test&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[Test]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CanPerform_PartialUpdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;JsonServiceClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://localhost:53990/api/&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// back date for readability&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddHours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(-&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Create a record so we can patch it&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;league&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;League&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;BEFORE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Abbreviation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;BEFORE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateCreated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;league&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Update Name and DateUpdated fields. Notice I don&amp;#39;t want to update DateCreatedField.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// I also added a fake field to show it does not cause any errors&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;AFTER&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Abbreviation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;AFTER&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// setting to after but it should not get updated&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://localhost:53990/api/leagues/&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;?fields=Name,DateUpdated,thisFieldDoesNotExist&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;AFTER&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Abbreviation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;BEFORE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;update fields don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateCreated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;created fields don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// double check&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreNotEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateCreated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+				<pubDate>Tue, 17 Dec 2013 20:00:48 -0500</pubDate>
+				<link>http://www.jokecamp.com/code/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/code/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/</guid>
+			</item>
+		
+			<item>
+				<title>Tutorial: How to use TeamCity Powershell Runner to automatically deploy website</title>
+				<description>&lt;p&gt;This tutorial is intended for .NET developers wishing to get started with deploying TeamCity builds via PowerShell.&lt;/p&gt;
+
+&lt;p&gt;First off, lets establish a definition for the following terms. These can be subjective so I will provide my sources. The list is a numbered list starting with the less involved practices.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Continuous Integration&lt;/strong&gt; - “is the practice, in software engineering, of merging all developer working copies with a shared mainline several times a day.” See &lt;a href=&quot;http://en.wikipedia.org/wiki/Continuous_Integration&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Continuous Delivery&lt;/strong&gt; - is the process of automating the delivery of sofware and includes practices such as automated testing, continuous integration. See &lt;a href=&quot;http://en.wikipedia.org/wiki/Continuous_delivery&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Continuous Deployment&lt;/strong&gt; - is really the same as continous delievery but implies that deploying releases to production. - See &lt;a href=&quot;http://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/&quot;&gt;Continuous Delivery vs Continuous Deployment&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Taking the first steps toward continuous integration&lt;/h3&gt;
+
+&lt;p&gt;This is the just the start of a continuous integration solution. If you are already using TeamCity to manage builds then the next natural step is having your build server keep a server up to date with the latest committed code. This can be achieved through TeamCity&amp;#39;s Powershell Runner plugin. Powershell is very useful in automating windows tasks. In this example I will be showing how to setup a simple powershell script that will deploy a simple asp.net website to a remote server after a successful build.&lt;/p&gt;
+
+&lt;h4&gt;Build Server Requirements&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You will need to give your build server elevated powershell Execution Policies or you will need to &lt;a href=&quot;http://www.hanselman.com/blog/SigningPowerShellScripts.aspx&quot;&gt;sign your powershell script for execution&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;IIS and the website must already be setup. This can be done with powershell but that is outside the scope of this demo.&lt;/li&gt;
+&lt;li&gt;Assumes your website requires no config swapping. Unrealistic but the script can easily be adapted to handle swapping.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;The PowerShell Script&lt;/h4&gt;
+
+&lt;p&gt;Commit the following deployment powershell script to your Source Control. It will need to be in a directory accessible by the build server. I have mine a directly above the website in a scripts folder. The script is very specific to my example website but it should serve as a good example.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$target&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;        &lt;span class=&quot;c&quot;&gt;# ie &amp;quot;\\testserver\e$&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# if you need to authenticate&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;net&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$target&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;password&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BuildServerUser&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-not&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;Write-Output&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;You must provide a deployment location param as second item. Exiting!&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Exit&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\bin&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\Content&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\Scripts&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\Views&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\favicon.ico&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\web.config&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\*.asax&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The script performs the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Uses the parameter args[0] to provide the script with the deployment destination.&lt;/li&gt;
+&lt;li&gt;Copies the websites build artifacts to the deployment destination using relative paths.&lt;/li&gt;
+&lt;li&gt;If you need credentials to copy files over the files you can use the &lt;em&gt;net use&lt;/em&gt; command as indicated in the script.&lt;/li&gt;
+&lt;li&gt;I added -verbose to the Copy-Item commands for detailed logging. The logs will show up in the TeamCity Build log.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Create new Powershell runner Build Step via the TeamCity website&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You will want the script to run only after successful builds. It must be the last step since it requires the built files.&lt;/li&gt;
+&lt;li&gt;See TeamCity’s terse documentation regarding &lt;a href=&quot;http://confluence.jetbrains.com/display/TCD8/PowerShell&quot;&gt;PowerShell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;See my screenshot below to see some example settings.&lt;/li&gt;
+&lt;li&gt;The screenshot references different project names. Yours will match&lt;/li&gt;
+&lt;li&gt;Also you see I am passing two parameters in the screenshot. You will likely only need one.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;[caption id=&amp;quot;attachment_1228&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;300&amp;quot;]&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/12/teamcitypowershellstep.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/12/teamcitypowershellstep.png?w=300&quot; alt=&quot;Example of a TeamCity PowerShell settings.&quot;&gt;&lt;/a&gt; Example of a TeamCity PowerShell settings.[/caption]&lt;/p&gt;
+
+&lt;h4&gt;Next steps in improving the process&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Email notifications and reports after deployment&lt;/li&gt;
+&lt;li&gt;Automate the setup of IIS/Application&lt;/li&gt;
+&lt;li&gt;Find a way to swap environment specific config items&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I highly recommend the following blog posts on The Netflix Tech Blog&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://techblog.netflix.com/2013/08/deploying-netflix-api.html&quot;&gt;Deploying the Netflix API&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://techblog.netflix.com/2013/11/preparing-netflix-api-for-deployment.html&quot;&gt;Preparing the Netflix API for deployment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Sat, 14 Dec 2013 20:09:59 -0500</pubDate>
+				<link>http://www.jokecamp.com/devops/tutorial/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/devops/tutorial/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/</guid>
+			</item>
+		
+			<item>
+				<title>Querying the TeamCity Rest API with Powershell</title>
+				<description>&lt;p&gt;The following powershell function demonstrates how to get the last successful TeamCity build number using the TeamCity REST API. This is a useful tool for continuous deployment to dev/test environments. I only cared about the build number but with some minor modifications of the XPath parsing you can get a lot of different information.&lt;/p&gt;
+
+&lt;p&gt;Requirements&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;REST API Plugin: Ensure you have the plugin installed. On the build server website go to
+    &lt;code&gt;Administration &amp;gt; Server Administration &amp;gt; Plugins List&lt;/code&gt;
+    You should see the entry &amp;quot;REST API.&amp;quot;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Authentication: You will need to either &lt;a href=&quot;http://confluence.jetbrains.com/display/TCD7/Enabling+Guest+Login&quot;&gt;enable guest access in TeamCity settings&lt;/a&gt; or first authenticate via the TeamCity API. Guest access allows a read-only view of our build server website and API.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Parameters: You will need to know your project id and TeamCity base url. You can determine the project id by seperate queries but for the simplicity of this example I have hard coded the id.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;cm&quot;&gt;&amp;lt;#&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;    Uses guest access to get the lastest successful build for a given project (project id is bt30)&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;    Guest Access needs to be enabled on TeamCity server or you will need to provide your&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;    own authentication.&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;    Example usage:&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;        Get-Latest-TeamCity-Build &amp;quot;http://teamcityserver/ &amp;quot;bt30&amp;quot; | Write-Output&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;#&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Get-Latest&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;-TeamCity-Build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$baseUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$projectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${baseUrl}guestAuth/app/rest/buildTypes/id:${projectId}/builds?status=SUCCESS&amp;quot;&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$xml&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[xml]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Uri&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$url&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$xpath&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/builds/build[1]&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$latestBuild&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Select-xml&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-xpath&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$xpath&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-xml&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$xml&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;Build&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$latestBuild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;Revision&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$latestBuild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;number&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;Url&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$url&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/jokecamp/PowerShell.ToolBelt/blob/master/TeamCityFunctions.ps1&quot;&gt;View the latest version of this function on GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
+				<pubDate>Mon, 25 Nov 2013 15:49:36 -0500</pubDate>
+				<link>http://www.jokecamp.com/code/devops/2013/11/25/querying-the-teamcity-rest-api-with-powershell/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/code/devops/2013/11/25/querying-the-teamcity-rest-api-with-powershell/</guid>
+			</item>
+		
+			<item>
+				<title>Just spotted Opserver - Stack Exchange&#39;s open source .NET monitoring system</title>
+				<description>&lt;p&gt;As a .NET developer were are used to finding ourselves left out in the cold when it comes to awesome open source projects. However, over the last few years there has been a lot of momentum gaining around C# to reverse that trend. We now have awesome things like the &lt;a href=&quot;http://www.mono-project.com/Main_Page&quot;&gt;Mono project&lt;/a&gt;, &lt;a href=&quot;http://scriptcs.net/&quot;&gt;scriptcs&lt;/a&gt;, &lt;a href=&quot;http://www.servicestack.net/&quot;&gt;ServiceStack&lt;/a&gt;, &lt;a href=&quot;https://github.com/restsharp/RestSharp&quot;&gt;RestSharp&lt;/a&gt; and everyone&amp;#39;s favorite friend &lt;a href=&quot;http://www.nuget.org/&quot;&gt;NuGet&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;Periodically, I like to check out the &lt;a href=&quot;https://github.com/trending?l=csharp&amp;amp;since=weekly&quot;&gt;GitHub trending repositories for C#&lt;/a&gt;. It is great to see what projects are most popular in the open source community for any given language.&lt;/p&gt;
+
+&lt;p&gt;The current trending list for the week of 10/24/13 is below.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/opserver/Opserver&quot;&gt;opserver/Opserver&lt;/a&gt; C# -Stack Exchange&amp;#39;s Monitoring System&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ServiceStack/ServiceStack&quot;&gt;ServiceStack/ServiceStack&lt;/a&gt; C# - Thoughtfully architected, obscenely fast, thoroughly enjoyable web services for all&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/SignalR/SignalR&quot;&gt;SignalR/SignalR&lt;/a&gt; C# - Incredibly simple real-time web for .NET&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/restsharp/RestSharp&quot;&gt;restsharp/RestSharp&lt;/a&gt; C# - Simple REST and HTTP API Client for .NET&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Squirrel/Squirrel.Windows&quot;&gt;Squirrel/Squirrel.Windows&lt;/a&gt; C# - It&amp;#39;s like ClickOnce but Works&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/proletariatgames/CUDLR&quot;&gt;proletariatgames/CUDLR&lt;/a&gt; C# - Console for Unity Debugging and Logging Remotely&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;It is an exciting time to be a C# .NET developer.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;At the top of that list is a new project called &lt;strong&gt;Opserver&lt;/strong&gt; that has recently been added by &lt;a href=&quot;http://stackexchange.com/&quot;&gt;StackExchange&lt;/a&gt;. StackExchange, the creators of &lt;a href=&quot;http://stackoverflow.com/&quot;&gt;StackOverflow&lt;/a&gt; are strong proponents of open-source projects. While they will &lt;a href=&quot;http://meta.stackoverflow.com/questions/3086/will-open-sourcing-stack-overflow-destroy-our-business-model&quot;&gt;not be open sourcing there Q&amp;amp;A engine&lt;/a&gt; they have used and contributed to many other open source projects. As a C# .NET developer I have always taken solace and pride that the StackOverflow website was a product of C# .NET. Among the horde of unpolished enterprise applications and government websites it was always nice to point to StackOverflow as a great example.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;ve been excited ever since the &lt;a href=&quot;http://blog.stackoverflow.com/2012/02/stack-exchange-open-source-projects/&quot;&gt;announcement &lt;/a&gt;that StackExchange would be trying to &lt;a href=&quot;http://nickcraver.com/blog/2012/04/12/what-weve-been-up-to/&quot;&gt;open source more of their projects&lt;/a&gt;. Looks like they are getting ready to unleash their server monitoring application. There is a not a lot of documentation yet but it does not take much to get started.&lt;/p&gt;
+
+&lt;p&gt;Here are some more &lt;a href=&quot;http://imgur.com/a/dawwf&quot;&gt;detailed screenshots&lt;/a&gt; posted by Nick Craver.&lt;/p&gt;
+
+&lt;p&gt;*&lt;em&gt;The steps I took to get the website running in VisualStudio 2012 *&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Copied repository to my machine via Windows GitHub&lt;/li&gt;
+&lt;li&gt;Renamed the file Config/SecuritySettings.config.example to SecuritySettings.config&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Commented out the AD provider and un-commented the following&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;SecuritySettings provider=&amp;quot;alladmin&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Renamed the file Config/SQLSettings.json.example to SQLSettings.json&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In SQLSettings I made the clusters an empty string and just added two databases names to the instances list&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The same for the Config/RedisSettings.json.example file&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Start debugging the website. You might need to be running as admin and/or have permission to access the servers you listed.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Screenshots of the Opserver Dashboards for SQL Databases and Redis&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/10/all-servers.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/10/all-servers.png?w=300&quot; alt=&quot;all-servers&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/10/databases.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/10/databases.png?w=300&quot; alt=&quot;databases&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/10/redis.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/10/redis.png?w=300&quot; alt=&quot;redis&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/10/top.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/10/top.png?w=300&quot; alt=&quot;top&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see from the screenshots there is a lot of reports and data available and this is only a couple of the many different types of dashboards. &lt;strong&gt;This is a repository to keep your eye on. I can easily see it become the devops dashboard of choice for .NET environments.&lt;/strong&gt;&lt;/p&gt;
+</description>
+				<pubDate>Thu, 24 Oct 2013 18:45:08 -0400</pubDate>
+				<link>http://www.jokecamp.com/code/2013/10/24/just-spotted-opserver-stack-exchanges-open-source-monitoring-system/</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/code/2013/10/24/just-spotted-opserver-stack-exchanges-open-source-monitoring-system/</guid>
+			</item>
+		
+	</channel>
+</rss>
