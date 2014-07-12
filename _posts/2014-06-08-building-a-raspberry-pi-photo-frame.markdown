@@ -7,7 +7,7 @@ slug: building-a-raspberry-pi-photo-frame
 title: Building a Raspberry Pi Photo Frame
 wordpress_id: 1532
 categories:
-- fun
+- blog
 tags:
 - hobby
 - pi

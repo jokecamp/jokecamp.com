@@ -7,7 +7,7 @@ slug: staying-current-with-techdeveloper-news
 title: Staying current with Tech/Developer News
 wordpress_id: 469
 categories:
-- opinion
+- blog
 ---
 
 ### [Hacker News](http://news.ycombinator.com) and Newsletter - News and Articles

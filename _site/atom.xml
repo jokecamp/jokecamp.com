@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-07-11T20:32:32-04:00</updated>
+ <updated>2014-07-11T21:52:30-04:00</updated>
  <id>http://www.jokecamp.com</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -223,9 +223,9 @@ Stats:
  
  <entry>
    <title>Building a Raspberry Pi Photo Frame</title>
-   <link href="http://www.jokecamp.com//fun/2014/06/07/building-a-raspberry-pi-photo-frame/"/>
+   <link href="http://www.jokecamp.com//blog/2014/06/07/building-a-raspberry-pi-photo-frame/"/>
    <updated>2014-06-07T21:34:58-04:00</updated>
-   <id>http://www.jokecamp.com/fun/2014/06/07/building-a-raspberry-pi-photo-frame</id>
+   <id>http://www.jokecamp.com/blog/2014/06/07/building-a-raspberry-pi-photo-frame</id>
    <content type="html">&lt;p&gt;First off, my inspiration and instructions came from this article &lt;a href=&quot;http://www.ofbrooklyn.com/2014/01/2/building-photo-frame-raspberry-pi-motion-detector&quot;&gt;Building a living photo frame with a Raspberry Pi and a motion detector&lt;/a&gt;. The author is more knowledgeable and the article is more in-depth than mine. See that article for specific configuration and for the actual contents of the python script to pull photos from flickr. I hope my post will help others by sharing my first time experiences with the pi and the issues/frustrations I encountered.&lt;/p&gt;
 
 &lt;h2&gt;The shopping list&lt;/h2&gt;
@@ -382,9 +382,9 @@ sudo pip install requests
  
  <entry>
    <title>Setup up your Mac for .NET Development</title>
-   <link href="http://www.jokecamp.com//opinion/2014/03/27/setup-up-your-mac-for-net-development/"/>
+   <link href="http://www.jokecamp.com//code/2014/03/27/setup-up-your-mac-for-net-development/"/>
    <updated>2014-03-27T00:02:40-04:00</updated>
-   <id>http://www.jokecamp.com/opinion/2014/03/27/setup-up-your-mac-for-net-development</id>
+   <id>http://www.jokecamp.com/code/2014/03/27/setup-up-your-mac-for-net-development</id>
    <content type="html">&lt;h3&gt;Making the Switch from Windows to OSX&lt;/h3&gt;
 
 &lt;p&gt;I&amp;#39;m a windows .NET developer and I recently bought a new laptop. A Macbook Pro retina. Years ago that would not of been practical decision but it is now a growing trend with the help of virtualization.&lt;/p&gt;
@@ -456,9 +456,9 @@ Fn  Function Key&lt;/p&gt;
  
  <entry>
    <title>Guide to Football/Soccer data and APIs</title>
-   <link href="http://www.jokecamp.com//api/opinion/2014/03/08/guide-to-football-and-soccer-data-and-apis/"/>
+   <link href="http://www.jokecamp.com//guide/2014/03/08/guide-to-football-and-soccer-data-and-apis/"/>
    <updated>2014-03-08T12:08:40-05:00</updated>
-   <id>http://www.jokecamp.com/api/opinion/2014/03/08/guide-to-football-and-soccer-data-and-apis</id>
+   <id>http://www.jokecamp.com/guide/2014/03/08/guide-to-football-and-soccer-data-and-apis</id>
    <content type="html">&lt;h3&gt;Where can I actually find football/soccer data?&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://openfootball.github.io/&quot;&gt;openfootball&lt;/a&gt;&lt;/strong&gt; has started a free (open source) public domain football database. The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the upcoming 2014 World Cup along with global league data. This is a very promising project and has the &lt;strong&gt;potential to be the definitive source for historical data for the public&lt;/strong&gt;. The data is stored in various repos on github. Start browsing and contributing at &lt;a href=&quot;https://github.com/openfootball/&quot;&gt;github.com/openfootball&lt;/a&gt;. See the &lt;a href=&quot;https://groups.google.com/forum/#!forum/opensport&quot;&gt;opensport Google Group&lt;/a&gt; for discussion and questions.&lt;/p&gt;
@@ -505,9 +505,9 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
  
  <entry>
    <title>Staying current with Tech/Developer News</title>
-   <link href="http://www.jokecamp.com//opinion/2013/12/30/staying-current-with-techdeveloper-news/"/>
+   <link href="http://www.jokecamp.com//blog/2013/12/30/staying-current-with-techdeveloper-news/"/>
    <updated>2013-12-30T20:02:46-05:00</updated>
-   <id>http://www.jokecamp.com/opinion/2013/12/30/staying-current-with-techdeveloper-news</id>
+   <id>http://www.jokecamp.com/blog/2013/12/30/staying-current-with-techdeveloper-news</id>
    <content type="html">&lt;h3&gt;&lt;a href=&quot;http://news.ycombinator.com&quot;&gt;Hacker News&lt;/a&gt; and Newsletter - News and Articles&lt;/h3&gt;
 
 &lt;p&gt;There is a lot of love and hate for &lt;a href=&quot;http://news.ycombinator.com&quot;&gt;Hacker News&lt;/a&gt;. Regardless you should be reading it to see what is trending in the tech world. The site is not really what the names implies. It is geared towards the tech startup/founder who develops. This is no surprise since it was created by &lt;a href=&quot;http://ycombinator.com/&quot;&gt;Y Combinator&lt;/a&gt; but really the site is visited by all different types of developers and innovators. A lot of industry experts read and participate in the comments. Just remember when digging through the comments to read a few on both sides of the debate. I strongly recommend you &lt;strong&gt;signup for the &lt;a href=&quot;http://www.hackernewsletter.com/&quot;&gt;newsletter&lt;/a&gt;&lt;/strong&gt; and avoid constantly visiting the website and hitting refresh. The newsletter is a great weekly email that highlights the best articles and comments. Here is the MailChimp archive of &lt;a href=&quot;http://us1.campaign-archive1.com/home/?u=faa8eb4ef3a111cef92c4f3d4&amp;amp;id=e505c88a2e&quot;&gt;past issues&lt;/a&gt;.&lt;/p&gt;
@@ -681,9 +681,9 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
  
  <entry>
    <title>Tutorial: How to use TeamCity Powershell Runner to automatically deploy website</title>
-   <link href="http://www.jokecamp.com//devops/tutorial/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/"/>
+   <link href="http://www.jokecamp.com//guide/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/"/>
    <updated>2013-12-14T20:09:59-05:00</updated>
-   <id>http://www.jokecamp.com/devops/tutorial/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website</id>
+   <id>http://www.jokecamp.com/guide/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website</id>
    <content type="html">&lt;p&gt;This tutorial is intended for .NET developers wishing to get started with deploying TeamCity builds via PowerShell.&lt;/p&gt;
 
 &lt;p&gt;First off, lets establish a definition for the following terms. These can be subjective so I will provide my sources. The list is a numbered list starting with the less involved practices.&lt;/p&gt;
@@ -767,9 +767,9 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
  
  <entry>
    <title>Querying the TeamCity Rest API with Powershell</title>
-   <link href="http://www.jokecamp.com//code/devops/2013/11/25/querying-the-teamcity-rest-api-with-powershell/"/>
+   <link href="http://www.jokecamp.com//code/2013/11/25/querying-the-teamcity-rest-api-with-powershell/"/>
    <updated>2013-11-25T15:49:36-05:00</updated>
-   <id>http://www.jokecamp.com/code/devops/2013/11/25/querying-the-teamcity-rest-api-with-powershell</id>
+   <id>http://www.jokecamp.com/code/2013/11/25/querying-the-teamcity-rest-api-with-powershell</id>
    <content type="html">&lt;p&gt;The following powershell function demonstrates how to get the last successful TeamCity build number using the TeamCity REST API. This is a useful tool for continuous deployment to dev/test environments. I only cared about the build number but with some minor modifications of the XPath parsing you can get a lot of different information.&lt;/p&gt;
 
 &lt;p&gt;Requirements&lt;/p&gt;
@@ -1287,9 +1287,9 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  
  <entry>
    <title>Cryptonomicon: the ultimate computer geek novel - Reading Aids</title>
-   <link href="http://www.jokecamp.com//books/2013/02/18/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids/"/>
+   <link href="http://www.jokecamp.com//blog/2013/02/18/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids/"/>
    <updated>2013-02-18T14:40:09-05:00</updated>
-   <id>http://www.jokecamp.com/books/2013/02/18/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids</id>
+   <id>http://www.jokecamp.com/blog/2013/02/18/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=0060512806&amp;amp;linkCode=as2&amp;amp;tag=jokecamp-20&quot;&gt;&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/en/9/93/Cryptonomicon%281stEd%29.jpg&quot; alt=&quot;Cryptonomicon&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;&lt;strong&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=0060512806&amp;amp;linkCode=as2&amp;amp;tag=jokecamp-20&quot;&gt;Cryptonomicon by Neal Stephenson&lt;/a&gt;&lt;/strong&gt; (1999)&lt;/h3&gt;
@@ -1384,9 +1384,9 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  
  <entry>
    <title>Authenticating ServiceStack REST API using HMAC</title>
-   <link href="http://www.jokecamp.com//2012/12/16/authenticating-servicestack-rest-api-using-hmac/"/>
+   <link href="http://www.jokecamp.com//code/2012/12/16/authenticating-servicestack-rest-api-using-hmac/"/>
    <updated>2012-12-16T10:53:22-05:00</updated>
-   <id>http://www.jokecamp.com/2012/12/16/authenticating-servicestack-rest-api-using-hmac</id>
+   <id>http://www.jokecamp.com/code/2012/12/16/authenticating-servicestack-rest-api-using-hmac</id>
    <content type="html">&lt;p&gt;I&amp;#39;ve created the following C# code to show how HMAC security could be integrated into ServiceStack REST API using the built in &lt;a href=&quot;https://github.com/ServiceStack/ServiceStack/wiki/Filter-attributes&quot;&gt;RequestFilter attributes&lt;/a&gt;. I wanted to try to emulate the security model of &lt;a href=&quot;http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html&quot;&gt;Amazon&amp;#39;s S3 authentication&lt;/a&gt;. View that page for finer details about the request signature process.&lt;/p&gt;
 
 &lt;p&gt;The two main methods are &lt;strong&gt;CreateToken&lt;/strong&gt; and &lt;strong&gt;FlattenRequestDetails&lt;/strong&gt;. They are responsible for creating the SHA-256 hash and flatting the request details into a &lt;a href=&quot;http://stackoverflow.com/questions/280107/what-does-the-term-canonical-form-or-canonical-representation-in-java-mean&quot;&gt;canonical string&lt;/a&gt;, respectively.&lt;/p&gt;
@@ -2342,9 +2342,9 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  
  <entry>
    <title>Importing DC Capital BikeShare data into a Sqlite3 database</title>
-   <link href="http://www.jokecamp.com//2012/02/15/importing-dc-capital-bikeshare-data-into-a-sqlite3-database/"/>
+   <link href="http://www.jokecamp.com//blog/2012/02/15/importing-dc-capital-bikeshare-data-into-a-sqlite3-database/"/>
    <updated>2012-02-15T20:53:19-05:00</updated>
-   <id>http://www.jokecamp.com/2012/02/15/importing-dc-capital-bikeshare-data-into-a-sqlite3-database</id>
+   <id>http://www.jokecamp.com/blog/2012/02/15/importing-dc-capital-bikeshare-data-into-a-sqlite3-database</id>
    <content type="html">&lt;p&gt;I recently downloaded and imported all of the available &lt;a href=&quot;http://www.capitalbikeshare.com/trip-history-data&quot;&gt;raw csv files from Capital BikeShare&lt;/a&gt; into a local sqlite3 database running on my local machine. If you have sqlite3 and you have the sqlite3.exe file already set in your $path environment variable then you may simply run the following command to build a table of all the rides. Once that is done you can start experimenting with different queries.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Run from command prompt. Creates a new db called bike.db with a table called ride.&lt;/strong&gt;&lt;/p&gt;
@@ -2449,9 +2449,9 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  
  <entry>
    <title>.NET Custom Configuration Section, Collection and Elements</title>
-   <link href="http://www.jokecamp.com//2012/02/01/net-custom-configuration-section-collection-and-elements/"/>
+   <link href="http://www.jokecamp.com//code/2012/02/01/net-custom-configuration-section-collection-and-elements/"/>
    <updated>2012-02-01T15:29:44-05:00</updated>
-   <id>http://www.jokecamp.com/2012/02/01/net-custom-configuration-section-collection-and-elements</id>
+   <id>http://www.jokecamp.com/code/2012/02/01/net-custom-configuration-section-collection-and-elements</id>
    <content type="html">&lt;p&gt;This site about &lt;a href=&quot;http://www.abhisheksur.com/2011/09/writing-custom-configurationsection-to.html&quot;&gt;writing custom configurationsection&lt;/a&gt; offers the most straight forward solution. Make sure you implement all methods the author describes for your version of the ConfigurationElementCollection class. I tried just the ones the abstract class requires but could not get it to work. I&amp;#39;ve posted my own implementation using the authors guidelines to create a configuration collection of jobs.&lt;/p&gt;
 
 &lt;p&gt;Another useful link from a &lt;a href=&quot;http://stackoverflow.com/questions/2568454/code-required-to-use-foreach-on-my-own-custom-appsettings&quot;&gt;stackoverflow question&lt;/a&gt;.&lt;/p&gt;
@@ -2563,9 +2563,9 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  
  <entry>
    <title>Create CustomValidator to enforce MaxLength on a MultiLine TextBox</title>
-   <link href="http://www.jokecamp.com//2011/11/10/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox/"/>
+   <link href="http://www.jokecamp.com//code/2011/11/10/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox/"/>
    <updated>2011-11-10T16:46:46-05:00</updated>
-   <id>http://www.jokecamp.com/2011/11/10/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox</id>
+   <id>http://www.jokecamp.com/code/2011/11/10/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.textbox.maxlength.aspx&quot;&gt;ASP .NET TextBoxes &lt;/a&gt; with mode = MultiLine do not support the MaxLength property. MultiLine TextBoxes are rendered as html textareas and this property is not supported in many browsers. (I believe HTML5 will be supporting it)&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Solution&lt;/strong&gt;  &lt;/p&gt;

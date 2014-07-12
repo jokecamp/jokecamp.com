@@ -7,7 +7,7 @@ slug: cryptonomicon-the-ultimate-computer-geek-novel-reading-aids
 title: 'Cryptonomicon: the ultimate computer geek novel - Reading Aids'
 wordpress_id: 608
 categories:
-- Books
+- blog
 tags:
 - book
 - cryptography

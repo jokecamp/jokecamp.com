@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Guide to Football/Soccer data and APIs &middot; Joe Kampschmidt's Code
+    
+  </title>
+  <meta name="description=" content="A personal website for Joe Kampschmidt with web development blogs and projects.">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+      <h2 class="masthead-title">
+        <a href="/" title="also known as @jokecamp">Joe Kampschmidt's Code</a>
+      </h2>
+
+      <nav class="nav">
+        <ul>
+
+
+
+  
+    
+  
+
+  
+
+  
+    
+  
+
+  
+    
+          <li><a class="" href="/posts/" title="Joe's Blog">Blog</a></li>
+    
+  
+
+  
+    
+          <li><a class="" href="/projects/" title="Joe's Projects">Projects</a></li>
+    
+  
+
+  
+
+  
+
+
+          <li><a href="https://github.com/jokecamp" title="Joe's github page - commit all the things"><i class="fa fa-github"></i></a></li>
+          <li><a href="http://stackoverflow.com/users/215502/kampsj" title="Joe's stackoverflow account - aka street credit"><i class="fa fa-stack-overflow"></i></a></li>
+          <li><a href="https://twitter.com/jokecamp" title="Joe's twitter account"><i class="fa fa-twitter"></i></a></li>
+        </ul>
+      </div>
+      </nav>
+    </div>
+    <div class="container content">
+      <div class="post">
+  <h1 class="post-title">Guide to Football/Soccer data and APIs</h1>
+  <span class="post-date">08 Mar 2014</span>
+  <h3>Where can I actually find football/soccer data?</h3>
+
+<p><strong><a href="http://openfootball.github.io/">openfootball</a></strong> has started a free (open source) public domain football database. The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the upcoming 2014 World Cup along with global league data. This is a very promising project and has the <strong>potential to be the definitive source for historical data for the public</strong>. The data is stored in various repos on github. Start browsing and contributing at <a href="https://github.com/openfootball/">github.com/openfootball</a>. See the <a href="https://groups.google.com/forum/#!forum/opensport">opensport Google Group</a> for discussion and questions.</p>
+
+<p><a href="http://www.footballsquads.co.uk/">footballsquads.co.uk</a> has current and historical squad details for clubs and national teams from all across the world for many leagues and competitions, including the 2014 World Cup squads.</p>
+
+<p><a href="http://www.rsssf.com/">Rec.Sport.Soccer Statistics Foundation</a> (RSSSF) has massive collection of formatted plain text statistics. <a href="http://www.rsssf.com/tablese/eng2014.html#premier">An example of English Premier leagues results</a>.</p>
+
+<p><a href="http://developer.espn.com/docs">ESPN API</a> has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to &quot;strategic partners.&quot; However, you can get lists of players and teams.</p>
+
+<p><a href="http://www.optasports.com/playground-section.aspx">opta Playground</a> has a developer program that provides very limited access to historical data. The site reads &quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&#39;m not sure why an indie developer would spend time working on a data set they could never afford.</p>
+
+<p><a href="https://statsfc.com/">StatsFC</a> used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their <a href="https://statsfc.com/statements">official statement</a>.</p>
+
+<p><a href="https://crowdscores.com/">CrowdScores beta</a> is UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top reporter with a season ticket. They data collection process is ideal but they might have to work on the incentives. I believe a better incentive would be to allow the reporters who contribute access to an API of all the data collected.</p>
+
+<p><a href="http://www.footytube.com/openfooty/">openfooty API</a> had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.</p>
+
+<p><a href="http://www.football-data.co.uk/data.php">football-data.co.uk</a> has made a lot of historical league data available as csv files. The data includes results and a lot of betting/odds related data. I have tried to aggregate and clean up the data in the following repo <a href="https://github.com/jokecamp/FootballData">github.com/jokecamp/FootballData</a></p>
+
+<p><a href="http://www.european-football-statistics.co.uk/">www.european-football-statistics.co.uk</a> is a visually dated website but has a lot of historical football data (mostly an overview of league/tournament results) displayed in nice clean HTML tables. Looks like they already have 2014 EPL stats.</p>
+
+<p><a href="http://www.openligadb.de/Webservices/Sportsdata.asmx">openligadb.db</a> has an old-school windows asmx web service with methods such as &quot;GetGoalsByMatch()&quot;</p>
+
+<p><a href="http://ceur-ws.org/Vol-1026/paper6.pdf">Linked Soccer Data</a> is a white paper on one group&#39;s attempt to &quot;create a dataset including reliable information about soccer
+events covering as many historical data as available including recent competition
+results.&quot; Some dead links but worthwhile to skim.</p>
+
+<p><a href="http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics">Are there any open datasets for Soccer statistics?</a> - keep your eye on this open data forum for more answers.</p>
+
+<h3>2014 World Cup APIs</h3>
+
+<p><a href="https://www.kimonolabs.com/worldcup/explorer">kimono labs 2014 World Cup Api</a> - has a very nice restful API available. Free registration required to access the API. The API has a player, team, club, matches, and player<em>season</em>stats endpoints. See the <a href="https://www.kimonolabs.com/worldcup/docs">documentation</a> and start making calls withe the <a href="https://www.kimonolabs.com/worldcup/explorer">API explorer</a></p>
+
+<p><a href="http://softwareforgood.com/soccer-good/">2014 World Cup JSON API - Soccer for Good</a> - The API is available now. The author explains that the data is from a scraper so the availability is not guaranteed but should be available throughout the tournament. There are endpoints for <a href="http://worldcup.sfg.io/teams">teams</a>, <a href="http://worldcup.sfg.io/matches">matches</a>, <a href="http://worldcup.sfg.io/matches/today">today</a>, <a href="http://worldcup.sfg.io/matches/tomorrow">tomorrow</a> and <a href="http://worldcup.sfg.io/matches/current">current</a>. The Ruby on Rails source code is available on <a href="https://github.com/estiens/world_cup_json">Github</a></p>
+
+<p><a href="http://worldcup.sfg.io/">World Cup in JSON</a> - an open source ruby project available at <a href="https://github.com/estiens/world_cup_json">github.com/estiens/world<em>cup</em>json</a> that scrapes a few sources and combines into an API. API is available at http://worldcup.sfg.io/matches</p>
+
+<p><a href="http://live.mobileapp.fifa.com/api/wc/matches">Unofficial FIFA.com JSON API for Mobile Apps</a>  This is unofficial and I wouldn&#39;t be surprised if it is protected/unavailable soon. Until then its nice to see data straight from the source. Known endpoints: <a href="http://live.mobileapp.fifa.com/api/wc/matches">matches</a>, <a href="http://live.mobileapp.fifa.com/api/wc/teams">teams</a> or detailed <a href="http://live.mobileapp.fifa.com/api/wc/match/300186492/en">match info</a></p>
+
+<p>Please let me know about your own data sources in the comments. I have mainly search for EPL data and would love to add data from other leagues/competitions to the list.</p>
+
+</div>
+
+<div class="tags">
+Tags
+ <div class='tag'>api</div>  <div class='tag'>opendata</div>  <div class='tag'>sportsdata</div> 
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul>
+    
+      <li>
+          <a href="/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/" title="Alternate way to build your own football.db sqlite database">Alternate way to build your own football.db sqlite database</a><span class="date">June 28</span>
+      </li>
+    
+      <li>
+          <a href="/blog/2014/06/07/building-a-raspberry-pi-photo-frame/" title="Building a Raspberry Pi Photo Frame">Building a Raspberry Pi Photo Frame</a><span class="date">June 7</span>
+      </li>
+    
+      <li>
+          <a href="/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/" title="Resolving AngularJS paths in a ASP.NET MVC SPA and IIS">Resolving AngularJS paths in a ASP.NET MVC SPA and IIS</a><span class="date">June 6</span>
+      </li>
+    
+  </ul>
+</div>
+
+      <div class="footer">
+        <p>
+          <a href="https://github.com/jokecamp/jokecamp.com"><i class="fa fa-github"></i> View Source on GitHub</a> |
+          <a href="/atom.xml" title="Atom Feed"></i>Atom</a> | <a href="/rss.xml" title="RSS Feed"><i class="fa fa-rss"></i> RSS</a></p>
+        <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</p>
+      </div>
+    </div>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-101247-6', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+  </body>
+</html>

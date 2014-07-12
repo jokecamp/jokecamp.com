@@ -6,6 +6,8 @@ layout: post
 slug: net-custom-configuration-section-collection-and-elements
 title: .NET Custom Configuration Section, Collection and Elements
 wordpress_id: 55
+categories:
+- Code
 tags:
 - .NET
 - .net configuration

@@ -6,6 +6,8 @@ layout: post
 slug: importing-dc-capital-bikeshare-data-into-a-sqlite3-database
 title: Importing DC Capital BikeShare data into a Sqlite3 database
 wordpress_id: 131
+categories:
+- blog
 tags:
 - sqlite
 ---

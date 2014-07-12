@@ -7,7 +7,7 @@ slug: setup-up-your-mac-for-net-development
 title: Setup up your Mac for .NET Development
 wordpress_id: 1328
 categories:
-- opinion
+- code
 tags:
 - OSX
 ---

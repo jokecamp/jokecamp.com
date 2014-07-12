@@ -6,6 +6,8 @@ layout: post
 slug: authenticating-servicestack-rest-api-using-hmac
 title: Authenticating ServiceStack REST API using HMAC
 wordpress_id: 571
+categories:
+- Code
 tags:
 - .NET
 - api

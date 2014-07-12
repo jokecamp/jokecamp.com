@@ -7,8 +7,7 @@ slug: tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-web
 title: 'Tutorial: How to use TeamCity Powershell Runner to automatically deploy website'
 wordpress_id: 1169
 categories:
-- devops
-- Tutorial
+- guide
 tags:
 - continous-integration
 - deployment

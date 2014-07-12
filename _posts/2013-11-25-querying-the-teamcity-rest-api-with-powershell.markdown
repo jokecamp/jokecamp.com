@@ -8,7 +8,6 @@ title: Querying the TeamCity Rest API with Powershell
 wordpress_id: 1158
 categories:
 - Code
-- devops
 tags:
 - automation
 - continuous-integration

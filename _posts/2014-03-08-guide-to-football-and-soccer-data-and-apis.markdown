@@ -7,8 +7,7 @@ slug: guide-to-football-and-soccer-data-and-apis
 title: Guide to Football/Soccer data and APIs
 wordpress_id: 1369
 categories:
-- api
-- opinion
+- guide
 tags:
 - api
 - opendata

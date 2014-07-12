@@ -10,3 +10,10 @@ To test change to the project directory and run the following command
 Then browse to <http://localhost:4000/>
 
 Pull requests will be accepted for any typos or editing and your contribution will be credited.
+
+
+Use one of the following categories for each post:
+
+ - Guide
+ - Blog
+ - Code

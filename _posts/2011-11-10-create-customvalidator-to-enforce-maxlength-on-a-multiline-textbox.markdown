@@ -6,6 +6,8 @@ layout: post
 slug: create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox
 title: Create CustomValidator to enforce MaxLength on a MultiLine TextBox
 wordpress_id: 23
+categories:
+- Code
 tags:
 - .NET
 - C#
