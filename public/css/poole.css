@@ -1,6 +1,5 @@
 /*
  * Body resets
- *
  * Update the foundational and global aspects of the page.
  */
 
@@ -10,20 +9,16 @@
           box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+html, body {  margin: 0;  padding: 0; }
 
 html {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
-@media (min-width: 38em) {
+@media (max-width: 44em) {
   html {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -226,40 +221,6 @@ tbody tr:nth-child(odd) th {
   background-color: #f9f9f9;
 }
 
-
-/*
- * Custom type
- *
- * Extend paragraphs with `.lead` for larger introductory text.
- */
-
-.lead {
-  font-size: 1.25rem;
-  font-weight: 300;
-}
-
-
-/*
- * Messages
- *
- * Show alert messages to users. You may add it to single elements like a `<p>`,
- * or to a parent if there are multiple elements to show.
- */
-
-.message {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  color: #717171;
-  background-color: #f9f9f9;
-}
-
-
-/*
- * Container
- *
- * Center the page content.
- */
-
 .container {
   max-width: 50rem;
   padding-left:  1rem;
@@ -268,100 +229,24 @@ tbody tr:nth-child(odd) th {
   margin-right: auto;
 }
 
+.masthead { padding: .75rem; margin-bottom: 2rem; background-color:#232323; border-bottom: solid 2px #CCC; }
+.masthead-title { margin-top: 0; margin-bottom: 0; padding:.2rem; color: #EEE; }
+.masthead a { color: #FFF; }
+.masthead small { font-size: 75%; font-weight: 400; color: #999; letter-spacing: 0; }
 
-/*
- * Masthead
- *
- * Super small header above the content for site name and short description.
- */
+.nav { margin-top:.5rem; }
+.nav li { margin:.6rem; vertical-align:middle; font-size:1.2rem; }
+.nav li i { font-size:1.4rem; }
+.nav ul li { display:inline; }
 
-.masthead {
-  padding: .75rem;
-  margin-bottom: 2rem;
-  background-color:#232323;
-  border-bottom: solid 2px #CCC;
-}
-.masthead-title {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding:.2rem;
-  color: #EEE;
-}
-.masthead a {
-  color: #FFF;
-}
-.masthead small {
-  font-size: 75%;
-  font-weight: 400;
-  color: #999;
-  letter-spacing: 0;
-}
+.page, .post { margin-bottom: 4em; }
 
-.masthead .nav {
-  margin-top:.5rem;
-}
-.masthead .nav a {
-  margin:1rem;
-}
-
-/*
- * Posts and pages
- *
- * Each post is wrapped in `.post` and is used on default and post layouts. Each
- * page is wrapped in `.page` and is only used on the page layout.
- */
-
-.page,
-.post {
-  margin-bottom: 4em;
-}
-
-/* Blog post or page title */
-.page-title,
-.post-title,
-.post-title a {
-  color: #303030;
-}
-.page-title,
-.post-title {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
+.page-title, .post-title, .post-title a { color: #303030; }
+.page-title, .post-title { margin-top: 0; margin-bottom: 1rem; }
 
 .page-title { text-align:center; }
-
-/* Meta data line below post title */
-.post-date {
-  display: block;
-  margin-top: -.5rem;
-  margin-bottom: 1rem;
-  color: #9a9a9a;
-}
-
-/* Related posts */
-.related {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-.related-posts {
-  padding-left: 0;
-  list-style: none;
-}
-.related-posts h3 {
-  margin-top: 0;
-}
-.related-posts li small {
-  font-size: 75%;
-  color: #999;
-}
-.related-posts li a:hover {
-  color: #268bd2;
-  text-decoration: none;
-}
-.related-posts li a:hover small {
-  color: inherit;
-}
-
+.post-date { display: block; margin-top: -.5rem; margin-bottom: 1rem; color: #9a9a9a; }
+.related { padding-top: 1rem; padding-bottom: 1rem; }
 .center { text-align:center;}
 .date { color:#888; padding-left:1rem; font-size:.8rem;}
 .bio { padding-top:1.8rem; padding-bottom:1.8rem; font-size:1.3rem; }
@@ -369,13 +254,13 @@ tbody tr:nth-child(odd) th {
 
 nav ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
 
+.page ul, .related ul { list-style-type: none; margin:0; padding:0; }
+.page ul > li, .related ul > li { margin-bottom:.7rem; margin-top:.7rem; }
+
 @media screen and (max-width: 44em) {
-  nav ul li { display:block; }
-  .posts-list { list-style-type: none; margin:0; padding:0;}
-  .posts-list li { margin-bottom:.5rem;}
+
 }
 
 @media screen and (min-width: 44em) {
-  nav ul li { display:inline; }
-  .posts-list li { margin-bottom:1rem;}
+
 }

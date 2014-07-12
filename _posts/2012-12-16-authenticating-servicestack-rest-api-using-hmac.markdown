@@ -19,7 +19,7 @@ tags:
 
 I've created the following C# code to show how HMAC security could be integrated into ServiceStack REST API using the built in [RequestFilter attributes](https://github.com/ServiceStack/ServiceStack/wiki/Filter-attributes). I wanted to try to emulate the security model of [Amazon's S3 authentication](http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html). View that page for finer details about the request signature process.
 
-The two main methods are **CreateToken **and **FlattenRequestDetails**. They are responsible for creating the SHA-256 hash and flatting the request details into a [canonical string](http://stackoverflow.com/questions/280107/what-does-the-term-canonical-form-or-canonical-representation-in-java-mean), respectively.
+The two main methods are **CreateToken** and **FlattenRequestDetails**. They are responsible for creating the SHA-256 hash and flatting the request details into a [canonical string](http://stackoverflow.com/questions/280107/what-does-the-term-canonical-form-or-canonical-representation-in-java-mean), respectively.
 
 A few notes when integrating with your existing API
 

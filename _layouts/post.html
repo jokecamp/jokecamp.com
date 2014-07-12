@@ -15,13 +15,10 @@ Tags
 
 <div class="related">
   <h2>Related Posts</h2>
-  <ul class="related-posts">
+  <ul>
     {% for post in site.related_posts limit:3 %}
       <li>
-          <a href="{{ site.baseurl }}{{ post.url }}">
-            {{ post.title }}
-            <small>{{ post.date | date_to_string }}</small>
-          </a>
+          <a href="{{ post.url }}" title="{{post.title}}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %-d"  }}</span>
       </li>
     {% endfor %}
   </ul>

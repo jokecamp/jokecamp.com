@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Blog Posts
+title: Blog
 ---
 
 {% for post in site.posts  %}
@@ -9,7 +9,7 @@ title: Blog Posts
 
     {% if forloop.first %}
     <h2 id="{{ this_year }}-ref">{{this_year}}</h2>
-    <ul class="posts-list">
+    <ul class="features">
     {% endif %}
       <li><a href="{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %-d"  }}</span></li>
     {% if forloop.last %}
@@ -18,7 +18,7 @@ title: Blog Posts
         {% if this_year != next_year %}
     </ul>
     <h2 id="{{ next_year }}-ref">{{next_year}}</h2>
-    <ul class="posts-list">
+    <ul class="features">
         {% endif %}
     {% endif %}
 {% endfor %}

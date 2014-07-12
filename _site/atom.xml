@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-07-10T23:26:09-04:00</updated>
+ <updated>2014-07-11T20:16:42-04:00</updated>
  <id>http://www.jokecamp.com</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1389,7 +1389,7 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
    <id>http://www.jokecamp.com/2012/12/16/authenticating-servicestack-rest-api-using-hmac</id>
    <content type="html">&lt;p&gt;I&amp;#39;ve created the following C# code to show how HMAC security could be integrated into ServiceStack REST API using the built in &lt;a href=&quot;https://github.com/ServiceStack/ServiceStack/wiki/Filter-attributes&quot;&gt;RequestFilter attributes&lt;/a&gt;. I wanted to try to emulate the security model of &lt;a href=&quot;http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html&quot;&gt;Amazon&amp;#39;s S3 authentication&lt;/a&gt;. View that page for finer details about the request signature process.&lt;/p&gt;
 
-&lt;p&gt;The two main methods are &lt;strong&gt;CreateToken *&lt;em&gt;and *&lt;/em&gt;FlattenRequestDetails&lt;/strong&gt;. They are responsible for creating the SHA-256 hash and flatting the request details into a &lt;a href=&quot;http://stackoverflow.com/questions/280107/what-does-the-term-canonical-form-or-canonical-representation-in-java-mean&quot;&gt;canonical string&lt;/a&gt;, respectively.&lt;/p&gt;
+&lt;p&gt;The two main methods are &lt;strong&gt;CreateToken&lt;/strong&gt; and &lt;strong&gt;FlattenRequestDetails&lt;/strong&gt;. They are responsible for creating the SHA-256 hash and flatting the request details into a &lt;a href=&quot;http://stackoverflow.com/questions/280107/what-does-the-term-canonical-form-or-canonical-representation-in-java-mean&quot;&gt;canonical string&lt;/a&gt;, respectively.&lt;/p&gt;
 
 &lt;p&gt;A few notes when integrating with your existing API&lt;/p&gt;
 
