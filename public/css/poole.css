@@ -255,12 +255,4 @@ tbody tr:nth-child(odd) th {
 nav ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
 
 .page ul, .related ul { list-style-type: none; margin:0; padding:0; }
-.page ul > li, .related ul > li { margin-bottom:.7rem; margin-top:.7rem; }
-
-@media screen and (max-width: 44em) {
-
-}
-
-@media screen and (min-width: 44em) {
-
-}
+.page ul li, .related ul li { margin-bottom:.7rem; margin-top:.7rem; }
