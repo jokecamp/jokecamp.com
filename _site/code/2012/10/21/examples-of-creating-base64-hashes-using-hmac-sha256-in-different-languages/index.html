@@ -74,7 +74,7 @@
       <div class="post">
   <h1 class="post-title">Examples of creating base64 hashes using HMAC SHA256 in different languages</h1>
   <span class="post-date">21 Oct 2012</span>
-  <p>I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See <a href="http://stackoverflow.com/a/201510/215502">What is the use of base 64 encoding?</a> on stackoverflow.</p>
+  <p>I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See the stackOverflow question <a href="http://stackoverflow.com/a/201510/215502">What is the use of base 64 encoding?</a></p>
 
 <p>Below are some simplified HMAC SHA 256 solutions. They should all output &quot;<strong>qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=</strong>&quot; given the values of &quot;<strong>secret</strong>&quot; and &quot;<strong>Message</strong>&quot; Take notice of the capital M. It is case sensitive.</p>
 
@@ -96,18 +96,21 @@
 
 <h3><a name='js'></a>Javascript HMAC SHA256</h3>
 
-<p>A simple js library to use is crypto. <a href="http://code.google.com/p/crypto-js/">http://code.google.com/p/crypto-js/</a></p>
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span>
-  <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span>
-  <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span><span class="o">&gt;</span><span class="c1">// &lt;![CDATA[</span>
- <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">HmacSHA256</span><span class="p">(</span><span class="s2">&quot;Message&quot;</span><span class="p">,</span> <span class="s2">&quot;secret&quot;</span><span class="p">);</span>
- <span class="kd">var</span> <span class="nx">hashInBase64</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">enc</span><span class="p">.</span><span class="nx">Base64</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">hash</span><span class="p">);</span>
- <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">hashInBase64</span><span class="p">);</span>
-<span class="c1">// ]]&gt;&lt;/script&gt;</span>
+<p>Run the code online with this <a href="http://jsfiddle.net/7f8m7/">jsfiddle</a>.
+Dependent upon an open source js library called <a href="http://code.google.com/p/crypto-js/">http://code.google.com/p/crypto-js/</a>.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+  <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">HmacSHA256</span><span class="p">(</span><span class="s2">&quot;Message&quot;</span><span class="p">,</span> <span class="s2">&quot;secret&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">hashInBase64</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">enc</span><span class="p">.</span><span class="nx">Base64</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">hash</span><span class="p">);</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">hashInBase64</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
 </code></pre></div>
 <h3><a name='php'></a>PHP HMAC SHA256</h3>
+
+<p>PHP has built in methods for <a href="http://php.net/manual/en/function.hash-hmac.php">hash_hmac</a> (PHP 5) and <a href="http://php.net/manual/en/function.base64-encode.php">base64_encode</a> (PHP 4, PHP 5) resulting in no
+outside dependencies.</p>
 <div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">$s = hash_hmac(&#39;sha256&#39;, &#39;Message&#39;, &#39;secret&#39;, true);</span>
 <span class="x">echo base64_encode($s);</span>
 </code></pre></div>
@@ -141,7 +144,7 @@
 </code></pre></div>
 <h3><a name='groovy'></a>Groovy HMAC SHA256</h3>
 
-<p>It is mostly java code but there are some slight differences. Taken and adapter from <a href="http://juliusgithaiga.blogspot.com/2013/06/hmacsha256-representation.html">Dev Takeout - Groovy HMAC/SHA256 representation</a> blog post.</p>
+<p>It is mostly java code but there are some slight differences. Adapted from <a href="http://juliusgithaiga.blogspot.com/2013/06/hmacsha256-representation.html">Dev Takeout - Groovy HMAC/SHA256 representation</a>.</p>
 <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="kn">import</span> <span class="nn">javax.crypto.Mac</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.crypto.spec.SecretKeySpec</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.security.InvalidKeyException</span><span class="o">;</span>

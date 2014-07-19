@@ -25,7 +25,7 @@ tags:
 - sha256
 ---
 
-I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See [What is the use of base 64 encoding?](http://stackoverflow.com/a/201510/215502) on stackoverflow.
+I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See the stackOverflow question [What is the use of base 64 encoding?](http://stackoverflow.com/a/201510/215502)
 
 Below are some simplified HMAC SHA 256 solutions. They should all output "**qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=**" given the values of "**secret**" and "**Message**" Take notice of the capital M. It is case sensitive.
 
@@ -45,21 +45,24 @@ Jump to an implementation:
 
 ### <a name='js'></a>Javascript HMAC SHA256
 
-A simple js library to use is crypto. [http://code.google.com/p/crypto-js/](http://code.google.com/p/crypto-js/)
+Run the code online with this [jsfiddle](http://jsfiddle.net/7f8m7/).
+Dependent upon an open source js library called [http://code.google.com/p/crypto-js/](http://code.google.com/p/crypto-js/).
 
-```js
-<script type="text/javascript"
-  src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js"></script>
-<script type="text/javascript"
-  src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>
-<script type="text/javascript">// <![CDATA[
- var hash = CryptoJS.HmacSHA256("Message", "secret");
- var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
- document.write(hashInBase64);
-// ]]></script>
+```javascript
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>
+
+<script>
+  var hash = CryptoJS.HmacSHA256("Message", "secret");
+  var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
+  document.write(hashInBase64);
+</script>
 ```
 
 ### <a name='php'></a>PHP HMAC SHA256
+
+PHP has built in methods for [hash_hmac](http://php.net/manual/en/function.hash-hmac.php) (PHP 5) and [base64_encode](http://php.net/manual/en/function.base64-encode.php) (PHP 4, PHP 5) resulting in no
+outside dependencies.
 
 ```php
 $s = hash_hmac('sha256', 'Message', 'secret', true);
@@ -99,7 +102,7 @@ String hash = Base64.encodeBase64String(sha256_HMAC.doFinal(message.getBytes()))
 
 ### <a name='groovy'></a>Groovy HMAC SHA256
 
-It is mostly java code but there are some slight differences. Taken and adapter from [Dev Takeout - Groovy HMAC/SHA256 representation](http://juliusgithaiga.blogspot.com/2013/06/hmacsha256-representation.html) blog post.
+It is mostly java code but there are some slight differences. Adapted from [Dev Takeout - Groovy HMAC/SHA256 representation](http://juliusgithaiga.blogspot.com/2013/06/hmacsha256-representation.html).
 
 ```groovy
 import javax.crypto.Mac;
