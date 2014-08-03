@@ -92,6 +92,8 @@
 <li><a href="#python">Python</a></li>
 <li><a href="#perl">Perl</a></li>
 <li><a href="#dart">Dart</a></li>
+<li><a href="#swift">Swift</a></li>
+<li><a href="#rust">Rust</a></li>
 </ul>
 
 <h3><a name='js'></a>Javascript HMAC SHA256</h3>
@@ -122,24 +124,22 @@ outside dependencies.</p>
 <span class="kn">import</span> <span class="nn">org.apache.commons.codec.binary.Base64</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiSecurityExample</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+     <span class="n">String</span> <span class="n">secret</span> <span class="o">=</span> <span class="s">&quot;secret&quot;</span><span class="o">;</span>
+     <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Message&quot;</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+     <span class="n">Mac</span> <span class="n">sha256_HMAC</span> <span class="o">=</span> <span class="n">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">&quot;HmacSHA256&quot;</span><span class="o">);</span>
+     <span class="n">SecretKeySpec</span> <span class="n">secret_key</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecretKeySpec</span><span class="o">(</span><span class="n">secret</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="s">&quot;HmacSHA256&quot;</span><span class="o">);</span>
+     <span class="n">sha256_HMAC</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secret_key</span><span class="o">);</span>
 
-<span class="k">try</span> <span class="o">{</span>
- <span class="n">String</span> <span class="n">secret</span> <span class="o">=</span> <span class="s">&quot;secret&quot;</span><span class="o">;</span>
- <span class="n">String</span> <span class="n">message</span> <span class="o">=</span> <span class="s">&quot;Message&quot;</span><span class="o">;</span>
-
- <span class="n">Mac</span> <span class="n">sha256_HMAC</span> <span class="o">=</span> <span class="n">Mac</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">&quot;HmacSHA256&quot;</span><span class="o">);</span>
- <span class="n">SecretKeySpec</span> <span class="n">secret_key</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecretKeySpec</span><span class="o">(</span><span class="n">secret</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="s">&quot;HmacSHA256&quot;</span><span class="o">);</span>
- <span class="n">sha256_HMAC</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secret_key</span><span class="o">);</span>
-
-<span class="n">String</span> <span class="n">hash</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">encodeBase64String</span><span class="o">(</span><span class="n">sha256_HMAC</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">message</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
- <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">hash</span><span class="o">);</span>
- <span class="o">}</span>
- <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
- <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Error&quot;</span><span class="o">);</span>
- <span class="o">}</span>
- <span class="o">}</span>
+     <span class="n">String</span> <span class="n">hash</span> <span class="o">=</span> <span class="n">Base64</span><span class="o">.</span><span class="na">encodeBase64String</span><span class="o">(</span><span class="n">sha256_HMAC</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">message</span><span class="o">.</span><span class="na">getBytes</span><span class="o">()));</span>
+     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">hash</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Error&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div>
 <h3><a name='groovy'></a>Groovy HMAC SHA256</h3>
@@ -170,21 +170,21 @@ outside dependencies.</p>
 
 <span class="k">namespace</span> <span class="nn">Test</span>
 <span class="p">{</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">MyHmac</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">MyHmac</span>
+  <span class="p">{</span>
+    <span class="k">private</span> <span class="kt">string</span> <span class="nf">CreateToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">,</span> <span class="kt">string</span> <span class="n">secret</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="k">private</span> <span class="kt">string</span> <span class="nf">CreateToken</span><span class="p">(</span><span class="kt">string</span> <span class="n">message</span><span class="p">,</span> <span class="kt">string</span> <span class="n">secret</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">secret</span> <span class="p">=</span> <span class="n">secret</span> <span class="p">??</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
-            <span class="kt">var</span> <span class="n">encoding</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">ASCIIEncoding</span><span class="p">();</span>
-            <span class="kt">byte</span><span class="p">[]</span> <span class="n">keyByte</span> <span class="p">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">secret</span><span class="p">);</span>
-            <span class="kt">byte</span><span class="p">[]</span> <span class="n">messageBytes</span> <span class="p">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-            <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">hmacsha256</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HMACSHA256</span><span class="p">(</span><span class="n">keyByte</span><span class="p">))</span>
-            <span class="p">{</span>
-                <span class="kt">byte</span><span class="p">[]</span> <span class="n">hashmessage</span> <span class="p">=</span> <span class="n">hmacsha256</span><span class="p">.</span><span class="n">ComputeHash</span><span class="p">(</span><span class="n">messageBytes</span><span class="p">);</span>
-                <span class="k">return</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToBase64String</span><span class="p">(</span><span class="n">hashmessage</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
+      <span class="n">secret</span> <span class="p">=</span> <span class="n">secret</span> <span class="p">??</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+      <span class="kt">var</span> <span class="n">encoding</span> <span class="p">=</span> <span class="k">new</span> <span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">ASCIIEncoding</span><span class="p">();</span>
+      <span class="kt">byte</span><span class="p">[]</span> <span class="n">keyByte</span> <span class="p">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">secret</span><span class="p">);</span>
+      <span class="kt">byte</span><span class="p">[]</span> <span class="n">messageBytes</span> <span class="p">=</span> <span class="n">encoding</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+      <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">hmacsha256</span> <span class="p">=</span> <span class="k">new</span> <span class="n">HMACSHA256</span><span class="p">(</span><span class="n">keyByte</span><span class="p">))</span>
+      <span class="p">{</span>
+        <span class="kt">byte</span><span class="p">[]</span> <span class="n">hashmessage</span> <span class="p">=</span> <span class="n">hmacsha256</span><span class="p">.</span><span class="n">ComputeHash</span><span class="p">(</span><span class="n">messageBytes</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ToBase64String</span><span class="p">(</span><span class="n">hashmessage</span><span class="p">);</span>
+      <span class="p">}</span>
     <span class="p">}</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3><a name='objc'></a>Objective C and Cocoa HMAC SHA256</h3>
@@ -327,11 +327,20 @@ outside dependencies.</p>
   <span class="c1">// hash =&gt; qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3><a name='swift'></a>Swift HMAC SHA256</h3>
+
+<p>I have not verified but see this <a href="http://stackoverflow.com/questions/24099520/commonhmac-in-swift">stackOverflow post</a></p>
+
+<h3><a name='rust'></a>Rust</h3>
+
+<p><a href="http://www.rust-lang.org/">Rust (lang)</a>
+<a href="https://github.com/alco/rust-digest/blob/master/hmac.rs">https://github.com/alco/rust-digest/blob/master/hmac.rs</a></p>
+
 </div>
 
 <div class="tags">
 Tags
- <div class='tag'>C#</div>  <div class='tag'>dart</div>  <div class='tag'>go</div>  <div class='tag'>hmac</div>  <div class='tag'>java</div>  <div class='tag'>javascript</div>  <div class='tag'>objectiveC</div>  <div class='tag'>perl</div>  <div class='tag'>php</div>  <div class='tag'>python</div>  <div class='tag'>rest</div>  <div class='tag'>ruby</div>  <div class='tag'>security</div>  <div class='tag'>sha256</div> 
+ <div class='tag'>C#</div>  <div class='tag'>dart</div>  <div class='tag'>go</div>  <div class='tag'>hmac</div>  <div class='tag'>java</div>  <div class='tag'>javascript</div>  <div class='tag'>objectiveC</div>  <div class='tag'>perl</div>  <div class='tag'>php</div>  <div class='tag'>python</div>  <div class='tag'>rest</div>  <div class='tag'>ruby</div>  <div class='tag'>security</div>  <div class='tag'>sha256</div>  <div class='tag'>swift</div> 
 </div>
 
 <div class="related">

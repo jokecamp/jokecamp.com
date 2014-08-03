@@ -23,6 +23,7 @@ tags:
 - ruby
 - security
 - sha256
+- swift
 ---
 
 I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See the stackOverflow question [What is the use of base 64 encoding?](http://stackoverflow.com/a/201510/215502)
@@ -42,6 +43,8 @@ Jump to an implementation:
   * [Python](#python)
   * [Perl](#perl)
   * [Dart](#dart)
+  * [Swift](#swift)
+  * [Rust](#rust)
 
 ### <a name='js'></a>Javascript HMAC SHA256
 
@@ -79,24 +82,22 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
 public class ApiSecurityExample {
+  public static void main(String[] args) {
+    try {
+     String secret = "secret";
+     String message = "Message";
 
-public static void main(String[] args) {
+     Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+     SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+     sha256_HMAC.init(secret_key);
 
-try {
- String secret = "secret";
- String message = "Message";
-
- Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
- SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
- sha256_HMAC.init(secret_key);
-
-String hash = Base64.encodeBase64String(sha256_HMAC.doFinal(message.getBytes()));
- System.out.println(hash);
- }
- catch (Exception e){
- System.out.println("Error");
- }
- }
+     String hash = Base64.encodeBase64String(sha256_HMAC.doFinal(message.getBytes()));
+     System.out.println(hash);
+    }
+    catch (Exception e){
+     System.out.println("Error");
+    }
+   }
 }
 ```
 
@@ -133,21 +134,21 @@ using System.Security.Cryptography;
 
 namespace Test
 {
-    public class MyHmac
+  public class MyHmac
+  {
+    private string CreateToken(string message, string secret)
     {
-        private string CreateToken(string message, string secret)
-        {
-            secret = secret ?? "";
-            var encoding = new System.Text.ASCIIEncoding();
-            byte[] keyByte = encoding.GetBytes(secret);
-            byte[] messageBytes = encoding.GetBytes(message);
-            using (var hmacsha256 = new HMACSHA256(keyByte))
-            {
-                byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
-                return Convert.ToBase64String(hashmessage);
-            }
-        }
+      secret = secret ?? "";
+      var encoding = new System.Text.ASCIIEncoding();
+      byte[] keyByte = encoding.GetBytes(secret);
+      byte[] messageBytes = encoding.GetBytes(message);
+      using (var hmacsha256 = new HMACSHA256(keyByte))
+      {
+        byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
+        return Convert.ToBase64String(hashmessage);
+      }
     }
+  }
 }
 ```
 
@@ -305,3 +306,12 @@ void main() {
   // hash => qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=
 }
 ```
+
+### <a name='swift'></a>Swift HMAC SHA256
+
+I have not verified but see this [stackOverflow post](http://stackoverflow.com/questions/24099520/commonhmac-in-swift)
+
+### <a name='rust'></a>Rust
+
+[Rust (lang)](http://www.rust-lang.org/)
+<https://github.com/alco/rust-digest/blob/master/hmac.rs>
