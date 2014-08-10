@@ -20,7 +20,7 @@ Last updated: Aug 2 2014
 
 ### Open Source Data on Github
 
-**[openfootball](http://openfootball.github.io/)** has started a free, open source public domain football database.
+**[openfootball (aka football.db)](http://openfootball.github.io/)** has started a free, open source public domain football database.
 The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the 2014 World Cup along with global league data. This is a very promising project and has the **potential to be the definitive source for historical data for the public**.
 See the [opensport Google Group](https://groups.google.com/forum/#!forum/opensport) for discussion and questions. The data is stored in various repos on github.
 Consider contributing any data you have yourself and be sure to thank [Gerald Bauer](https://github.com/geraldb). All the various repos can be intimidating. A good place to start is at [github.com/openfootball](https://github.com/openfootball/).

@@ -3,7 +3,22 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/</loc>
+      <loc>http://localhost:4000/guide/2014/08/08/getting-started-with-iisnode/</loc>
+      
+        <lastmod>2014-08-08T00:00:00-04:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/</loc>
       
         <lastmod>2014-06-28T16:50:15-04:00</lastmod>
       
@@ -18,7 +33,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/blog/2014/06/07/building-a-raspberry-pi-photo-frame/</loc>
+      <loc>http://localhost:4000/blog/2014/06/07/building-a-raspberry-pi-photo-frame/</loc>
       
         <lastmod>2014-06-07T21:34:58-04:00</lastmod>
       
@@ -33,7 +48,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/</loc>
+      <loc>http://localhost:4000/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/</loc>
       
         <lastmod>2014-06-06T19:49:35-04:00</lastmod>
       
@@ -48,7 +63,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2014/03/27/setup-up-your-mac-for-net-development/</loc>
+      <loc>http://localhost:4000/code/2014/03/27/setup-up-your-mac-for-net-development/</loc>
       
         <lastmod>2014-03-27T00:02:40-04:00</lastmod>
       
@@ -63,7 +78,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/guide/2014/03/08/guide-to-football-and-soccer-data-and-apis/</loc>
+      <loc>http://localhost:4000/guide/2014/03/08/guide-to-football-and-soccer-data-and-apis/</loc>
       
         <lastmod>2014-03-08T12:08:40-05:00</lastmod>
       
@@ -78,7 +93,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/blog/2013/12/30/staying-current-with-techdeveloper-news/</loc>
+      <loc>http://localhost:4000/blog/2013/12/30/staying-current-with-techdeveloper-news/</loc>
       
         <lastmod>2013-12-30T20:02:46-05:00</lastmod>
       
@@ -93,7 +108,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/</loc>
+      <loc>http://localhost:4000/code/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/</loc>
       
         <lastmod>2013-12-17T20:00:48-05:00</lastmod>
       
@@ -108,7 +123,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/guide/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/</loc>
+      <loc>http://localhost:4000/guide/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/</loc>
       
         <lastmod>2013-12-14T20:09:59-05:00</lastmod>
       
@@ -123,7 +138,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2013/11/25/querying-the-teamcity-rest-api-with-powershell/</loc>
+      <loc>http://localhost:4000/code/2013/11/25/querying-the-teamcity-rest-api-with-powershell/</loc>
       
         <lastmod>2013-11-25T15:49:36-05:00</lastmod>
       
@@ -138,7 +153,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2013/10/24/just-spotted-opserver-stack-exchanges-open-source-monitoring-system/</loc>
+      <loc>http://localhost:4000/code/2013/10/24/just-spotted-opserver-stack-exchanges-open-source-monitoring-system/</loc>
       
         <lastmod>2013-10-24T18:45:08-04:00</lastmod>
       
@@ -153,7 +168,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2013/09/17/windows-powershell-script-examples-for-devops/</loc>
+      <loc>http://localhost:4000/code/2013/09/17/windows-powershell-script-examples-for-devops/</loc>
       
         <lastmod>2013-09-17T16:58:38-04:00</lastmod>
       
@@ -168,7 +183,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2013/09/07/code-generation-using-servicestack-ormlite-and-t4-text-templates/</loc>
+      <loc>http://localhost:4000/code/2013/09/07/code-generation-using-servicestack-ormlite-and-t4-text-templates/</loc>
       
         <lastmod>2013-09-07T11:51:13-04:00</lastmod>
       
@@ -183,7 +198,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2013/06/30/servicestack-api-with-fastcgi-mono-server-and-nginx-hosted-on-digitalocean/</loc>
+      <loc>http://localhost:4000/code/2013/06/30/servicestack-api-with-fastcgi-mono-server-and-nginx-hosted-on-digitalocean/</loc>
       
         <lastmod>2013-06-30T17:20:25-04:00</lastmod>
       
@@ -198,7 +213,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2013/06/11/using-postsharp-to-add-servicestack-route-attributes/</loc>
+      <loc>http://localhost:4000/code/2013/06/11/using-postsharp-to-add-servicestack-route-attributes/</loc>
       
         <lastmod>2013-06-11T13:03:59-04:00</lastmod>
       
@@ -213,7 +228,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/blog/2013/02/18/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids/</loc>
+      <loc>http://localhost:4000/blog/2013/02/18/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids/</loc>
       
         <lastmod>2013-02-18T14:40:09-05:00</lastmod>
       
@@ -228,7 +243,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2013/01/16/connecting-to-sftp-with-key-file-and-password-using-ssh-net/</loc>
+      <loc>http://localhost:4000/code/2013/01/16/connecting-to-sftp-with-key-file-and-password-using-ssh-net/</loc>
       
         <lastmod>2013-01-16T15:06:46-05:00</lastmod>
       
@@ -243,7 +258,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/12/16/authenticating-servicestack-rest-api-using-hmac/</loc>
+      <loc>http://localhost:4000/code/2012/12/16/authenticating-servicestack-rest-api-using-hmac/</loc>
       
         <lastmod>2012-12-16T10:53:22-05:00</lastmod>
       
@@ -258,7 +273,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/10/21/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/</loc>
+      <loc>http://localhost:4000/code/2012/10/21/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages/</loc>
       
         <lastmod>2012-10-21T22:36:37-04:00</lastmod>
       
@@ -273,7 +288,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/07/26/how-to-create-an-asp-net-httphandler-to-serve-files-from-local-system/</loc>
+      <loc>http://localhost:4000/code/2012/07/26/how-to-create-an-asp-net-httphandler-to-serve-files-from-local-system/</loc>
       
         <lastmod>2012-07-26T09:06:46-04:00</lastmod>
       
@@ -288,7 +303,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/07/17/a-clean-javascript-ui-notification-system-with-jquery/</loc>
+      <loc>http://localhost:4000/code/2012/07/17/a-clean-javascript-ui-notification-system-with-jquery/</loc>
       
         <lastmod>2012-07-17T14:30:45-04:00</lastmod>
       
@@ -303,7 +318,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/04/11/fixing-the-file-sharing-violation-exception-when-verifying-and-repairing-a-sql-ce-database/</loc>
+      <loc>http://localhost:4000/code/2012/04/11/fixing-the-file-sharing-violation-exception-when-verifying-and-repairing-a-sql-ce-database/</loc>
       
         <lastmod>2012-04-11T20:45:27-04:00</lastmod>
       
@@ -318,7 +333,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/04/06/simplest-code-needed-to-create-an-excel-2010-file-with-open-xml-sdk-2-0/</loc>
+      <loc>http://localhost:4000/code/2012/04/06/simplest-code-needed-to-create-an-excel-2010-file-with-open-xml-sdk-2-0/</loc>
       
         <lastmod>2012-04-06T14:39:04-04:00</lastmod>
       
@@ -333,7 +348,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/03/26/querying-groups-and-users-across-multiple-domains-with-ldap-in-c-net/</loc>
+      <loc>http://localhost:4000/code/2012/03/26/querying-groups-and-users-across-multiple-domains-with-ldap-in-c-net/</loc>
       
         <lastmod>2012-03-26T13:11:20-04:00</lastmod>
       
@@ -348,7 +363,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/03/16/make-your-sqlite-bulk-inserts-very-fast-in-c/</loc>
+      <loc>http://localhost:4000/code/2012/03/16/make-your-sqlite-bulk-inserts-very-fast-in-c/</loc>
       
         <lastmod>2012-03-16T14:52:28-04:00</lastmod>
       
@@ -363,7 +378,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/blog/2012/02/15/importing-dc-capital-bikeshare-data-into-a-sqlite3-database/</loc>
+      <loc>http://localhost:4000/blog/2012/02/15/importing-dc-capital-bikeshare-data-into-a-sqlite3-database/</loc>
       
         <lastmod>2012-02-15T20:53:19-05:00</lastmod>
       
@@ -378,7 +393,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/02/07/use-zend-framework-to-list-all-of-a-given-users-google-spreadsheets/</loc>
+      <loc>http://localhost:4000/code/2012/02/07/use-zend-framework-to-list-all-of-a-given-users-google-spreadsheets/</loc>
       
         <lastmod>2012-02-07T18:14:39-05:00</lastmod>
       
@@ -393,7 +408,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2012/02/01/net-custom-configuration-section-collection-and-elements/</loc>
+      <loc>http://localhost:4000/code/2012/02/01/net-custom-configuration-section-collection-and-elements/</loc>
       
         <lastmod>2012-02-01T15:29:44-05:00</lastmod>
       
@@ -408,7 +423,7 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/code/2011/11/10/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox/</loc>
+      <loc>http://localhost:4000/code/2011/11/10/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox/</loc>
       
         <lastmod>2011-11-10T16:46:46-05:00</lastmod>
       
@@ -424,24 +439,9 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/404.html</loc>
+      <loc>http://localhost:4000/404.html</loc>
       
-        <lastmod>2014-08-02T20:10:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/atom.xml</loc>
-      
-        <lastmod>2014-08-02T20:10:14-04:00</lastmod>
+        <lastmod>2014-08-10T18:20:52-04:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -454,24 +454,9 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/</loc>
+      <loc>http://localhost:4000/atom.xml</loc>
       
-        <lastmod>2014-08-02T20:10:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/posts/</loc>
-      
-        <lastmod>2014-08-02T20:10:14-04:00</lastmod>
+        <lastmod>2014-08-10T18:20:52-04:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -484,24 +469,9 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/projects/</loc>
+      <loc>http://localhost:4000/</loc>
       
-        <lastmod>2014-08-02T20:10:14-04:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/rss.xml</loc>
-      
-        <lastmod>2014-08-02T20:10:14-04:00</lastmod>
+        <lastmod>2014-08-10T18:20:52-04:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -514,9 +484,54 @@
   
     
     <url>
-      <loc>http://www.jokecamp.com/sitemap.xml</loc>
+      <loc>http://localhost:4000/posts/</loc>
       
-        <lastmod>2014-08-02T20:10:14-04:00</lastmod>
+        <lastmod>2014-08-10T18:20:52-04:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/projects/</loc>
+      
+        <lastmod>2014-08-10T18:20:52-04:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/rss.xml</loc>
+      
+        <lastmod>2014-08-10T18:20:52-04:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://localhost:4000/sitemap.xml</loc>
+      
+        <lastmod>2014-08-10T18:20:52-04:00</lastmod>
       
       
         <changefreq>monthly</changefreq>

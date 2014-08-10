@@ -3,8 +3,203 @@
 	<channel>
 		<title>Joe Kampschmidt&#39;s Code</title>
 		<description>a pragmatic approach to web and software development</description>
-		<link>http://www.jokecamp.com</link>
-		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
+		<link>http://localhost:4000</link>
+		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Getting started with iisnode: node.js on Windows</title>
+				<description>&lt;p&gt;I&amp;#39;ve spent some time learning and working with &lt;a href=&quot;https://twitter.com/tjanczuk&quot;&gt;Tomasz Janczuk&amp;#39;s&lt;/a&gt; impressive &lt;a href=&quot;https://github.com/tjanczuk/iisnode&quot;&gt;iisnode&lt;/a&gt; project. He has done well to explain the open source project but the documentation is fragmented between the &lt;a href=&quot;https://github.com/tjanczuk/iisnode/tree/master/src/iisnode&quot;&gt;source code&lt;/a&gt;, &lt;a href=&quot;https://github.com/tjanczuk/iisnode/issues&quot;&gt;github issues&lt;/a&gt; and &lt;a href=&quot;http://tomasz.janczuk.org/&quot;&gt;tjanczuk&amp;#39;s blog&lt;/a&gt;. I will retrace my learning process in order to help others get started with iisnode.&lt;/p&gt;
+
+&lt;h2&gt;Why use issnode?&lt;/h2&gt;
+
+&lt;p&gt;Here are the three main benefits taken directly from the &lt;a href=&quot;https://github.com/tjanczuk/iisnode/wiki#benefits&quot;&gt;project wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Process management&lt;/strong&gt;. The iisnode module takes care of lifetime management of node.exe processes making it simple to improve overall reliability. You don’t have to implement infrastructure to start, stop, and monitor the processes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Side by side with other content types&lt;/strong&gt;. The iisnode module integrates with IIS in a way that allows a single web site to contain a variety of content types. For example, a single site can contain a node.js application, static HTML and JavaScript files, PHP applications, and ASP.NET applications. This enables choosing the best tools for the job at hand as well progressive migration of existing applications.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Scalability on multi-core servers&lt;/strong&gt;. Since node.exe is a single threaded process, it only scales to one CPU core. The iisnode module allows creation of multiple node.exe processes per application and load balances the HTTP traffic between them, therefore enabling full utilization of a server’s CPU capacity without requiring additional infrastructure code from an application developer.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tjanczuk/iisnode/wiki#benefits&quot;&gt;See the full list...&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Some other notable benefits:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use built-in IIS features like security. You could put your nodejs server behind windows authentication&lt;/li&gt;
+&lt;li&gt;Use your already existing windows technology stack and avoid complicating the deployment process&lt;/li&gt;
+&lt;li&gt;Take advantage of the &lt;span title=&#39;Would you save I have a plethora of pinatas?&#39;&gt;plethora&lt;span&gt; of node packages available&lt;/li&gt;
+&lt;li&gt;No unix servers or &lt;a href=&quot;http://xkcd.com/149/&quot; title=&quot;The ones who go around demanding sandwhiches&quot;&gt;unix administrators&lt;/a&gt; necessary&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;What are the alternatives to iisnode for Windows?&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run nodejs as a windows service with &lt;a href=&quot;https://github.com/coreybutler/node-windows&quot;&gt;node-windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Run nodejs as a windows service with &lt;a href=&quot;http://nssm.cc/&quot;&gt;NSSM - the Non-Sucking Service Manager&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Run nodejs on a unix sever&lt;/li&gt;
+&lt;li&gt;Run it in a windows console and cross your fingers that no one closes the window... ever... Just kidding. Although it is fun to pretend it is this easy.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Ok, I&amp;#39;ll try it. What is iisnode?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/tjanczuk/iisnode&quot;&gt;iisnode&lt;/a&gt; is an open source &lt;strong&gt;native IIS module&lt;/strong&gt; written in C++ that allows &lt;a href=&quot;http://nodejs.org/&quot;&gt;node.js&lt;/a&gt; (node.exe) to be run inside Windows IIS.&lt;/p&gt;
+
+&lt;p&gt;First, a quick reminder about the difference between managed vs native modules.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A module is either a Win32 DLL (native module) or a .NET 2.0 type contained within an assembly (managed module)&amp;quot; &lt;br&gt;-Full article at &lt;a href=&quot;http://www.iis.net/learn/get-started/introduction-to-iis/iis-modules-overview&quot;&gt;iis.net&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To reiterate, iisnode is a native module. The C++ code gets compiled into a &lt;code&gt;iisnode.dll&lt;/code&gt; file and installed into IIS as a module. Download and install iisnode via the &lt;a href=&quot;https://github.com/tjanczuk/iisnode/releases/&quot;&gt;releases page&lt;/a&gt;. Be sure to select the MSI that matches your processor (x86 vs x64).&lt;/p&gt;
+
+&lt;h3&gt;How does iisnode work?&lt;/h3&gt;
+
+&lt;p&gt;To over simplify here is how it works with the assumption that we have a nodejs server called &lt;code&gt;sever.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;A client browser makes a request to your server.js in IIS&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;From your web.config IIS sees that you want to use iisnode module for &lt;code&gt;server.js&lt;/code&gt; requests&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;add name=&amp;quot;iisnode&amp;quot; path=&amp;quot;hello.js&amp;quot; verb=&amp;quot;*&amp;quot; modules=&amp;quot;iisnode&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;iisnode will create a node.exe process (or use existing) and communicate through a named pipe&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;node.exe sends the response back through the named pipe, iisnode and then iis&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;a href=&#39;http://tomasz.janczuk.org/2011/10/architecture-of-iisnode.html&#39;&gt;
+&lt;img style=&quot;float: right; margin:10px;&quot; src=&quot;/public/iisnode-diagram.png&quot; title=&#39;See Architecture Diagram&#39; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For a more complete picture see the diagrams on &lt;a href=&quot;http://blogs.msdn.com/b/hanuk/archive/2012/05/05/top-benefits-of-running-node-js-on-windows-azure.aspx&quot;&gt;Top Benefits of Running Node.js on Windows Azure&lt;/a&gt;. The article is from the context of Azure but it gives the best description of what is happening under the hood. Other recommended reading (with diagrams) includes &lt;a href=&quot;http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture#HTTP&quot;&gt;Introduction to IIS Architectures&lt;/a&gt; and &lt;a href=&quot;http://www.planetofcoders.com/difference-url-rewriting-url-routing/&quot;&gt;Difference between URL Rewriting and URL Routing&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you want to explore the iisnode C++ source code I would start with this blog post
+&lt;strong&gt;&lt;a href=&quot;http://tomasz.janczuk.org/2011/10/architecture-of-iisnode.html&quot;&gt;Architecture of iisnode&lt;/a&gt;&lt;/strong&gt; by the creator.
+The post describes the key components, relationships and a short description of the most important classes serving as a map of browsing the actual source code on github. &lt;strong&gt;This post was instrumental in understanding how iisnode works&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2&gt;iisnode key points and lessons learned&lt;/h2&gt;
+
+&lt;p&gt;Some key points to remember when working with iisnode. Reading though these will save you time.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your nodejs server must listen on the &lt;code&gt;process.env.PORT&lt;/code&gt; variable passed from iisnode. This will end up being the named pipe instead of the traditional port number.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;text/html&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello, world! [configuration sample]&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PORT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;You can promote server variables from IIS into nodejs. If you use windows authentication you can promote the username. See this &lt;a href=&quot;https://github.com/tjanczuk/iisnode/issues/87#issuecomment-3452395&quot;&gt;github issue&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use can specify which variables to promote with a csv value like below.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;iisnode&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;promoteServerVars=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;AUTH_USER,AUTH_TYPE&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;These values get added to incoming requests as headers. In your nodejs code you then reference the values like below.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;x-iisnode-auth_user&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for example AD\username&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;authenticationType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;x-iisnode-auth_type&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt; You can use the URL Rewrite (native) module choose which requests get handled by iisnode and which requests skips iisnode. This was required when setting up a socket.io server inside iisnode.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;rewrite&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;rules&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;rule&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myapp&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;match&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myapp/*&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;action&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Rewrite&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;server.js&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/rule&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/rules&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/rewrite&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;iisnode can act as a load balancer. One IIS app can spawn up several node.exe processes.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;this is configured in the web.config with &lt;code&gt;nodeProcessCountPerApplication=2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;the balancing is round robin load balancing. Which just means taking turns sequential.&lt;/li&gt;
+&lt;li&gt;See &lt;a href=&quot;http://tomasz.janczuk.org/2011/08/hosting-nodejs-applications-in-iis-on.html&quot;&gt;Scalability on multi-core servers&lt;/a&gt; for more on load balancing&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Several independent node.js applications can be present within a single IIS web application. You could have &lt;code&gt;server1.js&lt;/code&gt;, &lt;code&gt;server2.js&lt;/code&gt; and ect...&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Getting iisnode to work with IIS Express can be challenging depending on your Visual Studio version and processor. It is worthy of a separate blog post. Often I run my nodejs servers locally with &lt;code&gt;nodemon&lt;/code&gt; for development work then deploy to remote windows server with IIS for QA.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;iisnode configuration&lt;/h2&gt;
+
+&lt;p&gt;There are multiple ways to configure iisnode. Configuration will take this precedence order (1 taking precedence over 2 and ect)&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;yaml file. See example &lt;a href=&quot;https://github.com/tjanczuk/iisnode/blob/master/src/samples/configuration/iisnode.yml&quot;&gt;iisnode.yml&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;environment variables. i.e. &lt;code&gt;process.env.PORT&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;web.config. View example &lt;a href=&quot;https://github.com/tjanczuk/iisnode/blob/master/src/samples/configuration/web.config&quot;&gt;web.config&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;defaults to values in &lt;a href=&quot;https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml&quot; title=&quot;See default values&quot;&gt;iisnode_schema.xml&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Here are the defaults to give you an idea of what options are available.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;node_env&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;%node_env%&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;asyncCompletionThreadCount&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;nodeProcessCountPerApplication&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;nodeProcessCommandLine&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;node.exe&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;interceptor&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;amp;quot;%programfiles%\iisnode\interceptor.js&amp;amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxConcurrentRequestsPerProcess&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;allowInfitnite=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1024&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxNamedPipeConnectionRetry&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;100&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;namedPipeConnectionRetryDelay&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;250&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxNamedPipeConnectionPoolSize&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;512&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxNamedPipePooledConnectionAge&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;30000&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;initialRequestBufferSize&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;4096&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxRequestBufferSize&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;65536&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uncFileChangesPollingInterval&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;5000&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;gracefulShutdownTimeout&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;60000&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;logDirectory&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;iisnode&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggingEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggerExtensionDll&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;iisnode-inspector-0.7.3.dll&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debugHeaderEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggerVirtualDir&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggerPathSegment&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debug&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggerPortRange&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;5058-6058&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxLogFileSizeInKB&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;128&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxTotalLogFileSizeInKB&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1024&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxLogFiles&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;20&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;loggingEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;devErrorsEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flushResponse&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;watchedFiles&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;*.js;iisnode.yml&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;enableXFF&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;promoteServerVars&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;configOverrides&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;iisnode.yml&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;recycleSignalEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Brief notes on iisnode and socket.io&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;if you are trying to setup a socket server keep the &lt;code&gt;nodeProcessCountPerApplication=1&lt;/code&gt; setting at 1. The socket handshake will fail if the client ends up negotiating with multiple/different node.exe instances.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Most of the example code and demos assume you will host your application at the &amp;quot;Default Web Site&amp;quot; root level in iis. However, if you are hosting at a sub diretory level like &amp;quot;Default Web Site/app.&amp;quot; You will need to add some extra configuration for the socket.io server. You will need to specify the full paths for socket.io.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;socket.io has just upgraded its api from 0.9 to 1.0. Most of the iisnode examples target v 0.9. Be mindful of your version since there were some socket.io API changes.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;a good test is trying to to see if iisnode can successfully load the client library at &lt;code&gt;fullpath/socket.io/socket.io.js&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Troubleshooting&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Check the &lt;code&gt;nodeProcessCommandLine&lt;/code&gt; parameter in web.config. It specifies the path to node.exe installation. Does the path/file exist?&lt;/li&gt;
+&lt;li&gt;Check the &lt;code&gt;interceptor&lt;/code&gt; parameter in the web.config. Does the path/file exist?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Resources&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://tomasz.janczuk.org/2011/08/hosting-nodejs-applications-in-iis-on.html&quot;&gt;Hosting node.js applications in IIS on Windows&lt;/a&gt; by Tomas Janczuk&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tomasz.janczuk.org/2011/08/hosting-express-nodejs-applications-in.html&quot;&gt;Hosting express node.js applications in IIS using iisnode&lt;/a&gt; by Tomas Janczuk&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://tomasz.janczuk.org/2011/08/developing-nodejs-applications-in.html&quot;&gt;Developing node.js applications in WebMatrix and testing in IIS Express on Windows&lt;/a&gt; by Tomas Janczuk&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.hanselman.com/blog/InstallingAndRunningNodejsApplicationsWithinIISOnWindowsAreYouMad.aspx&quot;&gt;Installing and Running node.js applications within IIS on Windows - Are you mad?&lt;/a&gt; by Scott Hanselman&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ranjithblogs.azurewebsites.net/?p=98&quot;&gt;Debugging IISNODE Applications: new node-inspector integrated with iisnode&lt;/a&gt; by Ranjith Ramachandra&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Fri, 08 Aug 2014 00:00:00 -0400</pubDate>
+				<link>http://localhost:4000/guide/2014/08/08/getting-started-with-iisnode/</link>
+				<guid isPermaLink="true">http://localhost:4000/guide/2014/08/08/getting-started-with-iisnode/</guid>
+			</item>
 		
 			<item>
 				<title>Alternate way to build your own football.db sqlite database</title>
@@ -211,8 +406,8 @@ Stats:
 &lt;p&gt;Discuss and Ask questions for project at &lt;a href=&quot;https://groups.google.com/group/opensport&quot;&gt;Google Groups&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Sat, 28 Jun 2014 16:50:15 -0400</pubDate>
-				<link>http://www.jokecamp.com/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/</guid>
+				<link>http://localhost:4000/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/</link>
+				<guid isPermaLink="true">http://localhost:4000/code/2014/06/28/alternate-way-to-build-your-own-football-db-sqlite-database/</guid>
 			</item>
 		
 			<item>
@@ -275,8 +470,8 @@ sudo pip install requests
 &lt;p&gt;[caption id=&amp;quot;attachment_1572&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;225&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/2014-06-09-21-53-58.jpg&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/2014-06-09-21-53-58.jpg?w=225&quot; alt=&quot;Final Frame&quot;&gt;&lt;/a&gt; Final Frame[/caption]&lt;/p&gt;
 </description>
 				<pubDate>Sat, 07 Jun 2014 21:34:58 -0400</pubDate>
-				<link>http://www.jokecamp.com/blog/2014/06/07/building-a-raspberry-pi-photo-frame/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/2014/06/07/building-a-raspberry-pi-photo-frame/</guid>
+				<link>http://localhost:4000/blog/2014/06/07/building-a-raspberry-pi-photo-frame/</link>
+				<guid isPermaLink="true">http://localhost:4000/blog/2014/06/07/building-a-raspberry-pi-photo-frame/</guid>
 			</item>
 		
 			<item>
@@ -370,8 +565,8 @@ sudo pip install requests
 &lt;/ul&gt;
 </description>
 				<pubDate>Fri, 06 Jun 2014 19:49:35 -0400</pubDate>
-				<link>http://www.jokecamp.com/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/</guid>
+				<link>http://localhost:4000/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/</link>
+				<guid isPermaLink="true">http://localhost:4000/code/2014/06/06/resolving-angularjs-paths-in-asp-mvc-spa-iis/</guid>
 			</item>
 		
 			<item>
@@ -444,8 +639,8 @@ We now have Windows inside OSX. I usually run it in full screen in a separate de
 Fn  Function Key&lt;/p&gt;
 </description>
 				<pubDate>Thu, 27 Mar 2014 00:02:40 -0400</pubDate>
-				<link>http://www.jokecamp.com/code/2014/03/27/setup-up-your-mac-for-net-development/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/code/2014/03/27/setup-up-your-mac-for-net-development/</guid>
+				<link>http://localhost:4000/code/2014/03/27/setup-up-your-mac-for-net-development/</link>
+				<guid isPermaLink="true">http://localhost:4000/code/2014/03/27/setup-up-your-mac-for-net-development/</guid>
 			</item>
 		
 			<item>
@@ -456,7 +651,7 @@ Fn  Function Key&lt;/p&gt;
 
 &lt;h3&gt;Open Source Data on Github&lt;/h3&gt;
 
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://openfootball.github.io/&quot;&gt;openfootball&lt;/a&gt;&lt;/strong&gt; has started a free, open source public domain football database.
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://openfootball.github.io/&quot;&gt;openfootball (aka football.db)&lt;/a&gt;&lt;/strong&gt; has started a free, open source public domain football database.
 The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the 2014 World Cup along with global league data. This is a very promising project and has the &lt;strong&gt;potential to be the definitive source for historical data for the public&lt;/strong&gt;.
 See the &lt;a href=&quot;https://groups.google.com/forum/#!forum/opensport&quot;&gt;opensport Google Group&lt;/a&gt; for discussion and questions. The data is stored in various repos on github.
 Consider contributing any data you have yourself and be sure to thank &lt;a href=&quot;https://github.com/geraldb&quot;&gt;Gerald Bauer&lt;/a&gt;. All the various repos can be intimidating. A good place to start is at &lt;a href=&quot;https://github.com/openfootball/&quot;&gt;github.com/openfootball&lt;/a&gt;.&lt;/p&gt;
@@ -535,8 +730,8 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 &lt;p&gt;Please let me know about your own data sources in the comments. I have mainly search for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;
 </description>
 				<pubDate>Sat, 08 Mar 2014 12:08:40 -0500</pubDate>
-				<link>http://www.jokecamp.com/guide/2014/03/08/guide-to-football-and-soccer-data-and-apis/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/guide/2014/03/08/guide-to-football-and-soccer-data-and-apis/</guid>
+				<link>http://localhost:4000/guide/2014/03/08/guide-to-football-and-soccer-data-and-apis/</link>
+				<guid isPermaLink="true">http://localhost:4000/guide/2014/03/08/guide-to-football-and-soccer-data-and-apis/</guid>
 			</item>
 		
 			<item>
@@ -588,8 +783,8 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Humor&lt;/strong&gt;. Be sure to check out &lt;a href=&quot;http://xkcd.com/&quot;&gt;xkcd&lt;/a&gt; to keep your geeky sense of humor.&lt;/p&gt;
 </description>
 				<pubDate>Mon, 30 Dec 2013 20:02:46 -0500</pubDate>
-				<link>http://www.jokecamp.com/blog/2013/12/30/staying-current-with-techdeveloper-news/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/2013/12/30/staying-current-with-techdeveloper-news/</guid>
+				<link>http://localhost:4000/blog/2013/12/30/staying-current-with-techdeveloper-news/</link>
+				<guid isPermaLink="true">http://localhost:4000/blog/2013/12/30/staying-current-with-techdeveloper-news/</guid>
 			</item>
 		
 			<item>
@@ -711,8 +906,8 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
 				<pubDate>Tue, 17 Dec 2013 20:00:48 -0500</pubDate>
-				<link>http://www.jokecamp.com/code/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/code/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/</guid>
+				<link>http://localhost:4000/code/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/</link>
+				<guid isPermaLink="true">http://localhost:4000/code/2013/12/17/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack/</guid>
 			</item>
 		
 			<item>
@@ -797,8 +992,8 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 &lt;/ul&gt;
 </description>
 				<pubDate>Sat, 14 Dec 2013 20:09:59 -0500</pubDate>
-				<link>http://www.jokecamp.com/guide/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/guide/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/</guid>
+				<link>http://localhost:4000/guide/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/</link>
+				<guid isPermaLink="true">http://localhost:4000/guide/2013/12/14/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website/</guid>
 			</item>
 		
 			<item>
@@ -842,64 +1037,8 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/jokecamp/PowerShell.ToolBelt/blob/master/TeamCityFunctions.ps1&quot;&gt;View the latest version of this function on GitHub&lt;/a&gt;.&lt;/p&gt;
 </description>
 				<pubDate>Mon, 25 Nov 2013 15:49:36 -0500</pubDate>
-				<link>http://www.jokecamp.com/code/2013/11/25/querying-the-teamcity-rest-api-with-powershell/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/code/2013/11/25/querying-the-teamcity-rest-api-with-powershell/</guid>
-			</item>
-		
-			<item>
-				<title>Just spotted Opserver - Stack Exchange&#39;s open source .NET monitoring system</title>
-				<description>&lt;p&gt;As a .NET developer were are used to finding ourselves left out in the cold when it comes to awesome open source projects. However, over the last few years there has been a lot of momentum gaining around C# to reverse that trend. We now have awesome things like the &lt;a href=&quot;http://www.mono-project.com/Main_Page&quot;&gt;Mono project&lt;/a&gt;, &lt;a href=&quot;http://scriptcs.net/&quot;&gt;scriptcs&lt;/a&gt;, &lt;a href=&quot;http://www.servicestack.net/&quot;&gt;ServiceStack&lt;/a&gt;, &lt;a href=&quot;https://github.com/restsharp/RestSharp&quot;&gt;RestSharp&lt;/a&gt; and everyone&amp;#39;s favorite friend &lt;a href=&quot;http://www.nuget.org/&quot;&gt;NuGet&lt;/a&gt;!&lt;/p&gt;
-
-&lt;p&gt;Periodically, I like to check out the &lt;a href=&quot;https://github.com/trending?l=csharp&amp;amp;since=weekly&quot;&gt;GitHub trending repositories for C#&lt;/a&gt;. It is great to see what projects are most popular in the open source community for any given language.&lt;/p&gt;
-
-&lt;p&gt;The current trending list for the week of 10/24/13 is below.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/opserver/Opserver&quot;&gt;opserver/Opserver&lt;/a&gt; C# -Stack Exchange&amp;#39;s Monitoring System&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/ServiceStack/ServiceStack&quot;&gt;ServiceStack/ServiceStack&lt;/a&gt; C# - Thoughtfully architected, obscenely fast, thoroughly enjoyable web services for all&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/SignalR/SignalR&quot;&gt;SignalR/SignalR&lt;/a&gt; C# - Incredibly simple real-time web for .NET&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/restsharp/RestSharp&quot;&gt;restsharp/RestSharp&lt;/a&gt; C# - Simple REST and HTTP API Client for .NET&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/Squirrel/Squirrel.Windows&quot;&gt;Squirrel/Squirrel.Windows&lt;/a&gt; C# - It&amp;#39;s like ClickOnce but Works&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/proletariatgames/CUDLR&quot;&gt;proletariatgames/CUDLR&lt;/a&gt; C# - Console for Unity Debugging and Logging Remotely&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;strong&gt;It is an exciting time to be a C# .NET developer.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;At the top of that list is a new project called &lt;strong&gt;Opserver&lt;/strong&gt; that has recently been added by &lt;a href=&quot;http://stackexchange.com/&quot;&gt;StackExchange&lt;/a&gt;. StackExchange, the creators of &lt;a href=&quot;http://stackoverflow.com/&quot;&gt;StackOverflow&lt;/a&gt; are strong proponents of open-source projects. While they will &lt;a href=&quot;http://meta.stackoverflow.com/questions/3086/will-open-sourcing-stack-overflow-destroy-our-business-model&quot;&gt;not be open sourcing there Q&amp;amp;A engine&lt;/a&gt; they have used and contributed to many other open source projects. As a C# .NET developer I have always taken solace and pride that the StackOverflow website was a product of C# .NET. Among the horde of unpolished enterprise applications and government websites it was always nice to point to StackOverflow as a great example.&lt;/p&gt;
-
-&lt;p&gt;I&amp;#39;ve been excited ever since the &lt;a href=&quot;http://blog.stackoverflow.com/2012/02/stack-exchange-open-source-projects/&quot;&gt;announcement &lt;/a&gt;that StackExchange would be trying to &lt;a href=&quot;http://nickcraver.com/blog/2012/04/12/what-weve-been-up-to/&quot;&gt;open source more of their projects&lt;/a&gt;. Looks like they are getting ready to unleash their server monitoring application. There is a not a lot of documentation yet but it does not take much to get started.&lt;/p&gt;
-
-&lt;p&gt;Here are some more &lt;a href=&quot;http://imgur.com/a/dawwf&quot;&gt;detailed screenshots&lt;/a&gt; posted by Nick Craver.&lt;/p&gt;
-
-&lt;p&gt;*&lt;em&gt;The steps I took to get the website running in VisualStudio 2012 *&lt;/em&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Copied repository to my machine via Windows GitHub&lt;/li&gt;
-&lt;li&gt;Renamed the file Config/SecuritySettings.config.example to SecuritySettings.config&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Commented out the AD provider and un-commented the following&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;SecuritySettings provider=&amp;quot;alladmin&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Renamed the file Config/SQLSettings.json.example to SQLSettings.json&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;In SQLSettings I made the clusters an empty string and just added two databases names to the instances list&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The same for the Config/RedisSettings.json.example file&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Start debugging the website. You might need to be running as admin and/or have permission to access the servers you listed.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Screenshots of the Opserver Dashboards for SQL Databases and Redis&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/10/all-servers.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/10/all-servers.png?w=300&quot; alt=&quot;all-servers&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/10/databases.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/10/databases.png?w=300&quot; alt=&quot;databases&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/10/redis.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/10/redis.png?w=300&quot; alt=&quot;redis&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/10/top.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/10/top.png?w=300&quot; alt=&quot;top&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see from the screenshots there is a lot of reports and data available and this is only a couple of the many different types of dashboards. &lt;strong&gt;This is a repository to keep your eye on. I can easily see it become the devops dashboard of choice for .NET environments.&lt;/strong&gt;&lt;/p&gt;
-</description>
-				<pubDate>Thu, 24 Oct 2013 18:45:08 -0400</pubDate>
-				<link>http://www.jokecamp.com/code/2013/10/24/just-spotted-opserver-stack-exchanges-open-source-monitoring-system/</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/code/2013/10/24/just-spotted-opserver-stack-exchanges-open-source-monitoring-system/</guid>
+				<link>http://localhost:4000/code/2013/11/25/querying-the-teamcity-rest-api-with-powershell/</link>
+				<guid isPermaLink="true">http://localhost:4000/code/2013/11/25/querying-the-teamcity-rest-api-with-powershell/</guid>
 			</item>
 		
 	</channel>
