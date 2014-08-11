@@ -645,7 +645,7 @@ Fn  Function Key&lt;/p&gt;
 		
 			<item>
 				<title>Guide to Football/Soccer data and APIs</title>
-				<description>&lt;p&gt;Last updated: Aug 2 2014&lt;/p&gt;
+				<description>&lt;p&gt;Last updated: Aug 10 2014&lt;/p&gt;
 
 &lt;h2&gt;Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -703,11 +703,7 @@ api/?Action=today&amp;amp;comp_id=1204&amp;amp;APIKey=####
 api/?Action=fixtures&amp;amp;comp_id=1024&amp;amp;&amp;amp;match_date=[DATE_IN_d.m.Y_FORMAT]&amp;amp;APIKey=####
 api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://developer.espn.com/docs&quot;&gt;ESPN API&lt;/a&gt; has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to &amp;quot;strategic partners.&amp;quot; However, you can get lists of players and teams.&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&quot;http://www.optasports.com/playground-section.aspx&quot;&gt;opta Playground&lt;/a&gt; has a developer program that provides very limited access to historical data. The site reads &amp;quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&amp;quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&amp;#39;m not sure why an indie developer would spend time working on a data set they could never afford.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://statsfc.com/&quot;&gt;StatsFC&lt;/a&gt; used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their &lt;a href=&quot;https://statsfc.com/statements&quot;&gt;official statement&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3&gt;Other&lt;/h3&gt;
 
@@ -716,6 +712,8 @@ events covering as many historical data as available including recent competitio
 results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics&quot;&gt;Are there any open datasets for Soccer statistics?&lt;/a&gt; - keep your eye on this open data forum for more answers.&lt;/p&gt;
+
+&lt;p&gt;YouFoot [http://www.youfoot.com/] - anything of value here for developers?&lt;/p&gt;
 
 &lt;h3&gt;2014 World Cup APIs&lt;/h3&gt;
 
@@ -727,7 +725,17 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/matches&quot;&gt;Unofficial FIFA.com JSON API for Mobile Apps&lt;/a&gt;  This is unofficial and I wouldn&amp;#39;t be surprised if it is protected/unavailable soon. Until then its nice to see data straight from the source. Known endpoints: &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/matches&quot;&gt;matches&lt;/a&gt;, &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/teams&quot;&gt;teams&lt;/a&gt; or detailed &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/match/300186492/en&quot;&gt;match info&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Please let me know about your own data sources in the comments. I have mainly search for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.wikipedia.org/&quot;&gt;Wikipedia&lt;/a&gt; - has a lot of structured data. You can use their API to query then parse the data. It is very fragmented into specific pages making this a good source if you are looking for very specific team/player data. For example here is a table of Manchester United season results &lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons&quot;&gt;http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;graveyard&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Deprecated/Retired - &amp;quot;The Graveyard of APIs&amp;quot;&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://developer.espn.com/docs&quot;&gt;ESPN API&lt;/a&gt; has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to &amp;quot;strategic partners.&amp;quot; However, you can get lists of players and teams. The &lt;strong&gt;Public API is being retired on Monday, December 8, 2014&lt;/strong&gt; &lt;a href=&quot;http://developer.espn.com/blog/read/publicretirement&quot;&gt;Read the announcement&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://statsfc.com/&quot;&gt;StatsFC&lt;/a&gt; used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their &lt;a href=&quot;https://statsfc.com/statements&quot;&gt;official statement&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Please let me know about your own data sources or add a pull request on &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown&quot;&gt;github&lt;/a&gt;. I have mainly search for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;
 </description>
 				<pubDate>Sat, 08 Mar 2014 12:08:40 -0500</pubDate>
 				<link>http://localhost:4000/guide/2014/03/08/guide-to-football-and-soccer-data-and-apis/</link>
