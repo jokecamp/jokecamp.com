@@ -73,6 +73,10 @@ Example endpoints:
 
 [opta Playground](http://www.optasports.com/playground-section.aspx) has a developer program that provides very limited access to historical data. The site reads "Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download." You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I'm not sure why an indie developer would spend time working on a data set they could never afford.
 
+[A FiveThirtyEight behind the scenes look at how opta tracks data](http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/) (spoiler: young male gamers).
+
+[prozone](http://www.prozonesports.com/)
+[Match Analysis](http://matchanalysis.com/)
 
 ### Other
 
@@ -82,7 +86,7 @@ results." Some dead links but worthwhile to skim.
 
 [Are there any open datasets for Soccer statistics?](http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics) - keep your eye on this open data forum for more answers.
 
-YouFoot [http://www.youfoot.com/] - anything of value here for developers?
+<!-- [YouFoot](http://www.youfoot.com) - anything of value here for developers? -->
 
 ### 2014 World Cup APIs
 

@@ -705,6 +705,11 @@ api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.optasports.com/playground-section.aspx&quot;&gt;opta Playground&lt;/a&gt; has a developer program that provides very limited access to historical data. The site reads &amp;quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&amp;quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&amp;#39;m not sure why an indie developer would spend time working on a data set they could never afford.&lt;/p&gt;
 
+&lt;p&gt;&lt;a href=&quot;http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/&quot;&gt;A FiveThirtyEight behind the scenes look at how opta tracks data&lt;/a&gt; (spoiler: young male gamers).&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.prozonesports.com/&quot;&gt;prozone&lt;/a&gt;
+&lt;a href=&quot;http://matchanalysis.com/&quot;&gt;Match Analysis&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Other&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://ceur-ws.org/Vol-1026/paper6.pdf&quot;&gt;Linked Soccer Data&lt;/a&gt; is a white paper on one group&amp;#39;s attempt to &amp;quot;create a dataset including reliable information about soccer
@@ -713,7 +718,7 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics&quot;&gt;Are there any open datasets for Soccer statistics?&lt;/a&gt; - keep your eye on this open data forum for more answers.&lt;/p&gt;
 
-&lt;p&gt;YouFoot [http://www.youfoot.com/] - anything of value here for developers?&lt;/p&gt;
+&lt;!-- [YouFoot](http://www.youfoot.com) - anything of value here for developers? --&gt;
 
 &lt;h3&gt;2014 World Cup APIs&lt;/h3&gt;
 
