@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2014-08-11T18:26:39-04:00</updated>
+ <updated>2014-08-11T18:27:15-04:00</updated>
  <id>http://localhost:4000/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -39,7 +39,7 @@
 &lt;li&gt;Use built-in IIS features like security. You could put your nodejs server behind windows authentication&lt;/li&gt;
 &lt;li&gt;Use your already existing windows technology stack and avoid complicating the deployment process&lt;/li&gt;
 &lt;li&gt;Take advantage of the &lt;span title=&#39;Would you save I have a plethora of pinatas?&#39;&gt;plethora&lt;span&gt; of node packages available&lt;/li&gt;
-&lt;li&gt;No unix servers or &lt;a href=&quot;http://xkcd.com/149/&quot; title=&quot;The ones who go around demanding sandwhiches&quot;&gt;unix administrators&lt;/a&gt; necessary&lt;/li&gt;
+&lt;li&gt;No unix servers or &lt;a href=&quot;http://xkcd.com/149/&quot; title=&quot;The ones who go around demanding sandwiches&quot;&gt;unix administrators&lt;/a&gt; necessary&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4&gt;What are the alternatives to iisnode for Windows?&lt;/h4&gt;
@@ -47,7 +47,7 @@
 &lt;ul&gt;
 &lt;li&gt;Run nodejs as a windows service with &lt;a href=&quot;https://github.com/coreybutler/node-windows&quot;&gt;node-windows&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Run nodejs as a windows service with &lt;a href=&quot;http://nssm.cc/&quot;&gt;NSSM - the Non-Sucking Service Manager&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Run nodejs on a unix sever&lt;/li&gt;
+&lt;li&gt;Run nodejs on a unix server&lt;/li&gt;
 &lt;li&gt;Run it in a windows console and cross your fingers that no one closes the window... ever... Just kidding. Although it is fun to pretend it is this easy.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -65,7 +65,7 @@
 
 &lt;h3&gt;How does iisnode work?&lt;/h3&gt;
 
-&lt;p&gt;To over simplify here is how it works with the assumption that we have a nodejs server called &lt;code&gt;sever.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To over simplify here is how it works with the assumption that we have a nodejs server called &lt;code&gt;server.js&lt;/code&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;A client browser makes a request to your server.js in IIS&lt;/p&gt;&lt;/li&gt;
@@ -183,7 +183,7 @@ The post describes the key components, relationships and a short description of 
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;if you are trying to setup a socket server keep the &lt;code&gt;nodeProcessCountPerApplication=1&lt;/code&gt; setting at 1. The socket handshake will fail if the client ends up negotiating with multiple/different node.exe instances.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Most of the example code and demos assume you will host your application at the &amp;quot;Default Web Site&amp;quot; root level in iis. However, if you are hosting at a sub diretory level like &amp;quot;Default Web Site/app.&amp;quot; You will need to add some extra configuration for the socket.io server. You will need to specify the full paths for socket.io.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Most of the example code and demos assume you will host your application at the &amp;quot;Default Web Site&amp;quot; root level in iis. However, if you are hosting at a sub directory level like &amp;quot;Default Web Site/app.&amp;quot; You will need to add some extra configuration for the socket.io server. You will need to specify the full paths for socket.io.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;socket.io has just upgraded its api from 0.9 to 1.0. Most of the iisnode examples target v 0.9. Be mindful of your version since there were some socket.io API changes.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;a good test is trying to to see if iisnode can successfully load the client library at &lt;code&gt;fullpath/socket.io/socket.io.js&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
