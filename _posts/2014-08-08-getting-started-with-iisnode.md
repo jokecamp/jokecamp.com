@@ -33,13 +33,13 @@ Some other notable benefits:
 - Use built-in IIS features like security. You could put your nodejs server behind windows authentication
 - Use your already existing windows technology stack and avoid complicating the deployment process
 - Take advantage of the <span title='Would you save I have a plethora of pinatas?'>plethora<span> of node packages available
-- No unix servers or [unix administrators](http://xkcd.com/149/ "The ones who go around demanding sandwhiches") necessary
+- No unix servers or [unix administrators](http://xkcd.com/149/ "The ones who go around demanding sandwiches") necessary
 
 #### What are the alternatives to iisnode for Windows?
 
 - Run nodejs as a windows service with [node-windows](https://github.com/coreybutler/node-windows)
 - Run nodejs as a windows service with [NSSM - the Non-Sucking Service Manager](http://nssm.cc/)
-- Run nodejs on a unix sever
+- Run nodejs on a unix server
 - Run it in a windows console and cross your fingers that no one closes the window... ever... Just kidding. Although it is fun to pretend it is this easy.
 
 ## Ok, I'll try it. What is iisnode?
@@ -54,7 +54,7 @@ To reiterate, iisnode is a native module. The C++ code gets compiled into a `iis
 
 ### How does iisnode work?
 
-To over simplify here is how it works with the assumption that we have a nodejs server called `sever.js`
+To over simplify here is how it works with the assumption that we have a nodejs server called `server.js`
 
 1. A client browser makes a request to your server.js in IIS
 
@@ -181,7 +181,7 @@ There are multiple ways to configure iisnode. Configuration will take this prece
 
 - if you are trying to setup a socket server keep the `nodeProcessCountPerApplication=1` setting at 1. The socket handshake will fail if the client ends up negotiating with multiple/different node.exe instances.
 
-- Most of the example code and demos assume you will host your application at the "Default Web Site" root level in iis. However, if you are hosting at a sub diretory level like "Default Web Site/app." You will need to add some extra configuration for the socket.io server. You will need to specify the full paths for socket.io.
+- Most of the example code and demos assume you will host your application at the "Default Web Site" root level in iis. However, if you are hosting at a sub directory level like "Default Web Site/app." You will need to add some extra configuration for the socket.io server. You will need to specify the full paths for socket.io.
 
 - socket.io has just upgraded its api from 0.9 to 1.0. Most of the iisnode examples target v 0.9. Be mindful of your version since there were some socket.io API changes.
 
