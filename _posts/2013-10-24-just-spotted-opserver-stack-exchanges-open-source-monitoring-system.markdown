@@ -5,6 +5,7 @@ date: 2013-10-24 22:45:08+00:00
 layout: post
 slug: just-spotted-opserver-stack-exchanges-open-source-monitoring-system
 title: Just spotted Opserver - Stack Exchange's open source .NET monitoring system
+desc: "Learn about Opserver, the Stack Exchange open source .NET monitoring and devops website."
 wordpress_id: 1107
 categories:
 - Code

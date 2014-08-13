@@ -5,6 +5,7 @@ date: 2014-03-08 17:08:40+00:00
 layout: post
 slug: guide-to-football-and-soccer-data-and-apis
 title: Guide to Football/Soccer data and APIs
+desc: "A list of soccer and football apis, data sets, data services and websites available for developers looking for open data."
 wordpress_id: 1369
 categories:
 - guide

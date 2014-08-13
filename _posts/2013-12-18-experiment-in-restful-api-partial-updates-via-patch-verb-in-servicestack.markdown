@@ -5,6 +5,7 @@ date: 2013-12-18 01:00:48+00:00
 layout: post
 slug: experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack
 title: Experiment in Restful API Partial Updates via PATCH verb in ServiceStack
+desc: "A code experiment and demo of a ServiceStack API implementation of a partial resource update with the PATCH verb."
 wordpress_id: 1238
 categories:
 - Code

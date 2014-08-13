@@ -5,6 +5,7 @@ date: 2012-07-26 13:06:46+00:00
 layout: post
 slug: how-to-create-an-asp-net-httphandler-to-serve-files-from-local-system
 title: How to create an ASP.NET HttpHandler to serve files from local system
+desc: "Tutorial on how to create an ASP.NET HttpHandler to serve files from local system with C# code"
 wordpress_id: 340
 categories:
 - Code

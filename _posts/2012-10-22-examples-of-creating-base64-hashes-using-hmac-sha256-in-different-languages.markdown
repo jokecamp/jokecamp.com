@@ -5,6 +5,7 @@ date: 2012-10-22 02:36:37+00:00
 layout: post
 slug: examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages
 title: Examples of creating base64 hashes using HMAC SHA256 in different languages
+desc: "A list of code examples in various languages that demonstrate how to create base64 hashes using HMAC SHA256. Compare the different coding languages."
 wordpress_id: 416
 categories:
 - Code

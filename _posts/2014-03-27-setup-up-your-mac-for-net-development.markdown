@@ -5,6 +5,7 @@ date: 2014-03-27 04:02:40+00:00
 layout: post
 slug: setup-up-your-mac-for-net-development
 title: Setup up your Mac for .NET Development
+desc: "A list of tools and projects to setup and configure your new mac for .NET development."
 wordpress_id: 1328
 categories:
 - code

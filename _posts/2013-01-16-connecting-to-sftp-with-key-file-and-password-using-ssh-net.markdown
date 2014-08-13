@@ -5,6 +5,7 @@ date: 2013-01-16 20:06:46+00:00
 layout: post
 slug: connecting-to-sftp-with-key-file-and-password-using-ssh-net
 title: Connecting to SFTP with key file and password using SSH.NET
+desc: "Learn how to write code to connect to an SFTP server with a key file and password using the C# library SSH.NET"
 wordpress_id: 667
 categories:
 - Code

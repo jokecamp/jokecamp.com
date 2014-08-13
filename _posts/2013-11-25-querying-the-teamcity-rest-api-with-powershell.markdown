@@ -5,6 +5,7 @@ date: 2013-11-25 20:49:36+00:00
 layout: post
 slug: querying-the-teamcity-rest-api-with-powershell
 title: Querying the TeamCity Rest API with Powershell
+desc: "A powershell code example of querying the TeamCity REST Api to get the last successful build number."
 wordpress_id: 1158
 categories:
 - Code

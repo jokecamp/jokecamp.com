@@ -4,8 +4,8 @@ comments: true
 date: 2012-04-12 00:45:27+00:00
 layout: post
 slug: fixing-the-file-sharing-violation-exception-when-verifying-and-repairing-a-sql-ce-database
-title: Fixing the "File sharing violation" Exception when Verifying and Repairing
-  a SQL CE database
+title: 'Fixing the File sharing violation Exception when Verifying and Repairing a SQL CE database'
+desc: 'Fixing the File sharing violation Exception when Verifying and Repairing a SQL CE database'
 wordpress_id: 266
 categories:
 - Code

@@ -5,6 +5,7 @@ date: 2014-06-06 23:49:35+00:00
 layout: post
 slug: resolving-angularjs-paths-in-asp-mvc-spa-iis
 title: Resolving AngularJS paths in a ASP.NET MVC SPA and IIS
+desc: "How to resolve routing problems in the development of a AngularJS SPA (single page application) inside an ASP.NET MVC application"
 wordpress_id: 1476
 categories:
 - Code

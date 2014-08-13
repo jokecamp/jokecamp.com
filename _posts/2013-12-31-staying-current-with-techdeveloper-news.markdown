@@ -5,6 +5,7 @@ date: 2013-12-31 01:02:46+00:00
 layout: post
 slug: staying-current-with-techdeveloper-news
 title: Staying current with Tech/Developer News
+desc: "A list of great newsleters and websites for the the modern developer to stay up to date with current technology news."
 wordpress_id: 469
 categories:
 - blog

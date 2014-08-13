@@ -5,6 +5,7 @@ date: 2013-06-30 21:20:25+00:00
 layout: post
 slug: servicestack-api-with-fastcgi-mono-server-and-nginx-hosted-on-digitalocean
 title: 'Tutorial: ServiceStack API with FastCGI Mono Server and Nginx hosted on DigitalOcean'
+desc: 'A tutorial on running a ServiceStack API with FastCGI Mono Server and Nginx hosted on a DigitalOcean droplet (vm)'
 wordpress_id: 927
 categories:
 - Code

@@ -5,6 +5,7 @@ date: 2014-06-28 20:50:15+00:00
 layout: post
 slug: alternate-way-to-build-your-own-football-db-sqlite-database
 title: Alternate way to build your own football.db sqlite database
+desc: "Learn how to use build your own soccer/football sqlite database from the openfootball data set."
 wordpress_id: 1582
 categories:
 - Code
@@ -14,7 +15,7 @@ tags:
 - sportsdata
 ---
 
-Documentation has been moved to https://github.com/jokecamp/sportdb-build-scripts
+Documentation has been moved to <https://github.com/jokecamp/sportdb-build-scripts>
 
 I've preserved the original text below.
 

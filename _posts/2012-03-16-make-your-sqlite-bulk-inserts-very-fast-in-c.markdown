@@ -5,6 +5,7 @@ date: 2012-03-16 18:52:28+00:00
 layout: post
 slug: make-your-sqlite-bulk-inserts-very-fast-in-c
 title: Make your SQLite bulk inserts very fast in C# .NET
+desc: 'Learn how to increase performance with performing bulk SQLite inserts in C# .NET'
 wordpress_id: 158
 categories:
 - Code

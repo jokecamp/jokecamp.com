@@ -5,6 +5,7 @@ date: 2014-06-08 01:34:58+00:00
 layout: post
 slug: building-a-raspberry-pi-photo-frame
 title: Building a Raspberry Pi Photo Frame
+desc: "Learn how to make a raspberry pi photo frame that downloads and displays your flickr photos"
 wordpress_id: 1532
 categories:
 - blog
@@ -17,8 +18,6 @@ tags:
 ---
 
 First off, my inspiration and instructions came from this article [Building a living photo frame with a Raspberry Pi and a motion detector](http://www.ofbrooklyn.com/2014/01/2/building-photo-frame-raspberry-pi-motion-detector). The author is more knowledgeable and the article is more in-depth than mine. See that article for specific configuration and for the actual contents of the python script to pull photos from flickr. I hope my post will help others by sharing my first time experiences with the pi and the issues/frustrations I encountered.
-
-
 
 ## The shopping list
 

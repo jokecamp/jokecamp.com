@@ -5,6 +5,7 @@ date: 2014-08-08
 layout: post
 slug: 'Getting started with iisnode: node.js on Windows'
 title: 'Getting started with iisnode: node.js on Windows'
+desc: "Learn how to use and configure node.js inside Windows servers with IIS and iisnode. A great tutorial for using Tomasz Janczuk's iisnode."
 categories:
 - guide
 tags:

@@ -5,6 +5,7 @@ date: 2013-02-18 19:40:09+00:00
 layout: post
 slug: cryptonomicon-the-ultimate-computer-geek-novel-reading-aids
 title: 'Cryptonomicon: the ultimate computer geek novel - Reading Aids'
+desc: "A list of reading aids and research resources to use when reading the novel Cryptonomicon by Neal Stephenson"
 wordpress_id: 608
 categories:
 - blog

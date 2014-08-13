@@ -5,6 +5,7 @@ date: 2013-09-17 20:58:38+00:00
 layout: post
 slug: windows-powershell-script-examples-for-devops
 title: Windows Powershell Script Examples for devops
+desc: "A listing of powershell scripts to help devops and for continuous integration."
 wordpress_id: 1072
 categories:
 - Code

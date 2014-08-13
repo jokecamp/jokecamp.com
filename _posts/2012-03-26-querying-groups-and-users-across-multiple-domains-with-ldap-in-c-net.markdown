@@ -5,6 +5,7 @@ date: 2012-03-26 17:11:20+00:00
 layout: post
 slug: querying-groups-and-users-across-multiple-domains-with-ldap-in-c-net
 title: Querying Groups and Users across multiple domains with LDAP in C# .NET
+desc: 'Example C# .NET code to query groups and users across multiple domains with LDAP'
 wordpress_id: 193
 categories:
 - Code

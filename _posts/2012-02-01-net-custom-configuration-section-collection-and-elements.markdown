@@ -5,6 +5,7 @@ date: 2012-02-01 20:29:44+00:00
 layout: post
 slug: net-custom-configuration-section-collection-and-elements
 title: .NET Custom Configuration Section, Collection and Elements
+desc: 'Example code for creating custom C# .NET collections and elements for use in a configuration file.'
 wordpress_id: 55
 categories:
 - Code

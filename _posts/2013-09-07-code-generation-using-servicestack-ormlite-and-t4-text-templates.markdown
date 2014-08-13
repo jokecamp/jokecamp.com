@@ -5,6 +5,7 @@ date: 2013-09-07 15:51:13+00:00
 layout: post
 slug: code-generation-using-servicestack-ormlite-and-t4-text-templates
 title: Code Generation using ServiceStack.OrmLite and T4 Text templates
+desc: "How to generate code using ServiceStack OrmLite and Visual Studio T4 text templates to reduce writing boilerplate code."
 wordpress_id: 1038
 categories:
 - Code

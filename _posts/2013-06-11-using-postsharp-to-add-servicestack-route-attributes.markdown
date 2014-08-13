@@ -5,6 +5,7 @@ date: 2013-06-11 17:03:59+00:00
 layout: post
 slug: using-postsharp-to-add-servicestack-route-attributes
 title: Using PostSharp to Add ServiceStack Route Attributes
+desc: "Using PostSharp to add custom ServiceStack route attributes to your DTOs"
 wordpress_id: 853
 categories:
 - Code

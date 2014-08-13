@@ -5,6 +5,7 @@ date: 2012-04-06 18:39:04+00:00
 layout: post
 slug: simplest-code-needed-to-create-an-excel-2010-file-with-open-xml-sdk-2-0
 title: Simplest code needed to create an Excel 2010 file with Open XML SDK 2.0
+desc: 'The bare minimum code needed to create an Excel 2010 file with Open XML SDK 2.0 in C#'
 wordpress_id: 233
 categories:
 - Code

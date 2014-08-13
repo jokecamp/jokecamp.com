@@ -5,6 +5,7 @@ date: 2012-07-17 18:30:45+00:00
 layout: post
 slug: a-clean-javascript-ui-notification-system-with-jquery
 title: A Clean Javascript UI Notification System with jQuery
+desc: "A very primitive and simple javascript alert/notification project"
 wordpress_id: 324
 categories:
 - Code
