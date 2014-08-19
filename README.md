@@ -1,6 +1,8 @@
 ## Joe Kampschmidt's (Joe's Code) Personal Website/Blog
 
 
+Source code for <http://www.jokecamp.com>
+
 The website is a static site built with [Poole](https://github.com/poole/poole) and [Jekyll](http://jekyllrb.com).
 
 To test change to the project directory and run the following command
