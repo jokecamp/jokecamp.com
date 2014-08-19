@@ -3,13 +3,13 @@ markdown:         redcarpet
 highlighter:      pygments
 
 # Permalinks
-permalink:        pretty
+#permalink:        pretty
+permalink:        /blog/:title
 
 # Setup
 title:            Joe Kampschmidt's Code
 description:      "a pragmatic approach to web and software development"
 url:              http://www.jokecamp.com
-#url:              http://localhost:4000
 baseurl:          /
 
 author:

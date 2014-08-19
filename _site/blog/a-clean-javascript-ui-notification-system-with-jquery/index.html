@@ -3,9 +3,9 @@
   <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>Joe Kampschmidt's Code - </title>
+  <title>A Clean Javascript UI Notification System with jQuery - Joe Kampschmidt's Code</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <meta name="description" content="A personal website for Joe Kampschmidt (jokecamp) with web development blogs and projects. I am a developer. I write code and occasionally blog.">
+  <meta name="description" content="A very primitive and simple javascript alert/notification project">
   <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
   <meta name="author" content="Joe Kampschmidt" />
   <meta name="copyright" content="Joe Kampschmidt" />
@@ -42,30 +42,55 @@
     </div> <!-- end masthead -->
 
     <div class="container content">
-      <h1>About</h1>
+      <div class="post">
+  <h1 class="post-title">A Clean Javascript UI Notification System with jQuery</h1>
+  <span class="post-date">17 Jul 2012</span>
+  <p><a href="http://jokecamp.files.wordpress.com/2012/07/notifications.png"><img src="http://jokecamp.files.wordpress.com/2012/07/notifications.png" alt="Javascript UI notifications"></a></p>
 
-<div itemscope itemtype="http://data-vocabulary.org/Person">
-My name is <span itemprop="name">Joe Kampschmidt</span>. I live in <span itemprop="address" itemscope
-    itemtype="http://data-vocabulary.org/Address">
-    <span itemprop="locality">Washington DC</span>
-  </span> and I appear online as <em itemprop="nickname">jokecamp</em>. I am a <span itemprop='role'>developer</span>. I write code and occasionally blog. <a itemprop="url" href="http://www.jokecamp.com">jokecamp.com</a> is my home.
+<p>I&#39;ve created a pretty simple javascript notification system for letting the users know what is going on and what is happening. UIs should be always keep the user informed to what going on. This notification system is particulaly useful for displaying the outcome of AJAX updates. The code uses the jQuery library.</p>
+
+<p>I use three different types of notifications and their respective colors:</p>
+
+<ol>
+<li>Success (Green)</li>
+<li>Error (Red)</li>
+<li>Information (Blue)</li>
+</ol>
+
+<p>I have the notifications set to pop into the top right corner of the page. Show for a period of time then disapear. The notifications nicely stack on top of each other.</p>
+
+<p>The methods to add the notes:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">AddInformNote</span><span class="p">(</span><span class="s2">&quot;Caution&quot;</span><span class="p">);</span>
+<span class="nx">AddSuccessNote</span><span class="p">(</span><span class="s2">&quot;The data was successfully saved.&quot;</span><span class="p">);</span>
+<span class="nx">AddFailedNote</span><span class="p">(</span><span class="s2">&quot;Error: The record could not be updated.&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p><a href="http://www.jokecamp.com/lab/javascriptNotifications.html">View Online Example and Code</a>. All the js and CSS source code can be viewed inline in the HTML file.</p>
+
 </div>
 
-<hr>
+<div class="tags">
+Tags
+ <div class='tag'>javascript</div>  <div class='tag'>UI</div> 
+</div>
 
-<h3>Recent Blog Posts</h3>
-
-<ul class="posts-list">
-
-  <li><a href="/blog/getting-started-with-iisnode">Getting started with iisnode: node.js on Windows</a><span class="date">August 8</span></li>
-
-  <li><a href="/blog/alternate-way-to-build-your-own-football-db-sqlite-database">Alternate way to build your own football.db sqlite database</a><span class="date">June 28</span></li>
-
-  <li><a href="/blog/building-a-raspberry-pi-photo-frame">Building a Raspberry Pi Photo Frame</a><span class="date">June 7</span></li>
-
-</ul>
-
-<hr>
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul>
+    
+      <li>
+          <a href="/blog/getting-started-with-iisnode" title="Getting started with iisnode: node.js on Windows">Getting started with iisnode: node.js on Windows</a><span class="date">August 8</span>
+      </li>
+    
+      <li>
+          <a href="/blog/alternate-way-to-build-your-own-football-db-sqlite-database" title="Alternate way to build your own football.db sqlite database">Alternate way to build your own football.db sqlite database</a><span class="date">June 28</span>
+      </li>
+    
+      <li>
+          <a href="/blog/building-a-raspberry-pi-photo-frame" title="Building a Raspberry Pi Photo Frame">Building a Raspberry Pi Photo Frame</a><span class="date">June 7</span>
+      </li>
+    
+  </ul>
+</div>
 
       <div class="footer">
         <p>

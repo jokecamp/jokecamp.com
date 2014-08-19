@@ -11,9 +11,9 @@
         <nav class="nav">
           <ul>
             {% assign pages_list = site.pages %}{% for node in pages_list %}{% if node.title != null %}{% if node.layout == "page" %}<li><a class="{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}" title="Joe's {{node.title}}">{{ node.title }}</a></li>{% endif %}{% endif %}{% endfor %}
-            <li><a href="{{ site.github }}" title="Joe's github page - commit all the things"><i class="fa fa-github"></i></a></li>
-            <li><a href="{{ site.stackoverflow }}" title="Joe's stackoverflow account - aka street credit"><i class="fa fa-stack-overflow"></i></a></li>
-            <li><a href="{{ site.twitter }}" title="Joe's twitter account"><i class="fa fa-twitter"></i></a></li>
+            <li><a rel="me" href="{{ site.github }}" title="Joe's github page - commit all the things"><i class="fa fa-github"></i></a></li>
+            <li><a rel="me" href="{{ site.stackoverflow }}" title="Joe's stackoverflow account - aka street credit"><i class="fa fa-stack-overflow"></i></a></li>
+            <li><a rel="me" href="{{ site.twitter }}" title="Joe's twitter account"><i class="fa fa-twitter"></i></a></li>
           </ul>
         </nav>
       </div>

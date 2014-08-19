@@ -2,7 +2,7 @@
 layout: page
 title: Projects
 desc: 'A showcase of personal projects and websites created by Joe Kampschmidt'
-
+permalink: /projects/
 ---
 
  - HiddenScores - No longer available as of March 2014. Spoiler alerts for English Premier League soccer scores. Allowing users to only reveal the results they wish to see. Emphasis on responsive design with one site for all devices.
