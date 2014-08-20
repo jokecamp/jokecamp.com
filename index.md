@@ -2,6 +2,10 @@
 layout: default
 title: Home
 desc: 'A personal website for Joe Kampschmidt (jokecamp) with web development blogs and projects. I am a developer. I write code and occasionally blog.'
+
+sitemap:
+  priority: .8
+
 ---
 
 # About

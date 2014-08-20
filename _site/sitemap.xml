@@ -2,6 +2,88 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     
+  
+    
+  
+    
+    <url>
+      <loc>http://www.jokecamp.com/atom.xml</loc>
+      
+        <lastmod>2014-08-20T07:30:38-04:00</lastmod>
+      
+      
+        <changefreq>weekly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://www.jokecamp.com/blog/</loc>
+      
+        <lastmod>2014-08-20T07:30:38-04:00</lastmod>
+      
+      
+        <changefreq>weekly</changefreq>
+      
+      
+        <priority>0.8</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://www.jokecamp.com/</loc>
+      
+        <lastmod>2014-08-20T07:30:38-04:00</lastmod>
+      
+      
+        <changefreq>weekly</changefreq>
+      
+      
+        <priority>0.8</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://www.jokecamp.com/projects/</loc>
+      
+        <lastmod>2014-08-20T07:30:38-04:00</lastmod>
+      
+      
+        <changefreq>weekly</changefreq>
+      
+      
+        <priority>0.8</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>http://www.jokecamp.com/rss.xml</loc>
+      
+        <lastmod>2014-08-20T07:30:38-04:00</lastmod>
+      
+      
+        <changefreq>weekly</changefreq>
+      
+      
+        <priority>0.3</priority>
+      
+    </url>
+    
+  
+    
+  
+  
+    
     <url>
       <loc>http://www.jokecamp.com/blog/getting-started-with-iisnode</loc>
       
@@ -432,127 +514,6 @@
       
       
         <priority>0.5</priority>
-      
-    </url>
-    
-  
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/.htaccess</loc>
-      
-        <lastmod>2014-08-19T20:14:27-04:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/404.html</loc>
-      
-        <lastmod>2014-08-19T20:14:27-04:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/atom.xml</loc>
-      
-        <lastmod>2014-08-19T20:14:27-04:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/blog/</loc>
-      
-        <lastmod>2014-08-19T20:14:27-04:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/</loc>
-      
-        <lastmod>2014-08-19T20:14:27-04:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/projects/</loc>
-      
-        <lastmod>2014-08-19T20:14:27-04:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/rss.xml</loc>
-      
-        <lastmod>2014-08-19T20:14:27-04:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.3</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/sitemap.xml</loc>
-      
-        <lastmod>2014-08-19T20:14:27-04:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.3</priority>
       
     </url>
     
