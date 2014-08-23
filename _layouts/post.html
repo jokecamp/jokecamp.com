@@ -13,6 +13,11 @@ Tags
 {% for tag in page.tags %} <div class='tag'>{{tag}}</div> {% endfor %}
 </div>
 
+<div class="post-footer">
+  Notice a typo or something incorrect?<br>
+  Leave a comment or submit a <a href="{{ site.githubProject }}{{ site.githubBranch }}{{ page.path }}">pull request on GitHub</a>.
+</div>
+
 <div class="comments">
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -30,6 +35,7 @@ Tags
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
 
+<!--
 <div class="related">
   <h2>Related Posts</h2>
   <ul>
@@ -40,3 +46,4 @@ Tags
     {% endfor %}
   </ul>
 </div>
+-->
