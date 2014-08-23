@@ -19,11 +19,13 @@ My name is <span itemprop="name">Joe Kampschmidt</span>. I live in <span itempro
 
 ---
 
-### Recent Blog Posts
+### Featured Blog Posts
 
 <ul class="posts-list">
-{% for post in site.posts limit:3 %}
-  <li><a href="{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %-d"  }}</span></li>
+{% for post in site.posts %}
+  {% if post.featured == true %}
+  <li><a href="{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %-d %Y"  }}</span></li>
+  {% endif %}
 {% endfor %}
 </ul>
 

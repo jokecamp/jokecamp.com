@@ -3,9 +3,9 @@
   <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>A Clean Javascript UI Notification System with jQuery - Joe Kampschmidt's Code</title>
+  <title>Simple jekyll deployment with a shell script and GitHub - Joe Kampschmidt's Code</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <meta name="description" content="A very primitive and simple javascript alert/notification project">
+  <meta name="description" content="How to deploy your jekyll static site to a remote unix server using ssh, GitHub and a simple shell script.">
   <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
   <meta name="author" content="Joe Kampschmidt" />
   <meta name="copyright" content="Joe Kampschmidt" />
@@ -43,39 +43,89 @@
 
     <div class="container content">
       <div class="post">
-  <h1 class="post-title">A Clean Javascript UI Notification System with jQuery</h1>
-  <span class="post-date">17 Jul 2012</span>
-  <p><a href="http://jokecamp.files.wordpress.com/2012/07/notifications.png"><img src="http://jokecamp.files.wordpress.com/2012/07/notifications.png" alt="Javascript UI notifications"></a></p>
+  <h1 class="post-title">Simple jekyll deployment with a shell script and GitHub</h1>
+  <span class="post-date">23 Aug 2014</span>
+  <p>I wanted to document and share my process for deploying this very website (jokecamp.com).</p>
 
-<p>I&#39;ve created a pretty simple javascript notification system for letting the users know what is going on and what is happening. UIs should be always keep the user informed to what going on. This notification system is particulaly useful for displaying the outcome of AJAX updates. The code uses the jQuery library.</p>
+<p>There are many ways to automate the <a href="http://jekyllrb.com/docs/deployment-methods/">deployment of a jekyll website</a>. I tried a few methods but settled on a very simple ssh script I can run from my local computer. These steps could be used for any type of code deployment. It is not specific to a jekyll website.</p>
 
-<p>I use three different types of notifications and their respective colors:</p>
+<p><strong>Quick Summary</strong></p>
 
-<ol>
-<li>Success (Green)</li>
-<li>Error (Red)</li>
-<li>Information (Blue)</li>
-</ol>
+<ul>
+<li>Execute the <code>deploy.sh</code> script on your local computer and enter your password when prompted</li>
+<li>The script will then
 
-<p>I have the notifications set to pop into the top right corner of the page. Show for a period of time then disapear. The notifications nicely stack on top of each other.</p>
+<ul>
+<li>connect and login to the remote server via ssh</li>
+<li>git pull the entire project from GitHub into a private directory</li>
+<li>Copy the contents of the <code>_site</code> folder your public website directory</li>
+</ul></li>
+</ul>
 
-<p>The methods to add the notes:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">AddInformNote</span><span class="p">(</span><span class="s2">&quot;Caution&quot;</span><span class="p">);</span>
-<span class="nx">AddSuccessNote</span><span class="p">(</span><span class="s2">&quot;The data was successfully saved.&quot;</span><span class="p">);</span>
-<span class="nx">AddFailedNote</span><span class="p">(</span><span class="s2">&quot;Error: The record could not be updated.&quot;</span><span class="p">);</span>
+<h2>Specific Setup and Configuration</h2>
+
+<p>Prerequisites:</p>
+
+<ul>
+<li>commit your website to GitHub
+
+<ul>
+<li>include the auto-generated <code>_site</code> folder</li>
+<li>for example: <a href="https://github.com/jokecamp/jokecamp.com/">https://github.com/jokecamp/jokecamp.com/</a></li>
+</ul></li>
+<li>a remote unix server that supports ssh (secure shell) access
+
+<ul>
+<li>I use <a href="https://www.nearlyfreespeech.net/">nearlyfreespeech.net</a></li>
+</ul></li>
+<li>a local computer that can run shell scripts
+
+<ul>
+<li>Mac, Linux or Windows with <a href="https://www.cygwin.com/">cygwin</a></li>
+</ul></li>
+</ul>
+
+<p>Create the following scripts on your local computer. I prefer and would advise not to commit these to your project. I keep my deployment scripts on <a href="http://dropbox.com">dropbox</a>.</p>
+
+<p>Create <code>deploy.sh</code></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#!/bin/bash
+
+ssh username@your.remote.host.for.ssh.com &#39;bash -s&#39; &lt; server-script.sh
 </code></pre></div>
-<p><a href="http://www.jokecamp.com/lab/javascriptNotifications.html">View Online Example and Code</a>. All the js and CSS source code can be viewed inline in the HTML file.</p>
+<p>Create <code>server-script.sh</code></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#!/bin/bash
+
+echo &#39;getting latest from github&#39;
+cd /home/private/jokecamp.com/
+git pull -v
+
+echo &#39;deploying to home/public&#39;
+cp -av /home/private/jokecamp.com/_site/. /home/public/
+
+echo &#39;** done. www.jokecamp.com deployed. **&#39;
+</code></pre></div>
+<p>A couple notes about my environment. <code>/home/private</code> is a directory that cannot be accessed from the public facing internet. It is safe to keep the entire GitHub project here. The <code>/home/public/</code> directory is the root directory serving this website (jokecamp.com).</p>
+
+<p>You will need to do a one time change of permissions on the scripts in order be able to execute them. Run these commands on your local computer</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">chmod 755 deploy.sh
+chmod 755 server-script.sh
+</code></pre></div>
+<p>Now I can deployment the site with <strong>one script</strong>. It will <strong>prompt me for my password</strong> then connect to the site via ssh, pull the latest from GitHub and update my website.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">$ ./deploy.sh
+username@your.remote.host.for.ssh.com&#39;s password:
+</code></pre></div>
+<p>That is all. Our website has been deployed!</p>
 
 </div>
 
 <div class="tags">
 Tags
- <div class='tag'>javascript</div>  <div class='tag'>UI</div> 
+ <div class='tag'>devops</div>  <div class='tag'>jekyll</div> 
 </div>
 
 <div class="post-footer">
   Notice a typo or something incorrect?<br>
-  Leave a comment or submit a <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2012-07-17-a-clean-javascript-ui-notification-system-with-jquery.markdown">pull request on GitHub</a>.
+  Leave a comment or submit a <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2014-08-23-Simple-jekyll-deployment-with-a-shell-script-and-github.md">pull request on GitHub</a>.
 </div>
 
 <div class="comments">

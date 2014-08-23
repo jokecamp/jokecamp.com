@@ -66,7 +66,8 @@
 
 <p>I usually create a droplet with 512MB and 1 CPU. This demo was created on the Linux distribution <strong>Ubuntu 12.04 x32.</strong></p>
 
-<p>[caption id=&quot;attachment_961&quot; align=&quot;aligncenter&quot; width=&quot;300&quot;]<a href="http://jokecamp.files.wordpress.com/2013/06/imageproperties.png"><img src="http://jokecamp.files.wordpress.com/2013/06/imageproperties.png?w=300" alt="ImageProperties"></a> DigitalOcean - Create Droplet UI[/caption]</p>
+<p><a href="http://jokecamp.files.wordpress.com/2013/06/imageproperties.png"><img src="http://jokecamp.files.wordpress.com/2013/06/imageproperties.png?w=300" alt="ImageProperties"></a>
+<caption align="bottom">DigitalOcean - Create Droplet UI</caption></p>
 
 <h3>2) Connect to your Server</h3>
 
@@ -78,17 +79,18 @@
 
 <p>First install nginx with the following command from any directory</p>
 
-<p>[code]apt-get install nginx[/code]</p>
+<p><code>apt-get install nginx</code></p>
 
 <p>and now we are almost done with nginx. Seriously, we just need to start the service now. Start it up with the following command for any directory</p>
 
-<p>[code]service nginx restart[/code]</p>
+<p><code>service nginx restart</code></p>
 
 <p>Your nginx website is now online. If you hit your ip address from your browser you will see a &quot;Welcome to nginx&quot; page.</p>
 
-<p>[caption id=&quot;attachment_962&quot; align=&quot;aligncenter&quot; width=&quot;300&quot;]<a href="http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png"><img src="http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png?w=300" alt="Picture Of browser and PuTTY terminal"></a> Chrome and PuTTY[/caption]</p>
+<p><a href="http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png"><img src="http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png?w=300" alt="Picture Of browser and PuTTY terminal"></a>
+<caption>Chrome and PuTTY</caption></p>
 
-<p>By default the nginx configuration file is located at: <strong>/etc/nginx/sites-available/default</strong> but you don’t need to make any changes to see it working. Looking at the config file you will see that the welcome page is located at <strong>/usr/share/nginx/www/index.html</strong>. We will change this path later. Go ahead and make some html changes to index.html now and you will see your changes reflected after refreshing your browser. No restart of the service is necessary. Just like our old friend IIS.</p>
+<p>By default the nginx configuration file is located at: <code>/etc/nginx/sites-available/default</code> but you don’t need to make any changes to see it working. Looking at the config file you will see that the welcome page is located at <code>/usr/share/nginx/www/index.html</code>. We will change this path later. Go ahead and make some html changes to index.html now and you will see your changes reflected after refreshing your browser. No restart of the service is necessary. Just like our old friend IIS.</p>
 
 <h3>4) Mono FastCGI</h3>
 
@@ -96,7 +98,7 @@
 
 <ol>
 <li>mono-complete - a large package of the complete Mono runtime, development tools and all libraries.</li>
-<li>mono-fastcgi-server4 - the ASP.NET 4.0 backend for FastCGI webservers. It includes mono-xsp4-base</li>
+<li>mono-fastcgi-server4 - the ASP.NET 4.0 backend for FastCGI web servers. It includes mono-xsp4-base</li>
 </ol>
 
 <p>So run the following</p>
@@ -123,7 +125,7 @@
 
 <p>I used <a href="http://winscp.net/eng/index.php">WinSCP</a> for this but there are many options. Open up the WinSCP and connect to your host via IP and login with root or any user your may have created.</p>
 
-<p>First, setup your server with some paths we will need. I&#39;m going to use the /var/www/ directory to hold all my websites.</p>
+<p>First, setup your server with some paths we will need. I&#39;m going to use the <code>/var/www/</code> directory to hold all my websites.</p>
 
 <p><code>mkdir /var/www/</code></p>
 
@@ -131,7 +133,7 @@
 
 <p><code>mkdir --p /var/log/mono/</code></p>
 
-<p>Copy the entire fold of your ASP.NET project into <strong>/var/www/</strong>. I had a project called demo that I copied over. After this step I have the following path <strong>/var/www/demo</strong></p>
+<p>Copy the entire fold of your ASP.NET project into <code>/var/www/</code>. I had a project called demo that I copied over. After this step I have the following path <code>/var/www/demo</code></p>
 
 <h3>6) Setup FastCGI</h3>
 
@@ -148,7 +150,7 @@
   }
 }
 </code></pre></div>
-<p>You should of noticed we are including a <strong>fastcgi_params</strong> file at the bottom. We need to edit that file. Run</p>
+<p>You should of noticed we are including a <code>fastcgi_params</code> file at the bottom. We need to edit that file. Run</p>
 
 <p><code>nano /etc/nginx/fastcgi_params</code></p>
 
@@ -179,16 +181,17 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
   /logfile=/var/log/mono/fastcgi.log
   /printlog=True
 </code></pre></div>
-<p>You should notice we are using the log path we created earlier with the logfile parameter. We are also going to print any messages to the console/terminal with the printlog=True parameter. Also, if we had not specified the application path then we would of been required to run this command from the directory of our website. In this case from /var/www/demo. Ok. the console should be running the server now. You should not of seen any messages.</p>
+<p>You should notice we are using the log path we created earlier with the logfile parameter. We are also going to print any messages to the console/terminal with the <code>printlog=True</code> parameter. Also, if we had not specified the application path then we would of been required to run this command from the directory of our website. In this case from <code>/var/www/demo</code>. Ok. the console should be running the server now. You should not of seen any messages.</p>
 
-<p>Refresh your browser and you should see your demo application running. If you see a 403 Forbidden error Do not panic. Depending on your project you might try /hello or /api/hello.</p>
+<p>Refresh your browser and you should see your demo application running. If you see a 403 Forbidden error &quot;<strong>do not panic</strong>&quot;. Depending on your project you might try <code>/hello</code> or <code>/api/hello</code>.</p>
 
-<p>[caption id=&quot;attachment_970&quot; align=&quot;aligncenter&quot; width=&quot;300&quot;]<a href="http://jokecamp.files.wordpress.com/2013/06/api-example.png"><img src="http://jokecamp.files.wordpress.com/2013/06/api-example.png?w=300" alt="ServiceStack API Example"></a> ServiceStack API Example[/caption]</p>
+<p><a href="http://jokecamp.files.wordpress.com/2013/06/api-example.png"><img src="http://jokecamp.files.wordpress.com/2013/06/api-example.png?w=300" alt="ServiceStack API Example"></a>
+<caption>ServiceStack API Example</caption></p>
 
 <p>With every request, even successful requests I see the below message logged in the console. I do not know the source of this but the API should still be working fine and returning results.
 <code>Error   Failed to process connection. Reason: The object was used after being disposed.</code></p>
 
-<p>To stop the server you can use &quot;Control+C&quot;</p>
+<p>To stop the server you can use <code>Control+C</code></p>
 
 <p>Thanks to these resources!</p>
 
@@ -237,27 +240,6 @@ Tags
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
-
-<!--
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul>
-    
-      <li>
-          <a href="/blog/getting-started-with-iisnode" title="Getting started with iisnode: node.js on Windows">Getting started with iisnode: node.js on Windows</a><span class="date">August 8</span>
-      </li>
-    
-      <li>
-          <a href="/blog/alternate-way-to-build-your-own-football-db-sqlite-database" title="Alternate way to build your own football.db sqlite database">Alternate way to build your own football.db sqlite database</a><span class="date">June 28</span>
-      </li>
-    
-      <li>
-          <a href="/blog/building-a-raspberry-pi-photo-frame" title="Building a Raspberry Pi Photo Frame">Building a Raspberry Pi Photo Frame</a><span class="date">June 7</span>
-      </li>
-    
-  </ul>
-</div>
--->
 
       <div class="footer">
         <p>

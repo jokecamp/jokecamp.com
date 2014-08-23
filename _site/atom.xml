@@ -4,13 +4,91 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-08-23T10:35:23-04:00</updated>
+ <updated>2014-08-23T13:32:09-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Simple jekyll deployment with a shell script and GitHub</title>
+   <link href="http://www.jokecamp.com//blog/Simple-jekyll-deployment-with-a-shell-script-and-github"/>
+   <updated>2014-08-23T00:00:00-04:00</updated>
+   <id>http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</id>
+   <content type="html">&lt;p&gt;I wanted to document and share my process for deploying this very website (jokecamp.com).&lt;/p&gt;
+
+&lt;p&gt;There are many ways to automate the &lt;a href=&quot;http://jekyllrb.com/docs/deployment-methods/&quot;&gt;deployment of a jekyll website&lt;/a&gt;. I tried a few methods but settled on a very simple ssh script I can run from my local computer. These steps could be used for any type of code deployment. It is not specific to a jekyll website.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Quick Summary&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Execute the &lt;code&gt;deploy.sh&lt;/code&gt; script on your local computer and enter your password when prompted&lt;/li&gt;
+&lt;li&gt;The script will then
+
+&lt;ul&gt;
+&lt;li&gt;connect and login to the remote server via ssh&lt;/li&gt;
+&lt;li&gt;git pull the entire project from GitHub into a private directory&lt;/li&gt;
+&lt;li&gt;Copy the contents of the &lt;code&gt;_site&lt;/code&gt; folder your public website directory&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Specific Setup and Configuration&lt;/h2&gt;
+
+&lt;p&gt;Prerequisites:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;commit your website to GitHub
+
+&lt;ul&gt;
+&lt;li&gt;include the auto-generated &lt;code&gt;_site&lt;/code&gt; folder&lt;/li&gt;
+&lt;li&gt;for example: &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/&quot;&gt;https://github.com/jokecamp/jokecamp.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;a remote unix server that supports ssh (secure shell) access
+
+&lt;ul&gt;
+&lt;li&gt;I use &lt;a href=&quot;https://www.nearlyfreespeech.net/&quot;&gt;nearlyfreespeech.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;a local computer that can run shell scripts
+
+&lt;ul&gt;
+&lt;li&gt;Mac, Linux or Windows with &lt;a href=&quot;https://www.cygwin.com/&quot;&gt;cygwin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create the following scripts on your local computer. I prefer and would advise not to commit these to your project. I keep my deployment scripts on &lt;a href=&quot;http://dropbox.com&quot;&gt;dropbox&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Create &lt;code&gt;deploy.sh&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/bash
+
+ssh username@your.remote.host.for.ssh.com &amp;#39;bash -s&amp;#39; &amp;lt; server-script.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create &lt;code&gt;server-script.sh&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/bash
+
+echo &amp;#39;getting latest from github&amp;#39;
+cd /home/private/jokecamp.com/
+git pull -v
+
+echo &amp;#39;deploying to home/public&amp;#39;
+cp -av /home/private/jokecamp.com/_site/. /home/public/
+
+echo &amp;#39;** done. www.jokecamp.com deployed. **&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A couple notes about my environment. &lt;code&gt;/home/private&lt;/code&gt; is a directory that cannot be accessed from the public facing internet. It is safe to keep the entire GitHub project here. The &lt;code&gt;/home/public/&lt;/code&gt; directory is the root directory serving this website (jokecamp.com).&lt;/p&gt;
+
+&lt;p&gt;You will need to do a one time change of permissions on the scripts in order be able to execute them. Run these commands on your local computer&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;chmod 755 deploy.sh
+chmod 755 server-script.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now I can deployment the site with &lt;strong&gt;one script&lt;/strong&gt;. It will &lt;strong&gt;prompt me for my password&lt;/strong&gt; then connect to the site via ssh, pull the latest from GitHub and update my website.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ ./deploy.sh
+username@your.remote.host.for.ssh.com&amp;#39;s password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That is all. Our website has been deployed!&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Getting started with iisnode: node.js on Windows</title>
@@ -1282,7 +1360,8 @@ The below script must be executed as an Administrator since it will be modifying
 
 &lt;p&gt;I usually create a droplet with 512MB and 1 CPU. This demo was created on the Linux distribution &lt;strong&gt;Ubuntu 12.04 x32.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;[caption id=&amp;quot;attachment_961&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;300&amp;quot;]&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/06/imageproperties.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/06/imageproperties.png?w=300&quot; alt=&quot;ImageProperties&quot;&gt;&lt;/a&gt; DigitalOcean - Create Droplet UI[/caption]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/06/imageproperties.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/06/imageproperties.png?w=300&quot; alt=&quot;ImageProperties&quot;&gt;&lt;/a&gt;
+&lt;caption align=&quot;bottom&quot;&gt;DigitalOcean - Create Droplet UI&lt;/caption&gt;&lt;/p&gt;
 
 &lt;h3&gt;2) Connect to your Server&lt;/h3&gt;
 
@@ -1294,17 +1373,18 @@ The below script must be executed as an Administrator since it will be modifying
 
 &lt;p&gt;First install nginx with the following command from any directory&lt;/p&gt;
 
-&lt;p&gt;[code]apt-get install nginx[/code]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;apt-get install nginx&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;and now we are almost done with nginx. Seriously, we just need to start the service now. Start it up with the following command for any directory&lt;/p&gt;
 
-&lt;p&gt;[code]service nginx restart[/code]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;service nginx restart&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Your nginx website is now online. If you hit your ip address from your browser you will see a &amp;quot;Welcome to nginx&amp;quot; page.&lt;/p&gt;
 
-&lt;p&gt;[caption id=&amp;quot;attachment_962&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;300&amp;quot;]&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png?w=300&quot; alt=&quot;Picture Of browser and PuTTY terminal&quot;&gt;&lt;/a&gt; Chrome and PuTTY[/caption]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png?w=300&quot; alt=&quot;Picture Of browser and PuTTY terminal&quot;&gt;&lt;/a&gt;
+&lt;caption&gt;Chrome and PuTTY&lt;/caption&gt;&lt;/p&gt;
 
-&lt;p&gt;By default the nginx configuration file is located at: &lt;strong&gt;/etc/nginx/sites-available/default&lt;/strong&gt; but you don’t need to make any changes to see it working. Looking at the config file you will see that the welcome page is located at &lt;strong&gt;/usr/share/nginx/www/index.html&lt;/strong&gt;. We will change this path later. Go ahead and make some html changes to index.html now and you will see your changes reflected after refreshing your browser. No restart of the service is necessary. Just like our old friend IIS.&lt;/p&gt;
+&lt;p&gt;By default the nginx configuration file is located at: &lt;code&gt;/etc/nginx/sites-available/default&lt;/code&gt; but you don’t need to make any changes to see it working. Looking at the config file you will see that the welcome page is located at &lt;code&gt;/usr/share/nginx/www/index.html&lt;/code&gt;. We will change this path later. Go ahead and make some html changes to index.html now and you will see your changes reflected after refreshing your browser. No restart of the service is necessary. Just like our old friend IIS.&lt;/p&gt;
 
 &lt;h3&gt;4) Mono FastCGI&lt;/h3&gt;
 
@@ -1312,7 +1392,7 @@ The below script must be executed as an Administrator since it will be modifying
 
 &lt;ol&gt;
 &lt;li&gt;mono-complete - a large package of the complete Mono runtime, development tools and all libraries.&lt;/li&gt;
-&lt;li&gt;mono-fastcgi-server4 - the ASP.NET 4.0 backend for FastCGI webservers. It includes mono-xsp4-base&lt;/li&gt;
+&lt;li&gt;mono-fastcgi-server4 - the ASP.NET 4.0 backend for FastCGI web servers. It includes mono-xsp4-base&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;So run the following&lt;/p&gt;
@@ -1339,7 +1419,7 @@ The below script must be executed as an Administrator since it will be modifying
 
 &lt;p&gt;I used &lt;a href=&quot;http://winscp.net/eng/index.php&quot;&gt;WinSCP&lt;/a&gt; for this but there are many options. Open up the WinSCP and connect to your host via IP and login with root or any user your may have created.&lt;/p&gt;
 
-&lt;p&gt;First, setup your server with some paths we will need. I&amp;#39;m going to use the /var/www/ directory to hold all my websites.&lt;/p&gt;
+&lt;p&gt;First, setup your server with some paths we will need. I&amp;#39;m going to use the &lt;code&gt;/var/www/&lt;/code&gt; directory to hold all my websites.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;mkdir /var/www/&lt;/code&gt;&lt;/p&gt;
 
@@ -1347,7 +1427,7 @@ The below script must be executed as an Administrator since it will be modifying
 
 &lt;p&gt;&lt;code&gt;mkdir --p /var/log/mono/&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Copy the entire fold of your ASP.NET project into &lt;strong&gt;/var/www/&lt;/strong&gt;. I had a project called demo that I copied over. After this step I have the following path &lt;strong&gt;/var/www/demo&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Copy the entire fold of your ASP.NET project into &lt;code&gt;/var/www/&lt;/code&gt;. I had a project called demo that I copied over. After this step I have the following path &lt;code&gt;/var/www/demo&lt;/code&gt;&lt;/p&gt;
 
 &lt;h3&gt;6) Setup FastCGI&lt;/h3&gt;
 
@@ -1364,7 +1444,7 @@ The below script must be executed as an Administrator since it will be modifying
   }
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;You should of noticed we are including a &lt;strong&gt;fastcgi_params&lt;/strong&gt; file at the bottom. We need to edit that file. Run&lt;/p&gt;
+&lt;p&gt;You should of noticed we are including a &lt;code&gt;fastcgi_params&lt;/code&gt; file at the bottom. We need to edit that file. Run&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;nano /etc/nginx/fastcgi_params&lt;/code&gt;&lt;/p&gt;
 
@@ -1395,16 +1475,17 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
   /logfile=/var/log/mono/fastcgi.log
   /printlog=True
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;You should notice we are using the log path we created earlier with the logfile parameter. We are also going to print any messages to the console/terminal with the printlog=True parameter. Also, if we had not specified the application path then we would of been required to run this command from the directory of our website. In this case from /var/www/demo. Ok. the console should be running the server now. You should not of seen any messages.&lt;/p&gt;
+&lt;p&gt;You should notice we are using the log path we created earlier with the logfile parameter. We are also going to print any messages to the console/terminal with the &lt;code&gt;printlog=True&lt;/code&gt; parameter. Also, if we had not specified the application path then we would of been required to run this command from the directory of our website. In this case from &lt;code&gt;/var/www/demo&lt;/code&gt;. Ok. the console should be running the server now. You should not of seen any messages.&lt;/p&gt;
 
-&lt;p&gt;Refresh your browser and you should see your demo application running. If you see a 403 Forbidden error Do not panic. Depending on your project you might try /hello or /api/hello.&lt;/p&gt;
+&lt;p&gt;Refresh your browser and you should see your demo application running. If you see a 403 Forbidden error &amp;quot;&lt;strong&gt;do not panic&lt;/strong&gt;&amp;quot;. Depending on your project you might try &lt;code&gt;/hello&lt;/code&gt; or &lt;code&gt;/api/hello&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;[caption id=&amp;quot;attachment_970&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;300&amp;quot;]&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/06/api-example.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/06/api-example.png?w=300&quot; alt=&quot;ServiceStack API Example&quot;&gt;&lt;/a&gt; ServiceStack API Example[/caption]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/06/api-example.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/06/api-example.png?w=300&quot; alt=&quot;ServiceStack API Example&quot;&gt;&lt;/a&gt;
+&lt;caption&gt;ServiceStack API Example&lt;/caption&gt;&lt;/p&gt;
 
 &lt;p&gt;With every request, even successful requests I see the below message logged in the console. I do not know the source of this but the API should still be working fine and returning results.
 &lt;code&gt;Error   Failed to process connection. Reason: The object was used after being disposed.&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;To stop the server you can use &amp;quot;Control+C&amp;quot;&lt;/p&gt;
+&lt;p&gt;To stop the server you can use &lt;code&gt;Control+C&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Thanks to these resources!&lt;/p&gt;
 
@@ -1888,19 +1969,19 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
 &lt;p&gt;Jump to an implementation:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#js&quot;&gt;Javascript&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#php&quot;&gt;PHP&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#java&quot;&gt;Java&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#groovy&quot;&gt;Groovy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#csharp&quot;&gt;C#&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#objc&quot;&gt;Objective C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#go&quot;&gt;Go&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#ruby&quot;&gt;Ruby&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#python&quot;&gt;Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#perl&quot;&gt;Perl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#dart&quot;&gt;Dart&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#swift&quot;&gt;Swift&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#rust&quot;&gt;Rust&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#js&quot;&gt;Javascript&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#php&quot;&gt;PHP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#java&quot;&gt;Java&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#groovy&quot;&gt;Groovy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#csharp&quot;&gt;C#&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#objc&quot;&gt;Objective C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#go&quot;&gt;Go&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#ruby&quot;&gt;Ruby&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#python&quot;&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#perl&quot;&gt;Perl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#dart&quot;&gt;Dart&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#swift&quot;&gt;Swift&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#rust&quot;&gt;Rust&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;&lt;a name=&#39;js&#39;&gt;&lt;/a&gt;Javascript HMAC SHA256&lt;/h3&gt;

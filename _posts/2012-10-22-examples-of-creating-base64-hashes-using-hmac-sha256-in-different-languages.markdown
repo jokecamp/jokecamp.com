@@ -25,6 +25,7 @@ tags:
 - security
 - sha256
 - swift
+featured: true
 ---
 
 I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See the stackOverflow question [What is the use of base 64 encoding?](http://stackoverflow.com/a/201510/215502)
@@ -33,19 +34,19 @@ Below are some simplified HMAC SHA 256 solutions. They should all output "**qnR8
 
 Jump to an implementation:
 
-  * [Javascript](#js)
-  * [PHP](#php)
-  * [Java](#java)
-  * [Groovy](#groovy)
-  * [C#](#csharp)
-  * [Objective C](#objc)
-  * [Go](#go)
-  * [Ruby](#ruby)
-  * [Python](#python)
-  * [Perl](#perl)
-  * [Dart](#dart)
-  * [Swift](#swift)
-  * [Rust](#rust)
+  * [Javascript]({{page.url}}#js)
+  * [PHP]({{page.url}}#php)
+  * [Java]({{page.url}}#java)
+  * [Groovy]({{page.url}}#groovy)
+  * [C#]({{page.url}}#csharp)
+  * [Objective C]({{page.url}}#objc)
+  * [Go]({{page.url}}#go)
+  * [Ruby]({{page.url}}#ruby)
+  * [Python]({{page.url}}#python)
+  * [Perl]({{page.url}}#perl)
+  * [Dart]({{page.url}}#dart)
+  * [Swift]({{page.url}}#swift)
+  * [Rust]({{page.url}}#rust)
 
 ### <a name='js'></a>Javascript HMAC SHA256
 

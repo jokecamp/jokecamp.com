@@ -16,6 +16,7 @@ tags:
 - mono
 - nginx
 - servicestack
+featured: true
 ---
 
 **Who's this targeted for?**
@@ -38,7 +39,8 @@ For this demo I created an account on [DigitalOcean.com](https://www.digitalocea
 
 I usually create a droplet with 512MB and 1 CPU. This demo was created on the Linux distribution **Ubuntu 12.04 x32.**
 
-[caption id="attachment_961" align="aligncenter" width="300"][![ImageProperties](http://jokecamp.files.wordpress.com/2013/06/imageproperties.png?w=300)](http://jokecamp.files.wordpress.com/2013/06/imageproperties.png) DigitalOcean - Create Droplet UI[/caption]
+[![ImageProperties](http://jokecamp.files.wordpress.com/2013/06/imageproperties.png?w=300)](http://jokecamp.files.wordpress.com/2013/06/imageproperties.png)
+<caption align="bottom">DigitalOcean - Create Droplet UI</caption>
 
 
 
@@ -53,17 +55,18 @@ Open up PuTTY and connect to the ip as the user "root". Don't worry about the se
 
 First install nginx with the following command from any directory
 
-[code]apt-get install nginx[/code]
+`apt-get install nginx`
 
 and now we are almost done with nginx. Seriously, we just need to start the service now. Start it up with the following command for any directory
 
-[code]service nginx restart[/code]
+`service nginx restart`
 
 Your nginx website is now online. If you hit your ip address from your browser you will see a "Welcome to nginx" page.
 
-[caption id="attachment_962" align="aligncenter" width="300"][![Picture Of browser and PuTTY terminal](http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png?w=300)](http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png) Chrome and PuTTY[/caption]
+[![Picture Of browser and PuTTY terminal](http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png?w=300)](http://jokecamp.files.wordpress.com/2013/06/welcometonginx.png)
+<caption>Chrome and PuTTY</caption>
 
-By default the nginx configuration file is located at: **/etc/nginx/sites-available/default** but you don’t need to make any changes to see it working. Looking at the config file you will see that the welcome page is located at **/usr/share/nginx/www/index.html**. We will change this path later. Go ahead and make some html changes to index.html now and you will see your changes reflected after refreshing your browser. No restart of the service is necessary. Just like our old friend IIS.
+By default the nginx configuration file is located at: `/etc/nginx/sites-available/default` but you don’t need to make any changes to see it working. Looking at the config file you will see that the welcome page is located at `/usr/share/nginx/www/index.html`. We will change this path later. Go ahead and make some html changes to index.html now and you will see your changes reflected after refreshing your browser. No restart of the service is necessary. Just like our old friend IIS.
 
 
 ### 4) Mono FastCGI
@@ -71,7 +74,7 @@ By default the nginx configuration file is located at: **/etc/nginx/sites-availa
 You will need to install the following packages:
 
   1. mono-complete - a large package of the complete Mono runtime, development tools and all libraries.
-  2. mono-fastcgi-server4 - the ASP.NET 4.0 backend for FastCGI webservers. It includes mono-xsp4-base
+  2. mono-fastcgi-server4 - the ASP.NET 4.0 backend for FastCGI web servers. It includes mono-xsp4-base
 
 So run the following
 
@@ -101,7 +104,7 @@ Another project you can test with is my open source ServiceStack API project cal
 
 I used [WinSCP](http://winscp.net/eng/index.php) for this but there are many options. Open up the WinSCP and connect to your host via IP and login with root or any user your may have created.
 
-First, setup your server with some paths we will need. I'm going to use the /var/www/ directory to hold all my websites.
+First, setup your server with some paths we will need. I'm going to use the `/var/www/` directory to hold all my websites.
 
 ```mkdir /var/www/```
 
@@ -109,7 +112,7 @@ and lets create a place to eventually put our logs. The p switch will create any
 
 ```mkdir --p /var/log/mono/```
 
-Copy the entire fold of your ASP.NET project into **/var/www/**. I had a project called demo that I copied over. After this step I have the following path **/var/www/demo**
+Copy the entire fold of your ASP.NET project into `/var/www/`. I had a project called demo that I copied over. After this step I have the following path `/var/www/demo`
 
 
 ### 6) Setup FastCGI
@@ -131,7 +134,7 @@ server {
 }
 ```
 
-You should of noticed we are including a **fastcgi_params** file at the bottom. We need to edit that file. Run
+You should of noticed we are including a `fastcgi_params` file at the bottom. We need to edit that file. Run
 
 ```nano /etc/nginx/fastcgi_params```
 
@@ -175,16 +178,17 @@ fastcgi-mono-server4
 ```
 
 
-You should notice we are using the log path we created earlier with the logfile parameter. We are also going to print any messages to the console/terminal with the printlog=True parameter. Also, if we had not specified the application path then we would of been required to run this command from the directory of our website. In this case from /var/www/demo. Ok. the console should be running the server now. You should not of seen any messages.
+You should notice we are using the log path we created earlier with the logfile parameter. We are also going to print any messages to the console/terminal with the `printlog=True` parameter. Also, if we had not specified the application path then we would of been required to run this command from the directory of our website. In this case from `/var/www/demo`. Ok. the console should be running the server now. You should not of seen any messages.
 
-Refresh your browser and you should see your demo application running. If you see a 403 Forbidden error Do not panic. Depending on your project you might try /hello or /api/hello.
+Refresh your browser and you should see your demo application running. If you see a 403 Forbidden error "**do not panic**". Depending on your project you might try `/hello` or `/api/hello`.
 
-[caption id="attachment_970" align="aligncenter" width="300"][![ServiceStack API Example](http://jokecamp.files.wordpress.com/2013/06/api-example.png?w=300)](http://jokecamp.files.wordpress.com/2013/06/api-example.png) ServiceStack API Example[/caption]
+[![ServiceStack API Example](http://jokecamp.files.wordpress.com/2013/06/api-example.png?w=300)](http://jokecamp.files.wordpress.com/2013/06/api-example.png)
+<caption>ServiceStack API Example</caption>
 
 With every request, even successful requests I see the below message logged in the console. I do not know the source of this but the API should still be working fine and returning results.
 `Error   Failed to process connection. Reason: The object was used after being disposed.`
 
-To stop the server you can use "Control+C"
+To stop the server you can use `Control+C`
 
 Thanks to these resources!
 

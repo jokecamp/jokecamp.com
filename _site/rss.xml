@@ -7,6 +7,84 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Simple jekyll deployment with a shell script and GitHub</title>
+				<description>&lt;p&gt;I wanted to document and share my process for deploying this very website (jokecamp.com).&lt;/p&gt;
+
+&lt;p&gt;There are many ways to automate the &lt;a href=&quot;http://jekyllrb.com/docs/deployment-methods/&quot;&gt;deployment of a jekyll website&lt;/a&gt;. I tried a few methods but settled on a very simple ssh script I can run from my local computer. These steps could be used for any type of code deployment. It is not specific to a jekyll website.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Quick Summary&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Execute the &lt;code&gt;deploy.sh&lt;/code&gt; script on your local computer and enter your password when prompted&lt;/li&gt;
+&lt;li&gt;The script will then
+
+&lt;ul&gt;
+&lt;li&gt;connect and login to the remote server via ssh&lt;/li&gt;
+&lt;li&gt;git pull the entire project from GitHub into a private directory&lt;/li&gt;
+&lt;li&gt;Copy the contents of the &lt;code&gt;_site&lt;/code&gt; folder your public website directory&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Specific Setup and Configuration&lt;/h2&gt;
+
+&lt;p&gt;Prerequisites:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;commit your website to GitHub
+
+&lt;ul&gt;
+&lt;li&gt;include the auto-generated &lt;code&gt;_site&lt;/code&gt; folder&lt;/li&gt;
+&lt;li&gt;for example: &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/&quot;&gt;https://github.com/jokecamp/jokecamp.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;a remote unix server that supports ssh (secure shell) access
+
+&lt;ul&gt;
+&lt;li&gt;I use &lt;a href=&quot;https://www.nearlyfreespeech.net/&quot;&gt;nearlyfreespeech.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;a local computer that can run shell scripts
+
+&lt;ul&gt;
+&lt;li&gt;Mac, Linux or Windows with &lt;a href=&quot;https://www.cygwin.com/&quot;&gt;cygwin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Create the following scripts on your local computer. I prefer and would advise not to commit these to your project. I keep my deployment scripts on &lt;a href=&quot;http://dropbox.com&quot;&gt;dropbox&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Create &lt;code&gt;deploy.sh&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/bash
+
+ssh username@your.remote.host.for.ssh.com &amp;#39;bash -s&amp;#39; &amp;lt; server-script.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create &lt;code&gt;server-script.sh&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/bash
+
+echo &amp;#39;getting latest from github&amp;#39;
+cd /home/private/jokecamp.com/
+git pull -v
+
+echo &amp;#39;deploying to home/public&amp;#39;
+cp -av /home/private/jokecamp.com/_site/. /home/public/
+
+echo &amp;#39;** done. www.jokecamp.com deployed. **&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A couple notes about my environment. &lt;code&gt;/home/private&lt;/code&gt; is a directory that cannot be accessed from the public facing internet. It is safe to keep the entire GitHub project here. The &lt;code&gt;/home/public/&lt;/code&gt; directory is the root directory serving this website (jokecamp.com).&lt;/p&gt;
+
+&lt;p&gt;You will need to do a one time change of permissions on the scripts in order be able to execute them. Run these commands on your local computer&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;chmod 755 deploy.sh
+chmod 755 server-script.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now I can deployment the site with &lt;strong&gt;one script&lt;/strong&gt;. It will &lt;strong&gt;prompt me for my password&lt;/strong&gt; then connect to the site via ssh, pull the latest from GitHub and update my website.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ ./deploy.sh
+username@your.remote.host.for.ssh.com&amp;#39;s password:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That is all. Our website has been deployed!&lt;/p&gt;
+</description>
+				<pubDate>Sat, 23 Aug 2014 00:00:00 -0400</pubDate>
+				<link>http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</guid>
+			</item>
+		
+			<item>
 				<title>Getting started with iisnode: node.js on Windows</title>
 				<description>&lt;p&gt;I&amp;#39;ve spent some time learning and working with &lt;a href=&quot;https://twitter.com/tjanczuk&quot;&gt;Tomasz Janczuk&amp;#39;s&lt;/a&gt; impressive &lt;a href=&quot;https://github.com/tjanczuk/iisnode&quot;&gt;iisnode&lt;/a&gt; project. He has done well to explain the open source project but the documentation is fragmented between the &lt;a href=&quot;https://github.com/tjanczuk/iisnode/tree/master/src/iisnode&quot;&gt;source code&lt;/a&gt;, &lt;a href=&quot;https://github.com/tjanczuk/iisnode/issues&quot;&gt;github issues&lt;/a&gt; and &lt;a href=&quot;http://tomasz.janczuk.org/&quot;&gt;tjanczuk&amp;#39;s blog&lt;/a&gt;. I will retrace my learning process in order to help others get started with iisnode.&lt;/p&gt;
 
@@ -1007,51 +1085,6 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 				<pubDate>Sat, 14 Dec 2013 20:09:59 -0500</pubDate>
 				<link>http://www.jokecamp.com/blog/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website</guid>
-			</item>
-		
-			<item>
-				<title>Querying the TeamCity Rest API with Powershell</title>
-				<description>&lt;p&gt;The following powershell function demonstrates how to get the last successful TeamCity build number using the TeamCity REST API. This is a useful tool for continuous deployment to dev/test environments. I only cared about the build number but with some minor modifications of the XPath parsing you can get a lot of different information.&lt;/p&gt;
-
-&lt;p&gt;Requirements&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;REST API Plugin: Ensure you have the plugin installed. On the build server website go to
-    &lt;code&gt;Administration &amp;gt; Server Administration &amp;gt; Plugins List&lt;/code&gt;
-    You should see the entry &amp;quot;REST API.&amp;quot;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Authentication: You will need to either &lt;a href=&quot;http://confluence.jetbrains.com/display/TCD7/Enabling+Guest+Login&quot;&gt;enable guest access in TeamCity settings&lt;/a&gt; or first authenticate via the TeamCity API. Guest access allows a read-only view of our build server website and API.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Parameters: You will need to know your project id and TeamCity base url. You can determine the project id by seperate queries but for the simplicity of this example I have hard coded the id.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;cm&quot;&gt;&amp;lt;#&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;    Uses guest access to get the lastest successful build for a given project (project id is bt30)&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;    Guest Access needs to be enabled on TeamCity server or you will need to provide your&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;    own authentication.&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;    Example usage:&lt;/span&gt;
-&lt;span class=&quot;cm&quot;&gt;        Get-Latest-TeamCity-Build &amp;quot;http://teamcityserver/ &amp;quot;bt30&amp;quot; | Write-Output&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;#&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Get-Latest&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;-TeamCity-Build&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$baseUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$projectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;nv&quot;&gt;$url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${baseUrl}guestAuth/app/rest/buildTypes/id:${projectId}/builds?status=SUCCESS&amp;quot;&lt;/span&gt;
-
-    &lt;span class=&quot;nv&quot;&gt;$xml&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[xml]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Uri&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$url&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$xpath&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;/builds/build[1]&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;nv&quot;&gt;$latestBuild&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Select-xml&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-xpath&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$xpath&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-xml&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$xml&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;Build&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$latestBuild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;Revision&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$latestBuild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Node&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetAttribute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;number&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;s2&quot;&gt;&amp;quot;Url&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$url&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/jokecamp/PowerShell.ToolBelt/blob/master/TeamCityFunctions.ps1&quot;&gt;View the latest version of this function on GitHub&lt;/a&gt;.&lt;/p&gt;
-</description>
-				<pubDate>Mon, 25 Nov 2013 15:49:36 -0500</pubDate>
-				<link>http://www.jokecamp.com/blog/querying-the-teamcity-rest-api-with-powershell</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/querying-the-teamcity-rest-api-with-powershell</guid>
 			</item>
 		
 	</channel>

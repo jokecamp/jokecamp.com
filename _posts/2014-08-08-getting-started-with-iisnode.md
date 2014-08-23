@@ -13,6 +13,7 @@ tags:
 - iis
 - nodejs
 - windows
+featured: true
 ---
 
 I've spent some time learning and working with [Tomasz Janczuk's](https://twitter.com/tjanczuk) impressive [iisnode](https://github.com/tjanczuk/iisnode) project. He has done well to explain the open source project but the documentation is fragmented between the [source code](https://github.com/tjanczuk/iisnode/tree/master/src/iisnode), [github issues](https://github.com/tjanczuk/iisnode/issues) and [tjanczuk's blog](http://tomasz.janczuk.org/). I will retrace my learning process in order to help others get started with iisnode.
