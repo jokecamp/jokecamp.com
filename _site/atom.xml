@@ -4,13 +4,59 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-08-27T07:19:04-04:00</updated>
+ <updated>2014-08-27T07:54:29-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Books for Geeks</title>
+   <link href="http://www.jokecamp.com//blog/books-for-geeks"/>
+   <updated>2014-08-27T00:00:00-04:00</updated>
+   <id>http://www.jokecamp.com/blog/books-for-geeks</id>
+   <content type="html">&lt;p&gt;The following is a list of books to please your inner geek. I&amp;#39;ve read them and can vouch for the geekyness.&lt;/p&gt;
+
+&lt;!--
+[Ready Player One]
+--&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/B00EMXBDMA/ref=as_li_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=B00EMXBDMA&amp;amp;linkCode=as2&amp;amp;tag=jokecamp-20&amp;amp;linkId=7IRGJBD2LF73UZCF&quot;&gt;The Martian&lt;/a&gt; by Andy Weir (2014)&lt;/strong&gt;&lt;br&gt;
+An astronaut stranded on Mars struggles to stay alive while NASA considers rescue options back home. This one is a quick read and reads like a movie script. It is no surprise that &lt;a href=&quot;http://www.hollywoodreporter.com/heat-vision/ridley-scott-direct-matt-damon-703887&quot;&gt;Ridley Scott and Matt Damon are rumored&lt;/a&gt; to be involved. The story gets pretty detailed with the chemistry and engineering required for life on Mars.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;amp;amp;camp=1789&amp;amp;amp;creative=390957&amp;amp;amp;creativeASIN=0060512806&amp;amp;amp;linkCode=as2&amp;amp;amp;tag=jokecamp-20&quot;&gt;Cryptonomicon&lt;/a&gt; by Neal Stephenson (2002)&lt;/strong&gt;&lt;br&gt;
+Reads like an Indiana Jones adventure if Dr. Jones was a keyboard jockey. An older book but very relevant today due to the themes of digital security and digital currency.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/B008FPOIT6/ref=as_li_ss_tl?ie=UTF8&amp;amp;amp;camp=1789&amp;amp;amp;creative=390957&amp;amp;amp;creativeASIN=B008FPOIT6&amp;amp;amp;linkCode=as2&amp;amp;amp;tag=jokecamp-20&quot;&gt;Mr. Penumbra&amp;#39;s 24-Hour Bookstore: A Novel&lt;/a&gt; by Robin Sloan (2012)&lt;/strong&gt;&lt;br&gt;
+A geeky and lighter version of The Da Vinci Code and is an ode to books, technology, Google and the mysterious.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0316198536/ref=as_li_ss_tl?ie=UTF8&amp;amp;amp;camp=1789&amp;amp;amp;creative=390957&amp;amp;amp;creativeASIN=0316198536&amp;amp;amp;linkCode=as2&amp;amp;amp;tag=jokecamp-20&quot;&gt;You&lt;/a&gt; by Austin Grossman (2013)&lt;/strong&gt;&lt;br&gt;
+An inside peak at the video game industry as a tester faces off with an increasingly suspicious glitch in their fantasy MMORPG.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0812972155?ie=UTF8&amp;amp;amp;camp=213733&amp;amp;amp;creative=393185&amp;amp;amp;creativeASIN=0812972155&amp;amp;amp;linkCode=shr&amp;amp;amp;tag=jokecamp-20&amp;amp;amp;qid=1384718277&amp;amp;amp;sr=1-1&quot;&gt;Masters of Doom: How Two Guys Created an Empire and Transformed Pop Culture&lt;/a&gt; by David Kushner (2004)&lt;/strong&gt;&lt;br&gt;
+An insider&amp;#39;s view of the companies and developer&amp;#39;s who create Doom, Quake and numerous others. Focused mainly on John Carmack and John Romero. The two main forces behind the company called id Software. This is great if you have ever wonder what it would of been like to work in the early rockstar years of video game development. Lots of dirt on company politics and creative differences. View an &lt;a href=&quot;http://www.jokecamp.com/doom&quot;&gt;interactive timeline&lt;/a&gt; for the period described in the book. View an 18 min &lt;a href=&quot;http://youtu.be/NYa8kirsUfg&quot;&gt;interview with John Carmack&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Singularity Short Stories&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Technological_singularity&quot;&gt;Singularity Wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://news.ycombinator.com/item?id=5367235&quot;&gt;Marshall Brain&amp;#39;s Mana&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.skyhunter.com/marcs/GentleSeduction.html&quot;&gt;The Gentle Seduction by Marc Stiegler - 1989&lt;/a&gt; - A short story of one woman&amp;#39;s experiences and transition into singularity. Includes nanotechnology and out of body experiences. Argued to be one of the best science fstories regarding nanotechnology.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.zdnet.com/google-exec-hints-at-ultimate-recruitment-perk-for-top-engineers-life-extension-7000018216/&quot;&gt;Life Extension at Google?&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Additional Resources&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://apps.npr.org/best-books-2013/#/tag/its-all-geek-to-me&quot; title=&quot;Best Books of 2013 by NPR&quot;&gt;Best Books of 2013&lt;/a&gt; - a really cool visual book browser. Focus on the &amp;quot;its all geek to me&amp;quot; tag. Created by NPR&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/Books-Every-Geek-Should-Read/lm/RNB6EQAZW3MSX/?_encoding=UTF8&amp;amp;amp;camp=1789&amp;amp;amp;creative=390957&amp;amp;amp;linkCode=ur2&amp;amp;amp;tag=jokecamp-20&quot;&gt;50 Books Every Geek Should Read Part 1&lt;/a&gt; - another list by a fellow geek including comments on the the books he has read. There are only 35 actually listed.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://c2.com/cgi/wiki?AlanKaysReadingList&quot;&gt;Alan Kay&amp;#39;s Reading List&lt;/a&gt; - a long list of books organized by subject curated by an accomplished reader/computer scientist.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Simple jekyll deployment with a shell script and GitHub</title>
