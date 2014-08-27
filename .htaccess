@@ -72,3 +72,7 @@ Redirect 301 /2012/02/15/importing-dc-capital-bikeshare-data-into-a-sqlite3-data
 Redirect 301 /2012/02/07/use-zend-framework-to-list-all-of-a-given-users-google-spreadsheets/ /blog/use-zend-framework-to-list-all-of-a-given-users-google-spreadsheets
 Redirect 301 /2012/02/01/net-custom-configuration-section-collection-and-elements/ /blog/net-custom-configuration-section-collection-and-elements
 Redirect 301 /2011/11/10/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox/ /blog/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox
+
+# Other
+
+Redirect 301 /2014/03/26/setup-up-your-mac-for-net-development/ /blog/setup-up-your-mac-for-net-development
