@@ -9,18 +9,10 @@ tags:
 
 The following is a list of fun books to please your inner computer and science geek. I've read them and can vouch for the geekyness.
 
-<!--
-[Ready Player One]
--->
 
-[1]: http://www.amazon.com/gp/product/B00EMXBDMA/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00EMXBDMA&linkCode=as2&tag=jokecamp-20&linkId=7IRGJBD2LF73UZCF
-[2]: http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0060512806&amp;linkCode=as2&amp;tag=jokecamp-20
+**[Ready Player One][6] by Ernest Client** ([@erniecline](https://twitter.com/erniecline)) (2012)<br>
+For those of us that have long quit MMORPGs we have a chance to relive our old addiction with this novel. This one was a quick and fun read about a teenager trying to save an online world. Get ready for '80s video game, movie and television pop culture references. The movie rights have already been aquired.
 
-[3]: http://www.amazon.com/gp/product/B008FPOIT6/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B008FPOIT6&amp;linkCode=as2&amp;tag=jokecamp-20
-
-[4]: http://www.amazon.com/gp/product/0316198536/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0316198536&amp;linkCode=as2&amp;tag=jokecamp-20
-
-[5]: http://www.amazon.com/gp/product/0812972155?ie=UTF8&amp;camp=213733&amp;creative=393185&amp;creativeASIN=0812972155&amp;linkCode=shr&amp;tag=jokecamp-20&amp;qid=1384718277&amp;sr=1-1
 
 **[The Martian][1] by Andy Weir (2014)**<br>
 An astronaut stranded on Mars struggles to stay alive while NASA considers rescue options back home. This one is a quick read and reads like a movie script. It is no surprise that [Ridley Scott and Matt Damon are rumored](http://www.hollywoodreporter.com/heat-vision/ridley-scott-direct-matt-damon-703887) to be involved. The story gets pretty detailed with the chemistry and engineering required for life on Mars.
@@ -56,3 +48,15 @@ From [Singularity Wikipedia](http://en.wikipedia.org/wiki/Technological_singular
 ### Articles
 
 [Life Extension at Google](http://www.zdnet.com/google-exec-hints-at-ultimate-recruitment-perk-for-top-engineers-life-extension-7000018216/) (2013) - "Work at Google and you could end up living a lot longer than your peers elsewhere..."
+
+
+[1]: http://www.amazon.com/gp/product/B00EMXBDMA/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00EMXBDMA&linkCode=as2&tag=jokecamp-20&linkId=7IRGJBD2LF73UZCF
+[2]: http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0060512806&amp;linkCode=as2&amp;tag=jokecamp-20
+
+[3]: http://www.amazon.com/gp/product/B008FPOIT6/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B008FPOIT6&amp;linkCode=as2&amp;tag=jokecamp-20
+
+[4]: http://www.amazon.com/gp/product/0316198536/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0316198536&amp;linkCode=as2&amp;tag=jokecamp-20
+
+[5]: http://www.amazon.com/gp/product/0812972155?ie=UTF8&amp;camp=213733&amp;creative=393185&amp;creativeASIN=0812972155&amp;linkCode=shr&amp;tag=jokecamp-20&amp;qid=1384718277&amp;sr=1-1
+
+[6]:ttp://www.amazon.com/gp/product/B004J4WKUQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B004J4WKUQ&linkCode=as2&tag=jokecamp-20&linkId=7SVJYT25NBJAUOLK
