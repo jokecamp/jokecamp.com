@@ -39,8 +39,3 @@ Click on a tag to see relevant list of posts.
 ---
 
 {% endfor %}
-
-
-
-{% for tag in site.tags %}{% assign t = tag | first %}Redirect 301 /tag/{{t | downcase }} /tag/#{{ t | downcase | replace:" ","-" }}<br>
-{% endfor %}
