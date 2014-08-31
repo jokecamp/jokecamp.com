@@ -74,4 +74,3 @@ Redirect 301 /2011/11/10/create-customvalidator-to-enforce-maxlength/ /blog/crea
 Redirect 301 /2012/10/21/examples-of-creating-base64-hashes-using-hmac-sha.../ /blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages
 Redirect 301 /2012/10/21/examples-of-creating-base64-hashes-using-hmac-sha256/ /blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages
 Redirect 301 /2012/12/16/authenticating-servicestack-rest/ /blog/authenticating-servicestack-rest-api-using-hmac
-Redirect 301 /blog/books-for-geeks /books-for-geeks/
