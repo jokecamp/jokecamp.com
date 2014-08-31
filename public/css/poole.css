@@ -29,6 +29,8 @@ body {
       -ms-text-size-adjust: 100%;
 }
 
+.internal { color: #515151;  }
+
 .footer {
   margin-top:2rem;
   font-size:.8rem;
@@ -229,7 +231,7 @@ tbody tr:nth-child(odd) th {
   margin-right: auto;
 }
 
-.masthead { padding: .75rem; margin-bottom: 2rem; background-color:#232323; border-bottom: solid 2px #CCC; }
+.masthead { padding: .75rem; margin-bottom: 2rem; background-color:#232323; border-bottom: solid 2px #268bd2; }
 .masthead-title { margin-top: 0; margin-bottom: 0; padding:.2rem; color: #EEE; }
 .masthead a { color: #FFF; }
 .masthead small { font-size: 75%; font-weight: 400; color: #999; letter-spacing: 0; }
@@ -259,3 +261,6 @@ nav ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
 .page ul li, .related ul li { margin-bottom:.7rem; margin-top:.7rem; }
 
 .post-footer { text-align:center; font-size:.8em; margin:20px 0; }
+
+#tagcloud { font-size:.9em;  }
+.tags li { display:inline; padding:0 4px; background:#EEE;}

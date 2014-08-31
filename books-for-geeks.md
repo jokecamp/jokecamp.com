@@ -1,10 +1,11 @@
 ---
-comments: false
-layout: post
+layout: page
 title: Books for Geeks
 desc: 'A list of fun books to read for computer geeks by a geek.'
-tags:
- - books
+permalink: /books-for-geeks/
+sitemap:
+  priority: .8
+
 ---
 
 The following is a list of fun books to please your inner computer and science geek. I've read them and can vouch for the geekyness.
@@ -18,11 +19,10 @@ For those of us that have long quit MMORPGs we have a chance to relive our old a
 An astronaut stranded on Mars struggles to stay alive while NASA considers rescue options back home. This one is a quick read and reads like a movie script. It is no surprise that [Ridley Scott and Matt Damon are rumored](http://www.hollywoodreporter.com/heat-vision/ridley-scott-direct-matt-damon-703887) to be involved. The story gets pretty detailed with the chemistry and engineering required for life on Mars.
 
 **[Cryptonomicon][2] by Neal Stephenson (2002)**<br>
-Reads like an Indiana Jones adventure if Dr. Jones was a keyboard jockey. An older book but very relevant today due to the themes of digital security and digital currency.
+Reads like an Indiana Jones adventure if Dr. Jones was a keyboard jockey. An older book but very relevant today due to the themes of digital security and digital currency. Check out some [online reading aids](/blog/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids).
 
 **[Mr. Penumbra's 24-Hour Bookstore: A Novel][3] by Robin Sloan (2012)**<br>
 A geeky and lighter version of The Da Vinci Code and is an ode to books, technology, Google and the mysterious.
-
 
 **[You][4] by Austin Grossman (2013)**<br>
 An inside peak at the video game industry as a tester faces off with an increasingly suspicious glitch in their fantasy MMORPG. Experience life at a video game studio durring crunch time but without the excessive mountain dew and red bulls.

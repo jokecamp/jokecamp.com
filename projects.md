@@ -3,7 +3,7 @@ layout: page
 title: Projects
 desc: 'A showcase of personal projects and websites created by Joe Kampschmidt'
 permalink: /projects/
-
+featured: true
 sitemap:
   priority: .8
 

@@ -14,10 +14,6 @@ tags:
 - cryptography
 ---
 
-[![Cryptonomicon](http://upload.wikimedia.org/wikipedia/en/9/93/Cryptonomicon%281stEd%29.jpg)](http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0060512806&linkCode=as2&tag=jokecamp-20)
-
-
-
 ### **[Cryptonomicon by Neal Stephenson](http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0060512806&linkCode=as2&tag=jokecamp-20)** (1999)
 
 As a computer science geek the novel was a lot of fun. There are two arcing story lines, one during World War II and one during the 1990s. The book is a wide mix of hacking technology, code breaking techniques, mathematical proofs, infantry action, submarine action, a start-up business, decentralized digital currency and a bike ride with Alan Turing. Stephenson is not afraid to go into a couple page of details about SSH then the next chapter is a US Marine in the Battle of Manila. As I read it on the kindle I had no idea about the length of the book but take notice it comes in at over 900 pages. [Amazon Link](http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0060512806&linkCode=as2&tag=jokecamp-20).
