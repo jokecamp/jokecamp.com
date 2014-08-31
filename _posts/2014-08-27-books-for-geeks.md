@@ -59,4 +59,4 @@ From [Singularity Wikipedia](http://en.wikipedia.org/wiki/Technological_singular
 
 [5]: http://www.amazon.com/gp/product/0812972155?ie=UTF8&amp;camp=213733&amp;creative=393185&amp;creativeASIN=0812972155&amp;linkCode=shr&amp;tag=jokecamp-20&amp;qid=1384718277&amp;sr=1-1
 
-[6]:ttp://www.amazon.com/gp/product/B004J4WKUQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B004J4WKUQ&linkCode=as2&tag=jokecamp-20&linkId=7SVJYT25NBJAUOLK
+[6]: http://www.amazon.com/gp/product/B004J4WKUQ/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B004J4WKUQ&linkCode=as2&tag=jokecamp-20&linkId=7SVJYT25NBJAUOLK
