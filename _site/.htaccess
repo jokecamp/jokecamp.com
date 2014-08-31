@@ -72,3 +72,5 @@ Redirect 301 /books-for-geeks/ /blog/books-for-geeks
 Redirect 301 /2014/06/06/resolving-angularjs-paths-for-iis-express-vs-deploying-to-an-iis-application/ /blog/resolving-angularjs-paths-in-asp-mvc-spa-iis
 Redirect 301 /2011/11/10/create-customvalidator-to-enforce-maxlength/ /blog/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox
 Redirect 301 /2012/10/21/examples-of-creating-base64-hashes-using-hmac-sha.../ /blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages
+Redirect 301 /2012/10/21/examples-of-creating-base64-hashes-using-hmac-sha256/ /blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages
+Redirect 301 /2012/12/16/authenticating-servicestack-rest/ /blog/authenticating-servicestack-rest-api-using-hmac
