@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: Aug 10 2014
+Last updated: Sep 1 2014
 
 ## Where can I actually find football/soccer data?
 
@@ -39,6 +39,8 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 
     http://footballdb.herokuapp.com/api/v1/event/world.2014/teams
     http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
+
+**[soccerstats.us](http://soccerstats.us)** is github [organization](https://github.com/soccerstatsus) with multiple repositories for sets of data (with a focus on North American data). The [parser](https://github.com/SoccerStatsUS/parse) is written in python and looks like it was designed to parse the rsssf.com text data.
 
 Other projects
 

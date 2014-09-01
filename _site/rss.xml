@@ -723,7 +723,7 @@ Fn  Function Key&lt;/p&gt;
 		
 			<item>
 				<title>Guide to Football/Soccer data and APIs</title>
-				<description>&lt;p&gt;Last updated: Aug 10 2014&lt;/p&gt;
+				<description>&lt;p&gt;Last updated: Sep 1 2014&lt;/p&gt;
 
 &lt;h2&gt;Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -747,6 +747,8 @@ Consider contributing any data you have yourself and be sure to thank &lt;a href
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;http://footballdb.herokuapp.com/api/v1/event/world.2014/teams
 http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://soccerstats.us&quot;&gt;soccerstats.us&lt;/a&gt;&lt;/strong&gt; is github &lt;a href=&quot;https://github.com/soccerstatsus&quot;&gt;organization&lt;/a&gt; with multiple repositories for sets of data (with a focus on North American data). The &lt;a href=&quot;https://github.com/SoccerStatsUS/parse&quot;&gt;parser&lt;/a&gt; is written in python and looks like it was designed to parse the rsssf.com text data.&lt;/p&gt;
+
 &lt;p&gt;Other projects&lt;/p&gt;
 
 &lt;ul&gt;
