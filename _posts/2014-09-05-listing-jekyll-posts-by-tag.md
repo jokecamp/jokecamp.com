@@ -21,7 +21,7 @@ The below code shows:
 
 **Listing all Tags**
 {% raw %}
-```
+```html
 <ul class="tags">
 {% for tag in site.tags %}
   {% assign t = tag | first %}
@@ -36,7 +36,7 @@ The below code shows:
 **Listing all Tags and the posts containing that Tag**
 
 {% raw %}
-```
+```html
 {% for tag in site.tags %}
   {% assign t = tag | first %}
   {% assign posts = tag | last %}

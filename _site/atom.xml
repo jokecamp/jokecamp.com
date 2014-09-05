@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-09-05T18:41:44-04:00</updated>
+ <updated>2014-09-05T18:43:08-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -29,30 +29,30 @@
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Listing all Tags&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;ul class=&amp;quot;tags&amp;quot;&amp;gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
 {% for tag in site.tags %}
   {% assign t = tag | first %}
   {% assign posts = tag | last %}
-  &amp;lt;li&amp;gt;{{t | downcase | replace:&amp;quot; &amp;quot;,&amp;quot;-&amp;quot; }} has {{ posts | size }} posts&amp;lt;/li&amp;gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;{{t | downcase | replace:&amp;quot; &amp;quot;,&amp;quot;-&amp;quot; }} has {{ posts | size }} posts&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
 {% endfor %}
-&amp;lt;/ul&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;Listing all Tags and the posts containing that Tag&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{% for tag in site.tags %}
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;{% for tag in site.tags %}
   {% assign t = tag | first %}
   {% assign posts = tag | last %}
 
 {{ t | downcase }}
-&amp;lt;ul&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
 {% for post in posts %}
   {% if post.tags contains t %}
-  &amp;lt;li&amp;gt;
-    &amp;lt;a href=&amp;quot;{{ post.url }}&amp;quot;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt;
-    &amp;lt;span class=&amp;quot;date&amp;quot;&amp;gt;{{ post.date | date: &amp;quot;%B %-d, %Y&amp;quot;  }}&amp;lt;/span&amp;gt;
-  &amp;lt;/li&amp;gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ post.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.date | date: &amp;quot;%B %-d, %Y&amp;quot;  }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
   {% endif %}
 {% endfor %}
-&amp;lt;/ul&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
 {% endfor %}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
  </entry>
