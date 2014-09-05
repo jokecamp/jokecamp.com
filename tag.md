@@ -34,7 +34,7 @@ Click on a tag to see relevant list of posts.
   </li>
   {% endif %}
 {% endfor %}
-<ul>
+</ul>
 
 ---
 

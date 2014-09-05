@@ -7,6 +7,51 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>How to list your jekyll posts by tags</title>
+				<description>&lt;p&gt;The below example code demonstrates how to show and organize your posts by &lt;a href=&quot;http://jekyllrb.com/docs/frontmatter/&quot;&gt;tags&lt;/a&gt; using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;jekyll&lt;/a&gt; and the &lt;a href=&quot;http://docs.shopify.com/themes/liquid-documentation/basics&quot;&gt;liquid template language&lt;/a&gt;. This is basically the same code I use for my own &lt;a href=&quot;/tag/&quot;&gt;listing of posts by tag&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The below code shows:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to generate a list all the tags on your website. A tag cloud could be created by using the number of posts and CSS.&lt;/li&gt;
+&lt;li&gt;How to get the number of posts per tag&lt;/li&gt;
+&lt;li&gt;How to use filters to convert the tag to lowercase and strip out spaces, which is useful for creating anchors&lt;/li&gt;
+&lt;li&gt;How to list all the tags and includes a sublist of posts that are associated to that tag.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Listing all Tags&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;ul class=&amp;quot;tags&amp;quot;&amp;gt;
+{% for tag in site.tags %}
+  {% assign t = tag | first %}
+  {% assign posts = tag | last %}
+  &amp;lt;li&amp;gt;{{t | downcase | replace:&amp;quot; &amp;quot;,&amp;quot;-&amp;quot; }} has {{ posts | size }} posts&amp;lt;/li&amp;gt;
+{% endfor %}
+&amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Listing all Tags and the posts containing that Tag&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{% for tag in site.tags %}
+  {% assign t = tag | first %}
+  {% assign posts = tag | last %}
+
+{{ t | downcase }}
+&amp;lt;ul&amp;gt;
+{% for post in posts %}
+  {% if post.tags contains t %}
+  &amp;lt;li&amp;gt;
+    &amp;lt;a href=&amp;quot;{{ post.url }}&amp;quot;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt;
+    &amp;lt;span class=&amp;quot;date&amp;quot;&amp;gt;{{ post.date | date: &amp;quot;%B %-d, %Y&amp;quot;  }}&amp;lt;/span&amp;gt;
+  &amp;lt;/li&amp;gt;
+  {% endif %}
+{% endfor %}
+&amp;lt;/ul&amp;gt;
+{% endfor %}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+				<pubDate>Fri, 05 Sep 2014 00:00:00 -0400</pubDate>
+				<link>http://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</guid>
+			</item>
+		
+			<item>
 				<title>Simple jekyll deployment with a shell script and GitHub</title>
 				<description>&lt;p&gt;I wanted to document and share my process for deploying this very website (jokecamp.com).&lt;/p&gt;
 
@@ -1001,92 +1046,6 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 				<pubDate>Tue, 17 Dec 2013 20:00:48 -0500</pubDate>
 				<link>http://www.jokecamp.com/blog/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack</guid>
-			</item>
-		
-			<item>
-				<title>Tutorial: How to use TeamCity Powershell Runner to automatically deploy website</title>
-				<description>&lt;p&gt;This tutorial is intended for .NET developers wishing to get started with deploying TeamCity builds via PowerShell.&lt;/p&gt;
-
-&lt;p&gt;First off, lets establish a definition for the following terms. These can be subjective so I will provide my sources. The list is a numbered list starting with the less involved practices.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Continuous Integration&lt;/strong&gt; - “is the practice, in software engineering, of merging all developer working copies with a shared mainline several times a day.” See &lt;a href=&quot;http://en.wikipedia.org/wiki/Continuous_Integration&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Continuous Delivery&lt;/strong&gt; - is the process of automating the delivery of sofware and includes practices such as automated testing, continuous integration. See &lt;a href=&quot;http://en.wikipedia.org/wiki/Continuous_delivery&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Continuous Deployment&lt;/strong&gt; - is really the same as continous delievery but implies that deploying releases to production. - See &lt;a href=&quot;http://continuousdelivery.com/2010/08/continuous-delivery-vs-continuous-deployment/&quot;&gt;Continuous Delivery vs Continuous Deployment&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3&gt;Taking the first steps toward continuous integration&lt;/h3&gt;
-
-&lt;p&gt;This is the just the start of a continuous integration solution. If you are already using TeamCity to manage builds then the next natural step is having your build server keep a server up to date with the latest committed code. This can be achieved through TeamCity&amp;#39;s Powershell Runner plugin. Powershell is very useful in automating windows tasks. In this example I will be showing how to setup a simple powershell script that will deploy a simple asp.net website to a remote server after a successful build.&lt;/p&gt;
-
-&lt;h4&gt;Build Server Requirements&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You will need to give your build server elevated powershell Execution Policies or you will need to &lt;a href=&quot;http://www.hanselman.com/blog/SigningPowerShellScripts.aspx&quot;&gt;sign your powershell script for execution&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;IIS and the website must already be setup. This can be done with powershell but that is outside the scope of this demo.&lt;/li&gt;
-&lt;li&gt;Assumes your website requires no config swapping. Unrealistic but the script can easily be adapted to handle swapping.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;The PowerShell Script&lt;/h4&gt;
-
-&lt;p&gt;Commit the following deployment powershell script to your Source Control. It will need to be in a directory accessible by the build server. I have mine a directly above the website in a scripts folder. The script is very specific to my example website but it should serve as a good example.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$target&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;        &lt;span class=&quot;c&quot;&gt;# ie &amp;quot;\\testserver\e$&amp;quot;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# if you need to authenticate&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;net&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$target&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;password&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BuildServerUser&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-not&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$target&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;Write-Output&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;You must provide a deployment location param as second item. Exiting!&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Exit&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\bin&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\Content&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\Scripts&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\Views&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\favicon.ico&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\web.config&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;Copy-Item&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;SameWebsite\*.asax&amp;#39;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;${target}\Websites\SampleWebsite\&amp;quot;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Force&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The script performs the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Uses the parameter args[0] to provide the script with the deployment destination.&lt;/li&gt;
-&lt;li&gt;Copies the websites build artifacts to the deployment destination using relative paths.&lt;/li&gt;
-&lt;li&gt;If you need credentials to copy files over the files you can use the &lt;em&gt;net use&lt;/em&gt; command as indicated in the script.&lt;/li&gt;
-&lt;li&gt;I added -verbose to the Copy-Item commands for detailed logging. The logs will show up in the TeamCity Build log.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;Create new Powershell runner Build Step via the TeamCity website&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You will want the script to run only after successful builds. It must be the last step since it requires the built files.&lt;/li&gt;
-&lt;li&gt;See TeamCity’s terse documentation regarding &lt;a href=&quot;http://confluence.jetbrains.com/display/TCD8/PowerShell&quot;&gt;PowerShell&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;See my screenshot below to see some example settings.&lt;/li&gt;
-&lt;li&gt;The screenshot references different project names. Yours will match&lt;/li&gt;
-&lt;li&gt;Also you see I am passing two parameters in the screenshot. You will likely only need one.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;[caption id=&amp;quot;attachment_1228&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;300&amp;quot;]&lt;a href=&quot;http://jokecamp.files.wordpress.com/2013/12/teamcitypowershellstep.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2013/12/teamcitypowershellstep.png?w=300&quot; alt=&quot;Example of a TeamCity PowerShell settings.&quot;&gt;&lt;/a&gt; Example of a TeamCity PowerShell settings.[/caption]&lt;/p&gt;
-
-&lt;h4&gt;Next steps in improving the process&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Email notifications and reports after deployment&lt;/li&gt;
-&lt;li&gt;Automate the setup of IIS/Application&lt;/li&gt;
-&lt;li&gt;Find a way to swap environment specific config items&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I highly recommend the following blog posts on The Netflix Tech Blog&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://techblog.netflix.com/2013/08/deploying-netflix-api.html&quot;&gt;Deploying the Netflix API&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://techblog.netflix.com/2013/11/preparing-netflix-api-for-deployment.html&quot;&gt;Preparing the Netflix API for deployment&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-				<pubDate>Sat, 14 Dec 2013 20:09:59 -0500</pubDate>
-				<link>http://www.jokecamp.com/blog/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website</guid>
 			</item>
 		
 	</channel>
