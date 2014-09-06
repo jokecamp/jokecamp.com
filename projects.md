@@ -9,7 +9,10 @@ sitemap:
 
 ---
 
- - [EPL Fantasy Geek](http://www.jokecamp.com/lab/epl-fantasy) - an [open source AngularJS](https://github.com/jokecamp/Angular-FantasyEpl) website to allow for easy filtering and sorting of the player data for the 2014-2015 English Premier League Fantasy game. I'll update the stats throughout the season (2014).
+[1]: https://github.com/jokecamp/epl-fantasy-geek
+[2]: http://jokecamp.github.io/epl-fantasy-geek/
+
+ - [EPL Fantasy Geek][2] - an [open source AngularJS][1] website to allow for easy filtering and sorting of the player data for the 2014-2015 English Premier League Fantasy game. I'll update the stats throughout the season (2014).
 
  - HiddenScores - No longer available as of March 2014. Spoiler alerts for English Premier League soccer scores. Allowing users to only reveal the results they wish to see. Emphasis on responsive design with one site for all devices.
 
