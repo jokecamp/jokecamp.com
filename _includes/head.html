@@ -7,8 +7,10 @@
   <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
   <meta name="author" content="Joe Kampschmidt" />
   <meta name="copyright" content="Joe Kampschmidt" />
-
-  <link rel="stylesheet" href="{{ site.baseurl }}public/css/poole.css?v={{ site.version }}">
+  {% css_asset_tag global %}
+  - /_assets/poole.css
+  - /_assets/syntax.css
+  {% endcss_asset_tag %}
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ site.baseurl }}atom.xml">

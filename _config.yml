@@ -26,3 +26,10 @@ twitter:          https://twitter.com/jokecamp
 stackoverflow:    http://stackoverflow.com/users/215502/kampsj
 
 version:          1.0
+
+asset_pipeline:
+  bundle: true            # Default = true
+  compress: true          # Default = true
+  output_path: assets     # Default = assets
+  display_path: assets       # Default = nil
+  gzip: true              # Default = false
