@@ -19,3 +19,11 @@ Use one of the following categories for each post:
  - Guide
  - Blog
  - Code
+
+
+## Asset Pipeline
+
+https://github.com/matthodan/jekyll-asset-pipeline/blob/master/README.md
+
+- gem install jekyll-asset-pipeline
+- gem install yui-compressor
