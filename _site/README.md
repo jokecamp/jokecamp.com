@@ -19,3 +19,17 @@ Use one of the following categories for each post:
  - Guide
  - Blog
  - Code
+
+
+## Asset Pipeline
+
+https://github.com/matthodan/jekyll-asset-pipeline/blob/master/README.md
+
+- gem install jekyll-asset-pipeline
+- gem install yui-compressor
+
+
+## Optimizing for fun
+
+Main page as of 9/6/2015 = 46.9K HTTP Requests - 6
+Primed Cache = 5.9K HTTP Requests - 3
