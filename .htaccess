@@ -9,6 +9,11 @@ sitemap:
 # Add Proper MIME-Type for Favicon
 AddType image/x-icon .ico
 
+RewriteEngine on 
+RewriteCond %{HTTP:Accept-Encoding} gzip
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule ^(.*)$ $1.gz [L]
+
 # Enable Apache's mod_expires Module
 ExpiresActive On
 ExpiresByType image/x-icon              "access plus 1 month"
