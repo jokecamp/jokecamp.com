@@ -9,7 +9,7 @@
   <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
   <meta name="author" content="Joe Kampschmidt" />
   <meta name="copyright" content="Joe Kampschmidt" />
-  <link href='/assets/global-f9e8543fd6e54d9630a6fcc5dbd72307.css' rel='stylesheet' type='text/css' />
+  <link href='/assets/global-1f4aee53a7e2859f89aac54b7500d36c.css' rel='stylesheet' type='text/css' />
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -26,9 +26,9 @@
           <a href="/" title="also known as @jokecamp">Joe Kampschmidt's Code</a>
         </h2>
 
-        <nav class="nav">
+        <nav class="nav" role="navigation">
           <ul>
-                        <li><a class="" href="/blog/" title="Joe's Blog">Blog</a></li><li><a class="" href="/projects/" title="Joe's Projects">Projects</a></li>
+            <li><a class="" href="/blog/" title="Joe's Blog">Blog</a></li><li><a class="" href="/projects/" title="Joe's Projects">Projects</a></li>
             <li><a rel="me" href="https://github.com/jokecamp" title="Joe's github page - commit all the things"><i class="fa fa-github"></i></a></li>
             <li><a rel="me" href="http://stackoverflow.com/users/215502/kampsj" title="Joe's stackoverflow account - aka street credit"><i class="fa fa-stack-overflow"></i></a></li>
             <li><a rel="me" href="https://twitter.com/jokecamp" title="Joe's twitter account"><i class="fa fa-twitter"></i></a></li>
@@ -38,7 +38,9 @@
     </div> <!-- end masthead -->
 
     <div class="container content">
-      <div class="post">
+
+      <div role="main">
+        <div class="post">
   <h1 class="post-title">Building a Raspberry Pi Photo Frame</h1>
   <span class="post-date">07 Jun 2014</span>
   <p>First off, my inspiration and instructions came from this article <a href="http://www.ofbrooklyn.com/2014/01/2/building-photo-frame-raspberry-pi-motion-detector">Building a living photo frame with a Raspberry Pi and a motion detector</a>. The author is more knowledgeable and the article is more in-depth than mine. See that article for specific configuration and for the actual contents of the python script to pull photos from flickr. I hope my post will help others by sharing my first time experiences with the pi and the issues/frustrations I encountered.</p>
@@ -127,14 +129,17 @@ Tags
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 </div>
 
-      <div class="footer">
-        <p>
-          <a href="/atom.xml" title="Atom Feed"></i>Atom</a> |
-          <a href="/rss.xml" title="RSS Feed"><i class="fa fa-rss"></i> RSS</a> |
-          <a href="https://github.com/jokecamp/jokecamp.com/"><i class="fa fa-github"></i> View Source on GitHub</a>
-        </p>
-        <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</a></p>
       </div>
+
+      <div class="footer" role="role="contentinfo"">
+        <ul>
+          <li><a href="/atom.xml" title="Atom Feed"></i>Atom</a></li>
+          <li><a href="/rss.xml" title="RSS Feed"><i class="fa fa-rss"></i> RSS</a></li>
+          <li><a href="https://github.com/jokecamp/jokecamp.com/"><i class="fa fa-github"></i> View Source on GitHub</a></li>
+          <li>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</a></li>
+        </ul>
+      </div>
+
     </div> <!-- end container -->
 
     <script>

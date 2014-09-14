@@ -2,7 +2,7 @@
  * Body resets
  * Update the foundational and global aspects of the page.
  */
- 
+
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -264,3 +264,7 @@ nav ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
 
 #tagcloud { font-size:.9em;  }
 .tags li { display:inline; padding:0 4px; background:#EEE;}
+
+.footer ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
+.footer ul li { display:inline; padding:1.8em;  }
+.footer ul li > a { padding:1em 0;  }

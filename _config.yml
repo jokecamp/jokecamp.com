@@ -2,6 +2,8 @@
 markdown:         redcarpet
 highlighter:      pygments
 
+exclude:          ['.asset_pipeline']
+
 # Permalinks
 #permalink:        pretty
 permalink:        /blog/:title

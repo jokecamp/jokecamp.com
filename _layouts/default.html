@@ -8,9 +8,9 @@
           <a href="{{ site.baseurl }}" title="also known as @jokecamp">{{ site.title }}</a>
         </h2>
 
-        <nav class="nav">
+        <nav class="nav" role="navigation">
           <ul>
-                        {% assign pages_list = site.pages %}{% for node in pages_list %}{% if node.title != null %}{% if node.layout == "page" %}{% if node.featured == true %}<li><a class="{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}" title="Joe's {{node.title}}">{{ node.title }}</a></li>{% endif %}{% endif %}{% endif %}{% endfor %}
+            {% assign pages_list = site.pages %}{% for node in pages_list %}{% if node.title != null %}{% if node.layout == "page" %}{% if node.featured == true %}<li><a class="{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}" title="Joe's {{node.title}}">{{ node.title }}</a></li>{% endif %}{% endif %}{% endif %}{% endfor %}
             <li><a rel="me" href="{{ site.github }}" title="Joe's github page - commit all the things"><i class="fa fa-github"></i></a></li>
             <li><a rel="me" href="{{ site.stackoverflow }}" title="Joe's stackoverflow account - aka street credit"><i class="fa fa-stack-overflow"></i></a></li>
             <li><a rel="me" href="{{ site.twitter }}" title="Joe's twitter account"><i class="fa fa-twitter"></i></a></li>
@@ -20,15 +20,20 @@
     </div> <!-- end masthead -->
 
     <div class="container content">
-      {{ content }}
-      <div class="footer">
-        <p>
-          <a href="/atom.xml" title="Atom Feed"></i>Atom</a> |
-          <a href="/rss.xml" title="RSS Feed"><i class="fa fa-rss"></i> RSS</a> |
-          <a href="{{ site.githubProject }}"><i class="fa fa-github"></i> View Source on GitHub</a>
-        </p>
-        <p>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</a></p>
+
+      <div role="main">
+        {{ content }}
       </div>
+
+      <div class="footer" role="role="contentinfo"">
+        <ul>
+          <li><a href="/atom.xml" title="Atom Feed"></i>Atom</a></li>
+          <li><a href="/rss.xml" title="RSS Feed"><i class="fa fa-rss"></i> RSS</a></li>
+          <li><a href="{{ site.githubProject }}"><i class="fa fa-github"></i> View Source on GitHub</a></li>
+          <li>Contact me at <a href="mailto:joe.kampschmidt@gmail.com" alt="email me">joe.kampschmdit@gmail.com</a></li>
+        </ul>
+      </div>
+
     </div> <!-- end container -->
 
     {% include tracking.html %}
