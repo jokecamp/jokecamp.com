@@ -6,6 +6,8 @@ sitemap:
 
 ---
 
+ErrorDocument 404 /404.html
+
 # Add Proper MIME-Type for Favicon
 AddType image/x-icon .ico
 
