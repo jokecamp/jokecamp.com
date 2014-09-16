@@ -232,7 +232,7 @@ tbody tr:nth-child(odd) th {
 }
 
 .masthead { padding: .75rem; margin-bottom: 2rem; background-color:#232323; border-bottom: solid 2px #268bd2; }
-.masthead-title { margin-top: 0; margin-bottom: 0; padding:.2rem; color: #EEE; }
+.masthead-title { margin-top: 0; margin-bottom: 0; padding:.2rem; color: #EEE; font-weight:bold; font-size: 1.4rem; }
 .masthead a { color: #FFF; }
 .masthead small { font-size: 75%; font-weight: 400; color: #999; letter-spacing: 0; }
 
@@ -247,10 +247,10 @@ tbody tr:nth-child(odd) th {
 .page-title, .post-title { margin-top: 0; margin-bottom: 1rem; }
 
 .page-title { text-align:center; }
-.post-date { display: block; margin-top: -.5rem; margin-bottom: 1rem; color: #9a9a9a; }
+.post-date { display: block; margin-top: -.5rem; margin-bottom: 1rem;  }
 .related { padding-top: 1rem; padding-bottom: 1rem; }
 .center { text-align:center;}
-.date { color:#888; padding-left:1rem; font-size:.8rem;}
+.date { padding-left:1rem; font-size:.8rem;}
 .bio { padding-top:1.8rem; padding-bottom:1.8rem; font-size:1.3rem; }
 .tag { background-color:#EEE; color:#333; display:inline; padding:4px; }
 .comments { margin-top:2em; }
