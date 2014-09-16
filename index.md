@@ -18,7 +18,7 @@ My name is <span itemprop="name">Joe Kampschmidt</span>. I live in <span itempro
 </div>
 
 
-### Featured Blog Posts
+## Featured Blog Posts
 
 <ul class="posts-list">
 {% for post in site.posts %}{% if post.featured == true %}
