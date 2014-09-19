@@ -34,7 +34,7 @@ Some other notable benefits:
 
 - Use built-in IIS features like security. You could put your nodejs server behind windows authentication
 - Use your already existing windows technology stack and avoid complicating the deployment process
-- Take advantage of the <span title='Would you save I have a plethora of pinatas?'>plethora<span> of node packages available
+- Take advantage of the <span title='Would you save I have a plethora of pinatas?'>plethora</span> of node packages available
 - No unix servers or [unix administrators](http://xkcd.com/149/ "The ones who go around demanding sandwiches") necessary
 
 #### What are the alternatives to iisnode for Windows?
@@ -69,7 +69,7 @@ To over simplify here is how it works with the assumption that we have a nodejs 
 4. node.exe sends the response back through the named pipe, iisnode and then iis
 
 <a href='http://tomasz.janczuk.org/2011/10/architecture-of-iisnode.html'>
-<img style="float: right; margin:10px; width:150px;" src="/public/iisnode-diagram.png" title='See Architecture Diagram' />
+<img style="float: right; margin:10px; width:150px;" src="/public/iisnode-diagram.png" title='See Architecture Diagram' alt='See Architecture Diagram' />
 </a>
 
 For a more complete picture see the diagrams on [Top Benefits of Running Node.js on Windows Azure](http://blogs.msdn.com/b/hanuk/archive/2012/05/05/top-benefits-of-running-node-js-on-windows-azure.aspx). The article is from the context of Azure but it gives the best description of what is happening under the hood. Other recommended reading (with diagrams) includes [Introduction to IIS Architectures](http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture#HTTP) and [Difference between URL Rewriting and URL Routing](http://www.planetofcoders.com/difference-url-rewriting-url-routing/).

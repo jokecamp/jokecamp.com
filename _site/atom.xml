@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-09-19T08:14:55-04:00</updated>
+ <updated>2014-09-19T08:20:10-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -161,7 +161,7 @@ username@your.remote.host.for.ssh.com&amp;#39;s password:
 &lt;ul&gt;
 &lt;li&gt;Use built-in IIS features like security. You could put your nodejs server behind windows authentication&lt;/li&gt;
 &lt;li&gt;Use your already existing windows technology stack and avoid complicating the deployment process&lt;/li&gt;
-&lt;li&gt;Take advantage of the &lt;span title=&#39;Would you save I have a plethora of pinatas?&#39;&gt;plethora&lt;span&gt; of node packages available&lt;/li&gt;
+&lt;li&gt;Take advantage of the &lt;span title=&#39;Would you save I have a plethora of pinatas?&#39;&gt;plethora&lt;/span&gt; of node packages available&lt;/li&gt;
 &lt;li&gt;No unix servers or &lt;a href=&quot;http://xkcd.com/149/&quot; title=&quot;The ones who go around demanding sandwiches&quot;&gt;unix administrators&lt;/a&gt; necessary&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -200,7 +200,7 @@ username@your.remote.host.for.ssh.com&amp;#39;s password:
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;a href=&#39;http://tomasz.janczuk.org/2011/10/architecture-of-iisnode.html&#39;&gt;
-&lt;img style=&quot;float: right; margin:10px; width:150px;&quot; src=&quot;/public/iisnode-diagram.png&quot; title=&#39;See Architecture Diagram&#39; /&gt;
+&lt;img style=&quot;float: right; margin:10px; width:150px;&quot; src=&quot;/public/iisnode-diagram.png&quot; title=&#39;See Architecture Diagram&#39; alt=&#39;See Architecture Diagram&#39; /&gt;
 &lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;For a more complete picture see the diagrams on &lt;a href=&quot;http://blogs.msdn.com/b/hanuk/archive/2012/05/05/top-benefits-of-running-node-js-on-windows-azure.aspx&quot;&gt;Top Benefits of Running Node.js on Windows Azure&lt;/a&gt;. The article is from the context of Azure but it gives the best description of what is happening under the hood. Other recommended reading (with diagrams) includes &lt;a href=&quot;http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture#HTTP&quot;&gt;Introduction to IIS Architectures&lt;/a&gt; and &lt;a href=&quot;http://www.planetofcoders.com/difference-url-rewriting-url-routing/&quot;&gt;Difference between URL Rewriting and URL Routing&lt;/a&gt;.&lt;/p&gt;
