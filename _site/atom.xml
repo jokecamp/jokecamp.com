@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-09-19T08:25:43-04:00</updated>
+ <updated>2014-09-26T19:07:19-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -2009,7 +2009,7 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
    <id>http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages</id>
    <content type="html">&lt;p&gt;I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See the stackOverflow question &lt;a href=&quot;http://stackoverflow.com/a/201510/215502&quot;&gt;What is the use of base 64 encoding?&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Below are some simplified HMAC SHA 256 solutions. They should all output &amp;quot;&lt;strong&gt;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&lt;/strong&gt;&amp;quot; given the values of &amp;quot;&lt;strong&gt;secret&lt;/strong&gt;&amp;quot; and &amp;quot;&lt;strong&gt;Message&lt;/strong&gt;&amp;quot; Take notice of the capital M. It is case sensitive.&lt;/p&gt;
+&lt;p&gt;Below are some simplified HMAC SHA 256 solutions. They should all output &lt;code&gt;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&lt;/code&gt; given the values of &lt;code&gt;secret&lt;/code&gt; and &lt;code&gt;Message&lt;/code&gt;. Take notice of the capital M. The hashed message is case sensitive.&lt;/p&gt;
 
 &lt;p&gt;Jump to an implementation:&lt;/p&gt;
 
@@ -2027,6 +2027,7 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
 &lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#dart&quot;&gt;Dart&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#swift&quot;&gt;Swift&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#rust&quot;&gt;Rust&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#powershell&quot;&gt;Powershell&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;&lt;a name=&#39;js&#39;&gt;&lt;/a&gt;Javascript HMAC SHA256&lt;/h3&gt;
@@ -2045,7 +2046,7 @@ Dependent upon an open source js library called &lt;a href=&quot;http://code.goo
 &lt;h3&gt;&lt;a name=&#39;php&#39;&gt;&lt;/a&gt;PHP HMAC SHA256&lt;/h3&gt;
 
 &lt;p&gt;PHP has built in methods for &lt;a href=&quot;http://php.net/manual/en/function.hash-hmac.php&quot;&gt;hash_hmac&lt;/a&gt; (PHP 5) and &lt;a href=&quot;http://php.net/manual/en/function.base64-encode.php&quot;&gt;base64_encode&lt;/a&gt; (PHP 4, PHP 5) resulting in no
-outside dependencies.&lt;/p&gt;
+outside dependencies. Say what you want about PHP but they have the cleanest code for this example.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;x&quot;&gt;$s = hash_hmac(&amp;#39;sha256&amp;#39;, &amp;#39;Message&amp;#39;, &amp;#39;secret&amp;#39;, true);&lt;/span&gt;
 &lt;span class=&quot;x&quot;&gt;echo base64_encode($s);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2266,9 +2267,24 @@ outside dependencies.&lt;/p&gt;
 
 &lt;h3&gt;&lt;a name=&#39;rust&#39;&gt;&lt;/a&gt;Rust&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.rust-lang.org/&quot;&gt;Rust (lang)&lt;/a&gt;
-&lt;a href=&quot;https://github.com/alco/rust-digest/blob/master/hmac.rs&quot;&gt;https://github.com/alco/rust-digest/blob/master/hmac.rs&lt;/a&gt;&lt;/p&gt;
-</content>
+&lt;p&gt;Take a look at the &lt;a href=&quot;https://github.com/alco/rust-digest/blob/master/hmac.rs&quot;&gt;alco/rust-digest&lt;/a&gt; repository for &lt;a href=&quot;http://www.rust-lang.org/&quot;&gt;Rust (lang)&lt;/a&gt; guidance. I have not verified yet.&lt;/p&gt;
+
+&lt;h3&gt;&lt;a name=&#39;powershell&#39;&gt;&lt;/a&gt;Powershell (Windows) HMAC SHA256&lt;/h3&gt;
+
+&lt;p&gt;Mostly wrapping of .NET libraries but useful to see it in powershell&amp;#39;s befuddling syntax. See code as &lt;a href=&quot;https://gist.github.com/jokecamp/2c1a67b8f277797ecdb3&quot;&gt;gist&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$message = &amp;#39;Message&amp;#39;
+$secret = &amp;#39;secret&amp;#39;
+
+$hmacsha = New-Object System.Security.Cryptography.HMACSHA256
+$hmacsha.key = [Text.Encoding]::ASCII.GetBytes($secret)
+$signature = $hmacsha.ComputeHash([Text.Encoding]::ASCII.GetBytes($message))
+$signature = [Convert]::ToBase64String($signature)
+
+echo $signature
+
+# Do we get the expected signature?
+echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
  </entry>
  
  <entry>

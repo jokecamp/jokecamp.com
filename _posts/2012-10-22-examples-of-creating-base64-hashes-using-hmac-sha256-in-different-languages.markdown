@@ -11,6 +11,7 @@ categories:
 - Code
 tags:
 - C#
+- powershell
 - dart
 - go
 - hmac
@@ -30,7 +31,7 @@ featured: true
 
 I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See the stackOverflow question [What is the use of base 64 encoding?](http://stackoverflow.com/a/201510/215502)
 
-Below are some simplified HMAC SHA 256 solutions. They should all output "**qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=**" given the values of "**secret**" and "**Message**" Take notice of the capital M. It is case sensitive.
+Below are some simplified HMAC SHA 256 solutions. They should all output `qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=` given the values of `secret` and `Message`. Take notice of the capital M. The hashed message is case sensitive.
 
 Jump to an implementation:
 
@@ -47,6 +48,7 @@ Jump to an implementation:
   * [Dart]({{page.url}}#dart)
   * [Swift]({{page.url}}#swift)
   * [Rust]({{page.url}}#rust)
+  * [Powershell]({{page.url}}#powershell)
 
 ### <a name='js'></a>Javascript HMAC SHA256
 
@@ -67,7 +69,7 @@ Dependent upon an open source js library called [http://code.google.com/p/crypto
 ### <a name='php'></a>PHP HMAC SHA256
 
 PHP has built in methods for [hash_hmac](http://php.net/manual/en/function.hash-hmac.php) (PHP 5) and [base64_encode](http://php.net/manual/en/function.base64-encode.php) (PHP 4, PHP 5) resulting in no
-outside dependencies.
+outside dependencies. Say what you want about PHP but they have the cleanest code for this example.
 
 ```php
 $s = hash_hmac('sha256', 'Message', 'secret', true);
@@ -315,5 +317,23 @@ I have not verified but see this [stackOverflow post](http://stackoverflow.com/q
 
 ### <a name='rust'></a>Rust
 
-[Rust (lang)](http://www.rust-lang.org/)
-<https://github.com/alco/rust-digest/blob/master/hmac.rs>
+Take a look at the [alco/rust-digest](https://github.com/alco/rust-digest/blob/master/hmac.rs) repository for [Rust (lang)](http://www.rust-lang.org/) guidance. I have not verified yet.
+
+### <a name='powershell'></a>Powershell (Windows) HMAC SHA256
+
+Mostly wrapping of .NET libraries but useful to see it in powershell's befuddling syntax. See code as [gist](https://gist.github.com/jokecamp/2c1a67b8f277797ecdb3)
+
+```
+$message = 'Message'
+$secret = 'secret'
+
+$hmacsha = New-Object System.Security.Cryptography.HMACSHA256
+$hmacsha.key = [Text.Encoding]::ASCII.GetBytes($secret)
+$signature = $hmacsha.ComputeHash([Text.Encoding]::ASCII.GetBytes($message))
+$signature = [Convert]::ToBase64String($signature)
+
+echo $signature
+
+# Do we get the expected signature?
+echo ($signature -eq 'qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=')
+```
