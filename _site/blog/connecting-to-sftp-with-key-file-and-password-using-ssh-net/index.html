@@ -52,7 +52,7 @@
 <span class="kt">var</span> <span class="n">keyFiles</span> <span class="p">=</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span><span class="n">keyFile</span><span class="p">};</span>
 <span class="kt">var</span> <span class="n">username</span> <span class="p">=</span> <span class="s">&quot;username&quot;</span><span class="p">;</span>
 
-<span class="kt">var</span> <span class="n">methods</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">methods</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">AuthenticationMethod</span><span class="p">&gt;();</span>
 <span class="n">methods</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">PasswordAuthenticationMethod</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="s">&quot;password&quot;</span><span class="p">));</span>
 <span class="n">methods</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">PrivateKeyAuthenticationMethod</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">keyFiles</span><span class="p">));</span>
 

@@ -29,7 +29,7 @@ var keyFile = new PrivateKeyFile(@"C:\Projects\SshProject\OpenSsh-RSA-key.ppk");
 var keyFiles = new[] {keyFile};
 var username = "username";
 
-var methods = new List();
+var methods = new List<AuthenticationMethod>();
 methods.Add(new PasswordAuthenticationMethod(username, "password"));
 methods.Add(new PrivateKeyAuthenticationMethod(username, keyFiles));
 
