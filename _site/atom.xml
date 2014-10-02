@@ -4,13 +4,47 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-09-30T08:02:01-04:00</updated>
+ <updated>2014-10-01T23:32:11-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Simple Examples of PowerShell's Invoke-RestMehod</title>
+   <link href="http://www.jokecamp.com//blog/invoke-restmethod-powershell-examples"/>
+   <updated>2014-10-01T00:00:00-04:00</updated>
+   <id>http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</id>
+   <content type="html">&lt;p&gt;The &lt;a href=&quot;http://technet.microsoft.com/en-us/library/hh849971.aspx&quot;&gt;documentation for Invoke-RestMethod&lt;/a&gt; is a long sea of text. Skip it. These simple examples should get your started with consuming a REST API with PowerShell. Just a quick note that &lt;code&gt;Invoke-RestMethod&lt;/code&gt; will parse the HTTP response for you and return a PowerShell object.&lt;/p&gt;
+
+&lt;h2&gt;Simple GET example&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# assuming the response was in this format { &amp;quot;items&amp;quot;: [] }&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# we can now extract the child people like this&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$people&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;GET with custom headers example&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;New-Object&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;System.Collections.Generic.Dictionary[[String],[String]]&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;X-DATE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;9/29/2014&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;X-SIGNATURE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;234j123l4kl23j41l23k4j&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;X-API-KEY&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;testuser&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people/1&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Headers&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;PUT/POST example&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$person&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;joe&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;doe&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$person&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ConvertTo-Json&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people/1&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Put&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Body&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$json&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-ContentType&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;application/json&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;DELETE example&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people/1&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Delete&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
  
  <entry>
    <title>How to list your jekyll posts by tags</title>

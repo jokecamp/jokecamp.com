@@ -7,6 +7,40 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Simple Examples of PowerShell&#39;s Invoke-RestMehod</title>
+				<description>&lt;p&gt;The &lt;a href=&quot;http://technet.microsoft.com/en-us/library/hh849971.aspx&quot;&gt;documentation for Invoke-RestMethod&lt;/a&gt; is a long sea of text. Skip it. These simple examples should get your started with consuming a REST API with PowerShell. Just a quick note that &lt;code&gt;Invoke-RestMethod&lt;/code&gt; will parse the HTTP response for you and return a PowerShell object.&lt;/p&gt;
+
+&lt;h2&gt;Simple GET example&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# assuming the response was in this format { &amp;quot;items&amp;quot;: [] }&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# we can now extract the child people like this&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$people&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;GET with custom headers example&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;New-Object&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;System.Collections.Generic.Dictionary[[String],[String]]&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;X-DATE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;9/29/2014&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;X-SIGNATURE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;234j123l4kl23j41l23k4j&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;X-API-KEY&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;testuser&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people/1&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Headers&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$headers&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;PUT/POST example&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$person&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;joe&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;lastname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;doe&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$person&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;ConvertTo-Json&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people/1&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Put&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Body&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$json&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-ContentType&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;application/json&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;DELETE example&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people/1&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Delete&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+				<pubDate>Wed, 01 Oct 2014 00:00:00 -0400</pubDate>
+				<link>http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</guid>
+			</item>
+		
+			<item>
 				<title>How to list your jekyll posts by tags</title>
 				<description>&lt;p&gt;The below example code demonstrates how to show and organize your posts by &lt;a href=&quot;http://jekyllrb.com/docs/frontmatter/&quot;&gt;tags&lt;/a&gt; using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;jekyll&lt;/a&gt; and the &lt;a href=&quot;http://docs.shopify.com/themes/liquid-documentation/basics&quot;&gt;liquid template language&lt;/a&gt;. This is basically the same code I use for my own &lt;a href=&quot;/tag/&quot;&gt;listing of posts by tag&lt;/a&gt;.&lt;/p&gt;
 
@@ -923,129 +957,6 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 				<pubDate>Mon, 30 Dec 2013 20:02:46 -0500</pubDate>
 				<link>http://www.jokecamp.com/blog/staying-current-with-techdeveloper-news</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/staying-current-with-techdeveloper-news</guid>
-			</item>
-		
-			<item>
-				<title>Experiment in Restful API Partial Updates via PATCH verb in ServiceStack</title>
-				<description>&lt;p&gt;I&amp;#39;ve recently been thinking about how to implement partial updates in a restful API. Partial updates can be achieved in ServiceStack with very little code using OrmLite. See this old google groups post &lt;a href=&quot;https://groups.google.com/forum/#!topic/servicestack/H9lov15rR14&quot;&gt;Partial Updates via HTTP Patch (or X-HTTP-Method-Override:PATCH)&lt;/a&gt; for my starting point.&lt;/p&gt;
-
-&lt;h3&gt;Restful Implementations&lt;/h3&gt;
-
-&lt;p&gt;We usually see two different approaches in restful APIs when it comes to partial updates.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Use the PATCH verb on a single resource&lt;/strong&gt;. Not all browsers play nice with PATCH. You may need to use the &lt;code&gt;X-HTTP-Method-Override:PATCH&lt;/code&gt; header. I will be using this approach.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Use the POST verb on a single resource&lt;/strong&gt;. In this alternative setup the HTTP methods typically perform the following:
-
-&lt;ul&gt;
-&lt;li&gt;POST to list resource for inserts.&lt;/li&gt;
-&lt;li&gt;PUT to single resource for updates.&lt;/li&gt;
-&lt;li&gt;POST to single resource with fields you want for updates.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;This could also work but I feel like it is not as clear to the consumers. The PUT vs POST argument does not seem to be over yet.&lt;/p&gt;
-
-&lt;h3&gt;Basic Implementation via PATCH&lt;/h3&gt;
-
-&lt;p&gt;Using the first approach, PATCH method my code will operate via the following&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The consumer must provide the fields they wish to update in the querystring as a comma separated value&lt;/li&gt;
-&lt;li&gt;The consumer will request a PATCH to /resource/{id} (/Leagues/1 in our example code)&lt;/li&gt;
-&lt;li&gt;The Service PATCH method will build the SQL by using reflection and OrmLite. We can utilize the built in ModelDefinition and use the OrmLite UpdateOnly method.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Before looking at the code, a couple notes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The use of the querystring to provide a ?fields=Name,Abbreviation allows us to use the common practice in ServiceStack of passing the entire DTO. Our JSON can   contain all the fields but the service will only update the fields provided in the querystring. It would be great to remove this condition and update all fields that are provided in the JSON. I would love to see someone adapt this code and get that working. However, for this experiment it was far simpler to use the querystring.&lt;/li&gt;
-&lt;li&gt;You are able to PATCH partial JSON DTOs as long as ServiceStack succeeds in deserializing the JSON into your DTO.&lt;/li&gt;
-&lt;li&gt;I&amp;#39;ve only tested this with simple DTOs. It would need to be tested and modified to work with more complex DTOs and DTO properties.&lt;/li&gt;
-&lt;li&gt;The code was written with ServiceStack v4 but can easily be adapted to v3.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Clone and run the example yourself on Github via &lt;a href=&quot;https://github.com/jokecamp/ServiceStackv4-Demo-TeamsApi/blob/master/LeagueService.cs&quot;&gt;jokecamp/ServiceStackv4-Demo-TeamsApi&lt;/a&gt; or just view the important code below.&lt;/p&gt;
-
-&lt;p&gt;Below are the League DTO and League Service:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[Route(&amp;quot;/leagues/{Id}&amp;quot;)]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;League&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;    [AutoIncrement, PrimaryKey]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Abbreviation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateCreated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LeagueService&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Service&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;League&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;QueryString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;fields&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;sc&quot;&gt;&amp;#39;,&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Provide the fields to update via ?fields= in querystring&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-        &lt;span class=&quot;n&quot;&gt;Db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UpdateOnly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;delegate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SqlExpression&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModelDefinition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Definition&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FieldDefinitions&lt;/span&gt;
-                    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FirstOrDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FieldName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToLower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToLower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UpdateFields&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FieldName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;expression&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-        &lt;span class=&quot;c1&quot;&gt;// returning entire object. You may want to do a different response code&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SingleById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// omitting the other HTTP verbs methods. use your imagination.&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Example Integration Test&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[Test]&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CanPerform_PartialUpdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;JsonServiceClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://localhost:53990/api/&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// back date for readability&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AddHours&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(-&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// Create a record so we can patch it&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;league&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;League&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;BEFORE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Abbreviation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;BEFORE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateCreated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;league&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// Update Name and DateUpdated fields. Notice I don&amp;#39;t want to update DateCreatedField.&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// I also added a fake field to show it does not cause any errors&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DateTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Now&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;AFTER&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Abbreviation&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;AFTER&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// setting to after but it should not get updated&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Patch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://localhost:53990/api/leagues/&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Id&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;?fields=Name,DateUpdated,thisFieldDoesNotExist&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;AFTER&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Abbreviation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;BEFORE&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;update fields don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateCreated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;created fields don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// double check&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AreNotEqual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateCreated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;updatedLeague&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DateUpdated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-				<pubDate>Tue, 17 Dec 2013 20:00:48 -0500</pubDate>
-				<link>http://www.jokecamp.com/blog/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack</guid>
 			</item>
 		
 	</channel>
