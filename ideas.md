@@ -32,3 +32,7 @@ A game that has developers try to hack into APIs. It would be a fun way of teach
 # Crowd Source Live Sports Scores API
 
 You have to pay for a live sports scores API. What if we created a free API that was populated by the consumers who in turn use the live scores. There could be endpoints for reporting game events. When a game event has enough reports to be considered accurate it would be returned in the API as an verified event. This is basically how the big sports data companies get there data but they rely on about two people per game. A free API would have the world available for reporting. In order to pay for its own hosting maybe it could charge for web-hooks on live events or donations.
+
+# Social Media Newsletter
+
+Allow people to sign up for a weekly newsletter that shows them a summary of what has happened on facebook and twitter while they were away. This might be popular if the backlash from a "always online" presence continues.

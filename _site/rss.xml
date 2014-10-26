@@ -802,11 +802,59 @@ Fn  Function Key&lt;/p&gt;
 		
 			<item>
 				<title>Guide to Football/Soccer data and APIs</title>
-				<description>&lt;p&gt;Last updated: Sep 1 2014&lt;/p&gt;
+				<description>&lt;p&gt;Last updated: Oct 26 2014&lt;/p&gt;
 
 &lt;h2&gt;Where can I actually find football/soccer data?&lt;/h2&gt;
 
+&lt;p&gt;There are three main ways to get data. You can parse/scrape it from a hobbyist project/website, you can pay for it or you can try to collect it yourself.&lt;/p&gt;
+
+&lt;p&gt;Jump to a specific source:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Open source data on github
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#openfootball&quot;&gt;openfootball - football.db&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#soccerstats&quot;&gt;socerstats.us&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#repos&quot;&gt;Other smaller projects/repos&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Free APIs
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Commercial APIs
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#footballapi&quot;&gt;football-api.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#xmlsoccer&quot;&gt;XMLSoccer.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#opta&quot;&gt;opta&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#prozone&quot;&gt;prozone&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#matchanalysis&quot;&gt;Match Analaysis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Other Websites
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#footballsquads.co.uk&quot;&gt;footballsquads.co.uk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#rsssf&quot;&gt;Rec.Sport.Soccer Statistics Foundation (RSSSF)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#CrowdScores&quot;&gt;CrowdScores&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#football-data.co.uk&quot;&gt;football-data.co.uk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#european-football-statistics.co.uk%5D&quot;&gt;european-football-statistics.co.uk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#openligadb.db&quot;&gt;openligadb.db&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#linkedsoccerdata&quot;&gt;Linked Soccer Data&lt;/a&gt; (Research White Paper)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#wiki&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#worldcup&quot;&gt;World Cup 2014 APIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#api-graveyard&quot;&gt;Deprecated/Retired - &amp;quot;The Graveyard of APIs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;github&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
 &lt;h3&gt;Open Source Data on Github&lt;/h3&gt;
+
+&lt;p&gt;&lt;a name=&quot;openfootball&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;openfootball - aka football.db&lt;/h4&gt;
 
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://openfootball.github.io/&quot;&gt;openfootball (aka football.db)&lt;/a&gt;&lt;/strong&gt; has started a free, open source public domain football database.
 The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the 2014 World Cup along with global league data. This is a very promising project and has the &lt;strong&gt;potential to be the definitive source for historical data for the public&lt;/strong&gt;.
@@ -826,32 +874,35 @@ Consider contributing any data you have yourself and be sure to thank &lt;a href
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;http://footballdb.herokuapp.com/api/v1/event/world.2014/teams
 http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;soccerstats&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;soccerstats.us&lt;/h4&gt;
+
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://soccerstats.us&quot;&gt;soccerstats.us&lt;/a&gt;&lt;/strong&gt; is github &lt;a href=&quot;https://github.com/soccerstatsus&quot;&gt;organization&lt;/a&gt; with multiple repositories for sets of data (with a focus on North American data). The &lt;a href=&quot;https://github.com/SoccerStatsUS/parse&quot;&gt;parser&lt;/a&gt; is written in python and looks like it was designed to parse the rsssf.com text data.&lt;/p&gt;
 
-&lt;p&gt;Other projects&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;repos&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Other smaller Projects/Repos&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/jalapic/engsoccerdata&quot;&gt;github.com/jalapic/engsoccerdata&lt;/a&gt; includes a &lt;a href=&quot;https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv&quot;&gt;csv file&lt;/a&gt; of the top 4 tier English League Soccer games from 1888 to 2014.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/jokecamp/FootballData&quot;&gt;github.com/jokecamp/FootballData&lt;/a&gt; includes mostly English JSON and CSV Football/Soccer data for anyone to use.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3&gt;Websites&lt;/h3&gt;
+&lt;p&gt;&lt;a name=&quot;free&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.footballsquads.co.uk/&quot;&gt;footballsquads.co.uk&lt;/a&gt; has current and historical squad details for clubs and national teams from all across the world for many leagues and competitions, including the 2014 World Cup squads.&lt;/p&gt;
+&lt;h3&gt;Free APIs&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.rsssf.com/&quot;&gt;Rec.Sport.Soccer Statistics Foundation&lt;/a&gt; (RSSSF) has massive collection of formatted plain text statistics. &lt;a href=&quot;http://www.rsssf.com/tablese/eng2014.html#premier&quot;&gt;An example of English Premier leagues results&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;openfooty&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://www.footytube.com/openfooty/&quot;&gt;openfooty API&lt;/a&gt; had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://crowdscores.com/&quot;&gt;CrowdScores beta&lt;/a&gt; is UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top reporter with a season ticket. They data collection process is ideal but they might have to work on the incentives. I believe a better incentive would be to allow the reporters who contribute access to an API of all the data collected.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.footytube.com/openfooty/&quot;&gt;openfooty API&lt;/a&gt; had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.football-data.co.uk/data.php&quot;&gt;football-data.co.uk&lt;/a&gt; has made a lot of historical league data available as csv files. The data includes results and a lot of betting/odds related data. I have tried to aggregate and clean up the data in the following repo &lt;a href=&quot;https://github.com/jokecamp/FootballData&quot;&gt;github.com/jokecamp/FootballData&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.european-football-statistics.co.uk/&quot;&gt;www.european-football-statistics.co.uk&lt;/a&gt; is a visually dated website but has a lot of historical football data (mostly an overview of league/tournament results) displayed in nice clean HTML tables. Looks like they already have 2014 EPL stats.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.openligadb.de/Webservices/Sportsdata.asmx&quot;&gt;openligadb.db&lt;/a&gt; has an old-school windows asmx web service with methods such as &amp;quot;GetGoalsByMatch()&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;commerical&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Subscription Services/APIs&lt;/h3&gt;
+
+&lt;p&gt;&lt;a name=&quot;footballapi&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;football-api&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://football-api.com/&quot;&gt;football-api.com&lt;/a&gt; is a paid API service but does offer the English Premier League endpoints for free (demo use). The API will restrict by IP addresses and limit calls based on your package. Includes endponts for Competitions, teams, standings, live scores, fixtures and commentaries. See the &lt;a href=&quot;http://football-api.com/pricing/&quot;&gt;pricing page&lt;/a&gt;.&lt;/p&gt;
 
@@ -862,22 +913,118 @@ api/?Action=today&amp;amp;comp_id=1204&amp;amp;APIKey=####
 api/?Action=fixtures&amp;amp;comp_id=1024&amp;amp;&amp;amp;match_date=[DATE_IN_d.m.Y_FORMAT]&amp;amp;APIKey=####
 api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.optasports.com/playground-section.aspx&quot;&gt;opta Playground&lt;/a&gt; has a developer program that provides very limited access to historical data. The site reads &amp;quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&amp;quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&amp;#39;m not sure why an indie developer would spend time working on a data set they could never afford.&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;xmlsoccer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/&quot;&gt;A FiveThirtyEight behind the scenes look at how opta tracks data&lt;/a&gt; (spoiler: young male gamers).&lt;/p&gt;
+&lt;h4&gt;XMLSoccer.com&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.prozonesports.com/&quot;&gt;prozone&lt;/a&gt;
-&lt;a href=&quot;http://matchanalysis.com/&quot;&gt;Match Analysis&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.xmlsoccer.com/&quot;&gt;xmlsoccer.com&lt;/a&gt; is another subscription service. You can demo the service for free with the Scottish Premier League. The monthly pricing is 10 &amp;#8364; per 1 month, 25 &amp;#8364; per 3 months and 90 &amp;#8364; per 12 months. You can browse the demo web methods here to see the types of calls available &lt;a href=&quot;http://www.xmlsoccer.com/FootballDataDemo.asmx&quot;&gt;http://www.xmlsoccer.com/FootballDataDemo.asmx&lt;/a&gt; and the &lt;a href=&quot;http://www.xmlsoccer.com/FootballDataDemo.asmx?WSDL&quot;&gt;WSDL&lt;/a&gt;. The data is only returned in XML.&lt;/p&gt;
 
-&lt;h3&gt;Other&lt;/h3&gt;
+&lt;p&gt;Each call must provide an API Key. You can get a free demo API Key by registering.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://ceur-ws.org/Vol-1026/paper6.pdf&quot;&gt;Linked Soccer Data&lt;/a&gt; is a white paper on one group&amp;#39;s attempt to &amp;quot;create a dataset including reliable information about soccer
+&lt;p&gt;Example results for a team&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;XMLSOCCER.COM&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Team&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;Team_Id&amp;gt;&lt;/span&gt;45&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Team_Id&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Aberdeen&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;Country&amp;gt;&lt;/span&gt;Scotland&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Country&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;Stadium&amp;gt;&lt;/span&gt;Pittodrie Stadium&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Stadium&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HomePageURL&amp;gt;&lt;/span&gt;http://www.afc.co.uk&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HomePageURL&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;WIKILink&amp;gt;&lt;/span&gt;http://en.wikipedia.org/wiki/Aberdeen_F.C.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/WIKILink&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Team&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;XMLSOCCER.COM&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Player data&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;Player&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;2523&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;David Goodwillie&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Height&amp;gt;&lt;/span&gt;1.7&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Height&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Weight&amp;gt;&lt;/span&gt;70.29&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Weight&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Nationality&amp;gt;&lt;/span&gt;Scotland&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Nationality&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Position&amp;gt;&lt;/span&gt;Forward&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Position&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Team_Id&amp;gt;&lt;/span&gt;45&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Team_Id&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlayerNumber&amp;gt;&lt;/span&gt;17&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlayerNumber&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;DateOfBirth&amp;gt;&lt;/span&gt;1989-03-28T00:00:00-08:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/DateOfBirth&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;DateOfSigning&amp;gt;&lt;/span&gt;2014-07-07T00:00:00-07:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/DateOfSigning&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Signing&amp;gt;&lt;/span&gt;Free&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Signing&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Player&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;opta&lt;/h4&gt;
+
+&lt;p&gt;&lt;a name=&quot;opta&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.optasports.com&quot;&gt;opta&lt;/a&gt; is one of industry leaders. This is what the tv networks use and likely what the actual football clubs use for &lt;a href=&quot;http://www.optasportspro.com/products/scouting-reports-and-data-feeds.aspx&quot;&gt;scouting&lt;/a&gt;. If only this data were public! However, &lt;a href=&quot;http://www.optasports.com/playground-section.aspx&quot;&gt;opta Playground&lt;/a&gt; has a developer program that provides very limited access to historical data. The site reads &amp;quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&amp;quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&amp;#39;m not sure why an indie developer would spend time working on a data set they could never afford. Read this article &lt;a href=&quot;http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/&quot;&gt;FiveThirtyEight behind the scenes look at how opta tracks data&lt;/a&gt; (spoiler: young male gamers).&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;prozone&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;prozone&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.prozonesports.com/&quot;&gt;prozone&lt;/a&gt; is another large commercial data provider.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;matchanalysis&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Match Analysis&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://matchanalysis.com/&quot;&gt;Match Analysis&lt;/a&gt; is another large commercial data provider that lists Fox Soccer Channel, US National Team and the MLS among their clients.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;other&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Other Websites&lt;/h3&gt;
+
+&lt;p&gt;&lt;a name=&quot;footballsquads.co.uk&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;FootballSquads&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.footballsquads.co.uk/&quot;&gt;footballsquads.co.uk&lt;/a&gt; has current and historical squad details for clubs and national teams from all across the world for many leagues and competitions, including the 2014 World Cup squads.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;rsssf&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Rec.Sport.Soccer Statistics Foundation (RSSSF)&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.rsssf.com/&quot;&gt;Rec.Sport.Soccer Statistics Foundation&lt;/a&gt; (RSSSF) has massive collection of formatted plain text statistics. &lt;a href=&quot;http://www.rsssf.com/tablese/eng2014.html#premier&quot;&gt;An example of English Premier leagues results&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;CrowdScores&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;CrowdScores&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://crowdscores.com/&quot;&gt;CrowdScores&lt;/a&gt; is UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top reporter with a season ticket. They data collection process is ideal but they might have to work on the incentives. I believe a better incentive would be to allow the reporters who contribute access to an API of all the data collected.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;football-data.co.uk&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;football-data.co.uk&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.football-data.co.uk/data.php&quot;&gt;football-data.co.uk&lt;/a&gt; is a betting and odds website that has made a lot of historical league data available as csv files. The data includes results and a lot of betting/odds related data. I have tried to aggregate and clean up the data in the following repo &lt;a href=&quot;https://github.com/jokecamp/FootballData&quot;&gt;github.com/jokecamp/FootballData&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;european-football-statistics.co.uk]&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;european-football-statistics.co.uk&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.european-football-statistics.co.uk/&quot;&gt;www.european-football-statistics.co.uk&lt;/a&gt; is a visually dated website but has a lot of historical football data (mostly an overview of league/tournament results) displayed in nice clean HTML tables. Looks like they already have 2014 EPL stats.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;openligadb.db&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;openligadb.db&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.openligadb.de/Webservices/Sportsdata.asmx&quot;&gt;openligadb.db&lt;/a&gt; has an old-school windows asmx web service with methods such as &amp;quot;GetGoalsByMatch()&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;linkedsoccerdata&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Linked Soccer Data&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ceur-ws.org/Vol-1026/paper6.pdf&quot;&gt;Linked Soccer Data (pdf)&lt;/a&gt; is a white paper on one group&amp;#39;s attempt to &amp;quot;create a dataset including reliable information about soccer
 events covering as many historical data as available including recent competition
-results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
+results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;wiki&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Wikipedia&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.wikipedia.org/&quot;&gt;Wikipedia&lt;/a&gt; - has a lot of structured data. You can use their API to query then parse the data. It is very fragmented into specific pages making this a good source if you are looking for very specific team/player data. For example here is a table of Manchester United season results &lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons&quot;&gt;http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;opendata.stackexchange forum&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics&quot;&gt;Are there any open datasets for Soccer statistics?&lt;/a&gt; - keep your eye on this open data forum for more answers.&lt;/p&gt;
 
-&lt;!-- [YouFoot](http://www.youfoot.com) - anything of value here for developers? --&gt;
+&lt;p&gt;&lt;a name=&quot;worldcup&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;2014 World Cup APIs&lt;/h3&gt;
 
@@ -889,9 +1036,7 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/matches&quot;&gt;Unofficial FIFA.com JSON API for Mobile Apps&lt;/a&gt;  This is unofficial and I wouldn&amp;#39;t be surprised if it is protected/unavailable soon. Until then its nice to see data straight from the source. Known endpoints: &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/matches&quot;&gt;matches&lt;/a&gt;, &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/teams&quot;&gt;teams&lt;/a&gt; or detailed &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/match/300186492/en&quot;&gt;match info&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.wikipedia.org/&quot;&gt;Wikipedia&lt;/a&gt; - has a lot of structured data. You can use their API to query then parse the data. It is very fragmented into specific pages making this a good source if you are looking for very specific team/player data. For example here is a table of Manchester United season results &lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons&quot;&gt;http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;graveyard&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;api-graveyard&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Deprecated/Retired - &amp;quot;The Graveyard of APIs&amp;quot;&lt;/h3&gt;
 
@@ -899,7 +1044,9 @@ results.&amp;quot; Some dead links but worthwhile to skim.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://statsfc.com/&quot;&gt;StatsFC&lt;/a&gt; used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their &lt;a href=&quot;https://statsfc.com/statements&quot;&gt;official statement&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Please let me know about your own data sources or add a pull request on &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown&quot;&gt;github&lt;/a&gt;. I have mainly search for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;
+&lt;h3&gt;Share your own sources -- What have I missed?&lt;/h3&gt;
+
+&lt;p&gt;Please let me know about your own data sources or add a pull request on &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown&quot;&gt;github&lt;/a&gt;. I have mainly searched for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;
 </description>
 				<pubDate>Sat, 08 Mar 2014 12:08:40 -0500</pubDate>
 				<link>http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</link>
