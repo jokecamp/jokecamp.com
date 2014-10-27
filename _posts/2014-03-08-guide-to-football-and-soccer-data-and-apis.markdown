@@ -44,10 +44,11 @@ Jump to a specific source:
   - [football-data.co.uk](#football-data.co.uk)
   - [european-football-statistics.co.uk](#european-football-statistics.co.uk])
   - [openligadb.db](#openligadb.db)
-  - [Linked Soccer Data](#linkedsoccerdata) (Research White Paper)
   - [Wikipedia](#wiki)
+  - [Post War English & Scottish Football League A - Z Player's Database](#postwar)
 - [World Cup 2014 APIs](#worldcup)
 - [Deprecated/Retired - "The Graveyard of APIs](#api-graveyard)
+- [More Reading / Resources](#other)
 
 
 <a name="github"></a>
@@ -60,6 +61,15 @@ Jump to a specific source:
 The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the 2014 World Cup along with global league data. This is a very promising project and has the **potential to be the definitive source for historical data for the public**.
 See the [opensport Google Group](https://groups.google.com/forum/#!forum/opensport) for discussion and questions. The data is stored in various repos on github.
 Consider contributing any data you have yourself and be sure to thank [Gerald Bauer](https://github.com/geraldb). All the various repos can be intimidating. A good place to start is at [github.com/openfootball](https://github.com/openfootball/).
+
+An example of the plain text (custom format):
+
+    [Sat Aug/16]
+      12.45  Manchester United    1-2  Swansea City
+      15.00  Leicester City       2-2  Everton FC
+      15.00  Queens Park Rangers  0-1  Hull City
+      15.00  Stoke City           0-1  Aston Villa
+
 
 Check out the following github organizations for more listings:
 
@@ -88,6 +98,8 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 ### Free APIs
 
 <a name="openfooty"></a>
+#### openfooty API
+
 [openfooty API](http://www.footytube.com/openfooty/) had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.
 
 <a name="commerical"></a>
@@ -152,6 +164,17 @@ Player data
 
 [opta](http://www.optasports.com) is one of industry leaders. This is what the tv networks use and likely what the actual football clubs use for [scouting](http://www.optasportspro.com/products/scouting-reports-and-data-feeds.aspx). If only this data were public! However, [opta Playground](http://www.optasports.com/playground-section.aspx) has a developer program that provides very limited access to historical data. The site reads "Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download." You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I'm not sure why an indie developer would spend time working on a data set they could never afford. Read this article [FiveThirtyEight behind the scenes look at how opta tracks data](http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/) (spoiler: young male gamers).
 
+An example of an "event" in xml
+
+```xml
+<Event id="1115853439" event_id="9" type_id="3"
+    period_id="1" min="0" sec="19" player_id="21202"
+    team_id="1744" outcome="1" x="64.9" y="11.6"
+    timestamp="2007-08-19T13:02:08.482" last_modified="2007-08-19T13:02:13">
+        <Q id="152113216" qualifier_id="56" value="Right"/>
+</Event>
+```
+
 <a name="prozone"></a>
 #### prozone
 
@@ -168,12 +191,32 @@ Player data
 <a name="footballsquads.co.uk"></a>
 #### FootballSquads
 
-[footballsquads.co.uk](http://www.footballsquads.co.uk/) has current and historical squad details for clubs and national teams from all across the world for many leagues and competitions, including the 2014 World Cup squads.
+[footballsquads.co.uk](http://www.footballsquads.co.uk/) has current and historical squad details for clubs (rosters) and national teams from all across the world for many leagues and competitions, including the 2014 World Cup squads.
+
+And example of the squad/roster data:
+
+    Num  Name         Nat	Pos  Height	  Weight	Date of Birth	 Birth Place	 Previous Club
+    1    David De Gea ESP	 G	   1.92	   82	     07-11-90	     Madrid	         Atlético Madrid
+    2    Rafael       BRA	 D	   1.72	   65	     09-07-90	     Petrópolis	  Fluminense
 
 <a name="rsssf"></a>
 ### Rec.Sport.Soccer Statistics Foundation (RSSSF)
 
-[Rec.Sport.Soccer Statistics Foundation](http://www.rsssf.com/) (RSSSF) has massive collection of formatted plain text statistics. [An example of English Premier leagues results](http://www.rsssf.com/tablese/eng2014.html#premier).
+[Rec.Sport.Soccer Statistics Foundation](http://www.rsssf.com/) (RSSSF) has massive collection of formatted plain text statistics. [An example of English Premier leagues results](http://www.rsssf.com/tablese/eng2015.html#premier).
+
+Example of the data for table results:
+
+    1.Chelsea                  8   7  1  0  23- 8  22
+    2.Manchester City          8   5  2  1  18- 8  17
+    3.Southampton              8   5  1  2  19- 5  16
+    4.West Ham United          8   4  1  3  15-11  13
+
+and scores:
+
+    Round 1
+    [Aug 16]
+    Arsenal       2-1 Crystal P
+    Leicester     2-2 Everton
 
 <a name="CrowdScores"></a>
 #### CrowdScores
@@ -185,33 +228,76 @@ Player data
 
 [football-data.co.uk](http://www.football-data.co.uk/data.php) is a betting and odds website that has made a lot of historical league data available as csv files. The data includes results and a lot of betting/odds related data. I have tried to aggregate and clean up the data in the following repo [github.com/jokecamp/FootballData](https://github.com/jokecamp/FootballData)
 
+Leagues and divisions included:
+
+    England Football Results  	Premiership & Divs 1,2,3 & Conference
+    Scotland Football Results  	Premiership & Divs 1,2 & 3
+    Germany Football Results  	Bundesligas 1 & 2
+    Italy Football Results  	Serie A & B
+    Spain Football Results  	La Liga (Premera & Segunda)
+    France Football Results  	Le Championnat & Division 2
+    Netherlands Football Results  	KPN Eredivisie
+    Belgium Football Results  	Jupiler League
+    Portugal Football Results  	Liga I
+    Turkey Football Results  	Ligi 1
+    Greece Football Results  	Ethniki Katigoria
+
+The key/legend of all the field abbreviations gives you idea of what is available in the CSV files:
+
+    Div = League Division
+    Date = Match Date (dd/mm/yy)
+    HomeTeam = Home Team
+    AwayTeam = Away Team
+    FTHG = Full Time Home Team Goals
+    FTAG = Full Time Away Team Goals
+    FTR = Full Time Result (H=Home Win, D=Draw, A=Away Win)
+    HTHG = Half Time Home Team Goals
+    HTAG = Half Time Away Team Goals
+    HTR = Half Time Result (H=Home Win, D=Draw, A=Away Win)
+
+    Match Statistics (where available)
+    Attendance = Crowd Attendance
+    Referee = Match Referee
+    HS = Home Team Shots
+    AS = Away Team Shots
+    HST = Home Team Shots on Target
+    AST = Away Team Shots on Target
+    HHW = Home Team Hit Woodwork
+    AHW = Away Team Hit Woodwork
+    HC = Home Team Corners
+    AC = Away Team Corners
+    HF = Home Team Fouls Committed
+    AF = Away Team Fouls Committed
+    HO = Home Team Offsides
+    AO = Away Team Offsides
+    HY = Home Team Yellow Cards
+    AY = Away Team Yellow Cards
+    HR = Home Team Red Cards
+    AR = Away Team Red Cards
+    HBP = Home Team Bookings Points (10 = yellow, 25 = red)
+    ABP = Away Team Bookings Points (10 = yellow, 25 = red)
+
 <a name="european-football-statistics.co.uk]"></a>
 #### european-football-statistics.co.uk
 
-[www.european-football-statistics.co.uk](http://www.european-football-statistics.co.uk/) is a visually dated website but has a lot of historical football data (mostly an overview of league/tournament results) displayed in nice clean HTML tables. Looks like they already have 2014 EPL stats.
+[www.european-football-statistics.co.uk](http://www.european-football-statistics.co.uk/) is a visually dated website but has a lot of historical football data (mostly an overview of league/tournament results) displayed in nice clean HTML tables. Looks like they already have 2014 EPL stats. The site claims "The target of this site is to collect european football statistics which are not easily found on internet."
 
 <a name="openligadb.db"></a>
 #### openligadb.db
 
 [openligadb.db](http://www.openligadb.de/Webservices/Sportsdata.asmx) has an old-school windows asmx web service with methods such as "GetGoalsByMatch()"
 
-<a name="linkedsoccerdata"></a>
-#### Linked Soccer Data
-
-[Linked Soccer Data (pdf)](http://ceur-ws.org/Vol-1026/paper6.pdf) is a white paper on one group's attempt to "create a dataset including reliable information about soccer
-events covering as many historical data as available including recent competition
-results." Some dead links but worth a skim.
-
 <a name="wiki"></a>
 #### Wikipedia
 
-[Wikipedia](http://www.wikipedia.org/) - has a lot of structured data. You can use their API to query then parse the data. It is very fragmented into specific pages making this a good source if you are looking for very specific team/player data. For example here is a table of Manchester United season results <http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons>
+[Wikipedia](http://www.wikipedia.org/) - has a lot of structured data and is also crowd/public sourced. You can use their API to query then parse the data. It is very fragmented into specific pages making this a good source if you are looking for very specific team/player data. For example here is a table of Manchester United season results <http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons>.
 
+<a name="postwar"></a>
+#### Post War English & Scottish Football League A - Z Player's Database
 
-#### opendata.stackexchange forum
+[Post War English & Scottish Football League A - Z Player's Database](http://www.neilbrown.newcastlefans.com/index.html) contains a lot of HTML tables of "players who appeared for their clubs between 1946/47 and the end of the 2013/14 season and who have now left their clubs." Here is a list of [ex-Manchester United players](http://www.neilbrown.newcastlefans.com/manutd/manutd.html).
 
-[Are there any open datasets for Soccer statistics?](http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics) - keep your eye on this open data forum for more answers.
-
+Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
 
 <a name="worldcup"></a>
 ### 2014 World Cup APIs
@@ -230,6 +316,19 @@ results." Some dead links but worth a skim.
 [ESPN API](http://developer.espn.com/docs) has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to "strategic partners." However, you can get lists of players and teams. The **Public API is being retired on Monday, December 8, 2014** [Read the announcement](http://developer.espn.com/blog/read/publicretirement)
 
 [StatsFC](https://statsfc.com/) used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their [official statement](https://statsfc.com/statements).
+
+### Other Reading / Resources
+
+#### opendata.stackexchange forum
+
+[Are there any open datasets for Soccer statistics?](http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics) - keep your eye on this open data forum for more answers.
+
+<a name="linkedsoccerdata"></a>
+#### Linked Soccer Data
+
+[Linked Soccer Data (pdf)](http://ceur-ws.org/Vol-1026/paper6.pdf) is a white paper on one group's attempt to "create a dataset including reliable information about soccer
+events covering as many historical data as available including recent competition
+results." Some dead links but worth a skim.
 
 ### Share your own sources -- What have I missed?
 
