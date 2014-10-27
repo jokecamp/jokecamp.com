@@ -804,7 +804,7 @@ Fn  Function Key&lt;/p&gt;
 				<title>Guide to Football/Soccer data and APIs</title>
 				<description>&lt;p&gt;Last updated: Oct 26 2014&lt;/p&gt;
 
-&lt;h2&gt;Where can I actually find football/soccer data?&lt;/h2&gt;
+&lt;h2&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Where can I actually find football/soccer data?&lt;/h2&gt;
 
 &lt;p&gt;There are three main ways to get data. You can parse/scrape it from a hobbyist project/website, you can pay for it or you can try to collect it yourself.&lt;/p&gt;
 
@@ -851,7 +851,7 @@ Fn  Function Key&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;github&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Open Source Data on Github&lt;/h3&gt;
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Open Source Data on Github&lt;/h3&gt;
 
 &lt;p&gt;&lt;a name=&quot;openfootball&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -890,7 +890,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;p&gt;&lt;a name=&quot;repos&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4&gt;Other smaller Projects/Repos&lt;/h4&gt;
+&lt;h4&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Other smaller Projects/Repos&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/jalapic/engsoccerdata&quot;&gt;github.com/jalapic/engsoccerdata&lt;/a&gt; includes a &lt;a href=&quot;https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv&quot;&gt;csv file&lt;/a&gt; of the top 4 tier English League Soccer games from 1888 to 2014.&lt;/li&gt;
@@ -899,7 +899,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;p&gt;&lt;a name=&quot;free&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Free APIs&lt;/h3&gt;
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Free APIs&lt;/h3&gt;
 
 &lt;p&gt;&lt;a name=&quot;openfooty&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -987,7 +987,7 @@ api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 
 &lt;p&gt;&lt;a name=&quot;other&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Other Websites&lt;/h3&gt;
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Other Websites&lt;/h3&gt;
 
 &lt;p&gt;&lt;a name=&quot;footballsquads.co.uk&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1002,7 +1002,7 @@ api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a name=&quot;rsssf&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Rec.Sport.Soccer Statistics Foundation (RSSSF)&lt;/h3&gt;
+&lt;h4&gt;Rec.Sport.Soccer Statistics Foundation (RSSSF)&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.rsssf.com/&quot;&gt;Rec.Sport.Soccer Statistics Foundation&lt;/a&gt; (RSSSF) has massive collection of formatted plain text statistics. &lt;a href=&quot;http://www.rsssf.com/tablese/eng2015.html#premier&quot;&gt;An example of English Premier leagues results&lt;/a&gt;.&lt;/p&gt;
 
@@ -1105,7 +1105,7 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 
 &lt;p&gt;&lt;a name=&quot;worldcup&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;2014 World Cup APIs&lt;/h3&gt;
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; 2014 World Cup APIs&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.kimonolabs.com/worldcup/explorer&quot;&gt;kimono labs 2014 World Cup Api&lt;/a&gt; - has a very nice restful API available. Free registration required to access the API. The API has a player, team, club, matches, and player&lt;em&gt;season&lt;/em&gt;stats endpoints. See the &lt;a href=&quot;https://www.kimonolabs.com/worldcup/docs&quot;&gt;documentation&lt;/a&gt; and start making calls withe the &lt;a href=&quot;https://www.kimonolabs.com/worldcup/explorer&quot;&gt;API explorer&lt;/a&gt;&lt;/p&gt;
 
@@ -1117,13 +1117,13 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 
 &lt;p&gt;&lt;a name=&quot;api-graveyard&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Deprecated/Retired - &amp;quot;The Graveyard of APIs&amp;quot;&lt;/h3&gt;
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Deprecated/Retired - &amp;quot;The Graveyard of APIs&amp;quot;&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://developer.espn.com/docs&quot;&gt;ESPN API&lt;/a&gt; has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to &amp;quot;strategic partners.&amp;quot; However, you can get lists of players and teams. The &lt;strong&gt;Public API is being retired on Monday, December 8, 2014&lt;/strong&gt; &lt;a href=&quot;http://developer.espn.com/blog/read/publicretirement&quot;&gt;Read the announcement&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://statsfc.com/&quot;&gt;StatsFC&lt;/a&gt; used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their &lt;a href=&quot;https://statsfc.com/statements&quot;&gt;official statement&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3&gt;Other Reading / Resources&lt;/h3&gt;
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Other Reading / Resources&lt;/h3&gt;
 
 &lt;h4&gt;opendata.stackexchange forum&lt;/h4&gt;
 
@@ -1137,7 +1137,7 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 events covering as many historical data as available including recent competition
 results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
 
-&lt;h3&gt;Share your own sources -- What have I missed?&lt;/h3&gt;
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Share your own sources -- What have I missed?&lt;/h3&gt;
 
 &lt;p&gt;Please let me know about your own data sources or add a pull request on &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown&quot;&gt;github&lt;/a&gt;. I have mainly searched for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;
 </description>

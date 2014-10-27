@@ -16,10 +16,9 @@ tags:
 featured: true
 ---
 
-
 Last updated: Oct 26 2014
 
-## Where can I actually find football/soccer data?
+## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
 There are three main ways to get data. You can parse/scrape it from a hobbyist project/website, you can pay for it or you can try to collect it yourself.
 
@@ -52,7 +51,7 @@ Jump to a specific source:
 
 
 <a name="github"></a>
-### Open Source Data on Github
+### <i class="fa fa-futbol-o"></i> Open Source Data on Github
 
 <a name="openfootball"></a>
 #### openfootball - aka football.db
@@ -89,13 +88,13 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 **[soccerstats.us](http://soccerstats.us)** is github [organization](https://github.com/soccerstatsus) with multiple repositories for sets of data (with a focus on North American data). The [parser](https://github.com/SoccerStatsUS/parse) is written in python and looks like it was designed to parse the rsssf.com text data.
 
 <a name="repos"></a>
-#### Other smaller Projects/Repos
+#### <i class="fa fa-futbol-o"></i> Other smaller Projects/Repos
 
  - [github.com/jalapic/engsoccerdata](https://github.com/jalapic/engsoccerdata) includes a [csv file](https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv) of the top 4 tier English League Soccer games from 1888 to 2014.
  - [github.com/jokecamp/FootballData](https://github.com/jokecamp/FootballData) includes mostly English JSON and CSV Football/Soccer data for anyone to use.
 
 <a name="free"></a>
-### Free APIs
+### <i class="fa fa-futbol-o"></i> Free APIs
 
 <a name="openfooty"></a>
 #### openfooty API
@@ -185,7 +184,7 @@ An example of an "event" in xml
 [Match Analysis](http://matchanalysis.com/) is another large commercial data provider that lists Fox Soccer Channel, US National Team and the MLS among their clients.
 
 <a name="other"></a>
-### Other Websites
+### <i class="fa fa-futbol-o"></i> Other Websites
 
 <a name="footballsquads.co.uk"></a>
 #### FootballSquads
@@ -199,7 +198,7 @@ And example of the squad/roster data:
     2    Rafael       BRA	 D	   1.72	   65	     09-07-90	     Petrópolis	  Fluminense
 
 <a name="rsssf"></a>
-### Rec.Sport.Soccer Statistics Foundation (RSSSF)
+#### Rec.Sport.Soccer Statistics Foundation (RSSSF)
 
 [Rec.Sport.Soccer Statistics Foundation](http://www.rsssf.com/) (RSSSF) has massive collection of formatted plain text statistics. [An example of English Premier leagues results](http://www.rsssf.com/tablese/eng2015.html#premier).
 
@@ -299,7 +298,7 @@ The key/legend of all the field abbreviations gives you idea of what is availabl
 Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
 
 <a name="worldcup"></a>
-### 2014 World Cup APIs
+### <i class="fa fa-futbol-o"></i> 2014 World Cup APIs
 
 [kimono labs 2014 World Cup Api](https://www.kimonolabs.com/worldcup/explorer) - has a very nice restful API available. Free registration required to access the API. The API has a player, team, club, matches, and player_season_stats endpoints. See the [documentation](https://www.kimonolabs.com/worldcup/docs) and start making calls withe the [API explorer](https://www.kimonolabs.com/worldcup/explorer)
 
@@ -310,13 +309,13 @@ Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
 [Unofficial FIFA.com JSON API for Mobile Apps](http://live.mobileapp.fifa.com/api/wc/matches)  This is unofficial and I wouldn't be surprised if it is protected/unavailable soon. Until then its nice to see data straight from the source. Known endpoints: [matches](http://live.mobileapp.fifa.com/api/wc/matches), [teams](http://live.mobileapp.fifa.com/api/wc/teams) or detailed [match info](http://live.mobileapp.fifa.com/api/wc/match/300186492/en)
 
 <a name="api-graveyard"></a>
-### Deprecated/Retired - "The Graveyard of APIs"
+### <i class="fa fa-futbol-o"></i> Deprecated/Retired - "The Graveyard of APIs"
 
 [ESPN API](http://developer.espn.com/docs) has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to "strategic partners." However, you can get lists of players and teams. The **Public API is being retired on Monday, December 8, 2014** [Read the announcement](http://developer.espn.com/blog/read/publicretirement)
 
 [StatsFC](https://statsfc.com/) used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their [official statement](https://statsfc.com/statements).
 
-### Other Reading / Resources
+### <i class="fa fa-futbol-o"></i> Other Reading / Resources
 
 #### opendata.stackexchange forum
 
@@ -329,6 +328,6 @@ Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
 events covering as many historical data as available including recent competition
 results." Some dead links but worth a skim.
 
-### Share your own sources -- What have I missed?
+### <i class="fa fa-futbol-o"></i> Share your own sources -- What have I missed?
 
 Please let me know about your own data sources or add a pull request on [github](https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown). I have mainly searched for EPL data and would love to add data from other leagues/competitions to the list.
