@@ -158,11 +158,10 @@ Player data
 </Player>
 ```
 
+<a name="opta"></a>
 #### opta
 
-<a name="opta"></a>
-
-[opta](http://www.optasports.com) is one of industry leaders. This is what the tv networks use and likely what the actual football clubs use for [scouting](http://www.optasportspro.com/products/scouting-reports-and-data-feeds.aspx). If only this data were public! However, [opta Playground](http://www.optasports.com/playground-section.aspx) has a developer program that provides very limited access to historical data. The site reads "Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download." You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I'm not sure why an indie developer would spend time working on a data set they could never afford. Read this article [FiveThirtyEight behind the scenes look at how opta tracks data](http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/) (spoiler: young male gamers).
+[opta](http://www.optasports.com) is one of industry leaders. This is what the tv networks use and likely what the actual football clubs use for [scouting](http://www.optasportspro.com/products/scouting-reports-and-data-feeds.aspx). If only this data were public! However, [opta Playground](http://www.optasports.com/playground-section.aspx) has a developer program that provides very limited access to historical data. The site reads "Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download." You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I'm not sure why an indie developer would spend time working on a data set they could never afford. They even track this data point "Spectator on pitch." Read this article [FiveThirtyEight behind the scenes look at how opta tracks data](http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/) (spoiler: young male gamers).
 
 An example of an "event" in xml
 

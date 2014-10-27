@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-10-26T20:46:05-04:00</updated>
+ <updated>2014-10-26T20:50:57-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -968,11 +968,11 @@ api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;Signing&amp;gt;&lt;/span&gt;Free&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Signing&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Player&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;opta&lt;/h4&gt;
-
 &lt;p&gt;&lt;a name=&quot;opta&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.optasports.com&quot;&gt;opta&lt;/a&gt; is one of industry leaders. This is what the tv networks use and likely what the actual football clubs use for &lt;a href=&quot;http://www.optasportspro.com/products/scouting-reports-and-data-feeds.aspx&quot;&gt;scouting&lt;/a&gt;. If only this data were public! However, &lt;a href=&quot;http://www.optasports.com/playground-section.aspx&quot;&gt;opta Playground&lt;/a&gt; has a developer program that provides very limited access to historical data. The site reads &amp;quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&amp;quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&amp;#39;m not sure why an indie developer would spend time working on a data set they could never afford. Read this article &lt;a href=&quot;http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/&quot;&gt;FiveThirtyEight behind the scenes look at how opta tracks data&lt;/a&gt; (spoiler: young male gamers).&lt;/p&gt;
+&lt;h4&gt;opta&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.optasports.com&quot;&gt;opta&lt;/a&gt; is one of industry leaders. This is what the tv networks use and likely what the actual football clubs use for &lt;a href=&quot;http://www.optasportspro.com/products/scouting-reports-and-data-feeds.aspx&quot;&gt;scouting&lt;/a&gt;. If only this data were public! However, &lt;a href=&quot;http://www.optasports.com/playground-section.aspx&quot;&gt;opta Playground&lt;/a&gt; has a developer program that provides very limited access to historical data. The site reads &amp;quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&amp;quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&amp;#39;m not sure why an indie developer would spend time working on a data set they could never afford. They even track this data point &amp;quot;Spectator on pitch.&amp;quot; Read this article &lt;a href=&quot;http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/&quot;&gt;FiveThirtyEight behind the scenes look at how opta tracks data&lt;/a&gt; (spoiler: young male gamers).&lt;/p&gt;
 
 &lt;p&gt;An example of an &amp;quot;event&amp;quot; in xml&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;Event&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1115853439&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;event_id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;9&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type_id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;3&amp;quot;&lt;/span&gt;
