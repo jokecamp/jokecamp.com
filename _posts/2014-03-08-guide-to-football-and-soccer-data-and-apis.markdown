@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: Oct 26 2014
+Last updated: Oct 30 2014
 
 ## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
@@ -29,6 +29,7 @@ Jump to a specific source:
   - [socerstats.us](#soccerstats)
   - [Other smaller projects/repos](#repos)
 - Free APIs
+  - [football-data.org](#footballdata) (beta)
   - [openfooty API](#openfooty) (hard to get an API Key)
 - Commercial APIs
   - [football-api.com](#footballapi)
@@ -88,7 +89,7 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 **[soccerstats.us](http://soccerstats.us)** is github [organization](https://github.com/soccerstatsus) with multiple repositories for sets of data (with a focus on North American data). The [parser](https://github.com/SoccerStatsUS/parse) is written in python and looks like it was designed to parse the rsssf.com text data.
 
 <a name="repos"></a>
-#### <i class="fa fa-futbol-o"></i> Other smaller Projects/Repos
+#### Other smaller Projects/Repos
 
  - [github.com/jalapic/engsoccerdata](https://github.com/jalapic/engsoccerdata) includes a [csv file](https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv) of the top 4 tier English League Soccer games from 1888 to 2014.
  - [github.com/jokecamp/FootballData](https://github.com/jokecamp/FootballData) includes mostly English JSON and CSV Football/Soccer data for anyone to use.
@@ -96,10 +97,42 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 <a name="free"></a>
 ### <i class="fa fa-futbol-o"></i> Free APIs
 
+<a name="footballdata"></a>
+#### football-data.org (beta)
+
+[football-data.org](http://www.football-data.org/) is a RESTful API in beta and it is great because we can start making calls right now. The data is refreshed every night between 3am and 6am CET. I am excited to see this API grow and mature!
+
+Available endpoints
+
+    /soccerseasons/
+    /soccerseasons/{id}/ranking
+    /soccerseasons/{id}/fixtures
+    /fixtures
+    /soccerseasons/{id}/teams
+    /teams/{id}
+    /teams/{id}/fixtures/
+
+Some example calls:
+
+- <http://www.football-data.org/soccerseasons/>
+- <http://www.football-data.org/soccerseasons/351/teams>
+- <http://www.football-data.org/fixtures>
+- <http://www.football-data.org/teams/5>
+
+
+Example JSON output for a team:
+
+    { "id":5,
+      "name":"FC Bayern München",
+      "shortName":"Bayern",
+      "crestUrl":"http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_M%C3%BCnchen.svg"
+    }
+
 <a name="openfooty"></a>
 #### openfooty API
 
 [openfooty API](http://www.footytube.com/openfooty/) had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.
+
 
 <a name="commerical"></a>
 ### Subscription Services/APIs

@@ -802,7 +802,7 @@ Fn  Function Key&lt;/p&gt;
 		
 			<item>
 				<title>Guide to Football/Soccer data and APIs</title>
-				<description>&lt;p&gt;Last updated: Oct 26 2014&lt;/p&gt;
+				<description>&lt;p&gt;Last updated: Oct 30 2014&lt;/p&gt;
 
 &lt;h2&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -821,6 +821,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;Free APIs
 
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#footballdata&quot;&gt;football-data.org&lt;/a&gt; (beta)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Commercial APIs
@@ -890,7 +891,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;p&gt;&lt;a name=&quot;repos&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Other smaller Projects/Repos&lt;/h4&gt;
+&lt;h4&gt;Other smaller Projects/Repos&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/jalapic/engsoccerdata&quot;&gt;github.com/jalapic/engsoccerdata&lt;/a&gt; includes a &lt;a href=&quot;https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv&quot;&gt;csv file&lt;/a&gt; of the top 4 tier English League Soccer games from 1888 to 2014.&lt;/li&gt;
@@ -901,6 +902,37 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Free APIs&lt;/h3&gt;
 
+&lt;p&gt;&lt;a name=&quot;footballdata&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;football-data.org (beta)&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.football-data.org/&quot;&gt;football-data.org&lt;/a&gt; is a RESTful API in beta and it is great because we can start making calls right now. The data is refreshed every night between 3am and 6am CET. I am excited to see this API grow and mature!&lt;/p&gt;
+
+&lt;p&gt;Available endpoints&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;/soccerseasons/
+/soccerseasons/{id}/ranking
+/soccerseasons/{id}/fixtures
+/fixtures
+/soccerseasons/{id}/teams
+/teams/{id}
+/teams/{id}/fixtures/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Some example calls:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.football-data.org/soccerseasons/&quot;&gt;http://www.football-data.org/soccerseasons/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.football-data.org/soccerseasons/351/teams&quot;&gt;http://www.football-data.org/soccerseasons/351/teams&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.football-data.org/fixtures&quot;&gt;http://www.football-data.org/fixtures&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.football-data.org/teams/5&quot;&gt;http://www.football-data.org/teams/5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Example JSON output for a team:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{ &amp;quot;id&amp;quot;:5,
+  &amp;quot;name&amp;quot;:&amp;quot;FC Bayern München&amp;quot;,
+  &amp;quot;shortName&amp;quot;:&amp;quot;Bayern&amp;quot;,
+  &amp;quot;crestUrl&amp;quot;:&amp;quot;http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_M%C3%BCnchen.svg&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a name=&quot;openfooty&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4&gt;openfooty API&lt;/h4&gt;

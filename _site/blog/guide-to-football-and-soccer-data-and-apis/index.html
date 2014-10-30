@@ -39,7 +39,7 @@
         <div class="post">
   <h1 class="post-title">Guide to Football/Soccer data and APIs</h1>
   <span class="post-date">08 Mar 2014</span>
-  <p>Last updated: Oct 26 2014</p>
+  <p>Last updated: Oct 30 2014</p>
 
 <h2><i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?</h2>
 
@@ -58,6 +58,7 @@
 <li>Free APIs
 
 <ul>
+<li><a href="#footballdata">football-data.org</a> (beta)</li>
 <li><a href="#openfooty">openfooty API</a> (hard to get an API Key)</li>
 </ul></li>
 <li>Commercial APIs
@@ -127,7 +128,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 <p><a name="repos"></a></p>
 
-<h4><i class="fa fa-futbol-o"></i> Other smaller Projects/Repos</h4>
+<h4>Other smaller Projects/Repos</h4>
 
 <ul>
 <li><a href="https://github.com/jalapic/engsoccerdata">github.com/jalapic/engsoccerdata</a> includes a <a href="https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv">csv file</a> of the top 4 tier English League Soccer games from 1888 to 2014.</li>
@@ -138,6 +139,37 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 <h3><i class="fa fa-futbol-o"></i> Free APIs</h3>
 
+<p><a name="footballdata"></a></p>
+
+<h4>football-data.org (beta)</h4>
+
+<p><a href="http://www.football-data.org/">football-data.org</a> is a RESTful API in beta and it is great because we can start making calls right now. The data is refreshed every night between 3am and 6am CET. I am excited to see this API grow and mature!</p>
+
+<p>Available endpoints</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/soccerseasons/
+/soccerseasons/{id}/ranking
+/soccerseasons/{id}/fixtures
+/fixtures
+/soccerseasons/{id}/teams
+/teams/{id}
+/teams/{id}/fixtures/
+</code></pre></div>
+<p>Some example calls:</p>
+
+<ul>
+<li><a href="http://www.football-data.org/soccerseasons/">http://www.football-data.org/soccerseasons/</a></li>
+<li><a href="http://www.football-data.org/soccerseasons/351/teams">http://www.football-data.org/soccerseasons/351/teams</a></li>
+<li><a href="http://www.football-data.org/fixtures">http://www.football-data.org/fixtures</a></li>
+<li><a href="http://www.football-data.org/teams/5">http://www.football-data.org/teams/5</a></li>
+</ul>
+
+<p>Example JSON output for a team:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{ &quot;id&quot;:5,
+  &quot;name&quot;:&quot;FC Bayern München&quot;,
+  &quot;shortName&quot;:&quot;Bayern&quot;,
+  &quot;crestUrl&quot;:&quot;http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_M%C3%BCnchen.svg&quot;
+}
+</code></pre></div>
 <p><a name="openfooty"></a></p>
 
 <h4>openfooty API</h4>
