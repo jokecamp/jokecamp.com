@@ -2,7 +2,7 @@
 author: Joe Kampschmidt
 layout: post
 slug: why-is-svn-merge-not-tracking-merged-revisions
-title: Why is SVN merge not tracking merged revisions
+title: Why is SVN merge not tracking merged revisions?
 desc: 'Brief explanation why SVN and TortiseSVN might not be recording the revision in the Merge Info properties'
 tags:
 - svn

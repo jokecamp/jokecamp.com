@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-11-06T18:51:36-05:00</updated>
+ <updated>2014-11-06T18:52:50-05:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>Why is SVN merge not tracking merged revisions</title>
+   <title>Why is SVN merge not tracking merged revisions?</title>
    <link href="http://www.jokecamp.com//blog/why-is-svn-merge-not-tracking-merged-revisions"/>
    <updated>2014-11-06T00:00:00-05:00</updated>
    <id>http://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</id>
