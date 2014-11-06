@@ -4,13 +4,40 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-10-30T18:53:11-04:00</updated>
+ <updated>2014-11-06T18:45:14-05:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Why is SVN Merge Tracking not working?</title>
+   <link href="http://www.jokecamp.com//blog/svn-merge-info-not-tracking"/>
+   <updated>2014-11-06T00:00:00-05:00</updated>
+   <id>http://www.jokecamp.com/blog/svn-merge-info-not-tracking</id>
+   <content type="html">&lt;p&gt;The most likely answer:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The URL to merge from is case-sensitive. If you merge from a URL with the wrong casing the merge will work for the files but the revision will not be recorded in the MergeInfo property.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This can be a frustrating problem because SVN and &lt;a href=&quot;http://tortoisesvn.net/&quot;&gt;TortiseSVN&lt;/a&gt; do not give any feedback/notification about the mis-matching urls during a &lt;a href=&quot;http://svnbook.red-bean.com/en/1.7/svn.branchmerge.basicmerging.html&quot;&gt;merge&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;How I figured it out&lt;/h2&gt;
+
+&lt;p&gt;Recently, my svn client merge-tracking stopped working. I was performing merges with &lt;a href=&quot;http://tortoisesvn.net/&quot;&gt;TortiseSVN&lt;/a&gt; at the root level but the revision numbers where not being recorded in the MergeInfo Property. There were no error messages either.&lt;/p&gt;
+
+&lt;p&gt;I then tried merging directly with svn from the command line but got the same result. No error messages either.&lt;/p&gt;
+
+&lt;p&gt;It was not until I thought to try to do a merge from the command line with the &lt;code&gt;--record-only&lt;/code&gt; option. This was the only command that provided an actual error message:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;svn merge -c 16304 https://server/svn/project/trunk/ --record-only
+svn: E200004: Merge from foreign repository is not compatible with mergeinfo modification
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once I had a meaningful error, I was able to track down this old forum conversation (argument) about &lt;a href=&quot;http://tigris-scm.10930.n7.nabble.com/Why-Merge-Tracking-is-disabled-td24815.html&quot;&gt;case sensitive urls and TortiseSVN&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I hope this saves you some time.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Simple Examples of PowerShell's Invoke-RestMehod</title>

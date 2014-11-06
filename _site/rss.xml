@@ -7,6 +7,33 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Why is SVN Merge Tracking not working?</title>
+				<description>&lt;p&gt;The most likely answer:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The URL to merge from is case-sensitive. If you merge from a URL with the wrong casing the merge will work for the files but the revision will not be recorded in the MergeInfo property.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This can be a frustrating problem because SVN and &lt;a href=&quot;http://tortoisesvn.net/&quot;&gt;TortiseSVN&lt;/a&gt; do not give any feedback/notification about the mis-matching urls during a &lt;a href=&quot;http://svnbook.red-bean.com/en/1.7/svn.branchmerge.basicmerging.html&quot;&gt;merge&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;How I figured it out&lt;/h2&gt;
+
+&lt;p&gt;Recently, my svn client merge-tracking stopped working. I was performing merges with &lt;a href=&quot;http://tortoisesvn.net/&quot;&gt;TortiseSVN&lt;/a&gt; at the root level but the revision numbers where not being recorded in the MergeInfo Property. There were no error messages either.&lt;/p&gt;
+
+&lt;p&gt;I then tried merging directly with svn from the command line but got the same result. No error messages either.&lt;/p&gt;
+
+&lt;p&gt;It was not until I thought to try to do a merge from the command line with the &lt;code&gt;--record-only&lt;/code&gt; option. This was the only command that provided an actual error message:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;svn merge -c 16304 https://server/svn/project/trunk/ --record-only
+svn: E200004: Merge from foreign repository is not compatible with mergeinfo modification
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Once I had a meaningful error, I was able to track down this old forum conversation (argument) about &lt;a href=&quot;http://tigris-scm.10930.n7.nabble.com/Why-Merge-Tracking-is-disabled-td24815.html&quot;&gt;case sensitive urls and TortiseSVN&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I hope this saves you some time.&lt;/p&gt;
+</description>
+				<pubDate>Thu, 06 Nov 2014 00:00:00 -0500</pubDate>
+				<link>http://www.jokecamp.com/blog/svn-merge-info-not-tracking</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/svn-merge-info-not-tracking</guid>
+			</item>
+		
+			<item>
 				<title>Simple Examples of PowerShell&#39;s Invoke-RestMehod</title>
 				<description>&lt;p&gt;The &lt;a href=&quot;http://technet.microsoft.com/en-us/library/hh849971.aspx&quot;&gt;documentation for Invoke-RestMethod&lt;/a&gt; is a long sea of text. Skip it. These simple examples should get your started with consuming a REST API with PowerShell. Just a quick note that &lt;code&gt;Invoke-RestMethod&lt;/code&gt; will parse the HTTP response for you and return a PowerShell object.&lt;/p&gt;
 
@@ -1176,59 +1203,6 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
 				<pubDate>Sat, 08 Mar 2014 12:08:40 -0500</pubDate>
 				<link>http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</guid>
-			</item>
-		
-			<item>
-				<title>Staying current with Tech/Developer News</title>
-				<description>&lt;h3&gt;&lt;a href=&quot;http://news.ycombinator.com&quot;&gt;Hacker News&lt;/a&gt; and Newsletter - News and Articles&lt;/h3&gt;
-
-&lt;p&gt;There is a lot of love and hate for &lt;a href=&quot;http://news.ycombinator.com&quot;&gt;Hacker News&lt;/a&gt;. Regardless you should be reading it to see what is trending in the tech world. The site is not really what the names implies. It is geared towards the tech startup/founder who develops. This is no surprise since it was created by &lt;a href=&quot;http://ycombinator.com/&quot;&gt;Y Combinator&lt;/a&gt; but really the site is visited by all different types of developers and innovators. A lot of industry experts read and participate in the comments. Just remember when digging through the comments to read a few on both sides of the debate. I strongly recommend you &lt;strong&gt;signup for the &lt;a href=&quot;http://www.hackernewsletter.com/&quot;&gt;newsletter&lt;/a&gt;&lt;/strong&gt; and avoid constantly visiting the website and hitting refresh. The newsletter is a great weekly email that highlights the best articles and comments. Here is the MailChimp archive of &lt;a href=&quot;http://us1.campaign-archive1.com/home/?u=faa8eb4ef3a111cef92c4f3d4&amp;amp;id=e505c88a2e&quot;&gt;past issues&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3&gt;&lt;a href=&quot;https://github.com/explore&quot;&gt;Explore GitHub&lt;/a&gt; - Trending Repos&lt;/h3&gt;
-
-&lt;p&gt;I really enjoy seeing the open source repositories that are trending on GitHub. It is a quick way to see what other developers in your language are staring and forking. For instance you can quickly see the &lt;a href=&quot;https://github.com/trending?l=csharp&quot;&gt;trending repositories for C#&lt;/a&gt; for a given day, week or month. Sometimes I will peruse other languages and see what problems they are solving. I might ask myself &amp;quot;what are people using golang for?&amp;quot; and then I see the answer by checking the &lt;a href=&quot;https://github.com/trending?l=go&amp;amp;since=monthly&quot;&gt;golang trending repositories&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Subscribe to the &lt;a href=&quot;https://github.com/explore/subscribe&quot;&gt;GitHub digest&lt;/a&gt;&lt;/strong&gt; and don&amp;#39;t worry about missing anything. I recommend the weekly email. The email will also include what repos were starred by who your are following so be sure you are following other developers.&lt;/p&gt;
-
-&lt;h3&gt;Using Twitter Lists&lt;/h3&gt;
-
-&lt;p&gt;A often overlooked feature of Twitter are the lists. Most users follow a mix of friends, family, peers and notable people. In order to filter out the social noise we can use the lists to restrict the timeline to only developers. I don&amp;#39;t browse this as much as the above two methods but I do like seeing specific people&amp;#39;s opinions as things happen. And since lists can be public there is no point in trying to build your own. There are a lot of public lists. If you have some good ones please share in the comments.&lt;/p&gt;
-
-&lt;p&gt;A good way to find new lists is to start with a popular twitter user and see what lists already belong to. For example here are all the lists that Scott Hanselman is a member of &lt;a href=&quot;https://twitter.com/shanselman/memberships&quot;&gt;twitter.com/shanselman/memberships&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here are some examples.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://twitter.com/jokecamp/coders&quot;&gt;coders&lt;/a&gt; - my list with a C#/.NET bias&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://twitter.com/shanselman/lists/programmers&quot;&gt;programmers&lt;/a&gt; by Scott Hanselman&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://twitter.com/JeremyCMorgan/lists/microsoft-net-developers&quot;&gt;microsoft-net-developers&lt;/a&gt; by Jeremy Morgan&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Others&lt;/h3&gt;
-
-&lt;p&gt;Quora is useful if you want to learn about the tech world culture. For questions like:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.quora.com/Working-at-Google-1/Whats-the-worst-part-about-working-at-Google&quot;&gt;What&amp;#39;s the worst part about working at Google?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.quora.com/Y-Combinator/What-was-the-most-valuable-experience-you-gained-from-Y-Combinator&quot;&gt;What was the most valuable experience you gained from Y Combinator?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.quora.com/Netflix/How-does-Netflix-run-their-interview-process&quot;&gt;How does Netflix run their interview process?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I am subscribed to the newsletter but not sure I would recommend it for a tech news source. They tailor their newsletter and the algorithm needs some work.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Podcasts&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.dotnetrocks.com/&quot;&gt;.NET Rocks!&lt;/a&gt; Podcast - can get quite technical&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://thisdeveloperslife.com/&quot;&gt;This Developer&amp;#39;s Life&lt;/a&gt; Podcast - A podcast about developers and their lives.&lt;/li&gt;
-&lt;li&gt;A more comprehensive &lt;a href=&quot;http://stackoverflow.com/a/531590/215502&quot;&gt;list of developer podcasts&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Humor&lt;/strong&gt;. Be sure to check out &lt;a href=&quot;http://xkcd.com/&quot;&gt;xkcd&lt;/a&gt; to keep your geeky sense of humor.&lt;/p&gt;
-</description>
-				<pubDate>Mon, 30 Dec 2013 20:02:46 -0500</pubDate>
-				<link>http://www.jokecamp.com/blog/staying-current-with-techdeveloper-news</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/staying-current-with-techdeveloper-news</guid>
 			</item>
 		
 	</channel>
