@@ -7,7 +7,7 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>Why is SVN Merge Tracking not working?</title>
+				<title>Why is SVN merge not tracking merged revisions</title>
 				<description>&lt;p&gt;The most likely answer:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;The URL to merge from is case-sensitive. If you merge from a URL with the wrong casing the merge will work for the files but the revision will not be recorded in the MergeInfo property.&lt;/strong&gt;&lt;/p&gt;
@@ -29,8 +29,8 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 &lt;p&gt;I hope this saves you some time.&lt;/p&gt;
 </description>
 				<pubDate>Thu, 06 Nov 2014 00:00:00 -0500</pubDate>
-				<link>http://www.jokecamp.com/blog/svn-merge-info-not-tracking</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/svn-merge-info-not-tracking</guid>
+				<link>http://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</guid>
 			</item>
 		
 			<item>
