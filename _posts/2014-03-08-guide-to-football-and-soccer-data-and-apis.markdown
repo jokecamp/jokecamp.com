@@ -33,6 +33,7 @@ Jump to a specific source:
   - [openfooty API](#openfooty) (hard to get an API Key)
 - Commercial APIs
   - [football-api.com](#footballapi)
+  - [CrowdScores and FastestLiveScores](#CrowdScores)
   - [XMLSoccer.com](#xmlsoccer)
   - [opta](#opta)
   - [prozone](#prozone)
@@ -40,7 +41,6 @@ Jump to a specific source:
 - Other Websites
   - [footballsquads.co.uk](#footballsquads.co.uk)
   - [Rec.Sport.Soccer Statistics Foundation (RSSSF)](#rsssf)
-  - [CrowdScores and FastestLiveScores](#CrowdScores)
   - [football-data.co.uk](#football-data.co.uk)
   - [european-football-statistics.co.uk](#european-football-statistics.co.uk])
   - [openligadb.db](#openligadb.db)
@@ -150,6 +150,12 @@ Example endpoints:
     api/?Action=fixtures&comp_id=1024&&match_date=[DATE_IN_d.m.Y_FORMAT]&APIKey=####
     api/?Action=commentaries&APIKey=###&match_id=[MATCH_ID]
 
+<a name="CrowdScores"></a>
+#### CrowdScores and FastestLiveScores
+
+[CrowdScores](https://crowdscores.com/) is a UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on [FastestLiveScores.com](http://fastestlivescores.com/). They currently offer [three different API tiers](http://fastestlivescores.com/live-scores-api-feed/). Basic, Pro and Complete. The basic tier is suppose to be free with 3 calls allowed per hour. However, looks like they are only giving keys on a user by user basis. I requested access to the basic tier but have not received access yet. I only received an email asking me why I needed access and what I planned to do with their API.
+
+
 <a name="xmlsoccer"></a>
 #### XMLSoccer.com
 
@@ -249,10 +255,6 @@ and scores:
     Arsenal       2-1 Crystal P
     Leicester     2-2 Everton
 
-<a name="CrowdScores"></a>
-#### CrowdScores and FastestLiveScores
-
-[CrowdScores](https://crowdscores.com/) is a UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on [FastestLiveScores.com](http://fastestlivescores.com/). They currently offer [three different API tiers](http://fastestlivescores.com/live-scores-api-feed/). Basic, Pro and Complete. The basic tier is suppose to be free with 3 calls allowed per hour. However, looks like they are only giving keys on a user by user basis. I requested access to the basic tier but have not received access yet. I only received an email asking me why I needed access and what I planned to do with their API.
 
 <a name="football-data.co.uk"></a>
 #### football-data.co.uk

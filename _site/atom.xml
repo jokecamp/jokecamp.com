@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-11-26T16:08:53-05:00</updated>
+ <updated>2014-11-26T16:11:32-05:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -864,6 +864,7 @@ Fn  Function Key&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#footballapi&quot;&gt;football-api.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#CrowdScores&quot;&gt;CrowdScores and FastestLiveScores&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#xmlsoccer&quot;&gt;XMLSoccer.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#opta&quot;&gt;opta&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#prozone&quot;&gt;prozone&lt;/a&gt;&lt;/li&gt;
@@ -874,7 +875,6 @@ Fn  Function Key&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#footballsquads.co.uk&quot;&gt;footballsquads.co.uk&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#rsssf&quot;&gt;Rec.Sport.Soccer Statistics Foundation (RSSSF)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#CrowdScores&quot;&gt;CrowdScores and FastestLiveScores&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#football-data.co.uk&quot;&gt;football-data.co.uk&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#european-football-statistics.co.uk%5D&quot;&gt;european-football-statistics.co.uk&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#openligadb.db&quot;&gt;openligadb.db&lt;/a&gt;&lt;/li&gt;
@@ -992,6 +992,12 @@ api/?Action=today&amp;amp;comp_id=1204&amp;amp;APIKey=####
 api/?Action=fixtures&amp;amp;comp_id=1024&amp;amp;&amp;amp;match_date=[DATE_IN_d.m.Y_FORMAT]&amp;amp;APIKey=####
 api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;CrowdScores&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;CrowdScores and FastestLiveScores&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://crowdscores.com/&quot;&gt;CrowdScores&lt;/a&gt; is a UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on &lt;a href=&quot;http://fastestlivescores.com/&quot;&gt;FastestLiveScores.com&lt;/a&gt;. They currently offer &lt;a href=&quot;http://fastestlivescores.com/live-scores-api-feed/&quot;&gt;three different API tiers&lt;/a&gt;. Basic, Pro and Complete. The basic tier is suppose to be free with 3 calls allowed per hour. However, looks like they are only giving keys on a user by user basis. I requested access to the basic tier but have not received access yet. I only received an email asking me why I needed access and what I planned to do with their API.&lt;/p&gt;
+
 &lt;p&gt;&lt;a name=&quot;xmlsoccer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4&gt;XMLSoccer.com&lt;/h4&gt;
@@ -1086,12 +1092,6 @@ api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 Arsenal       2-1 Crystal P
 Leicester     2-2 Everton
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;CrowdScores&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;CrowdScores and FastestLiveScores&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://crowdscores.com/&quot;&gt;CrowdScores&lt;/a&gt; is a UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on &lt;a href=&quot;http://fastestlivescores.com/&quot;&gt;FastestLiveScores.com&lt;/a&gt;. They currently offer &lt;a href=&quot;http://fastestlivescores.com/live-scores-api-feed/&quot;&gt;three different API tiers&lt;/a&gt;. Basic, Pro and Complete. The basic tier is suppose to be free with 3 calls allowed per hour. However, looks like they are only giving keys on a user by user basis. I requested access to the basic tier but have not received access yet. I only received an email asking me why I needed access and what I planned to do with their API.&lt;/p&gt;
-
 &lt;p&gt;&lt;a name=&quot;football-data.co.uk&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4&gt;football-data.co.uk&lt;/h4&gt;
