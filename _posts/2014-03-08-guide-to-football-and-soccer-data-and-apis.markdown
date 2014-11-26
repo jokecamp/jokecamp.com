@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: Oct 30 2014
+Last updated: Nov 26 2014
 
 ## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
@@ -40,7 +40,7 @@ Jump to a specific source:
 - Other Websites
   - [footballsquads.co.uk](#footballsquads.co.uk)
   - [Rec.Sport.Soccer Statistics Foundation (RSSSF)](#rsssf)
-  - [CrowdScores](#CrowdScores)
+  - [CrowdScores and FastestLiveScores](#CrowdScores)
   - [football-data.co.uk](#football-data.co.uk)
   - [european-football-statistics.co.uk](#european-football-statistics.co.uk])
   - [openligadb.db](#openligadb.db)
@@ -250,9 +250,9 @@ and scores:
     Leicester     2-2 Everton
 
 <a name="CrowdScores"></a>
-#### CrowdScores
+#### CrowdScores and FastestLiveScores
 
-[CrowdScores](https://crowdscores.com/) is UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top reporter with a season ticket. They data collection process is ideal but they might have to work on the incentives. I believe a better incentive would be to allow the reporters who contribute access to an API of all the data collected.
+[CrowdScores](https://crowdscores.com/) is a UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on [FastestLiveScores.com](http://fastestlivescores.com/). They currently offer [three different API tiers](http://fastestlivescores.com/live-scores-api-feed/). Basic, Pro and Complete. The basic tier is suppose to be free with 3 calls allowed per hour. However, looks like they are only giving keys on a user by user basis. I requested access to the basic tier but have not received access yet. I only received an email asking me why I needed access and what I planned to do with their API.
 
 <a name="football-data.co.uk"></a>
 #### football-data.co.uk
