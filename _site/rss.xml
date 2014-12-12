@@ -848,7 +848,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;Free APIs
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#footballdata&quot;&gt;football-data.org&lt;/a&gt; (beta)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#footballdata&quot;&gt;football-data.org&lt;/a&gt; (beta) (RESTful)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Commercial APIs
@@ -933,7 +933,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;h4&gt;football-data.org (beta)&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.football-data.org/&quot;&gt;football-data.org&lt;/a&gt; is a RESTful API in beta and it is great because we can start making calls right now. The data is refreshed every night between 3am and 6am CET. I am excited to see this API grow and mature!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.football-data.org/&quot;&gt;football-data.org&lt;/a&gt; is a RESTful API in beta with regularly updated data. If you &lt;a href=&quot;http://www.football-data.org/register&quot;&gt;register for a free API key&lt;/a&gt; you will get CORS support. I recommend registering for a key to show your support and help the service track usage. However, a key is not required yet so you can try out the endpoints right now. I am excited to see this API grow and mature!&lt;/p&gt;
 
 &lt;p&gt;Available endpoints&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;/soccerseasons/

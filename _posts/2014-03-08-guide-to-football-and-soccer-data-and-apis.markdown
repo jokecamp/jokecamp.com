@@ -29,7 +29,7 @@ Jump to a specific source:
   - [socerstats.us](#soccerstats)
   - [Other smaller projects/repos](#repos)
 - Free APIs
-  - [football-data.org](#footballdata) (beta)
+  - [football-data.org](#footballdata) (beta) (RESTful)
   - [openfooty API](#openfooty) (hard to get an API Key)
 - Commercial APIs
   - [football-api.com](#footballapi)
@@ -100,7 +100,7 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 <a name="footballdata"></a>
 #### football-data.org (beta)
 
-[football-data.org](http://www.football-data.org/) is a RESTful API in beta and it is great because we can start making calls right now. The data is refreshed every night between 3am and 6am CET. I am excited to see this API grow and mature!
+[football-data.org](http://www.football-data.org/) is a RESTful API in beta with regularly updated data. If you [register for a free API key](http://www.football-data.org/register) you will get CORS support. I recommend registering for a key to show your support and help the service track usage. However, a key is not required yet so you can try out the endpoints right now. I am excited to see this API grow and mature!
 
 Available endpoints
 
