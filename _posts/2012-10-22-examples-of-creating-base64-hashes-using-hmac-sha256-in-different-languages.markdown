@@ -211,7 +211,7 @@ Most of the code required was for converting to bae64 and working the NSString a
 
 ### <a name='go'></a>Go programming language - Golang HMAC SHA256
 
-  * [Try it online in your browser with Play GoLang](http://play.golang.org/p/05CGjt778r)
+  * [Try it online in your browser with Play GoLang](http://play.golang.org/p/iTmI0RUCkD)
   * [crypto/hmac package](http://golang.org/pkg/crypto/hmac/)
 
 ```go
