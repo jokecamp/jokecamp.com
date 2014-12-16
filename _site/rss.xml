@@ -1196,6 +1196,17 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 events covering as many historical data as available including recent competition
 results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
 
+&lt;h4&gt;Other Links&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;See this 2012 &lt;a href=&quot;http://opisthokonta.net/?p=63&quot;&gt;opisthokonta.net&lt;/a&gt; blog post.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://clubelo.com/Data/&quot;&gt;http://clubelo.com/Data/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&quot;&gt;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&quot;&gt;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.colours-of-football.com/&quot;&gt;Football kit colors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.historicalkits.co.uk/&quot;&gt;Historial kits&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Share your own sources -- What have I missed?&lt;/h3&gt;
 
 &lt;p&gt;Please let me know about your own data sources or add a pull request on &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown&quot;&gt;github&lt;/a&gt;. I have mainly searched for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;

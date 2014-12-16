@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2014-12-12T08:15:14-05:00</updated>
+ <updated>2014-12-16T08:31:38-05:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1204,6 +1204,17 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 &lt;p&gt;&lt;a href=&quot;http://ceur-ws.org/Vol-1026/paper6.pdf&quot;&gt;Linked Soccer Data (pdf)&lt;/a&gt; is a white paper on one group&amp;#39;s attempt to &amp;quot;create a dataset including reliable information about soccer
 events covering as many historical data as available including recent competition
 results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
+
+&lt;h4&gt;Other Links&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;See this 2012 &lt;a href=&quot;http://opisthokonta.net/?p=63&quot;&gt;opisthokonta.net&lt;/a&gt; blog post.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://clubelo.com/Data/&quot;&gt;http://clubelo.com/Data/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&quot;&gt;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&quot;&gt;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.colours-of-football.com/&quot;&gt;Football kit colors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.historicalkits.co.uk/&quot;&gt;Historial kits&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Share your own sources -- What have I missed?&lt;/h3&gt;
 
@@ -2507,7 +2518,7 @@ outside dependencies. Say what you want about PHP but they have the cleanest cod
 &lt;h3&gt;&lt;a name=&#39;go&#39;&gt;&lt;/a&gt;Go programming language - Golang HMAC SHA256&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://play.golang.org/p/05CGjt778r&quot;&gt;Try it online in your browser with Play GoLang&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://play.golang.org/p/iTmI0RUCkD&quot;&gt;Try it online in your browser with Play GoLang&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://golang.org/pkg/crypto/hmac/&quot;&gt;crypto/hmac package&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;

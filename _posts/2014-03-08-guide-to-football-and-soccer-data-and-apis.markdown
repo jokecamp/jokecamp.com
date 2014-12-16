@@ -363,6 +363,16 @@ Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
 events covering as many historical data as available including recent competition
 results." Some dead links but worth a skim.
 
+#### Other Links
+
+- See this 2012 [opisthokonta.net](http://opisthokonta.net/?p=63) blog post.
+- <http://clubelo.com/Data/>
+- <http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/>
+- <http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/>
+- [Football kit colors](http://www.colours-of-football.com/)
+- [Historial kits](http://www.historicalkits.co.uk/)
+
+
 ### <i class="fa fa-futbol-o"></i> Share your own sources -- What have I missed?
 
 Please let me know about your own data sources or add a pull request on [github](https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown). I have mainly searched for EPL data and would love to add data from other leagues/competitions to the list.
