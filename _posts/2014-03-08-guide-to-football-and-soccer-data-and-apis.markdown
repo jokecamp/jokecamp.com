@@ -371,6 +371,7 @@ results." Some dead links but worth a skim.
 - <http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/>
 - [Football kit colors](http://www.colours-of-football.com/)
 - [Historial kits](http://www.historicalkits.co.uk/)
+- FIFA Video Game Data at [leereilly/fifa-soccer-12-ultimate-team-data](https://github.com/leereilly/fifa-soccer-12-ultimate-team-data)
 
 
 ### <i class="fa fa-futbol-o"></i> Share your own sources -- What have I missed?
