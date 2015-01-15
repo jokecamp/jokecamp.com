@@ -874,7 +874,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#worldcup&quot;&gt;World Cup 2014 APIs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#api-graveyard&quot;&gt;Deprecated/Retired - &amp;quot;The Graveyard of APIs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#other&quot;&gt;More Reading / Resources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#other&quot;&gt;More Reading / Resources / Links&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a name=&quot;github&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1180,7 +1180,7 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 
 &lt;p&gt;&lt;a href=&quot;http://developer.espn.com/docs&quot;&gt;ESPN API&lt;/a&gt; has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to &amp;quot;strategic partners.&amp;quot; However, you can get lists of players and teams. The &lt;strong&gt;Public API is being retired on Monday, December 8, 2014&lt;/strong&gt; &lt;a href=&quot;http://developer.espn.com/blog/read/publicretirement&quot;&gt;Read the announcement&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://statsfc.com/&quot;&gt;StatsFC&lt;/a&gt; used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their &lt;a href=&quot;https://statsfc.com/statements&quot;&gt;official statement&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://statsfc.com/&quot;&gt;StatsFC&lt;/a&gt; used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. See their &lt;a href=&quot;https://statsfc.com/statement&quot;&gt;official statement&lt;/a&gt;. They still offer widgets and they plan on reviving their servies. See their comments at the bottom of the page.&lt;/p&gt;
 
 &lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Other Reading / Resources&lt;/h3&gt;
 
@@ -1196,15 +1196,20 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 events covering as many historical data as available including recent competition
 results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
 
-&lt;h4&gt;Other Links&lt;/h4&gt;
+&lt;h4&gt;Other Links to explore&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;See this 2012 &lt;a href=&quot;http://opisthokonta.net/?p=63&quot;&gt;opisthokonta.net&lt;/a&gt; blog post.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://clubelo.com/Data/&quot;&gt;http://clubelo.com/Data/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&quot;&gt;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&quot;&gt;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.mlsplayers.org/salary_info.html&quot;&gt;MLS Player Salary information&lt;/a&gt; - 2007 to current salary amounts in pdf from the MLS Players union.&lt;/li&gt;
+&lt;li&gt;See this 2012 &lt;a href=&quot;http://opisthokonta.net/?page_id=995&quot;&gt;opisthokonta.net&lt;/a&gt; blog post.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://clubelo.com/Data/&quot;&gt;Football Club Elo Ratings Data &amp;amp; Source&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&quot;&gt;sportscruncher links blog post&lt;/a&gt; and &lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&quot;&gt;soccer ratings post&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.colours-of-football.com/&quot;&gt;Football kit colors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.historicalkits.co.uk/&quot;&gt;Historial kits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/rasbt/datacollect/tree/master/collect_fantasysoccer&quot;&gt;Fantasy Soccer Data Downloader on github&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.enfa.co.uk/&quot;&gt;ENFA - English National Football Archive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.11v11.com/about-afs/&quot;&gt;Association of Football Statisticians (AFS)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://en.eufo.de/site/about-us&quot;&gt;European football squads since 1999&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;FIFA Video Game Data at &lt;a href=&quot;https://github.com/leereilly/fifa-soccer-12-ultimate-team-data&quot;&gt;leereilly/fifa-soccer-12-ultimate-team-data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Share your own sources -- What have I missed?&lt;/h3&gt;

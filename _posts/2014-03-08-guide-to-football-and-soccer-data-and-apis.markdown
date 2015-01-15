@@ -48,7 +48,7 @@ Jump to a specific source:
   - [Post War English & Scottish Football League A - Z Player's Database](#postwar)
 - [World Cup 2014 APIs](#worldcup)
 - [Deprecated/Retired - "The Graveyard of APIs](#api-graveyard)
-- [More Reading / Resources](#other)
+- [More Reading / Resources / Links](#other)
 
 
 <a name="github"></a>
@@ -348,7 +348,7 @@ Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
 
 [ESPN API](http://developer.espn.com/docs) has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to "strategic partners." However, you can get lists of players and teams. The **Public API is being retired on Monday, December 8, 2014** [Read the announcement](http://developer.espn.com/blog/read/publicretirement)
 
-[StatsFC](https://statsfc.com/) used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. There is no doubt it was related to data rights. See their [official statement](https://statsfc.com/statements).
+[StatsFC](https://statsfc.com/) used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. See their [official statement](https://statsfc.com/statement). They still offer widgets and they plan on reviving their servies. See their comments at the bottom of the page.
 
 ### <i class="fa fa-futbol-o"></i> Other Reading / Resources
 
@@ -363,14 +363,19 @@ Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
 events covering as many historical data as available including recent competition
 results." Some dead links but worth a skim.
 
-#### Other Links
+#### Other Links to explore
 
-- See this 2012 [opisthokonta.net](http://opisthokonta.net/?p=63) blog post.
-- <http://clubelo.com/Data/>
-- <http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/>
-- <http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/>
+- [MLS Player Salary information](http://www.mlsplayers.org/salary_info.html) - 2007 to current salary amounts in pdf from the MLS Players union.
+- See this 2012 [opisthokonta.net](http://opisthokonta.net/?page_id=995) blog post.
+- [Football Club Elo Ratings Data & Source](http://clubelo.com/Data/)
+- [sportscruncher links blog post](http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/) and [soccer ratings post](http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/)
 - [Football kit colors](http://www.colours-of-football.com/)
 - [Historial kits](http://www.historicalkits.co.uk/)
+- [Fantasy Soccer Data Downloader on github](https://github.com/rasbt/datacollect/tree/master/collect_fantasysoccer)
+- [ENFA - English National Football Archive](http://www.enfa.co.uk/)
+- [Association of Football Statisticians (AFS)](http://www.11v11.com/about-afs/)
+- [European football squads since 1999](http://en.eufo.de/site/about-us)
+- FIFA Video Game Data at [leereilly/fifa-soccer-12-ultimate-team-data](https://github.com/leereilly/fifa-soccer-12-ultimate-team-data)
 
 
 ### <i class="fa fa-futbol-o"></i> Share your own sources -- What have I missed?
