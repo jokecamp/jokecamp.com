@@ -381,3 +381,23 @@ results." Some dead links but worth a skim.
 ### <i class="fa fa-futbol-o"></i> Share your own sources -- What have I missed?
 
 Please let me know about your own data sources or add a pull request on [github](https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown). I have mainly searched for EPL data and would love to add data from other leagues/competitions to the list.
+
+
+### Recommended Books
+
+Show your support by buying and reading one of these books. Sorry for the shameless plug.
+
+<div class="bookcovers">
+
+<a href="http://www.amazon.com/gp/product/1612193684/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1612193684&linkCode=as2&tag=jokecamp-20&linkId=JTJ5DXJFI5TTGSDR"><img border="0" src="http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1612193684&Format=_SL110_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=jokecamp-20" class="bookcover" ></a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&l=as2&o=1&a=1612193684" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"  />
+
+<a href="http://www.amazon.com/gp/product/1612193706/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1612193706&linkCode=as2&tag=jokecamp-20&linkId=VBXCWNPIRNJL7MPH"><img border="0" src="http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1612193706&Format=_SL110_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=jokecamp-20" class="bookcover" ></a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&l=as2&o=1&a=1612193706" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
+<a href="http://www.amazon.com/gp/product/1573226882/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1573226882&linkCode=as2&tag=jokecamp-20&linkId=GBT7AHJS2EKA43NQ"><img border="0" src="http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1573226882&Format=_SL110_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=jokecamp-20" ></a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&l=as2&o=1&a=1573226882" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
+<a href="http://www.amazon.com/gp/product/0060731427/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0060731427&linkCode=as2&tag=jokecamp-20&linkId=K7H4RML7XJGRT57R"><img border="0" src="http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=0060731427&Format=_SL110_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=jokecamp-20" ></a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&l=as2&o=1&a=0060731427" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
+<a href="http://www.amazon.com/gp/product/1568584253/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=1568584253&linkCode=as2&tag=jokecamp-20&linkId=R5IWBX6BBE5WCZ73"><img border="0" src="http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=1568584253&Format=_SL110_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=jokecamp-20" ></a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&l=as2&o=1&a=1568584253" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
+
+</div>

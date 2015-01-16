@@ -335,3 +335,10 @@ nav ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
 .css .o + .nt,
 .css .nt + .nt { color: #999; }
 /* end of code highlights and syntax */
+
+.bookcovers img { display:inline !important; float:left; margin:4px; }
+.bookcovers:after {
+  content: "";
+  display: table;
+  clear: both;
+}
