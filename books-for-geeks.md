@@ -30,25 +30,15 @@ An inside peak at the video game industry as a tester faces off with an increasi
 **[Masters of Doom: How Two Guys Created an Empire and Transformed Pop Culture][5] by David Kushner (2004)**<br>
 An insider's view of the companies and developer's who create Doom, Quake and numerous others. Focused mainly on John Carmack and John Romero. The two main forces behind the company called id Software. This is great if you have ever wonder what it would of been like to work in the early rockstar years of video game development. Lots of dirt on company politics and creative differences. View an <a href="http://www.jokecamp.com/doom">interactive timeline</a> for the period described in the book. View an 18 min <a href="http://youtu.be/NYa8kirsUfg">interview with John Carmack</a>. Bonus: See the source code for [Command Keen on github](https://github.com/keendreams/keen).
 
-### Additional Book Lists
-- [Best Books of 2013](http://apps.npr.org/best-books-2013/#/tag/its-all-geek-to-me "Best Books of 2013 by NPR") - a really cool visual book browser. Focus on the "its all geek to me" tag. Created by NPR
+## Additional Book Lists
+
+- [NPR's Best Books of 2014](http://apps.npr.org/best-books-2014/#/tag/its-all-geek-to-me) - NPR's yearly round-up of the best books is becoming a great tradition.
+
+- [NPR's Best Books of 2013](http://apps.npr.org/best-books-2013/#/tag/its-all-geek-to-me "Best Books of 2013 by NPR") - a really cool visual book browser. Focus on the "its all geek to me" tag.
+
 - [50 Books Every Geek Should Read Part 1](http://www.amazon.com/Books-Every-Geek-Should-Read/lm/RNB6EQAZW3MSX/?_encoding=UTF8&amp;camp=1789&amp;creative=390957&amp;linkCode=ur2&amp;tag=jokecamp-20) - another list by a fellow geek including comments on the the books he has read. There are only 35 actually listed.
+
 - [Alan Kay's Reading List](http://c2.com/cgi/wiki?AlanKaysReadingList) - a long list of books organized by subject curated by an accomplished reader/computer scientist.
-
-### Short Stories about singularity and robot revolutions
-
-From [Singularity Wikipedia](http://en.wikipedia.org/wiki/Technological_singularity):
-
-> Singularity is the hypothesis that accelerating progress in technologies such as artificial intelligence will cause non-human intelligence to exceed human intelligence for the first time in history, causing human civilization to be radically changed or possibly destroyed
-
-**[Mana](http://marshallbrain.com/manna1.htm) by Marshall Brain** - the creator of the old website gem [How Stuff Works](http://www.howstuffworks.com/) has a great short story about human life after the robotic revolution.
-
-[The Gentle Seduction by Marc Stiegler - 1989](http://www.skyhunter.com/marcs/GentleSeduction.html) - A short story of one woman's experiences and transition into singularity. Includes nanotechnology and out of body experiences. Argued to be one of the best science fstories regarding nanotechnology.
-
-### Articles
-
-[Life Extension at Google](http://www.zdnet.com/google-exec-hints-at-ultimate-recruitment-perk-for-top-engineers-life-extension-7000018216/) (2013) - "Work at Google and you could end up living a lot longer than your peers elsewhere..."
-
 
 [1]: http://www.amazon.com/gp/product/B00EMXBDMA/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00EMXBDMA&linkCode=as2&tag=jokecamp-20&linkId=7IRGJBD2LF73UZCF
 [2]: http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0060512806&amp;linkCode=as2&amp;tag=jokecamp-20
