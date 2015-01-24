@@ -842,6 +842,7 @@ Fn  Function Key&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#openfootball&quot;&gt;openfootball - football.db&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#fdata&quot;&gt;jokecamp/FootballData&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#soccerstats&quot;&gt;socerstats.us&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#repos&quot;&gt;Other smaller projects/repos&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -910,6 +911,12 @@ Consider contributing any data you have yourself and be sure to thank &lt;a href
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;http://footballdb.herokuapp.com/api/v1/event/world.2014/teams
 http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;fdata&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;jokecamp/FootballData&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/jokecamp/FootballData&quot;&gt;jokecamp/FootballData&lt;/a&gt; - my own hodgepodge of JSON and CSV Football/Soccer data on GitHub with a focus on the EPL&lt;/p&gt;
+
 &lt;p&gt;&lt;a name=&quot;soccerstats&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4&gt;soccerstats.us&lt;/h4&gt;
@@ -922,7 +929,6 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/jalapic/engsoccerdata&quot;&gt;github.com/jalapic/engsoccerdata&lt;/a&gt; includes a &lt;a href=&quot;https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv&quot;&gt;csv file&lt;/a&gt; of the top 4 tier English League Soccer games from 1888 to 2014.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/jokecamp/FootballData&quot;&gt;github.com/jokecamp/FootballData&lt;/a&gt; includes mostly English JSON and CSV Football/Soccer data for anyone to use.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a name=&quot;free&quot;&gt;&lt;/a&gt;&lt;/p&gt;

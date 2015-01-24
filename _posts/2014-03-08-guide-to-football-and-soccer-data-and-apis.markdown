@@ -26,6 +26,7 @@ Jump to a specific source:
 
 - Open source data on github
   - [openfootball - football.db](#openfootball)
+  - [jokecamp/FootballData](#fdata)
   - [socerstats.us](#soccerstats)
   - [Other smaller projects/repos](#repos)
 - Free APIs
@@ -83,6 +84,11 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
     http://footballdb.herokuapp.com/api/v1/event/world.2014/teams
     http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
+<a name="fdata"></a>
+#### jokecamp/FootballData
+
+[jokecamp/FootballData](https://github.com/jokecamp/FootballData) - my own hodgepodge of JSON and CSV Football/Soccer data on GitHub with a focus on the EPL
+
 <a name="soccerstats"></a>
 #### soccerstats.us
 
@@ -92,7 +98,6 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 #### Other smaller Projects/Repos
 
  - [github.com/jalapic/engsoccerdata](https://github.com/jalapic/engsoccerdata) includes a [csv file](https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv) of the top 4 tier English League Soccer games from 1888 to 2014.
- - [github.com/jokecamp/FootballData](https://github.com/jokecamp/FootballData) includes mostly English JSON and CSV Football/Soccer data for anyone to use.
 
 <a name="free"></a>
 ### <i class="fa fa-futbol-o"></i> Free APIs
