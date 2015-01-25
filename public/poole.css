@@ -31,12 +31,7 @@ body {
 
 .internal { color: #515151;  }
 
-.footer {
-  margin-top:2rem;
-  font-size:.8rem;
-  text-align:center;
-}
-
+.footer { margin-top:2rem; font-size:.9rem; text-align:center; }
 .footer ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
 .footer ul li { display:inline; padding:1.8em;  }
 .footer ul li > a { padding:1em 0;  }
