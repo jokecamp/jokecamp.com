@@ -381,6 +381,7 @@ results." Some dead links but worth a skim.
 - [Association of Football Statisticians (AFS)](http://www.11v11.com/about-afs/)
 - [European football squads since 1999](http://en.eufo.de/site/about-us)
 - FIFA Video Game Data at [leereilly/fifa-soccer-12-ultimate-team-data](https://github.com/leereilly/fifa-soccer-12-ultimate-team-data)
+- [Football Stats and Betting data](http://www.statto.com/football/stats/)
 
 
 ### <i class="fa fa-futbol-o"></i> Share your own sources -- What have I missed?
