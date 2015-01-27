@@ -7,6 +7,83 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>What has AngularJS ever done for us?</title>
+				<description>&lt;p&gt;Several developers and a project manager meet at a round table to discuss the codebase for an existing web application. Ninja Developer, a young, fast typing, vim using, hacker news reader reading guy kicks off the meeting.&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: I think we need to rewrite the web application in X. We are too constrained with AngularJS and the learning curve is too steep for new developers. Not to mention AngularJS 2 is a complete rewrite. We will be supporting this code forever and not just us but our replacement will have to learn it and then our replacement&amp;#39;s replacement.&lt;/p&gt;
+
+&lt;p&gt;Manager: And then your replacement&amp;#39;s replacement&amp;#39;s replacement.&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: Exactly.&lt;/p&gt;
+
+&lt;p&gt;Manager: And then our replacement&amp;#39;s replacement&amp;#39;s replacement&amp;#39;s replacement.&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: Yeah. well all right. Don&amp;#39;t labour the point. And what does Angular ever given us in return?&lt;/p&gt;
+
+&lt;p&gt;Developer: A single page application?&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: What?&lt;/p&gt;
+
+&lt;p&gt;Developer: A single page application.&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: Oh well yeah. It did provide that but--&lt;/p&gt;
+
+&lt;p&gt;Developer #3: And modular components.&lt;/p&gt;
+
+&lt;p&gt;Developer: Oh, yeah, modular components. Remember what our old ASP web forms and jQuery code looked like?&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: Yeah. All right. I&amp;#39;ll grant you that Angular provided two things: a single page application and modular components.&lt;/p&gt;
+
+&lt;p&gt;Developer #4: And data binding.&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: Well, yeah. Obviously the data binding. I mean, the data binding goes without saying, doesn&amp;#39;t it? But apart from the single page application, the modular components, and the data binding even though for large data sets--&lt;/p&gt;
+
+&lt;p&gt;Developer: Dependency injection.&lt;/p&gt;
+
+&lt;p&gt;Developer #2: Testable code.&lt;/p&gt;
+
+&lt;p&gt;Developers: yeah...oh...yeah&lt;/p&gt;
+
+&lt;p&gt;Developer #3: an MVC approach.&lt;/p&gt;
+
+&lt;p&gt;[a lot of nodding and agreeing tones from the developers]&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: All right. Fair enough.&lt;/p&gt;
+
+&lt;p&gt;Developer #1: And dependency injection.&lt;/p&gt;
+
+&lt;p&gt;Developers: Yeah...&lt;/p&gt;
+
+&lt;p&gt;Developer #2: Yeah, that&amp;#39;s something we&amp;#39;d really miss form our Angular projects.&lt;/p&gt;
+
+&lt;p&gt;Developer: Community support and adoption.&lt;/p&gt;
+
+&lt;p&gt;Developer #3: And our javascript code is actually organized for once.&lt;/p&gt;
+
+&lt;p&gt;Developer #2: Yeah, the opinionated framework did help provide order. Let&amp;#39;s face it. We need an opinionated framework in this office.&lt;/p&gt;
+
+&lt;p&gt;[healthy chuckling from the developers]&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: All right, but apart from the single page app, the modular approach, data binding, dependency injection, community support, organization, and opinionated framework, what does AngularJS provide for us?&lt;/p&gt;
+
+&lt;p&gt;Developer #1: We shipped the website.&lt;/p&gt;
+
+&lt;p&gt;Ninja Dev: Shipped? Oh SHUT UP!&lt;/p&gt;
+
+&lt;p&gt;Manager: What was this meeting for again?&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;My apologies to Monty Python. A &lt;a href=&quot;http://www.westmont.edu/%7Efisk/articles/montypython.htm&quot;&gt;text script for the below video&lt;/a&gt;&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/9foi342LXQE&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+</description>
+				<pubDate>Mon, 26 Jan 2015 00:00:00 -0500</pubDate>
+				<link>http://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</guid>
+			</item>
+		
+			<item>
 				<title>Why is SVN merge not tracking merged revisions?</title>
 				<description>&lt;p&gt;The most likely answer:&lt;/p&gt;
 
@@ -825,426 +902,6 @@ Fn  Function Key&lt;/p&gt;
 				<pubDate>Thu, 27 Mar 2014 00:02:40 -0400</pubDate>
 				<link>http://www.jokecamp.com/blog/setup-up-your-mac-for-net-development</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/setup-up-your-mac-for-net-development</guid>
-			</item>
-		
-			<item>
-				<title>Guide to Football/Soccer data and APIs</title>
-				<description>&lt;p&gt;Last updated: Nov 26 2014&lt;/p&gt;
-
-&lt;h2&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Where can I actually find football/soccer data?&lt;/h2&gt;
-
-&lt;p&gt;There are three main ways to get data. You can parse/scrape it from a hobbyist project/website, you can pay for it or you can try to collect it yourself.&lt;/p&gt;
-
-&lt;p&gt;Jump to a specific source:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Open source data on github
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#openfootball&quot;&gt;openfootball - football.db&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#fdata&quot;&gt;jokecamp/FootballData&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#soccerstats&quot;&gt;socerstats.us&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#repos&quot;&gt;Other smaller projects/repos&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Free APIs
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#footballdata&quot;&gt;football-data.org&lt;/a&gt; (beta) (RESTful)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Commercial APIs
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#footballapi&quot;&gt;football-api.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#CrowdScores&quot;&gt;CrowdScores and FastestLiveScores&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#xmlsoccer&quot;&gt;XMLSoccer.com&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#opta&quot;&gt;opta&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#prozone&quot;&gt;prozone&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#matchanalysis&quot;&gt;Match Analaysis&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Other Websites
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#footballsquads.co.uk&quot;&gt;footballsquads.co.uk&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#rsssf&quot;&gt;Rec.Sport.Soccer Statistics Foundation (RSSSF)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#football-data.co.uk&quot;&gt;football-data.co.uk&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#european-football-statistics.co.uk%5D&quot;&gt;european-football-statistics.co.uk&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#openligadb.db&quot;&gt;openligadb.db&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#wiki&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#postwar&quot;&gt;Post War English &amp;amp; Scottish Football League A - Z Player&amp;#39;s Database&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#worldcup&quot;&gt;World Cup 2014 APIs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#api-graveyard&quot;&gt;Deprecated/Retired - &amp;quot;The Graveyard of APIs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#other&quot;&gt;More Reading / Resources / Links&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&quot;github&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Open Source Data on Github&lt;/h3&gt;
-
-&lt;p&gt;&lt;a name=&quot;openfootball&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;openfootball - aka football.db&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://openfootball.github.io/&quot;&gt;openfootball (aka football.db)&lt;/a&gt;&lt;/strong&gt; has started a free, open source public domain football database.
-The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the 2014 World Cup along with global league data. This is a very promising project and has the &lt;strong&gt;potential to be the definitive source for historical data for the public&lt;/strong&gt;.
-See the &lt;a href=&quot;https://groups.google.com/forum/#!forum/opensport&quot;&gt;opensport Google Group&lt;/a&gt; for discussion and questions. The data is stored in various repos on github.
-Consider contributing any data you have yourself and be sure to thank &lt;a href=&quot;https://github.com/geraldb&quot;&gt;Gerald Bauer&lt;/a&gt;. All the various repos can be intimidating. A good place to start is at &lt;a href=&quot;https://github.com/openfootball/&quot;&gt;github.com/openfootball&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;An example of the plain text (custom format):&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[Sat Aug/16]
-  12.45  Manchester United    1-2  Swansea City
-  15.00  Leicester City       2-2  Everton FC
-  15.00  Queens Park Rangers  0-1  Hull City
-  15.00  Stoke City           0-1  Aston Villa
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Check out the following github organizations for more listings:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/footballcsv&quot;&gt;https://github.com/footballcsv&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/openfootball&quot;&gt;https://github.com/openfootball&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/rsssf&quot;&gt;https://github.com/rsssf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/footballdata&quot;&gt;https://github.com/footballdata&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;There is also an open source football.db HTTP JSON(P) &lt;a href=&quot;http://openfootball.github.io/docs/json-api-intro.html&quot;&gt;API&lt;/a&gt; for demo purposes. Example Endpoints:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;http://footballdb.herokuapp.com/api/v1/event/world.2014/teams
-http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;fdata&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;jokecamp/FootballData&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/jokecamp/FootballData&quot;&gt;jokecamp/FootballData&lt;/a&gt; - my own hodgepodge of JSON and CSV Football/Soccer data on GitHub with a focus on the EPL&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;soccerstats&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;soccerstats.us&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://soccerstats.us&quot;&gt;soccerstats.us&lt;/a&gt;&lt;/strong&gt; is github &lt;a href=&quot;https://github.com/soccerstatsus&quot;&gt;organization&lt;/a&gt; with multiple repositories for sets of data (with a focus on North American data). The &lt;a href=&quot;https://github.com/SoccerStatsUS/parse&quot;&gt;parser&lt;/a&gt; is written in python and looks like it was designed to parse the rsssf.com text data.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;repos&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;Other smaller Projects/Repos&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/jalapic/engsoccerdata&quot;&gt;github.com/jalapic/engsoccerdata&lt;/a&gt; includes a &lt;a href=&quot;https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv&quot;&gt;csv file&lt;/a&gt; of the top 4 tier English League Soccer games from 1888 to 2014.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a name=&quot;free&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Free APIs&lt;/h3&gt;
-
-&lt;p&gt;&lt;a name=&quot;footballdata&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;football-data.org (beta)&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.football-data.org/&quot;&gt;football-data.org&lt;/a&gt; is a RESTful API in beta with regularly updated data. If you &lt;a href=&quot;http://www.football-data.org/register&quot;&gt;register for a free API key&lt;/a&gt; you will get CORS support. I recommend registering for a key to show your support and help the service track usage. However, a key is not required yet so you can try out the endpoints right now. I am excited to see this API grow and mature!&lt;/p&gt;
-
-&lt;p&gt;Available endpoints&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;/soccerseasons/
-/soccerseasons/{id}/ranking
-/soccerseasons/{id}/fixtures
-/fixtures
-/soccerseasons/{id}/teams
-/teams/{id}
-/teams/{id}/fixtures/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Some example calls:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.football-data.org/soccerseasons/&quot;&gt;http://www.football-data.org/soccerseasons/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.football-data.org/soccerseasons/351/teams&quot;&gt;http://www.football-data.org/soccerseasons/351/teams&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.football-data.org/fixtures&quot;&gt;http://www.football-data.org/fixtures&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.football-data.org/teams/5&quot;&gt;http://www.football-data.org/teams/5&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Example JSON output for a team:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{ &amp;quot;id&amp;quot;:5,
-  &amp;quot;name&amp;quot;:&amp;quot;FC Bayern München&amp;quot;,
-  &amp;quot;shortName&amp;quot;:&amp;quot;Bayern&amp;quot;,
-  &amp;quot;crestUrl&amp;quot;:&amp;quot;http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_M%C3%BCnchen.svg&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;openfooty&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;openfooty API&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.footytube.com/openfooty/&quot;&gt;openfooty API&lt;/a&gt; had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;commerical&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;Subscription Services/APIs&lt;/h3&gt;
-
-&lt;p&gt;&lt;a name=&quot;footballapi&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;football-api&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://football-api.com/&quot;&gt;football-api.com&lt;/a&gt; is a paid API service but does offer the English Premier League endpoints for free (demo use). The API will restrict by IP addresses and limit calls based on your package. Includes endponts for Competitions, teams, standings, live scores, fixtures and commentaries. See the &lt;a href=&quot;http://football-api.com/pricing/&quot;&gt;pricing page&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Example endpoints:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;api/?Action=competitions&amp;amp;APIKey=####
-api/?Action=standings&amp;amp;comp_id=1204&amp;amp;APIKey=####
-api/?Action=today&amp;amp;comp_id=1204&amp;amp;APIKey=####
-api/?Action=fixtures&amp;amp;comp_id=1024&amp;amp;&amp;amp;match_date=[DATE_IN_d.m.Y_FORMAT]&amp;amp;APIKey=####
-api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;CrowdScores&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;CrowdScores and FastestLiveScores&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://crowdscores.com/&quot;&gt;CrowdScores&lt;/a&gt; is a UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on &lt;a href=&quot;http://fastestlivescores.com/&quot;&gt;FastestLiveScores.com&lt;/a&gt;. They currently offer &lt;a href=&quot;http://fastestlivescores.com/live-scores-api-feed/&quot;&gt;three different API tiers&lt;/a&gt;. Basic, Pro and Complete. The basic tier is suppose to be free with 3 calls allowed per hour. However, looks like they are only giving keys on a user by user basis. I requested access to the basic tier but have not received access yet. I only received an email asking me why I needed access and what I planned to do with their API.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;xmlsoccer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;XMLSoccer.com&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.xmlsoccer.com/&quot;&gt;xmlsoccer.com&lt;/a&gt; is another subscription service. You can demo the service for free with the Scottish Premier League. The monthly pricing is 10 &amp;#8364; per 1 month, 25 &amp;#8364; per 3 months and 90 &amp;#8364; per 12 months. You can browse the demo web methods here to see the types of calls available &lt;a href=&quot;http://www.xmlsoccer.com/FootballDataDemo.asmx&quot;&gt;http://www.xmlsoccer.com/FootballDataDemo.asmx&lt;/a&gt; and the &lt;a href=&quot;http://www.xmlsoccer.com/FootballDataDemo.asmx?WSDL&quot;&gt;WSDL&lt;/a&gt;. The data is only returned in XML.&lt;/p&gt;
-
-&lt;p&gt;Each call must provide an API Key. You can get a free demo API Key by registering.&lt;/p&gt;
-
-&lt;p&gt;Example results for a team&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;XMLSOCCER.COM&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Team&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;Team_Id&amp;gt;&lt;/span&gt;45&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Team_Id&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Aberdeen&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;Country&amp;gt;&lt;/span&gt;Scotland&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Country&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;Stadium&amp;gt;&lt;/span&gt;Pittodrie Stadium&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Stadium&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;HomePageURL&amp;gt;&lt;/span&gt;http://www.afc.co.uk&lt;span class=&quot;nt&quot;&gt;&amp;lt;/HomePageURL&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;WIKILink&amp;gt;&lt;/span&gt;http://en.wikipedia.org/wiki/Aberdeen_F.C.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/WIKILink&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Team&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;XMLSOCCER.COM&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Player data&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;Player&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;2523&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;David Goodwillie&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Height&amp;gt;&lt;/span&gt;1.7&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Height&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Weight&amp;gt;&lt;/span&gt;70.29&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Weight&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Nationality&amp;gt;&lt;/span&gt;Scotland&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Nationality&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Position&amp;gt;&lt;/span&gt;Forward&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Position&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Team_Id&amp;gt;&lt;/span&gt;45&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Team_Id&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;PlayerNumber&amp;gt;&lt;/span&gt;17&lt;span class=&quot;nt&quot;&gt;&amp;lt;/PlayerNumber&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;DateOfBirth&amp;gt;&lt;/span&gt;1989-03-28T00:00:00-08:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/DateOfBirth&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;DateOfSigning&amp;gt;&lt;/span&gt;2014-07-07T00:00:00-07:00&lt;span class=&quot;nt&quot;&gt;&amp;lt;/DateOfSigning&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;Signing&amp;gt;&lt;/span&gt;Free&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Signing&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Player&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;opta&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;opta&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.optasports.com&quot;&gt;opta&lt;/a&gt; is one of industry leaders. This is what the tv networks use and likely what the actual football clubs use for &lt;a href=&quot;http://www.optasportspro.com/products/scouting-reports-and-data-feeds.aspx&quot;&gt;scouting&lt;/a&gt;. If only this data were public! However, &lt;a href=&quot;http://www.optasports.com/playground-section.aspx&quot;&gt;opta Playground&lt;/a&gt; has a developer program that provides very limited access to historical data. The site reads &amp;quot;Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.&amp;quot; You have to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I&amp;#39;m not sure why an indie developer would spend time working on a data set they could never afford. They even track this data point &amp;quot;Spectator on pitch.&amp;quot; Read this article &lt;a href=&quot;http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/&quot;&gt;FiveThirtyEight behind the scenes look at how opta tracks data&lt;/a&gt; (spoiler: young male gamers).&lt;/p&gt;
-
-&lt;p&gt;An example of an &amp;quot;event&amp;quot; in xml&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;Event&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1115853439&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;event_id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;9&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type_id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;3&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;period_id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;min=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;sec=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;19&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;player_id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;21202&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;team_id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1744&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;outcome=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;x=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;64.9&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;y=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;11.6&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;timestamp=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;2007-08-19T13:02:08.482&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;last_modified=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;2007-08-19T13:02:13&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;Q&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;152113216&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;qualifier_id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;56&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Right&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Event&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;prozone&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;prozone&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.prozonesports.com/&quot;&gt;prozone&lt;/a&gt; is another large commercial data provider.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;matchanalysis&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;Match Analysis&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://matchanalysis.com/&quot;&gt;Match Analysis&lt;/a&gt; is another large commercial data provider that lists Fox Soccer Channel, US National Team and the MLS among their clients.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;other&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Other Websites&lt;/h3&gt;
-
-&lt;p&gt;&lt;a name=&quot;footballsquads.co.uk&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;FootballSquads&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.footballsquads.co.uk/&quot;&gt;footballsquads.co.uk&lt;/a&gt; has current and historical squad details for clubs (rosters) and national teams from all across the world for many leagues and competitions, including the 2014 World Cup squads.&lt;/p&gt;
-
-&lt;p&gt;And example of the squad/roster data:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Num  Name         Nat   Pos  Height   Weight    Date of Birth    Birth Place     Previous Club
-1    David De Gea ESP    G     1.92    82        07-11-90        Madrid          Atlético Madrid
-2    Rafael       BRA    D     1.72    65        09-07-90        Petrópolis      Fluminense
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;rsssf&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;Rec.Sport.Soccer Statistics Foundation (RSSSF)&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.rsssf.com/&quot;&gt;Rec.Sport.Soccer Statistics Foundation&lt;/a&gt; (RSSSF) has massive collection of formatted plain text statistics. &lt;a href=&quot;http://www.rsssf.com/tablese/eng2015.html#premier&quot;&gt;An example of English Premier leagues results&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Example of the data for table results:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;1.Chelsea                  8   7  1  0  23- 8  22
-2.Manchester City          8   5  2  1  18- 8  17
-3.Southampton              8   5  1  2  19- 5  16
-4.West Ham United          8   4  1  3  15-11  13
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;and scores:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Round 1
-[Aug 16]
-Arsenal       2-1 Crystal P
-Leicester     2-2 Everton
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;football-data.co.uk&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;football-data.co.uk&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.football-data.co.uk/data.php&quot;&gt;football-data.co.uk&lt;/a&gt; is a betting and odds website that has made a lot of historical league data available as csv files. The data includes results and a lot of betting/odds related data. I have tried to aggregate and clean up the data in the following repo &lt;a href=&quot;https://github.com/jokecamp/FootballData&quot;&gt;github.com/jokecamp/FootballData&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Leagues and divisions included:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;England Football Results    Premiership &amp;amp; Divs 1,2,3 &amp;amp; Conference
-Scotland Football Results   Premiership &amp;amp; Divs 1,2 &amp;amp; 3
-Germany Football Results    Bundesligas 1 &amp;amp; 2
-Italy Football Results      Serie A &amp;amp; B
-Spain Football Results      La Liga (Premera &amp;amp; Segunda)
-France Football Results     Le Championnat &amp;amp; Division 2
-Netherlands Football Results    KPN Eredivisie
-Belgium Football Results    Jupiler League
-Portugal Football Results   Liga I
-Turkey Football Results     Ligi 1
-Greece Football Results     Ethniki Katigoria
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The key/legend of all the field abbreviations gives you idea of what is available in the CSV files:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Div = League Division
-Date = Match Date (dd/mm/yy)
-HomeTeam = Home Team
-AwayTeam = Away Team
-FTHG = Full Time Home Team Goals
-FTAG = Full Time Away Team Goals
-FTR = Full Time Result (H=Home Win, D=Draw, A=Away Win)
-HTHG = Half Time Home Team Goals
-HTAG = Half Time Away Team Goals
-HTR = Half Time Result (H=Home Win, D=Draw, A=Away Win)
-
-Match Statistics (where available)
-Attendance = Crowd Attendance
-Referee = Match Referee
-HS = Home Team Shots
-AS = Away Team Shots
-HST = Home Team Shots on Target
-AST = Away Team Shots on Target
-HHW = Home Team Hit Woodwork
-AHW = Away Team Hit Woodwork
-HC = Home Team Corners
-AC = Away Team Corners
-HF = Home Team Fouls Committed
-AF = Away Team Fouls Committed
-HO = Home Team Offsides
-AO = Away Team Offsides
-HY = Home Team Yellow Cards
-AY = Away Team Yellow Cards
-HR = Home Team Red Cards
-AR = Away Team Red Cards
-HBP = Home Team Bookings Points (10 = yellow, 25 = red)
-ABP = Away Team Bookings Points (10 = yellow, 25 = red)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a name=&quot;european-football-statistics.co.uk]&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;european-football-statistics.co.uk&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.european-football-statistics.co.uk/&quot;&gt;www.european-football-statistics.co.uk&lt;/a&gt; is a visually dated website but has a lot of historical football data (mostly an overview of league/tournament results) displayed in nice clean HTML tables. Looks like they already have 2014 EPL stats. The site claims &amp;quot;The target of this site is to collect european football statistics which are not easily found on internet.&amp;quot;&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;openligadb.db&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;openligadb.db&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.openligadb.de/Webservices/Sportsdata.asmx&quot;&gt;openligadb.db&lt;/a&gt; has an old-school windows asmx web service with methods such as &amp;quot;GetGoalsByMatch()&amp;quot;&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;wiki&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;Wikipedia&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.wikipedia.org/&quot;&gt;Wikipedia&lt;/a&gt; - has a lot of structured data and is also crowd/public sourced. You can use their API to query then parse the data. It is very fragmented into specific pages making this a good source if you are looking for very specific team/player data. For example here is a table of Manchester United season results &lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons&quot;&gt;http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;postwar&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;Post War English &amp;amp; Scottish Football League A - Z Player&amp;#39;s Database&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.neilbrown.newcastlefans.com/index.html&quot;&gt;Post War English &amp;amp; Scottish Football League A - Z Player&amp;#39;s Database&lt;/a&gt; contains a lot of HTML tables of &amp;quot;players who appeared for their clubs between 1946/47 and the end of the 2013/14 season and who have now left their clubs.&amp;quot; Here is a list of &lt;a href=&quot;http://www.neilbrown.newcastlefans.com/manutd/manutd.html&quot;&gt;ex-Manchester United players&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;worldcup&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; 2014 World Cup APIs&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.kimonolabs.com/worldcup/explorer&quot;&gt;kimono labs 2014 World Cup Api&lt;/a&gt; - has a very nice restful API available. Free registration required to access the API. The API has a player, team, club, matches, and player&lt;em&gt;season&lt;/em&gt;stats endpoints. See the &lt;a href=&quot;https://www.kimonolabs.com/worldcup/docs&quot;&gt;documentation&lt;/a&gt; and start making calls withe the &lt;a href=&quot;https://www.kimonolabs.com/worldcup/explorer&quot;&gt;API explorer&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://softwareforgood.com/soccer-good/&quot;&gt;2014 World Cup JSON API - Soccer for Good&lt;/a&gt; - The API is available now. The author explains that the data is from a scraper so the availability is not guaranteed but should be available throughout the tournament. There are endpoints for &lt;a href=&quot;http://worldcup.sfg.io/teams&quot;&gt;teams&lt;/a&gt;, &lt;a href=&quot;http://worldcup.sfg.io/matches&quot;&gt;matches&lt;/a&gt;, &lt;a href=&quot;http://worldcup.sfg.io/matches/today&quot;&gt;today&lt;/a&gt;, &lt;a href=&quot;http://worldcup.sfg.io/matches/tomorrow&quot;&gt;tomorrow&lt;/a&gt; and &lt;a href=&quot;http://worldcup.sfg.io/matches/current&quot;&gt;current&lt;/a&gt;. The Ruby on Rails source code is available on &lt;a href=&quot;https://github.com/estiens/world_cup_json&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://worldcup.sfg.io/&quot;&gt;World Cup in JSON&lt;/a&gt; - an open source ruby project available at &lt;a href=&quot;https://github.com/estiens/world_cup_json&quot;&gt;github.com/estiens/world&lt;em&gt;cup&lt;/em&gt;json&lt;/a&gt; that scrapes a few sources and combines into an API. API is available at http://worldcup.sfg.io/matches&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/matches&quot;&gt;Unofficial FIFA.com JSON API for Mobile Apps&lt;/a&gt;  This is unofficial and I wouldn&amp;#39;t be surprised if it is protected/unavailable soon. Until then its nice to see data straight from the source. Known endpoints: &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/matches&quot;&gt;matches&lt;/a&gt;, &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/teams&quot;&gt;teams&lt;/a&gt; or detailed &lt;a href=&quot;http://live.mobileapp.fifa.com/api/wc/match/300186492/en&quot;&gt;match info&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;api-graveyard&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Deprecated/Retired - &amp;quot;The Graveyard of APIs&amp;quot;&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://developer.espn.com/docs&quot;&gt;ESPN API&lt;/a&gt; has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to &amp;quot;strategic partners.&amp;quot; However, you can get lists of players and teams. The &lt;strong&gt;Public API is being retired on Monday, December 8, 2014&lt;/strong&gt; &lt;a href=&quot;http://developer.espn.com/blog/read/publicretirement&quot;&gt;Read the announcement&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://statsfc.com/&quot;&gt;StatsFC&lt;/a&gt; used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. See their &lt;a href=&quot;https://statsfc.com/statement&quot;&gt;official statement&lt;/a&gt;. They still offer widgets and they plan on reviving their servies. See their comments at the bottom of the page.&lt;/p&gt;
-
-&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Other Reading / Resources&lt;/h3&gt;
-
-&lt;h4&gt;opendata.stackexchange forum&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics&quot;&gt;Are there any open datasets for Soccer statistics?&lt;/a&gt; - keep your eye on this open data forum for more answers.&lt;/p&gt;
-
-&lt;p&gt;&lt;a name=&quot;linkedsoccerdata&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4&gt;Linked Soccer Data&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://ceur-ws.org/Vol-1026/paper6.pdf&quot;&gt;Linked Soccer Data (pdf)&lt;/a&gt; is a white paper on one group&amp;#39;s attempt to &amp;quot;create a dataset including reliable information about soccer
-events covering as many historical data as available including recent competition
-results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
-
-&lt;h4&gt;Other Links to explore&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.mlsplayers.org/salary_info.html&quot;&gt;MLS Player Salary information&lt;/a&gt; - 2007 to current salary amounts in pdf from the MLS Players union.&lt;/li&gt;
-&lt;li&gt;See this 2012 &lt;a href=&quot;http://opisthokonta.net/?page_id=995&quot;&gt;opisthokonta.net&lt;/a&gt; blog post.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://clubelo.com/Data/&quot;&gt;Football Club Elo Ratings Data &amp;amp; Source&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&quot;&gt;sportscruncher links blog post&lt;/a&gt; and &lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&quot;&gt;soccer ratings post&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.colours-of-football.com/&quot;&gt;Football kit colors&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.historicalkits.co.uk/&quot;&gt;Historial kits&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/rasbt/datacollect/tree/master/collect_fantasysoccer&quot;&gt;Fantasy Soccer Data Downloader on github&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.enfa.co.uk/&quot;&gt;ENFA - English National Football Archive&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.11v11.com/about-afs/&quot;&gt;Association of Football Statisticians (AFS)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://en.eufo.de/site/about-us&quot;&gt;European football squads since 1999&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;FIFA Video Game Data at &lt;a href=&quot;https://github.com/leereilly/fifa-soccer-12-ultimate-team-data&quot;&gt;leereilly/fifa-soccer-12-ultimate-team-data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.statto.com/football/stats/&quot;&gt;Football Stats and Betting data&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Share your own sources -- What have I missed?&lt;/h3&gt;
-
-&lt;p&gt;Please let me know about your own data sources or add a pull request on &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown&quot;&gt;github&lt;/a&gt;. I have mainly searched for EPL data and would love to add data from other leagues/competitions to the list.&lt;/p&gt;
-
-&lt;h3&gt;Recommended Books&lt;/h3&gt;
-
-&lt;p&gt;Show your support by buying and reading one of these books. Sorry for the shameless plug.&lt;/p&gt;
-
-&lt;div class=&quot;bookcovers&quot;&gt;
-
-&lt;a href=&quot;http://www.amazon.com/gp/product/1612193684/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=1612193684&amp;linkCode=as2&amp;tag=jokecamp-20&amp;linkId=JTJ5DXJFI5TTGSDR&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=1612193684&amp;Format=_SL110_&amp;ID=AsinImage&amp;MarketPlace=US&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=jokecamp-20&quot; class=&quot;bookcover&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&amp;l=as2&amp;o=1&amp;a=1612193684&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot;  /&gt;
-
-&lt;a href=&quot;http://www.amazon.com/gp/product/1612193706/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=1612193706&amp;linkCode=as2&amp;tag=jokecamp-20&amp;linkId=VBXCWNPIRNJL7MPH&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=1612193706&amp;Format=_SL110_&amp;ID=AsinImage&amp;MarketPlace=US&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=jokecamp-20&quot; class=&quot;bookcover&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&amp;l=as2&amp;o=1&amp;a=1612193706&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
-
-&lt;a href=&quot;http://www.amazon.com/gp/product/1573226882/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=1573226882&amp;linkCode=as2&amp;tag=jokecamp-20&amp;linkId=GBT7AHJS2EKA43NQ&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=1573226882&amp;Format=_SL110_&amp;ID=AsinImage&amp;MarketPlace=US&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=jokecamp-20&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&amp;l=as2&amp;o=1&amp;a=1573226882&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
-
-&lt;a href=&quot;http://www.amazon.com/gp/product/0060731427/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0060731427&amp;linkCode=as2&amp;tag=jokecamp-20&amp;linkId=K7H4RML7XJGRT57R&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=0060731427&amp;Format=_SL110_&amp;ID=AsinImage&amp;MarketPlace=US&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=jokecamp-20&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&amp;l=as2&amp;o=1&amp;a=0060731427&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
-
-&lt;a href=&quot;http://www.amazon.com/gp/product/1568584253/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=1568584253&amp;linkCode=as2&amp;tag=jokecamp-20&amp;linkId=R5IWBX6BBE5WCZ73&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&amp;ASIN=1568584253&amp;Format=_SL110_&amp;ID=AsinImage&amp;MarketPlace=US&amp;ServiceVersion=20070822&amp;WS=1&amp;tag=jokecamp-20&quot; &gt;&lt;/a&gt;&lt;img src=&quot;http://ir-na.amazon-adsystem.com/e/ir?t=jokecamp-20&amp;l=as2&amp;o=1&amp;a=1568584253&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;&quot; /&gt;
-
-
-&lt;/div&gt;
-</description>
-				<pubDate>Sat, 08 Mar 2014 12:08:40 -0500</pubDate>
-				<link>http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</guid>
 			</item>
 		
 	</channel>
