@@ -3,7 +3,7 @@ author: Joe Kampschmidt
 comments: true
 layout: post
 slug: invoke-restmethod-powershell-examples
-title: Simple Examples of PowerShell's Invoke-RestMehod
+title: Simple Examples of PowerShell's Invoke-RestMethod
 desc: 'Consume a REST API with Windows PowerShell using the Invoke-RestMethod function with these practical GET, PUT, POST and DELETE examples.'
 tags:
 - rest
