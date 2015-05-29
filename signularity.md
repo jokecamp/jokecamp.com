@@ -28,6 +28,8 @@ I will be collecting a list of books, stories, articles and movies regarding sin
 
 [Life Extension at Google](http://www.zdnet.com/google-exec-hints-at-ultimate-recruitment-perk-for-top-engineers-life-extension-7000018216/) (2013) - "Work at Google and you could end up living a lot longer than your peers elsewhere..."
 
+http://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html
+
 ## Singularity Movies
 
 - Autómata (2014)
@@ -39,6 +41,8 @@ I will be collecting a list of books, stories, articles and movies regarding sin
 - Terminator
 - Short Circuit
 - 2001: A Space Odyssey (1968)
+
+- [robots in movies montage](https://www.youtube.com/watch?v=z9Dd0FdxRFo)
 
 ## More Links
 

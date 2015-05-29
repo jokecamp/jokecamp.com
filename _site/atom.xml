@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2015-01-26T21:33:17-05:00</updated>
+ <updated>2015-05-29T10:36:01-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -117,7 +117,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
  </entry>
  
  <entry>
-   <title>Simple Examples of PowerShell's Invoke-RestMehod</title>
+   <title>Simple Examples of PowerShell's Invoke-RestMethod</title>
    <link href="http://www.jokecamp.com//blog/invoke-restmethod-powershell-examples"/>
    <updated>2014-10-01T00:00:00-04:00</updated>
    <id>http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</id>

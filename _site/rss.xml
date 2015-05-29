@@ -111,7 +111,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 			</item>
 		
 			<item>
-				<title>Simple Examples of PowerShell&#39;s Invoke-RestMehod</title>
+				<title>Simple Examples of PowerShell&#39;s Invoke-RestMethod</title>
 				<description>&lt;p&gt;The &lt;a href=&quot;http://technet.microsoft.com/en-us/library/hh849971.aspx&quot;&gt;documentation for Invoke-RestMethod&lt;/a&gt; is a long sea of text. Skip it. These simple examples should get your started with consuming a REST API with PowerShell. Just a quick note that &lt;code&gt;Invoke-RestMethod&lt;/code&gt; will parse the HTTP response for you and return a PowerShell object.&lt;/p&gt;
 
 &lt;h2&gt;Simple GET example&lt;/h2&gt;
