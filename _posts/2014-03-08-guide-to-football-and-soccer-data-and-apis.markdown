@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: Nov 26 2014
+Last updated: May 31 2015
 
 ## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
@@ -47,6 +47,7 @@ Jump to a specific source:
   - [openligadb.db](#openligadb.db)
   - [Wikipedia](#wiki)
   - [Post War English & Scottish Football League A - Z Player's Database](#postwar)
+- [2015 Women's World Cup Data](#worldcup2015)
 - [World Cup 2014 APIs](#worldcup)
 - [Deprecated/Retired - "The Graveyard of APIs](#api-graveyard)
 - [More Reading / Resources / Links](#other)
@@ -336,6 +337,15 @@ The key/legend of all the field abbreviations gives you idea of what is availabl
 [Post War English & Scottish Football League A - Z Player's Database](http://www.neilbrown.newcastlefans.com/index.html) contains a lot of HTML tables of "players who appeared for their clubs between 1946/47 and the end of the 2013/14 season and who have now left their clubs." Here is a list of [ex-Manchester United players](http://www.neilbrown.newcastlefans.com/manutd/manutd.html).
 
 Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
+
+<a name="worldcup2015"></a>
+### <i class="fa fa-futbol-o"></i> 2015 Women's World Cup Data
+
+[FIFA PDF files](http://www.fifa.com/womensworldcup/organisation/documents/index.html) - includes unformatted data on participating teams, schedules and random statistics
+
+[world-cup-women on github](https://github.com/openfootball/world-cup-women) - plain text file list of teams and schedule
+
+[2015 Women's World Cup Wikipedia page](http://en.wikipedia.org/wiki/2015_FIFA_Women%27s_World_Cup) - includes a great visual bracket view
 
 <a name="worldcup"></a>
 ### <i class="fa fa-futbol-o"></i> 2014 World Cup APIs

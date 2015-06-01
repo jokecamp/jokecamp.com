@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2015-05-29T10:36:01-04:00</updated>
+ <updated>2015-05-31T21:27:24-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -915,7 +915,7 @@ Fn  Function Key&lt;/p&gt;
    <link href="http://www.jokecamp.com//blog/guide-to-football-and-soccer-data-and-apis"/>
    <updated>2014-03-08T12:08:40-05:00</updated>
    <id>http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</id>
-   <content type="html">&lt;p&gt;Last updated: Nov 26 2014&lt;/p&gt;
+   <content type="html">&lt;p&gt;Last updated: May 31 2015&lt;/p&gt;
 
 &lt;h2&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -959,6 +959,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#wiki&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#postwar&quot;&gt;Post War English &amp;amp; Scottish Football League A - Z Player&amp;#39;s Database&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#worldcup2015&quot;&gt;2015 Women&amp;#39;s World Cup Data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#worldcup&quot;&gt;World Cup 2014 APIs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#api-graveyard&quot;&gt;Deprecated/Retired - &amp;quot;The Graveyard of APIs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#other&quot;&gt;More Reading / Resources / Links&lt;/a&gt;&lt;/li&gt;
@@ -1253,6 +1254,16 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 &lt;p&gt;&lt;a href=&quot;http://www.neilbrown.newcastlefans.com/index.html&quot;&gt;Post War English &amp;amp; Scottish Football League A - Z Player&amp;#39;s Database&lt;/a&gt; contains a lot of HTML tables of &amp;quot;players who appeared for their clubs between 1946/47 and the end of the 2013/14 season and who have now left their clubs.&amp;quot; Here is a list of &lt;a href=&quot;http://www.neilbrown.newcastlefans.com/manutd/manutd.html&quot;&gt;ex-Manchester United players&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;worldcup2015&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; 2015 Women&amp;#39;s World Cup Data&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.fifa.com/womensworldcup/organisation/documents/index.html&quot;&gt;FIFA PDF files&lt;/a&gt; - includes unformatted data on participating teams, schedules and random statistics&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/openfootball/world-cup-women&quot;&gt;world-cup-women on github&lt;/a&gt; - plain text file list of teams and schedule&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/2015_FIFA_Women%27s_World_Cup&quot;&gt;2015 Women&amp;#39;s World Cup Wikipedia page&lt;/a&gt; - includes a great visual bracket view&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;worldcup&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
