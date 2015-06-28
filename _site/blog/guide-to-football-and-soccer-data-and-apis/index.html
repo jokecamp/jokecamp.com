@@ -39,7 +39,7 @@
         <div class="post">
   <h1 class="post-title">Guide to Football/Soccer data and APIs</h1>
   <span class="post-date">08 Mar 2014</span>
-  <p>Last updated: May 31 2015</p>
+  <p>Last updated: June 28 2015</p>
 
 <h2><i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?</h2>
 
@@ -66,7 +66,7 @@
 
 <ul>
 <li><a href="#footballapi">football-api.com</a></li>
-<li><a href="#CrowdScores">CrowdScores and FastestLiveScores</a></li>
+<li><a href="#CrowdScores">CrowdScores and FastestLiveScores API</a></li>
 <li><a href="#xmlsoccer">XMLSoccer.com</a></li>
 <li><a href="#opta">opta</a></li>
 <li><a href="#prozone">prozone</a></li>
@@ -140,6 +140,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 <ul>
 <li><a href="https://github.com/jalapic/engsoccerdata">github.com/jalapic/engsoccerdata</a> includes a <a href="https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv">csv file</a> of the top 4 tier English League Soccer games from 1888 to 2014.</li>
+<li><a href="https://github.com/planetopendata/awesome-football">planetopendata/awesome-football</a> includes another list of repos</li>
 </ul>
 
 <p><a name="free"></a></p>
@@ -191,7 +192,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 <h4>football-api</h4>
 
-<p><a href="http://football-api.com/">football-api.com</a> is a paid API service but does offer the English Premier League endpoints for free (demo use). The API will restrict by IP addresses and limit calls based on your package. Includes endponts for Competitions, teams, standings, live scores, fixtures and commentaries. See the <a href="http://football-api.com/pricing/">pricing page</a>.</p>
+<p><a href="http://football-api.com/">football-api.com</a> is a paid API service but does offer the English Premier League endpoints for free (demo use). The API will restrict by IP addresses and limit calls based on your package. Includes endponts for Competitions, teams, standings, live scores, fixtures and commentaries. See the <a href="http://football-api.com/pricing/">pricing page</a>. Prices range from $15 to $200 per month.</p>
 
 <p>Example endpoints:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">api/?Action=competitions&amp;APIKey=####
@@ -202,10 +203,22 @@ api/?Action=commentaries&amp;APIKey=###&amp;match_id=[MATCH_ID]
 </code></pre></div>
 <p><a name="CrowdScores"></a></p>
 
-<h4>CrowdScores and FastestLiveScores</h4>
+<h4>CrowdScores and FastestLiveScores API</h4>
 
-<p><a href="https://crowdscores.com/">CrowdScores</a> is a UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on <a href="http://fastestlivescores.com/">FastestLiveScores.com</a>. They currently offer <a href="http://fastestlivescores.com/live-scores-api-feed/">three different API tiers</a>. Basic, Pro and Complete. The basic tier is suppose to be free with 3 calls allowed per hour. However, looks like they are only giving keys on a user by user basis. I requested access to the basic tier but have not received access yet. I only received an email asking me why I needed access and what I planned to do with their API.</p>
+<p><a href="https://crowdscores.com/">CrowdScores</a> is a UK company that uses a crowd-sourcing football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on <a href="http://fastestlivescores.com/">FastestLiveScores.com</a>. They currently offer <a href="http://fastestlivescores.com/live-scores-api-feed/">three different API tiers</a>. Free trial ($0), Basic ($100 per month) and Pro (price unlisted). View the <a href="https://api.crowdscores.com/docs/v1#">API documentation</a>.</p>
 
+<p>Example endpoints and parameters:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">/teams{?round_ids,competition_ids}
+/matches{?team_id,round_ids,competition_id,from,to}
+/competitions
+/rounds{?competition_ids}
+/seasons
+/league-table/{round_id}
+/league-tables?{team_id,round_id,competition_id}
+/football_states
+/events
+/playerstats?{team_ids,round_ids,competition_ids,season_ids}
+</code></pre></div>
 <p><a name="xmlsoccer"></a></p>
 
 <h4>XMLSoccer.com</h4>

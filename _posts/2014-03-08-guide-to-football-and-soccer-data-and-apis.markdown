@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: May 31 2015
+Last updated: June 28 2015
 
 ## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
@@ -34,7 +34,7 @@ Jump to a specific source:
   - [openfooty API](#openfooty) (hard to get an API Key)
 - Commercial APIs
   - [football-api.com](#footballapi)
-  - [CrowdScores and FastestLiveScores](#CrowdScores)
+  - [CrowdScores and FastestLiveScores API](#CrowdScores)
   - [XMLSoccer.com](#xmlsoccer)
   - [opta](#opta)
   - [prozone](#prozone)
@@ -99,6 +99,7 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 #### Other smaller Projects/Repos
 
  - [github.com/jalapic/engsoccerdata](https://github.com/jalapic/engsoccerdata) includes a [csv file](https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv) of the top 4 tier English League Soccer games from 1888 to 2014.
+ - [planetopendata/awesome-football](https://github.com/planetopendata/awesome-football) includes another list of repos
 
 <a name="free"></a>
 ### <i class="fa fa-futbol-o"></i> Free APIs
@@ -146,7 +147,7 @@ Example JSON output for a team:
 <a name="footballapi"></a>
 #### football-api
 
-[football-api.com](http://football-api.com/) is a paid API service but does offer the English Premier League endpoints for free (demo use). The API will restrict by IP addresses and limit calls based on your package. Includes endponts for Competitions, teams, standings, live scores, fixtures and commentaries. See the [pricing page](http://football-api.com/pricing/).
+[football-api.com](http://football-api.com/) is a paid API service but does offer the English Premier League endpoints for free (demo use). The API will restrict by IP addresses and limit calls based on your package. Includes endponts for Competitions, teams, standings, live scores, fixtures and commentaries. See the [pricing page](http://football-api.com/pricing/). Prices range from $15 to $200 per month.
 
 Example endpoints:
 
@@ -157,10 +158,22 @@ Example endpoints:
     api/?Action=commentaries&APIKey=###&match_id=[MATCH_ID]
 
 <a name="CrowdScores"></a>
-#### CrowdScores and FastestLiveScores
+#### CrowdScores and FastestLiveScores API
 
-[CrowdScores](https://crowdscores.com/) is a UK company trying to crowd-source the football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on [FastestLiveScores.com](http://fastestlivescores.com/). They currently offer [three different API tiers](http://fastestlivescores.com/live-scores-api-feed/). Basic, Pro and Complete. The basic tier is suppose to be free with 3 calls allowed per hour. However, looks like they are only giving keys on a user by user basis. I requested access to the basic tier but have not received access yet. I only received an email asking me why I needed access and what I planned to do with their API.
+[CrowdScores](https://crowdscores.com/) is a UK company that uses a crowd-sourcing football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on [FastestLiveScores.com](http://fastestlivescores.com/). They currently offer [three different API tiers](http://fastestlivescores.com/live-scores-api-feed/). Free trial ($0), Basic ($100 per month) and Pro (price unlisted). View the [API documentation](https://api.crowdscores.com/docs/v1#).
 
+Example endpoints and parameters:
+
+    /teams{?round_ids,competition_ids}
+    /matches{?team_id,round_ids,competition_id,from,to}
+    /competitions
+    /rounds{?competition_ids}
+    /seasons
+    /league-table/{round_id}
+    /league-tables?{team_id,round_id,competition_id}
+    /football_states
+    /events
+    /playerstats?{team_ids,round_ids,competition_ids,season_ids}
 
 <a name="xmlsoccer"></a>
 #### XMLSoccer.com
