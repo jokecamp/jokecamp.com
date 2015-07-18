@@ -9,6 +9,12 @@ featured: false
 
 A growing list of website ideas. Please take one and implement it then let me know on twitter [@jokecamp](https://twitter.com/jokecamp).
 
+## General Trends
+
+- Solar Energy
+- Electric Car
+- Artificial Intelligence
+
 ## "Catch Me Up" Movie Website
 
 A website that allows a movie viewer that needs a plot refresher or if they started watching a movie half-way through they can get the crib notes for what they missed. The website would show a list of movie plot lines and all will be obscured by spoiler tags. Each line of plot details will have an associated minute. The user will be able to reveal the plot lines they want to see.

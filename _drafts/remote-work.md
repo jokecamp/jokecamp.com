@@ -20,7 +20,7 @@ Tools
 - working space, table and chair and some office supplies
 - skype
 - slack
-
+- Avaya soft client for work phone extensions
 
 My wife is a travel nurse on her first assignment. We have been bouncing around and have been a little unsettled. We have stored belonging in my parents house in Ohio, our cat is staying with my wife's brother in Baltimore and we are living in a temporary apartment in Mass until we move to Boston for my wife's first twelve week assignment.
 
@@ -29,3 +29,9 @@ Remapping the shortcut keys for remote desktop! just do it or you will get so fr
 
 
 Using the ipad as an extra screen?
+
+Star Trek - You can instantanesouly be beamed into a meeting without even realizing (with Skype) if you forget about a meeting. Be ready. be presentable.
+
+I cannot always see everyone who is sitting at the conference table due to the angle of the camera.
+
+Added internal certificates to my osx keychain.

@@ -41,6 +41,7 @@ http://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html
 - Terminator
 - Short Circuit
 - 2001: A Space Odyssey (1968)
+- [Transcendence](https://en.wikipedia.org/wiki/Transcendence_(2014_film)) (2014)
 
 - [robots in movies montage](https://www.youtube.com/watch?v=z9Dd0FdxRFo)
 
@@ -49,3 +50,4 @@ http://waitbutwhy.com/2015/01/artificial-intelligence-revolution-1.html
 - Also see ["The top 50 robots and AI computers in the movies"](http://www.denofgeek.us/movies/19030/the-top-50-robots-and-ai-computers-in-the-movies) for a robot specific list
 
 - [singularity preppers](http://www.singularitypreppers.com/)
+- (http://www.reddit.com/r/explainlikeimfive/comments/3cvsle/eli5elon_musk_has_been_very_clear_recently_in/)

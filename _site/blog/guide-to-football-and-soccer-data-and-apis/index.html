@@ -39,7 +39,7 @@
         <div class="post">
   <h1 class="post-title">Guide to Football/Soccer data and APIs</h1>
   <span class="post-date">08 Mar 2014</span>
-  <p>Last updated: June 28 2015</p>
+  <p>Last updated: July 18 2015</p>
 
 <h2><i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?</h2>
 
@@ -67,6 +67,7 @@
 <ul>
 <li><a href="#footballapi">football-api.com</a></li>
 <li><a href="#CrowdScores">CrowdScores and FastestLiveScores API</a></li>
+<li><a href="#spapi">SPAPI</a></li>
 <li><a href="#xmlsoccer">XMLSoccer.com</a></li>
 <li><a href="#opta">opta</a></li>
 <li><a href="#prozone">prozone</a></li>
@@ -219,6 +220,58 @@ api/?Action=commentaries&amp;APIKey=###&amp;match_id=[MATCH_ID]
 /events
 /playerstats?{team_ids,round_ids,competition_ids,season_ids}
 </code></pre></div>
+<p><a name="spapi"></a></p>
+
+<h3>SPAPI</h3>
+
+<p><a href="https://spapi.pw/">SPAPI</a> offers subscriptions for a RESTful Sports API including live scores, player statistics, betting odds, pre-game data and match event data. The data response look pretty comprehensive.</p>
+
+<p>Pricing:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">Starter Plan is $299 per month
+Growth pla is $499 per month
+Pro Plan is $899 per month
+</code></pre></div>
+<p>Look at the example of one of the action data objects. It looks like data for a defensive clearance including x,y coordinates.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{
+    &quot;minute&quot;: 53,
+    &quot;second&quot;: 10,
+    &quot;team_id&quot;: 32,
+    &quot;start_x&quot;: 20.8,
+    &quot;start_y&quot;: 69.5,
+    &quot;expanded_minute&quot;: 57,
+    &quot;period&quot;: {
+      &quot;name&quot;: &quot;SecondHalf&quot;,
+      &quot;value&quot;: 2
+    },
+    &quot;type&quot;: {
+      &quot;name&quot;: &quot;Clearance&quot;,
+      &quot;value&quot;: 12
+    },
+    &quot;outcome_type&quot;: {
+      &quot;name&quot;: &quot;Successful&quot;,
+      &quot;value&quot;: 1
+    },
+    &quot;qualifiers&quot;: [{
+      &quot;type&quot;: &quot;Head&quot;
+    }, {
+      &quot;type&quot;: &quot;Zone&quot;,
+      &quot;value&quot;: &quot;Back&quot;
+    }],
+    &quot;is_touch&quot;: true
+  }
+</code></pre></div>
+<p>Example endpoints:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">https://spapi.pw/api/v1/competitions/5/upcoming_matches
+https://spapi.pw/api/v1/competitions/5/finished_matches
+https://spapi.pw/api/v1/competitions/5/standings?standing_type=standings
+https://spapi.pw/api/v1/competitions/5/player_rankings?ranking_type=all
+https://spapi.pw/api/v1/teams
+https://spapi.pw/api/v1/matches/17588/scores
+https://spapi.pw/api/v1/livescores
+https://spapi.pw/api/v1/players/1/statistics
+</code></pre></div>
+<p>Pretty impressive but this level of detail comes at a price. Authentication method is a API key in querystring.</p>
+
 <p><a name="xmlsoccer"></a></p>
 
 <h4>XMLSoccer.com</h4>

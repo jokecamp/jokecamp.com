@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: June 28 2015
+Last updated: July 18 2015
 
 ## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
@@ -35,6 +35,7 @@ Jump to a specific source:
 - Commercial APIs
   - [football-api.com](#footballapi)
   - [CrowdScores and FastestLiveScores API](#CrowdScores)
+  - [SPAPI](#spapi)
   - [XMLSoccer.com](#xmlsoccer)
   - [opta](#opta)
   - [prozone](#prozone)
@@ -174,6 +175,60 @@ Example endpoints and parameters:
     /football_states
     /events
     /playerstats?{team_ids,round_ids,competition_ids,season_ids}
+
+<a name="spapi"></a>
+### SPAPI
+
+[SPAPI](https://spapi.pw/) offers subscriptions for a RESTful Sports API including live scores, player statistics, betting odds, pre-game data and match event data. The data response look pretty comprehensive.
+
+Pricing:
+
+    Starter Plan is $299 per month
+    Growth pla is $499 per month
+    Pro Plan is $899 per month
+
+Look at the example of one of the action data objects. It looks like data for a defensive clearance including x,y coordinates.
+
+    {
+        "minute": 53,
+        "second": 10,
+        "team_id": 32,
+        "start_x": 20.8,
+        "start_y": 69.5,
+        "expanded_minute": 57,
+        "period": {
+          "name": "SecondHalf",
+          "value": 2
+        },
+        "type": {
+          "name": "Clearance",
+          "value": 12
+        },
+        "outcome_type": {
+          "name": "Successful",
+          "value": 1
+        },
+        "qualifiers": [{
+          "type": "Head"
+        }, {
+          "type": "Zone",
+          "value": "Back"
+        }],
+        "is_touch": true
+      }
+
+Example endpoints:
+
+    https://spapi.pw/api/v1/competitions/5/upcoming_matches
+    https://spapi.pw/api/v1/competitions/5/finished_matches
+    https://spapi.pw/api/v1/competitions/5/standings?standing_type=standings
+    https://spapi.pw/api/v1/competitions/5/player_rankings?ranking_type=all
+    https://spapi.pw/api/v1/teams
+    https://spapi.pw/api/v1/matches/17588/scores
+    https://spapi.pw/api/v1/livescores
+    https://spapi.pw/api/v1/players/1/statistics
+
+Pretty impressive but this level of detail comes at a price. Authentication method is a API key in querystring.
 
 <a name="xmlsoccer"></a>
 #### XMLSoccer.com

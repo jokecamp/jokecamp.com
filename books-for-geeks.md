@@ -40,6 +40,8 @@ An insider's view of the companies and developer's who create Doom, Quake and nu
 
 - [Alan Kay's Reading List](http://c2.com/cgi/wiki?AlanKaysReadingList) - a long list of books organized by subject curated by an accomplished reader/computer scientist.
 
+- Ernest Clines Ten Favorite sci-fi books http://www.barnesandnoble.com/blog/sci-fi-fantasy/ernest-clines-10-favorite-sff-novels/
+
 [1]: http://www.amazon.com/gp/product/B00EMXBDMA/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00EMXBDMA&linkCode=as2&tag=jokecamp-20&linkId=7IRGJBD2LF73UZCF
 [2]: http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0060512806&amp;linkCode=as2&amp;tag=jokecamp-20
 
