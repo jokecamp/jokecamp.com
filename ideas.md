@@ -46,3 +46,7 @@ Allow people to sign up for a weekly newsletter that shows them a summary of wha
 ## Travel Calendar and Planning
 
 A flexible calendar for trip planning. Have a structure that helps determine you have a place to sleep every night and also saves ideas for things to do.
+
+## Sports Checksum API
+
+With the emergence of sports data it would be nice to have an community agreed upon set of checksum data that you can use to prove the accuracy of your results. It would simply have some basic summary stats on events in the post. That way you could say does your API return 58 points for 2014 Manchester United season? If yes then your API passes the checksum and is considered accurate.

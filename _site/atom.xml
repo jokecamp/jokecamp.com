@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2015-07-18T16:01:00-04:00</updated>
+ <updated>2015-08-09T11:04:56-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -2020,7 +2020,7 @@ The below script must be executed as an Administrator since it will be modifying
   }
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;You should of noticed we are including a &lt;code&gt;fastcgi_params&lt;/code&gt; file at the bottom. We need to edit that file. Run&lt;/p&gt;
+&lt;p&gt;You should have noticed we are including a &lt;code&gt;fastcgi_params&lt;/code&gt; file at the bottom. We need to edit that file. Run&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;nano /etc/nginx/fastcgi_params&lt;/code&gt;&lt;/p&gt;
 
@@ -3041,7 +3041,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
 
 &lt;p&gt;&lt;strong&gt;Solution to #1&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;The group should of never been hard coded (even if it is in a config file.) The problem is that once a group moves the query will no longer work. A much better approach is to query first for the group by the exact name and return the full distinguished name (DN). Then use the group DN to get all the members of the group in a separate query.&lt;/p&gt;
+&lt;p&gt;The group should have never been hard coded (even if it is in a config file.) The problem is that once a group moves the query will no longer work. A much better approach is to query first for the group by the exact name and return the full distinguished name (DN). Then use the group DN to get all the members of the group in a separate query.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Solution to #2&lt;/strong&gt;&lt;/p&gt;
 

@@ -134,7 +134,7 @@ server {
 }
 ```
 
-You should of noticed we are including a `fastcgi_params` file at the bottom. We need to edit that file. Run
+You should have noticed we are including a `fastcgi_params` file at the bottom. We need to edit that file. Run
 
 ```nano /etc/nginx/fastcgi_params```
 

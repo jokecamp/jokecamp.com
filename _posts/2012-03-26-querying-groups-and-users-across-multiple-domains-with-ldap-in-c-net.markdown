@@ -23,7 +23,7 @@ I recently needed to fix some LDAP queries using DirectoryEntry and DirectorySea
 
 **Solution to #1**
 
-The group should of never been hard coded (even if it is in a config file.) The problem is that once a group moves the query will no longer work. A much better approach is to query first for the group by the exact name and return the full distinguished name (DN). Then use the group DN to get all the members of the group in a separate query.
+The group should have never been hard coded (even if it is in a config file.) The problem is that once a group moves the query will no longer work. A much better approach is to query first for the group by the exact name and return the full distinguished name (DN). Then use the group DN to get all the members of the group in a separate query.
 
 **Solution to #2**
 
