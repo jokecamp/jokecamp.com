@@ -48,10 +48,11 @@ Jump to a specific source:
   - [openligadb.db](#openligadb.db)
   - [Wikipedia](#wiki)
   - [Post War English & Scottish Football League A - Z Player's Database](#postwar)
-- [2015 Women's World Cup Data](#worldcup2015)
-- [World Cup 2014 APIs](#worldcup)
-- [Deprecated/Retired - "The Graveyard of APIs](#api-graveyard)
-- [More Reading / Resources / Links](#other)
+  - [2015 Women's World Cup Data](#worldcup2015)
+  - [World Cup 2014 APIs](#worldcup)
+  - [Deprecated/Retired - "The Graveyard of APIs](#api-graveyard)
+  - [More Reading / Resources / Links](#other)
+  - [Fantasy Data](#fantasy)
 
 
 <a name="github"></a>
@@ -446,7 +447,15 @@ Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS
 events covering as many historical data as available including recent competition
 results." Some dead links but worth a skim.
 
-#### Other Links to explore
+<a name="fantasy"></a>
+### <i class="fa fa-futbol-o"></i> Fantasy Data
+
+- [EPL Fantasy Geek](http://jokecamp.github.io/epl-fantasy-geek/) - Current season EPL Fantasy stats for every player.
+- [Fantasy Soccer Data Downloader on github](https://github.com/rasbt/datacollect/tree/master/collect_fantasysoccer) - A simple command line tool to download English Premier League (fantasy) soccer data
+
+### <i class="fa fa-futbol-o"></i> Even more links to explore
+
+You've made it this far. Why stop now?
 
 - [MLS Player Salary information](http://www.mlsplayers.org/salary_info.html) - 2007 to current salary amounts in pdf from the MLS Players union.
 - See this 2012 [opisthokonta.net](http://opisthokonta.net/?page_id=995) blog post.
@@ -454,7 +463,6 @@ results." Some dead links but worth a skim.
 - [sportscruncher links blog post](http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/) and [soccer ratings post](http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/)
 - [Football kit colors](http://www.colours-of-football.com/)
 - [Historial kits](http://www.historicalkits.co.uk/)
-- [Fantasy Soccer Data Downloader on github](https://github.com/rasbt/datacollect/tree/master/collect_fantasysoccer)
 - [ENFA - English National Football Archive](http://www.enfa.co.uk/)
 - [Association of Football Statisticians (AFS)](http://www.11v11.com/about-afs/)
 - [European football squads since 1999](http://en.eufo.de/site/about-us)
@@ -469,7 +477,7 @@ Please let me know about your own data sources or add a pull request on [github]
 
 ### Recommended Books
 
-Show your support by buying and reading one of these books. Sorry for the shameless plug.
+Show your support by buying and reading one of these football books. Sorry for the shameless plug.
 
 <div class="bookcovers">
 

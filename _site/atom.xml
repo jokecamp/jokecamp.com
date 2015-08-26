@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2015-08-09T11:04:56-04:00</updated>
+ <updated>2015-08-25T20:44:01-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -959,11 +959,12 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#openligadb.db&quot;&gt;openligadb.db&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#wiki&quot;&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#postwar&quot;&gt;Post War English &amp;amp; Scottish Football League A - Z Player&amp;#39;s Database&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#worldcup2015&quot;&gt;2015 Women&amp;#39;s World Cup Data&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#worldcup&quot;&gt;World Cup 2014 APIs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#api-graveyard&quot;&gt;Deprecated/Retired - &amp;quot;The Graveyard of APIs&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#other&quot;&gt;More Reading / Resources / Links&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#fantasy&quot;&gt;Fantasy Data&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a name=&quot;github&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1365,7 +1366,18 @@ ABP = Away Team Bookings Points (10 = yellow, 25 = red)
 events covering as many historical data as available including recent competition
 results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
 
-&lt;h4&gt;Other Links to explore&lt;/h4&gt;
+&lt;p&gt;&lt;a name=&quot;fantasy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Fantasy Data&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://jokecamp.github.io/epl-fantasy-geek/&quot;&gt;EPL Fantasy Geek&lt;/a&gt; - Current season EPL Fantasy stats for every player.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/rasbt/datacollect/tree/master/collect_fantasysoccer&quot;&gt;Fantasy Soccer Data Downloader on github&lt;/a&gt; - A simple command line tool to download English Premier League (fantasy) soccer data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Even more links to explore&lt;/h3&gt;
+
+&lt;p&gt;You&amp;#39;ve made it this far. Why stop now?&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.mlsplayers.org/salary_info.html&quot;&gt;MLS Player Salary information&lt;/a&gt; - 2007 to current salary amounts in pdf from the MLS Players union.&lt;/li&gt;
@@ -1374,7 +1386,6 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/&quot;&gt;sportscruncher links blog post&lt;/a&gt; and &lt;a href=&quot;http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/&quot;&gt;soccer ratings post&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.colours-of-football.com/&quot;&gt;Football kit colors&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.historicalkits.co.uk/&quot;&gt;Historial kits&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/rasbt/datacollect/tree/master/collect_fantasysoccer&quot;&gt;Fantasy Soccer Data Downloader on github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.enfa.co.uk/&quot;&gt;ENFA - English National Football Archive&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.11v11.com/about-afs/&quot;&gt;Association of Football Statisticians (AFS)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://en.eufo.de/site/about-us&quot;&gt;European football squads since 1999&lt;/a&gt;&lt;/li&gt;
@@ -1388,7 +1399,7 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
 
 &lt;h3&gt;Recommended Books&lt;/h3&gt;
 
-&lt;p&gt;Show your support by buying and reading one of these books. Sorry for the shameless plug.&lt;/p&gt;
+&lt;p&gt;Show your support by buying and reading one of these football books. Sorry for the shameless plug.&lt;/p&gt;
 
 &lt;div class=&quot;bookcovers&quot;&gt;
 
