@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2015-10-13T20:12:39-06:00</updated>
+ <updated>2015-10-13T20:46:05-06:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -961,7 +961,7 @@ Fn  Function Key&lt;/p&gt;
    <link href="http://www.jokecamp.com//blog/guide-to-football-and-soccer-data-and-apis"/>
    <updated>2014-03-08T10:08:40-07:00</updated>
    <id>http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</id>
-   <content type="html">&lt;p&gt;Last updated: July 18 2015&lt;/p&gt;
+   <content type="html">&lt;p&gt;Last updated: Oct 13 2015&lt;/p&gt;
 
 &lt;h2&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -970,6 +970,11 @@ Fn  Function Key&lt;/p&gt;
 &lt;p&gt;Jump to a specific source:&lt;/p&gt;
 
 &lt;ul&gt;
+&lt;li&gt;Newsletter
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#newsletter&quot;&gt;Football Data Report&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Open source data on github
 
 &lt;ul&gt;
@@ -1012,6 +1017,29 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#fantasy&quot;&gt;Fantasy Data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;newsletter&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Football Data Report Newsletter&lt;/h3&gt;
+
+&lt;p&gt;If you would like more frequent updates regarding football APIs, football data and open source football projects then signup for the newsletter. Emails will be sent about once or twice per month. I will try to highlight free data and open source projects. Please email any links or newsletter suggestions.&lt;/p&gt;
+
+&lt;p&gt;&lt;link href=&quot;//cdn-images.mailchimp.com/embedcode/slim-081711.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    #mc&lt;em&gt;embed&lt;/em&gt;signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+    /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+       We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+&lt;/style&gt;
+&lt;div id=&quot;mc_embed_signup&quot;&gt;
+&lt;form action=&quot;//jokecamp.us11.list-manage.com/subscribe/post?u=cb6e46591377b9e37de1f674f&amp;amp;id=9ed21f2b6d&quot; method=&quot;post&quot; id=&quot;mc-embedded-subscribe-form&quot; name=&quot;mc-embedded-subscribe-form&quot; class=&quot;validate&quot; target=&quot;_blank&quot; novalidate&gt;
+    &lt;div id=&quot;mc_embed_signup_scroll&quot;&gt;
+    &lt;label for=&quot;mce-EMAIL&quot;&gt;Subscribe to the &amp;quot;Football Data Report&amp;quot; newsletter&lt;/label&gt;
+    &lt;input type=&quot;email&quot; value=&quot;&quot; name=&quot;EMAIL&quot; class=&quot;email&quot; id=&quot;mce-EMAIL&quot; placeholder=&quot;email address&quot; required&gt;
+    &lt;div style=&quot;position: absolute; left: -5000px;&quot;&gt;&lt;input type=&quot;text&quot; name=&quot;b_cb6e46591377b9e37de1f674f_9ed21f2b6d&quot; tabindex=&quot;-1&quot; value=&quot;&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;clear&quot;&gt;&lt;input type=&quot;submit&quot; value=&quot;Subscribe&quot; name=&quot;subscribe&quot; id=&quot;mc-embedded-subscribe&quot; class=&quot;button&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;github&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 

@@ -9,11 +9,7 @@ featured: false
 
 A growing list of website ideas. Please take one and implement it then let me know on twitter [@jokecamp](https://twitter.com/jokecamp).
 
-## Tiny Letter Newsletter for fantasy sports managers
-
-generate a letter
-
-## General Trends
+## General Trends to track
 
 - Solar Energy and Energy Storage
 - Electric/Self-Driving Cars
@@ -30,9 +26,13 @@ generate a letter
 - Will will not need blinds. Windows will just tint.
 - Will everything break?
 
+## Tiny Letter Newsletter for fantasy sports managers
+
+Generate a letter for league managers.
+
 ## Maps with Noise Pollution
 
-Useful for movers looking for a new place.
+Useful for movers looking for a new place. I am sure this exists.
 
 ## Football Data Newsletter
 
