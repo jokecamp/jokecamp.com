@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2015-08-25T20:44:01-04:00</updated>
+ <updated>2015-10-13T20:12:39-06:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -13,9 +13,55 @@
 
  
  <entry>
+   <title>Getting started with openfootball data</title>
+   <link href="http://www.jokecamp.com//blog/getting-started-with-openfootball-data"/>
+   <updated>2015-10-06T00:00:00-06:00</updated>
+   <id>http://www.jokecamp.com/blog/getting-started-with-openfootball-data</id>
+   <content type="html">&lt;p&gt;mkdir openfootball
+cd openfootball&lt;/p&gt;
+
+&lt;p&gt;1) Pick a data set repository. We will use &lt;a href=&quot;https://github.com/openfootball/eng-england&quot;&gt;https://github.com/openfootball/eng-england&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2) install sportdb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gem install sportdb&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ gem list sportdb
+
+*** LOCAL GEMS ***
+
+sportdb (1.11.0)
+sportdb-models (1.14.0)
+sportdb-service (0.4.0)
+sportdb-update (0.1.1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What is &lt;a href=&quot;http://guides.rubygems.org/what-is-a-gem/&quot;&gt;ruby gem&lt;/a&gt;?&lt;/p&gt;
+
+&lt;p&gt;sportdb new en&lt;/p&gt;
+
+&lt;h1&gt;Understanding the OpenFootball Text Format (Mini Language)&lt;/h1&gt;
+
+&lt;p&gt;https://github.com/sportdb/sport.db.models/blob/b3245d858fb89757eb8e91e1da8ccacd001db9c0/lib/sportdb/readers/game.rb&lt;/p&gt;
+
+&lt;p&gt;Event Keys:
+  league
+  season
+  start&lt;em&gt;at / begin&lt;/em&gt;at (%Y-%m-%d) date
+  end&lt;em&gt;at / stop&lt;/em&gt;at date
+  grounds, stadiums, venues array
+  teams array
+  fixtures / sources&lt;/p&gt;
+
+&lt;p&gt;Goals format
+  [Neymar 12&amp;#39;]&lt;/p&gt;
+
+&lt;p&gt;https://github.com/sportdb/sport.db.models/blob/b3245d858fb89757eb8e91e1da8ccacd001db9c0/lib/sportdb/readers/game.rb&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>What has AngularJS ever done for us?</title>
    <link href="http://www.jokecamp.com//blog/what-has-angularjs-ever-done-for-us"/>
-   <updated>2015-01-26T00:00:00-05:00</updated>
+   <updated>2015-01-26T00:00:00-07:00</updated>
    <id>http://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</id>
    <content type="html">&lt;p&gt;Several developers and a project manager meet at a round table to discuss the codebase for an existing web application. Ninja Developer, a young, fast typing, vim using, hacker news reader reading guy kicks off the meeting.&lt;/p&gt;
 
@@ -92,7 +138,7 @@
  <entry>
    <title>Why is SVN merge not tracking merged revisions?</title>
    <link href="http://www.jokecamp.com//blog/why-is-svn-merge-not-tracking-merged-revisions"/>
-   <updated>2014-11-06T00:00:00-05:00</updated>
+   <updated>2014-11-06T00:00:00-07:00</updated>
    <id>http://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</id>
    <content type="html">&lt;p&gt;The most likely answer:&lt;/p&gt;
 
@@ -119,7 +165,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
  <entry>
    <title>Simple Examples of PowerShell's Invoke-RestMethod</title>
    <link href="http://www.jokecamp.com//blog/invoke-restmethod-powershell-examples"/>
-   <updated>2014-10-01T00:00:00-04:00</updated>
+   <updated>2014-10-01T00:00:00-06:00</updated>
    <id>http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</id>
    <content type="html">&lt;p&gt;The &lt;a href=&quot;http://technet.microsoft.com/en-us/library/hh849971.aspx&quot;&gt;documentation for Invoke-RestMethod&lt;/a&gt; is a long sea of text. Skip it. These simple examples should get your started with consuming a REST API with PowerShell. Just a quick note that &lt;code&gt;Invoke-RestMethod&lt;/code&gt; will parse the HTTP response for you and return a PowerShell object.&lt;/p&gt;
 
@@ -153,7 +199,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
  <entry>
    <title>How to list your jekyll posts by tags</title>
    <link href="http://www.jokecamp.com//blog/listing-jekyll-posts-by-tag"/>
-   <updated>2014-09-05T00:00:00-04:00</updated>
+   <updated>2014-09-05T00:00:00-06:00</updated>
    <id>http://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</id>
    <content type="html">&lt;p&gt;The below example code demonstrates how to show and organize your posts by &lt;a href=&quot;http://jekyllrb.com/docs/frontmatter/&quot;&gt;tags&lt;/a&gt; using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;jekyll&lt;/a&gt; and the &lt;a href=&quot;http://docs.shopify.com/themes/liquid-documentation/basics&quot;&gt;liquid template language&lt;/a&gt;. This is basically the same code I use for my own &lt;a href=&quot;/tag/&quot;&gt;listing of posts by tag&lt;/a&gt;.&lt;/p&gt;
 
@@ -198,7 +244,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
  <entry>
    <title>Simple jekyll deployment with a shell script and GitHub</title>
    <link href="http://www.jokecamp.com//blog/Simple-jekyll-deployment-with-a-shell-script-and-github"/>
-   <updated>2014-08-23T00:00:00-04:00</updated>
+   <updated>2014-08-23T00:00:00-06:00</updated>
    <id>http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</id>
    <content type="html">&lt;p&gt;I wanted to document and share my process for deploying this very website (jokecamp.com).&lt;/p&gt;
 
@@ -276,7 +322,7 @@ username@your.remote.host.for.ssh.com&amp;#39;s password:
  <entry>
    <title>Getting started with iisnode: node.js on Windows</title>
    <link href="http://www.jokecamp.com//blog/getting-started-with-iisnode"/>
-   <updated>2014-08-08T00:00:00-04:00</updated>
+   <updated>2014-08-08T00:00:00-06:00</updated>
    <id>http://www.jokecamp.com/blog/getting-started-with-iisnode</id>
    <content type="html">&lt;p&gt;I&amp;#39;ve spent some time learning and working with &lt;a href=&quot;https://twitter.com/tjanczuk&quot;&gt;Tomasz Janczuk&amp;#39;s&lt;/a&gt; impressive &lt;a href=&quot;https://github.com/tjanczuk/iisnode&quot;&gt;iisnode&lt;/a&gt; project. He has done well to explain the open source project but the documentation is fragmented between the &lt;a href=&quot;https://github.com/tjanczuk/iisnode/tree/master/src/iisnode&quot;&gt;source code&lt;/a&gt;, &lt;a href=&quot;https://github.com/tjanczuk/iisnode/issues&quot;&gt;github issues&lt;/a&gt; and &lt;a href=&quot;http://tomasz.janczuk.org/&quot;&gt;tjanczuk&amp;#39;s blog&lt;/a&gt;. I will retrace my learning process in order to help others get started with iisnode.&lt;/p&gt;
 
@@ -471,7 +517,7 @@ The post describes the key components, relationships and a short description of 
  <entry>
    <title>Alternate way to build your own football.db sqlite database</title>
    <link href="http://www.jokecamp.com//blog/alternate-way-to-build-your-own-football-db-sqlite-database"/>
-   <updated>2014-06-28T16:50:15-04:00</updated>
+   <updated>2014-06-28T14:50:15-06:00</updated>
    <id>http://www.jokecamp.com/blog/alternate-way-to-build-your-own-football-db-sqlite-database</id>
    <content type="html">&lt;p&gt;Documentation has been moved to &lt;a href=&quot;https://github.com/jokecamp/sportdb-build-scripts&quot;&gt;https://github.com/jokecamp/sportdb-build-scripts&lt;/a&gt;&lt;/p&gt;
 
@@ -680,7 +726,7 @@ Stats:
  <entry>
    <title>Building a Raspberry Pi Photo Frame</title>
    <link href="http://www.jokecamp.com//blog/building-a-raspberry-pi-photo-frame"/>
-   <updated>2014-06-07T21:34:58-04:00</updated>
+   <updated>2014-06-07T19:34:58-06:00</updated>
    <id>http://www.jokecamp.com/blog/building-a-raspberry-pi-photo-frame</id>
    <content type="html">&lt;p&gt;First off, my inspiration and instructions came from this article &lt;a href=&quot;http://www.ofbrooklyn.com/2014/01/2/building-photo-frame-raspberry-pi-motion-detector&quot;&gt;Building a living photo frame with a Raspberry Pi and a motion detector&lt;/a&gt;. The author is more knowledgeable and the article is more in-depth than mine. See that article for specific configuration and for the actual contents of the python script to pull photos from flickr. I hope my post will help others by sharing my first time experiences with the pi and the issues/frustrations I encountered.&lt;/p&gt;
 
@@ -744,7 +790,7 @@ sudo pip install requests
  <entry>
    <title>Resolving AngularJS paths in a ASP.NET MVC SPA and IIS</title>
    <link href="http://www.jokecamp.com//blog/resolving-angularjs-paths-in-asp-mvc-spa-iis"/>
-   <updated>2014-06-06T19:49:35-04:00</updated>
+   <updated>2014-06-06T17:49:35-06:00</updated>
    <id>http://www.jokecamp.com/blog/resolving-angularjs-paths-in-asp-mvc-spa-iis</id>
    <content type="html">&lt;p&gt;[caption id=&amp;quot;attachment_1509&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;212&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/iis-application.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/iis-application.png&quot; alt=&quot;Example IIS Application Setup&quot;&gt;&lt;/a&gt; Problems when your IIS Application is not at the root[/caption]&lt;/p&gt;
 
@@ -839,7 +885,7 @@ sudo pip install requests
  <entry>
    <title>Setup up your Mac for .NET Development</title>
    <link href="http://www.jokecamp.com//blog/setup-up-your-mac-for-net-development"/>
-   <updated>2014-03-27T00:02:40-04:00</updated>
+   <updated>2014-03-26T22:02:40-06:00</updated>
    <id>http://www.jokecamp.com/blog/setup-up-your-mac-for-net-development</id>
    <content type="html">&lt;h3&gt;Making the Switch from Windows to OSX&lt;/h3&gt;
 
@@ -913,7 +959,7 @@ Fn  Function Key&lt;/p&gt;
  <entry>
    <title>Guide to Football/Soccer data and APIs</title>
    <link href="http://www.jokecamp.com//blog/guide-to-football-and-soccer-data-and-apis"/>
-   <updated>2014-03-08T12:08:40-05:00</updated>
+   <updated>2014-03-08T10:08:40-07:00</updated>
    <id>http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</id>
    <content type="html">&lt;p&gt;Last updated: July 18 2015&lt;/p&gt;
 
@@ -935,7 +981,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;Free APIs
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#footballdata&quot;&gt;football-data.org&lt;/a&gt; (beta) (RESTful)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#footballdata&quot;&gt;football-data.org&lt;/a&gt; (RESTful API)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Commercial APIs
@@ -1019,6 +1065,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/jalapic/engsoccerdata&quot;&gt;github.com/jalapic/engsoccerdata&lt;/a&gt; includes a &lt;a href=&quot;https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv&quot;&gt;csv file&lt;/a&gt; of the top 4 tier English League Soccer games from 1888 to 2014.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/planetopendata/awesome-football&quot;&gt;planetopendata/awesome-football&lt;/a&gt; includes another list of repos&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/architv/soccer-cli&quot;&gt;architv/soccer-cli&lt;/a&gt; - A command line interface for retrieving football scores.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a name=&quot;free&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1083,7 +1130,7 @@ api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 
 &lt;h4&gt;CrowdScores and FastestLiveScores API&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://crowdscores.com/&quot;&gt;CrowdScores&lt;/a&gt; is a UK company that uses a crowd-sourcing football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on &lt;a href=&quot;http://fastestlivescores.com/&quot;&gt;FastestLiveScores.com&lt;/a&gt;. They currently offer &lt;a href=&quot;http://fastestlivescores.com/live-scores-api-feed/&quot;&gt;three different API tiers&lt;/a&gt;. Free trial ($0), Basic ($100 per month) and Pro (price unlisted). View the &lt;a href=&quot;https://api.crowdscores.com/docs/v1#&quot;&gt;API documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://crowdscores.com/&quot;&gt;CrowdScores&lt;/a&gt; is a UK company that uses a crowd-sourcing football data collection process. You sign up for an account and report game events to their servers. They have iPhone and android apps for reporting. The collected data is then available as an API on &lt;a href=&quot;http://fastestlivescores.com/&quot;&gt;FastestLiveScores.com&lt;/a&gt;. They currently offer &lt;a href=&quot;http://fastestlivescores.com/live-scores-api-feed/&quot;&gt;three different API tiers&lt;/a&gt;. Free trial ($0), Basic ($100 per month) and Pro (price unlisted). View the &lt;a href=&quot;https://api.crowdscores.com/docs/v1#&quot;&gt;API documentation&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Example endpoints and parameters:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;/teams{?round_ids,competition_ids}
@@ -1101,7 +1148,7 @@ api/?Action=commentaries&amp;amp;APIKey=###&amp;amp;match_id=[MATCH_ID]
 
 &lt;h3&gt;SPAPI&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://spapi.pw/&quot;&gt;SPAPI&lt;/a&gt; offers subscriptions for a RESTful Sports API including live scores, player statistics, betting odds, pre-game data and match event data. The data response look pretty comprehensive.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://spapi.pw?code=jokecamp&quot;&gt;SPAPI&lt;/a&gt; offers subscriptions for a RESTful Sports API including live scores, player statistics, betting odds, pre-game data and match event data. The data response look pretty comprehensive.&lt;/p&gt;
 
 &lt;p&gt;Pricing:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Starter Plan is $299 per month
@@ -1184,6 +1231,8 @@ https://spapi.pw/api/v1/players/1/statistics
   &lt;span class=&quot;nt&quot;&gt;&amp;lt;Signing&amp;gt;&lt;/span&gt;Free&lt;span class=&quot;nt&quot;&gt;&amp;lt;/Signing&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/Player&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Open source &lt;a href=&quot;https://github.com/martineastwood/xmlsoccer&quot;&gt;Python client for XmlSoccer API&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;a name=&quot;opta&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4&gt;opta&lt;/h4&gt;
@@ -1421,7 +1470,7 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
  <entry>
    <title>Staying current with Tech/Developer News</title>
    <link href="http://www.jokecamp.com//blog/staying-current-with-techdeveloper-news"/>
-   <updated>2013-12-30T20:02:46-05:00</updated>
+   <updated>2013-12-30T18:02:46-07:00</updated>
    <id>http://www.jokecamp.com/blog/staying-current-with-techdeveloper-news</id>
    <content type="html">&lt;h3&gt;&lt;a href=&quot;http://news.ycombinator.com&quot;&gt;Hacker News&lt;/a&gt; and Newsletter - News and Articles&lt;/h3&gt;
 
@@ -1474,7 +1523,7 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
  <entry>
    <title>Experiment in Restful API Partial Updates via PATCH verb in ServiceStack</title>
    <link href="http://www.jokecamp.com//blog/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack"/>
-   <updated>2013-12-17T20:00:48-05:00</updated>
+   <updated>2013-12-17T18:00:48-07:00</updated>
    <id>http://www.jokecamp.com/blog/experiment-in-restful-api-partial-updates-via-patch-verb-in-servicestack</id>
    <content type="html">&lt;p&gt;I&amp;#39;ve recently been thinking about how to implement partial updates in a restful API. Partial updates can be achieved in ServiceStack with very little code using OrmLite. See this old google groups post &lt;a href=&quot;https://groups.google.com/forum/#!topic/servicestack/H9lov15rR14&quot;&gt;Partial Updates via HTTP Patch (or X-HTTP-Method-Override:PATCH)&lt;/a&gt; for my starting point.&lt;/p&gt;
 
@@ -1597,7 +1646,7 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
  <entry>
    <title>Tutorial: How to use TeamCity Powershell Runner to automatically deploy website</title>
    <link href="http://www.jokecamp.com//blog/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website"/>
-   <updated>2013-12-14T20:09:59-05:00</updated>
+   <updated>2013-12-14T18:09:59-07:00</updated>
    <id>http://www.jokecamp.com/blog/tutorial-how-to-use-teamcity-powershell-runner-to-automatically-deploy-website</id>
    <content type="html">&lt;p&gt;This tutorial is intended for .NET developers wishing to get started with deploying TeamCity builds via PowerShell.&lt;/p&gt;
 
@@ -1683,7 +1732,7 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
  <entry>
    <title>Querying the TeamCity Rest API with Powershell</title>
    <link href="http://www.jokecamp.com//blog/querying-the-teamcity-rest-api-with-powershell"/>
-   <updated>2013-11-25T15:49:36-05:00</updated>
+   <updated>2013-11-25T13:49:36-07:00</updated>
    <id>http://www.jokecamp.com/blog/querying-the-teamcity-rest-api-with-powershell</id>
    <content type="html">&lt;p&gt;The following powershell function demonstrates how to get the last successful TeamCity build number using the TeamCity REST API. This is a useful tool for continuous deployment to dev/test environments. I only cared about the build number but with some minor modifications of the XPath parsing you can get a lot of different information.&lt;/p&gt;
 
@@ -1728,7 +1777,7 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
  <entry>
    <title>Just spotted Opserver - Stack Exchange's open source .NET monitoring system</title>
    <link href="http://www.jokecamp.com//blog/just-spotted-opserver-stack-exchanges-open-source-monitoring-system"/>
-   <updated>2013-10-24T18:45:08-04:00</updated>
+   <updated>2013-10-24T16:45:08-06:00</updated>
    <id>http://www.jokecamp.com/blog/just-spotted-opserver-stack-exchanges-open-source-monitoring-system</id>
    <content type="html">&lt;p&gt;As a .NET developer were are used to finding ourselves left out in the cold when it comes to awesome open source projects. However, over the last few years there has been a lot of momentum gaining around C# to reverse that trend. We now have awesome things like the &lt;a href=&quot;http://www.mono-project.com/Main_Page&quot;&gt;Mono project&lt;/a&gt;, &lt;a href=&quot;http://scriptcs.net/&quot;&gt;scriptcs&lt;/a&gt;, &lt;a href=&quot;http://www.servicestack.net/&quot;&gt;ServiceStack&lt;/a&gt;, &lt;a href=&quot;https://github.com/restsharp/RestSharp&quot;&gt;RestSharp&lt;/a&gt; and everyone&amp;#39;s favorite friend &lt;a href=&quot;http://www.nuget.org/&quot;&gt;NuGet&lt;/a&gt;!&lt;/p&gt;
 
@@ -1784,7 +1833,7 @@ results.&amp;quot; Some dead links but worth a skim.&lt;/p&gt;
  <entry>
    <title>Windows Powershell Script Examples for devops</title>
    <link href="http://www.jokecamp.com//blog/windows-powershell-script-examples-for-devops"/>
-   <updated>2013-09-17T16:58:38-04:00</updated>
+   <updated>2013-09-17T14:58:38-06:00</updated>
    <id>http://www.jokecamp.com/blog/windows-powershell-script-examples-for-devops</id>
    <content type="html">&lt;p&gt;Below is a list of useful scripts for devops and continuous integration. I will periodically update this post.&lt;/p&gt;
 
@@ -1826,7 +1875,7 @@ The below script must be executed as an Administrator since it will be modifying
  <entry>
    <title>Code Generation using ServiceStack.OrmLite and T4 Text templates</title>
    <link href="http://www.jokecamp.com//blog/code-generation-using-servicestack-ormlite-and-t4-text-templates"/>
-   <updated>2013-09-07T11:51:13-04:00</updated>
+   <updated>2013-09-07T09:51:13-06:00</updated>
    <id>http://www.jokecamp.com/blog/code-generation-using-servicestack-ormlite-and-t4-text-templates</id>
    <content type="html">&lt;p&gt;I was reading the &lt;a href=&quot;https://github.com/ServiceStack/ServiceStack.OrmLite&quot;&gt;ServiceStack.OrmLite&lt;/a&gt; documentation on GitHub and stumbled upon an often overlooked T4 templates located in the /src/t4 folder.&lt;/p&gt;
 
@@ -1924,7 +1973,7 @@ The below script must be executed as an Administrator since it will be modifying
  <entry>
    <title>Tutorial: ServiceStack API with FastCGI Mono Server and Nginx hosted on DigitalOcean</title>
    <link href="http://www.jokecamp.com//blog/servicestack-api-with-fastcgi-mono-server-and-nginx-hosted-on-digitalocean"/>
-   <updated>2013-06-30T17:20:25-04:00</updated>
+   <updated>2013-06-30T15:20:25-06:00</updated>
    <id>http://www.jokecamp.com/blog/servicestack-api-with-fastcgi-mono-server-and-nginx-hosted-on-digitalocean</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;Who&amp;#39;s this targeted for?&lt;/strong&gt;&lt;/p&gt;
 
@@ -2098,7 +2147,7 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  <entry>
    <title>Using PostSharp to Add ServiceStack Route Attributes</title>
    <link href="http://www.jokecamp.com//blog/using-postsharp-to-add-servicestack-route-attributes"/>
-   <updated>2013-06-11T13:03:59-04:00</updated>
+   <updated>2013-06-11T11:03:59-06:00</updated>
    <id>http://www.jokecamp.com/blog/using-postsharp-to-add-servicestack-route-attributes</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;Updated&lt;/strong&gt;:  The latest version of ServiceStack (v3.9.53) now includes the &lt;a href=&quot;https://github.com/ServiceStack/ServiceStack/wiki/Routing#content-negotiation&quot;&gt;.ext routing option&lt;/a&gt; using the AllowRouteContentTypeExtensions configuration property. See The comments section for more information. I would use the framework instead of this custom approach. This example now really serves as a demonstration of using PostSharp to apply attributes in general.&lt;/p&gt;
 
@@ -2206,7 +2255,7 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  <entry>
    <title>Cryptonomicon: the ultimate computer geek novel - Reading Aids</title>
    <link href="http://www.jokecamp.com//blog/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids"/>
-   <updated>2013-02-18T14:40:09-05:00</updated>
+   <updated>2013-02-18T12:40:09-07:00</updated>
    <id>http://www.jokecamp.com/blog/cryptonomicon-the-ultimate-computer-geek-novel-reading-aids</id>
    <content type="html">&lt;h3&gt;&lt;strong&gt;&lt;a href=&quot;http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=0060512806&amp;amp;linkCode=as2&amp;amp;tag=jokecamp-20&quot;&gt;Cryptonomicon by Neal Stephenson&lt;/a&gt;&lt;/strong&gt; (1999)&lt;/h3&gt;
 
@@ -2259,7 +2308,7 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  <entry>
    <title>Connecting to SFTP with key file and password using SSH.NET</title>
    <link href="http://www.jokecamp.com//blog/connecting-to-sftp-with-key-file-and-password-using-ssh-net"/>
-   <updated>2013-01-16T15:06:46-05:00</updated>
+   <updated>2013-01-16T13:06:46-07:00</updated>
    <id>http://www.jokecamp.com/blog/connecting-to-sftp-with-key-file-and-password-using-ssh-net</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;http://sshnet.codeplex.com/&quot;&gt;SSH.NET&lt;/a&gt; is an open source library codeplex for SSH and SFTP features. I was able to pull the latest code and get a working client in about 15 minutes. The library is great and the code rather straight forward.&lt;/p&gt;
 
@@ -2301,7 +2350,7 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  <entry>
    <title>Authenticating ServiceStack REST API using HMAC</title>
    <link href="http://www.jokecamp.com//blog/authenticating-servicestack-rest-api-using-hmac"/>
-   <updated>2012-12-16T10:53:22-05:00</updated>
+   <updated>2012-12-16T08:53:22-07:00</updated>
    <id>http://www.jokecamp.com/blog/authenticating-servicestack-rest-api-using-hmac</id>
    <content type="html">&lt;p&gt;I&amp;#39;ve created the following C# code to show how HMAC security could be integrated into ServiceStack REST API using the built in &lt;a href=&quot;https://github.com/ServiceStack/ServiceStack/wiki/Filter-attributes&quot;&gt;RequestFilter attributes&lt;/a&gt;. I wanted to try to emulate the security model of &lt;a href=&quot;http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html&quot;&gt;Amazon&amp;#39;s S3 authentication&lt;/a&gt;. View that page for finer details about the request signature process.&lt;/p&gt;
 
@@ -2545,7 +2594,7 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
  <entry>
    <title>Examples of creating base64 hashes using HMAC SHA256 in different languages</title>
    <link href="http://www.jokecamp.com//blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages"/>
-   <updated>2012-10-21T22:36:37-04:00</updated>
+   <updated>2012-10-21T20:36:37-06:00</updated>
    <id>http://www.jokecamp.com/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages</id>
    <content type="html">&lt;p&gt;I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See the stackOverflow question &lt;a href=&quot;http://stackoverflow.com/a/201510/215502&quot;&gt;What is the use of base 64 encoding?&lt;/a&gt;&lt;/p&gt;
 
@@ -2830,7 +2879,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>How to create an ASP.NET HttpHandler to serve files from local system</title>
    <link href="http://www.jokecamp.com//blog/how-to-create-an-asp-net-httphandler-to-serve-files-from-local-system"/>
-   <updated>2012-07-26T09:06:46-04:00</updated>
+   <updated>2012-07-26T07:06:46-06:00</updated>
    <id>http://www.jokecamp.com/blog/how-to-create-an-asp-net-httphandler-to-serve-files-from-local-system</id>
    <content type="html">&lt;p&gt;*&lt;em&gt;How do you serve files on a local system (or network share) from an ASP.NET website? *&lt;/em&gt;&lt;/p&gt;
 
@@ -2880,7 +2929,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>A Clean Javascript UI Notification System with jQuery</title>
    <link href="http://www.jokecamp.com//blog/a-clean-javascript-ui-notification-system-with-jquery"/>
-   <updated>2012-07-17T14:30:45-04:00</updated>
+   <updated>2012-07-17T12:30:45-06:00</updated>
    <id>http://www.jokecamp.com/blog/a-clean-javascript-ui-notification-system-with-jquery</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2012/07/notifications.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2012/07/notifications.png&quot; alt=&quot;Javascript UI notifications&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -2908,7 +2957,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>Fixing the File sharing violation Exception when Verifying and Repairing a SQL CE database</title>
    <link href="http://www.jokecamp.com//blog/fixing-the-file-sharing-violation-exception-when-verifying-and-repairing-a-sql-ce-database"/>
-   <updated>2012-04-11T20:45:27-04:00</updated>
+   <updated>2012-04-11T18:45:27-06:00</updated>
    <id>http://www.jokecamp.com/blog/fixing-the-file-sharing-violation-exception-when-verifying-and-repairing-a-sql-ce-database</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;The Problem:&lt;/strong&gt;&lt;/p&gt;
 
@@ -2999,7 +3048,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>Simplest code needed to create an Excel 2010 file with Open XML SDK 2.0</title>
    <link href="http://www.jokecamp.com//blog/simplest-code-needed-to-create-an-excel-2010-file-with-open-xml-sdk-2-0"/>
-   <updated>2012-04-06T14:39:04-04:00</updated>
+   <updated>2012-04-06T12:39:04-06:00</updated>
    <id>http://www.jokecamp.com/blog/simplest-code-needed-to-create-an-excel-2010-file-with-open-xml-sdk-2-0</id>
    <content type="html">&lt;p&gt;Open XML can be very frustrating. In order to help myself understand the package, parts and relationships I have tried to find the &lt;strong&gt;bare minimum&lt;/strong&gt; amount of C# code needed to generate a &lt;strong&gt;valid empty excel file&lt;/strong&gt;. The inline constructors help to show the hierarchy.&lt;/p&gt;
 
@@ -3041,7 +3090,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>Querying Groups and Users across multiple domains with LDAP in C# .NET</title>
    <link href="http://www.jokecamp.com//blog/querying-groups-and-users-across-multiple-domains-with-ldap-in-c-net"/>
-   <updated>2012-03-26T13:11:20-04:00</updated>
+   <updated>2012-03-26T11:11:20-06:00</updated>
    <id>http://www.jokecamp.com/blog/querying-groups-and-users-across-multiple-domains-with-ldap-in-c-net</id>
    <content type="html">&lt;p&gt;I recently needed to fix some LDAP queries using DirectoryEntry and DirectorySearcher. The query was very simple. Find a group and return all the members of that group. There were two problems with the existing C# code:&lt;/p&gt;
 
@@ -3237,7 +3286,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>Make your SQLite bulk inserts very fast in C# .NET</title>
    <link href="http://www.jokecamp.com//blog/make-your-sqlite-bulk-inserts-very-fast-in-c"/>
-   <updated>2012-03-16T14:52:28-04:00</updated>
+   <updated>2012-03-16T12:52:28-06:00</updated>
    <id>http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c</id>
    <content type="html">&lt;p&gt;In SQLite if you insert one record at a time then they are wrapped in individual transactions. In order to for your bulk inserts to perform very fast then you need to wrap them all in a single transaction. See &lt;a href=&quot;http://www.sqlite.org/faq.html#q19&quot;&gt;SQLite FAQ&lt;/a&gt;. You should be able to able to insert very quickly without having to worry about PRAGMAs&lt;/p&gt;
 
@@ -3287,7 +3336,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>Importing DC Capital BikeShare data into a Sqlite3 database</title>
    <link href="http://www.jokecamp.com//blog/importing-dc-capital-bikeshare-data-into-a-sqlite3-database"/>
-   <updated>2012-02-15T20:53:19-05:00</updated>
+   <updated>2012-02-15T18:53:19-07:00</updated>
    <id>http://www.jokecamp.com/blog/importing-dc-capital-bikeshare-data-into-a-sqlite3-database</id>
    <content type="html">&lt;p&gt;I recently downloaded and imported all of the available &lt;a href=&quot;http://www.capitalbikeshare.com/trip-history-data&quot;&gt;raw csv files from Capital BikeShare&lt;/a&gt; into a local sqlite3 database running on my local machine. If you have sqlite3 and you have the sqlite3.exe file already set in your $path environment variable then you may simply run the following command to build a table of all the rides. Once that is done you can start experimenting with different queries.&lt;/p&gt;
 
@@ -3357,7 +3406,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>Use Zend Framework to List all of a given user's Google Spreadsheets</title>
    <link href="http://www.jokecamp.com//blog/use-zend-framework-to-list-all-of-a-given-users-google-spreadsheets"/>
-   <updated>2012-02-07T18:14:39-05:00</updated>
+   <updated>2012-02-07T16:14:39-07:00</updated>
    <id>http://www.jokecamp.com/blog/use-zend-framework-to-list-all-of-a-given-users-google-spreadsheets</id>
    <content type="html">&lt;p&gt;Get a list of all of a given user&amp;#39;s google spreadsheets and get the keys. You will need to know the username/password and plug them in below.&lt;/p&gt;
 
@@ -3394,7 +3443,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>.NET Custom Configuration Section, Collection and Elements</title>
    <link href="http://www.jokecamp.com//blog/net-custom-configuration-section-collection-and-elements"/>
-   <updated>2012-02-01T15:29:44-05:00</updated>
+   <updated>2012-02-01T13:29:44-07:00</updated>
    <id>http://www.jokecamp.com/blog/net-custom-configuration-section-collection-and-elements</id>
    <content type="html">&lt;p&gt;This site about &lt;a href=&quot;http://www.abhisheksur.com/2011/09/writing-custom-configurationsection-to.html&quot;&gt;writing custom configurationsection&lt;/a&gt; offers the most straight forward solution. Make sure you implement all methods the author describes for your version of the ConfigurationElementCollection class. I tried just the ones the abstract class requires but could not get it to work. I&amp;#39;ve posted my own implementation using the authors guidelines to create a configuration collection of jobs.&lt;/p&gt;
 
@@ -3508,7 +3557,7 @@ echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#
  <entry>
    <title>Create CustomValidator to enforce MaxLength on a MultiLine TextBox</title>
    <link href="http://www.jokecamp.com//blog/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox"/>
-   <updated>2011-11-10T16:46:46-05:00</updated>
+   <updated>2011-11-10T14:46:46-07:00</updated>
    <id>http://www.jokecamp.com/blog/create-customvalidator-to-enforce-maxlength-on-a-multiline-textbox</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/system.web.ui.webcontrols.textbox.maxlength.aspx&quot;&gt;ASP .NET TextBoxes &lt;/a&gt; with mode = MultiLine do not support the MaxLength property. MultiLine TextBoxes are rendered as html textareas and this property is not supported in many browsers. (I believe HTML5 will be supporting it)&lt;/p&gt;
 

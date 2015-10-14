@@ -7,6 +7,52 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Getting started with openfootball data</title>
+				<description>&lt;p&gt;mkdir openfootball
+cd openfootball&lt;/p&gt;
+
+&lt;p&gt;1) Pick a data set repository. We will use &lt;a href=&quot;https://github.com/openfootball/eng-england&quot;&gt;https://github.com/openfootball/eng-england&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2) install sportdb&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gem install sportdb&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ gem list sportdb
+
+*** LOCAL GEMS ***
+
+sportdb (1.11.0)
+sportdb-models (1.14.0)
+sportdb-service (0.4.0)
+sportdb-update (0.1.1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What is &lt;a href=&quot;http://guides.rubygems.org/what-is-a-gem/&quot;&gt;ruby gem&lt;/a&gt;?&lt;/p&gt;
+
+&lt;p&gt;sportdb new en&lt;/p&gt;
+
+&lt;h1&gt;Understanding the OpenFootball Text Format (Mini Language)&lt;/h1&gt;
+
+&lt;p&gt;https://github.com/sportdb/sport.db.models/blob/b3245d858fb89757eb8e91e1da8ccacd001db9c0/lib/sportdb/readers/game.rb&lt;/p&gt;
+
+&lt;p&gt;Event Keys:
+  league
+  season
+  start&lt;em&gt;at / begin&lt;/em&gt;at (%Y-%m-%d) date
+  end&lt;em&gt;at / stop&lt;/em&gt;at date
+  grounds, stadiums, venues array
+  teams array
+  fixtures / sources&lt;/p&gt;
+
+&lt;p&gt;Goals format
+  [Neymar 12&amp;#39;]&lt;/p&gt;
+
+&lt;p&gt;https://github.com/sportdb/sport.db.models/blob/b3245d858fb89757eb8e91e1da8ccacd001db9c0/lib/sportdb/readers/game.rb&lt;/p&gt;
+</description>
+				<pubDate>Tue, 06 Oct 2015 00:00:00 -0600</pubDate>
+				<link>http://www.jokecamp.com/blog/getting-started-with-openfootball-data</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/getting-started-with-openfootball-data</guid>
+			</item>
+		
+			<item>
 				<title>What has AngularJS ever done for us?</title>
 				<description>&lt;p&gt;Several developers and a project manager meet at a round table to discuss the codebase for an existing web application. Ninja Developer, a young, fast typing, vim using, hacker news reader reading guy kicks off the meeting.&lt;/p&gt;
 
@@ -78,7 +124,7 @@
 
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/9foi342LXQE&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 </description>
-				<pubDate>Mon, 26 Jan 2015 00:00:00 -0500</pubDate>
+				<pubDate>Mon, 26 Jan 2015 00:00:00 -0700</pubDate>
 				<link>http://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</guid>
 			</item>
@@ -105,7 +151,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 
 &lt;p&gt;I hope this saves you some time.&lt;/p&gt;
 </description>
-				<pubDate>Thu, 06 Nov 2014 00:00:00 -0500</pubDate>
+				<pubDate>Thu, 06 Nov 2014 00:00:00 -0700</pubDate>
 				<link>http://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</guid>
 			</item>
@@ -139,7 +185,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 &lt;h2&gt;DELETE example&lt;/h2&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people/1&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Delete&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-				<pubDate>Wed, 01 Oct 2014 00:00:00 -0400</pubDate>
+				<pubDate>Wed, 01 Oct 2014 00:00:00 -0600</pubDate>
 				<link>http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</guid>
 			</item>
@@ -184,7 +230,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
 {% endfor %}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-				<pubDate>Fri, 05 Sep 2014 00:00:00 -0400</pubDate>
+				<pubDate>Fri, 05 Sep 2014 00:00:00 -0600</pubDate>
 				<link>http://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</guid>
 			</item>
@@ -262,7 +308,7 @@ username@your.remote.host.for.ssh.com&amp;#39;s password:
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;That is all. Our website has been deployed!&lt;/p&gt;
 </description>
-				<pubDate>Sat, 23 Aug 2014 00:00:00 -0400</pubDate>
+				<pubDate>Sat, 23 Aug 2014 00:00:00 -0600</pubDate>
 				<link>http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</guid>
 			</item>
@@ -457,7 +503,7 @@ The post describes the key components, relationships and a short description of 
 &lt;li&gt;&lt;a href=&quot;http://ranjithblogs.azurewebsites.net/?p=98&quot;&gt;Debugging IISNODE Applications: new node-inspector integrated with iisnode&lt;/a&gt; by Ranjith Ramachandra&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-				<pubDate>Fri, 08 Aug 2014 00:00:00 -0400</pubDate>
+				<pubDate>Fri, 08 Aug 2014 00:00:00 -0600</pubDate>
 				<link>http://www.jokecamp.com/blog/getting-started-with-iisnode</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/getting-started-with-iisnode</guid>
 			</item>
@@ -666,7 +712,7 @@ Stats:
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Discuss and Ask questions for project at &lt;a href=&quot;https://groups.google.com/group/opensport&quot;&gt;Google Groups&lt;/a&gt;&lt;/p&gt;
 </description>
-				<pubDate>Sat, 28 Jun 2014 16:50:15 -0400</pubDate>
+				<pubDate>Sat, 28 Jun 2014 14:50:15 -0600</pubDate>
 				<link>http://www.jokecamp.com/blog/alternate-way-to-build-your-own-football-db-sqlite-database</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/alternate-way-to-build-your-own-football-db-sqlite-database</guid>
 			</item>
@@ -730,7 +776,7 @@ sudo pip install requests
 
 &lt;p&gt;[caption id=&amp;quot;attachment_1572&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;225&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/2014-06-09-21-53-58.jpg&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/2014-06-09-21-53-58.jpg?w=225&quot; alt=&quot;Final Frame&quot;&gt;&lt;/a&gt; Final Frame[/caption]&lt;/p&gt;
 </description>
-				<pubDate>Sat, 07 Jun 2014 21:34:58 -0400</pubDate>
+				<pubDate>Sat, 07 Jun 2014 19:34:58 -0600</pubDate>
 				<link>http://www.jokecamp.com/blog/building-a-raspberry-pi-photo-frame</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/building-a-raspberry-pi-photo-frame</guid>
 			</item>
@@ -825,83 +871,9 @@ sudo pip install requests
 &lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/7135343/215502&quot;&gt;Razor view engine, how to enter preprocessor #if debug&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-				<pubDate>Fri, 06 Jun 2014 19:49:35 -0400</pubDate>
+				<pubDate>Fri, 06 Jun 2014 17:49:35 -0600</pubDate>
 				<link>http://www.jokecamp.com/blog/resolving-angularjs-paths-in-asp-mvc-spa-iis</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/resolving-angularjs-paths-in-asp-mvc-spa-iis</guid>
-			</item>
-		
-			<item>
-				<title>Setup up your Mac for .NET Development</title>
-				<description>&lt;h3&gt;Making the Switch from Windows to OSX&lt;/h3&gt;
-
-&lt;p&gt;I&amp;#39;m a windows .NET developer and I recently bought a new laptop. A Macbook Pro retina. Years ago that would not of been practical decision but it is now a growing trend with the help of virtualization.&lt;/p&gt;
-
-&lt;p&gt;The decision was not difficult once you commit to the overall price. In the end I wanted a powerful machine  with a great screen that would allow me to develop against Windows, Android and OS X. I also liked the idea of a unix based operating system as my backend.&lt;/p&gt;
-
-&lt;h3&gt;Setting up your OSX developer environment&lt;/h3&gt;
-
-&lt;p&gt;Enough of the boring reasons. Lets get started with how I setup my new environment. Below are the steps I took in more or less this order.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Perform OSX System Updates&lt;/li&gt;
-&lt;li&gt;Download and Install &lt;a href=&quot;https://www.google.com/intl/en/chrome/browser/&quot;&gt;Chrome&lt;/a&gt; and sign into your google account to sync all your bookmarks.&lt;/li&gt;
-&lt;li&gt;Install the &lt;a href=&quot;https://chrome.google.com/webstore/detail/lastpass-free-password-ma/hdokiejnpimakedhajhdlcegeplioahd?hl=en-US&quot;&gt;LastPass chrome extension&lt;/a&gt; and sign in. You do use a password manager, right?&lt;/li&gt;
-&lt;li&gt;Install &lt;a href=&quot;http://www.parallels.com/downloads/desktop/&quot;&gt;Parallels 9&lt;/a&gt; - There is a trial period available but the cost is around $80.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.microsoftstore.com/store/msusa/en_US/pdp/Windows-8.1/productID.288401200&quot;&gt;Buy and Download Windows 8.1 ISO&lt;/a&gt; - This turned out to be a little tricky. I had to first buy Windows 8.1 from the Microsoft Store and it was a little confused what version to choose. Their directions are not that straight forward for new users. They assume everyone is updating from Win 7 to Win 8. If you are performing a clean install you will want to buy and download Windows 8.1. The purchased download is a 6 MB exe file that helps you download the install files. However you cannot run this helper exe on your Mac. I had to run the exe on my old Windows 7 machine. After a few steps of entering your serial key and downloading the installation files it will ask you if you want to save the installation as an iso. Once you have the iso (which was around 3 GB I think) you can then transfer it to your macbook (usb stick, removable drive or network transfer).&lt;/li&gt;
-&lt;li&gt;Install Windows 8.1 in a new VM via Parallels  - You can then use the iso to create a new VM with Parallels 9. Once you have the ISO you can install windows in about 10-15 minutes.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2014/01/windows-vm-config.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/01/windows-vm-config.png?w=300&quot; alt=&quot;Windows VM Config&quot;&gt;&lt;/a&gt;
-My VM resource settings&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2014/01/vm-installation.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/01/vm-installation.png?w=300&quot; alt=&quot;Paralles VM Installation&quot;&gt;&lt;/a&gt;
-Installing Windows 8.1 via Paralells&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://jokecamp.files.wordpress.com/2014/01/windows-inside-mac.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/01/windows-inside-mac.png?w=300&quot; alt=&quot;Windows inside mac&quot;&gt;&lt;/a&gt;
-We now have Windows inside OSX. I usually run it in full screen in a separate desktop. It does eat through the battery so I usually try to stay plugged in when doing any heavy virtualization.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Install XCode via the Apple App Store&lt;/li&gt;
-&lt;li&gt;Install Visual Studio (and ReSharper if you got it) on your Windows vm&lt;/li&gt;
-&lt;li&gt;Install &lt;a href=&quot;http://xamarin.com/download&quot;&gt;Xamarin&lt;/a&gt; for your C# fix. I installed the starter trail on my Windows VM and Mac system.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Call in the experts&lt;/h3&gt;
-
-&lt;p&gt;At this point I needed to find some advice from experienced Mac developers.&lt;/p&gt;
-
-&lt;p&gt;If you take away anything from these guides. It would be to install and use &lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;. The &amp;quot;missing package manager for OS X.&amp;quot;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/nicolashery/mac-dev-setup&quot;&gt;nicolashery / mac-dev-setup&lt;/a&gt; by Nicolas Hery&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://blog.apps.npr.org/2013/06/06/how-to-setup-a-developers-environment.html&quot;&gt;NPR - How to Setup Your Mac to Develop News Applications Like We Do&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A few quick tips:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.alfredapp.com/#download&quot;&gt;Alfred&lt;/a&gt; is  good spotlight replacement. After installing you might want to swap the spotlight shortcuts with the Alfred shortcuts.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://mattgemmell.com/using-spaces-on-os-x-lion/&quot;&gt;Spaces/mutliple desktops&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Use the multiple spaces (desktops) feature. It is a vast improvement to fighting with windows sizes. Especially if you have limited real estate like the laptop. Use the Control plus left/right keys to quickly navigation to different spaces (desktops).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can&amp;#39;t directly cut and paste files in OSX. You have to move. You can do this with a copy then a special paste with Option+Command+V&lt;/p&gt;
-
-&lt;h2&gt;The Hardest Part of Switching was the shortcuts&lt;/h2&gt;
-
-&lt;p&gt;The hardest part and what still remains the hardest part of switching is switching back and forth from windows to OSX shortcuts. It can be quite painful especially if you switch often from OSX to your Windows VM.&lt;/p&gt;
-
-&lt;p&gt;A quick reminder about the cryptic Apple keys.
-⌘   Command key
-⌃   Control key
-⌥   Option key
-⇧   Shift Key
-⇪   Caps Lock
-Fn  Function Key&lt;/p&gt;
-</description>
-				<pubDate>Thu, 27 Mar 2014 00:02:40 -0400</pubDate>
-				<link>http://www.jokecamp.com/blog/setup-up-your-mac-for-net-development</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/setup-up-your-mac-for-net-development</guid>
 			</item>
 		
 	</channel>

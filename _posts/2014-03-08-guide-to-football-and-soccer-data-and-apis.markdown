@@ -30,7 +30,7 @@ Jump to a specific source:
   - [socerstats.us](#soccerstats)
   - [Other smaller projects/repos](#repos)
 - Free APIs
-  - [football-data.org](#footballdata) (beta) (RESTful)
+  - [football-data.org](#footballdata) (RESTful API)
   - [openfooty API](#openfooty) (hard to get an API Key)
 - Commercial APIs
   - [football-api.com](#footballapi)
@@ -102,6 +102,7 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 
  - [github.com/jalapic/engsoccerdata](https://github.com/jalapic/engsoccerdata) includes a [csv file](https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv) of the top 4 tier English League Soccer games from 1888 to 2014.
  - [planetopendata/awesome-football](https://github.com/planetopendata/awesome-football) includes another list of repos
+ - [architv/soccer-cli](https://github.com/architv/soccer-cli) - A command line interface for retrieving football scores.
 
 <a name="free"></a>
 ### <i class="fa fa-futbol-o"></i> Free APIs
@@ -162,7 +163,7 @@ Example endpoints:
 <a name="CrowdScores"></a>
 #### CrowdScores and FastestLiveScores API
 
-[CrowdScores](https://crowdscores.com/) is a UK company that uses a crowd-sourcing football data collection process. You sign up for an account and report game events to their servers. They have web/iphone/android interfaces for reporting. They reward the top data reporters. The collected data is then available as an API on [FastestLiveScores.com](http://fastestlivescores.com/). They currently offer [three different API tiers](http://fastestlivescores.com/live-scores-api-feed/). Free trial ($0), Basic ($100 per month) and Pro (price unlisted). View the [API documentation](https://api.crowdscores.com/docs/v1#).
+[CrowdScores](https://crowdscores.com/) is a UK company that uses a crowd-sourcing football data collection process. You sign up for an account and report game events to their servers. They have iPhone and android apps for reporting. The collected data is then available as an API on [FastestLiveScores.com](http://fastestlivescores.com/). They currently offer [three different API tiers](http://fastestlivescores.com/live-scores-api-feed/). Free trial ($0), Basic ($100 per month) and Pro (price unlisted). View the [API documentation](https://api.crowdscores.com/docs/v1#).
 
 Example endpoints and parameters:
 
@@ -180,7 +181,7 @@ Example endpoints and parameters:
 <a name="spapi"></a>
 ### SPAPI
 
-[SPAPI](https://spapi.pw/) offers subscriptions for a RESTful Sports API including live scores, player statistics, betting odds, pre-game data and match event data. The data response look pretty comprehensive.
+[SPAPI](https://spapi.pw?code=jokecamp) offers subscriptions for a RESTful Sports API including live scores, player statistics, betting odds, pre-game data and match event data. The data response look pretty comprehensive.
 
 Pricing:
 
@@ -270,6 +271,8 @@ Player data
   <Signing>Free</Signing>
 </Player>
 ```
+
+Open source [Python client for XmlSoccer API](https://github.com/martineastwood/xmlsoccer)
 
 <a name="opta"></a>
 #### opta

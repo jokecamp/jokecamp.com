@@ -9,11 +9,47 @@ featured: false
 
 A growing list of website ideas. Please take one and implement it then let me know on twitter [@jokecamp](https://twitter.com/jokecamp).
 
+## Tiny Letter Newsletter for fantasy sports managers
+
+generate a letter
+
 ## General Trends
 
-- Solar Energy
-- Electric Car
+- Solar Energy and Energy Storage
+- Electric/Self-Driving Cars
 - Artificial Intelligence
+- Mars Exploration
+- Living off the grid
+- Digital Clutter cleanup
+
+## In the Future
+
+- We will not drive our own cars. We will not even own our own cars.
+- People will no longer need routers and cable modems. Internet will just be in the air.
+- We will share more things.
+- Will will not need blinds. Windows will just tint.
+- Will everything break?
+
+## Maps with Noise Pollution
+
+Useful for movers looking for a new place.
+
+## Football Data Newsletter
+
+Create a weekly newsletter highlighting football data sets, APIs and open source applications and websites. Tutorials.
+
+Steps:
+
+- Create Name/logo/website
+-- football data report (http://www.leandomainsearch.com/search?q=football+data+report)
+-- https://withoomph.com logo generator
+- Create signup form / landing page
+-- http://getbootstrap.com/examples/cover/
+- Example Newsletter
+
+ - https://github.com/architv/soccer-cli
+ - http://www.pena.lt/y/
+
 
 ## "Catch Me Up" Movie Website
 
