@@ -9,7 +9,7 @@
     <url>
       <loc>http://www.jokecamp.com/atom.xml</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -24,7 +24,7 @@
     <url>
       <loc>http://www.jokecamp.com/blog/</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -39,7 +39,7 @@
     <url>
       <loc>http://www.jokecamp.com/books-for-geeks/</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -54,7 +54,7 @@
     <url>
       <loc>http://www.jokecamp.com/ideas/</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -69,7 +69,7 @@
     <url>
       <loc>http://www.jokecamp.com/</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -84,7 +84,7 @@
     <url>
       <loc>http://www.jokecamp.com/projects/</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -99,7 +99,7 @@
     <url>
       <loc>http://www.jokecamp.com/rss.xml</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -114,7 +114,7 @@
     <url>
       <loc>http://www.jokecamp.com/singularity/</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -131,7 +131,7 @@
     <url>
       <loc>http://www.jokecamp.com/tag/</loc>
       
-        <lastmod>2015-10-19T18:30:54-06:00</lastmod>
+        <lastmod>2015-10-19T18:32:46-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -148,21 +148,6 @@
       <loc>http://www.jokecamp.com/tutorial-passportjs-authentication-in-nodejs/</loc>
       
         <lastmod>2015-10-18T00:00:00-06:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/blog/getting-started-with-openfootball-data/</loc>
-      
-        <lastmod>2015-10-06T00:00:00-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>

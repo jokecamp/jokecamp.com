@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2015-10-19T18:30:54-06:00</updated>
+ <updated>2015-10-19T18:32:46-06:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -236,52 +236,6 @@ npm install passport-github --save
 &lt;li&gt;&lt;a href=&quot;https://www.learnallthenodes.com/episodes/23-authorization-with-passport-part-1-ensuring-theyre-logged-in&quot;&gt;Authorization with Passport (Part 1: Ensuring they&amp;#39;re logged in)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/14301657/215502&quot;&gt;Express, passport. Where is the documentation for “ensureAuthentication”, “isAuthenticated”?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Getting started with openfootball data</title>
-   <link href="http://www.jokecamp.com//blog/getting-started-with-openfootball-data"/>
-   <updated>2015-10-06T00:00:00-06:00</updated>
-   <id>http://www.jokecamp.com/blog/getting-started-with-openfootball-data</id>
-   <content type="html">&lt;p&gt;mkdir openfootball
-cd openfootball&lt;/p&gt;
-
-&lt;p&gt;1) Pick a data set repository. We will use &lt;a href=&quot;https://github.com/openfootball/eng-england&quot;&gt;https://github.com/openfootball/eng-england&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;2) install sportdb&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;gem install sportdb&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ gem list sportdb
-
-*** LOCAL GEMS ***
-
-sportdb (1.11.0)
-sportdb-models (1.14.0)
-sportdb-service (0.4.0)
-sportdb-update (0.1.1)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;What is &lt;a href=&quot;http://guides.rubygems.org/what-is-a-gem/&quot;&gt;ruby gem&lt;/a&gt;?&lt;/p&gt;
-
-&lt;p&gt;sportdb new en&lt;/p&gt;
-
-&lt;h1&gt;Understanding the OpenFootball Text Format (Mini Language)&lt;/h1&gt;
-
-&lt;p&gt;https://github.com/sportdb/sport.db.models/blob/b3245d858fb89757eb8e91e1da8ccacd001db9c0/lib/sportdb/readers/game.rb&lt;/p&gt;
-
-&lt;p&gt;Event Keys:
-  league
-  season
-  start&lt;em&gt;at / begin&lt;/em&gt;at (%Y-%m-%d) date
-  end&lt;em&gt;at / stop&lt;/em&gt;at date
-  grounds, stadiums, venues array
-  teams array
-  fixtures / sources&lt;/p&gt;
-
-&lt;p&gt;Goals format
-  [Neymar 12&amp;#39;]&lt;/p&gt;
-
-&lt;p&gt;https://github.com/sportdb/sport.db.models/blob/b3245d858fb89757eb8e91e1da8ccacd001db9c0/lib/sportdb/readers/game.rb&lt;/p&gt;
 </content>
  </entry>
  
