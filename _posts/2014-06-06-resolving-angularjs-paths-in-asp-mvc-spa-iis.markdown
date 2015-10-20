@@ -18,7 +18,8 @@ tags:
 - razor
 ---
 
-[caption id="attachment_1509" align="alignright" width="212"][![Example IIS Application Setup](http://jokecamp.files.wordpress.com/2014/06/iis-application.png)](https://jokecamp.files.wordpress.com/2014/06/iis-application.png) Problems when your IIS Application is not at the root[/caption]
+<img src="http://jokecamp.files.wordpress.com/2014/06/iis-application.png">
+<caption align="right">Problems when your IIS Application is not at the root</caption>
 
 Routing in the development of a AngularJS SPA (single page application) inside an ASP.NET MVC application can be problematic. Trying to resolve relative file paths when developing locally vs deploying to a remote server can have different behaviors, especially when your deployed application does not live at the root of your IIS website. Below is the problem I encountered and my solution.
 
@@ -52,7 +53,8 @@ If you deploy this to IIS as a new application (named "app" for instance) instea
   * **The navigation links will not work on the deployed server**. The links will end up point to http://server/home instead of the correct http://server/app/home.
   * **The templateUrl will not resolve correctly inside AngularJS**. AngularJS will look for “http://server//angularApp/admins/admins.html instead of the correct location of http://server/app/angularApp/admins/admins.html
 
-[caption id="attachment_1510" align="alignright" width="85"][![My AngularJS SPA Visual Studio Project Structure](http://jokecamp.files.wordpress.com/2014/06/directory-structure.png?w=85)](https://jokecamp.files.wordpress.com/2014/06/directory-structure.png) My AngularJS SPA Visual Studio Project Structure[/caption]
+[![My AngularJS SPA Visual Studio Project Structure](http://jokecamp.files.wordpress.com/2014/06/directory-structure.png?w=85)](https://jokecamp.files.wordpress.com/2014/06/directory-structure.png)
+<caption>My AngularJS SPA Visual Studio Project Structure</caption>
 
 ## Solution
 

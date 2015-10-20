@@ -4,13 +4,240 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2015-10-13T20:46:05-06:00</updated>
+ <updated>2015-10-19T18:30:54-06:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Tutorial for Passport.js authentication in a Node.js Express application</title>
+   <link href="http://www.jokecamp.com//tutorial-passportjs-authentication-in-nodejs"/>
+   <updated>2015-10-18T00:00:00-06:00</updated>
+   <id>http://www.jokecamp.com/passportjs-node-tutorial</id>
+   <content type="html">&lt;h3&gt;Who&amp;#39;s this targeted for?&lt;/h3&gt;
+
+&lt;p&gt;This tutorial is geared towards developers just getting started with &lt;a href=&quot;http://passportjs.org/&quot;&gt;passport.js&lt;/a&gt; and expects a basic understanding of &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node.js&lt;/a&gt; (v 4.2.1) and &lt;a href=&quot;http://expressjs.com/&quot;&gt;Express&lt;/a&gt; (v 4.13.3) web framework. I will show a bare minimum amount code needed for a working demo and will be cutting corners when it comes to best practices. We will create an application that will allow you to login with GitHub.&lt;/p&gt;
+
+&lt;h3&gt;Stack Overview&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;passport.js&lt;/strong&gt; - is a flexible and modular authentication middleware for Node.js. It can be dropped into any Express-based web application.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;passport strategies&lt;/strong&gt; - are different authentication mechanisms such as twitter, Facebook, GitHub, local (credentials) and etc.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;middleware&lt;/strong&gt; - are functions that handle requests, responses and the next middleware in the cycle. Usually with the signature &lt;code&gt;func(req, res, next)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OAuth&lt;/strong&gt; - an open standard for authorization. OAuth provides client applications a secure delegated access to server resources on behalf of a resource owner. &lt;a href=&quot;https://en.wikipedia.org/wiki/OAuth&quot;&gt;OAuth on wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;express.js&lt;/strong&gt; - a fast minimalist web framework for Node.js.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;1) Setup a simple Express.js app&lt;/h2&gt;
+
+&lt;p&gt;For this tutorial I will use the port &lt;code&gt;30000&lt;/code&gt;. This is important because when we register our developer applications at various OAuth provider websites we will have to specify the port number in our callback url in order to test on with &lt;a href=&quot;http://localhost:30000&quot;&gt;http://localhost:30000&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a new project directory and setup the packages.json file with &lt;code&gt;npm init&lt;/code&gt;. Use defaults except for server.js as the entry point.&lt;/li&gt;
+&lt;li&gt;Install and save the following node dependencies:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;npm install express --save
+npm install express-session --save
+npm install passport --save
+npm install passport-github --save
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Create the file &lt;code&gt;server.js&lt;/code&gt; and copy in the code below for a basic application with one route that outputs a menu. We are just going to concatenate HTML on the fly because we are lazy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;express&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// main menu route&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;ul&amp;gt;\&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;    &amp;lt;li&amp;gt;&amp;lt;a href=&amp;#39;/auth/github&amp;#39;&amp;gt;GitHub&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;\&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;    &amp;lt;li&amp;gt;&amp;lt;a href=&amp;#39;/logout&amp;#39;&amp;gt;logout&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;\&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;  &amp;lt;/ul&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Example app listening at http://%s:%s&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;address&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Test the application by running &lt;code&gt;node sever.js&lt;/code&gt; and viewing &lt;a href=&quot;http://localhost:30000/&quot;&gt;http://localhost:30000/&lt;/a&gt;. It should output a simple menu with broken (stub) links.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;2) Logout Route&lt;/h2&gt;
+
+&lt;p&gt;The logout route will be very useful for testing so we will create it first.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Add the following passport reference to the top declarations;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;passport&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;passport&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then add the following route code (below the existing route) shown below. The key line is &lt;code&gt;req.logout();&lt;/code&gt;. It is a method that passport attaches to every request. The logout route will be unprotected. No error will be thrown if an un-authenticated user hits this route.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/logout&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;logging out&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;logout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can now test the app and you will see that clicking on logout redirects you to the main menu on each click.&lt;/p&gt;
+
+&lt;h2&gt;3) Register a new developer application with GitHub&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Register a new GitHub dev application at &lt;a href=&quot;https://github.com/settings/applications/new&quot;&gt;https://github.com/settings/applications/new&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The most important property to set is the &lt;strong&gt;Authorization callback URL&lt;/strong&gt;. Use &lt;code&gt;http://localhost:30000/auth/github/callback&lt;/code&gt;. GitHub allows for localhost address. Be warned that not all oauth providers will allow you to test using localhost.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;See my example application settings in the image below
+&lt;img src=&quot;http://www.jokecamp.compublic/github-application.png&quot; title=&quot;GitHub Application Registration&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Make note of your new &amp;quot;Client ID&amp;quot; and &amp;quot;Client Secret&amp;quot; properties provided by GitHub.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;4) OAuth and passport-github strategy implementation&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;We should have already added the &lt;a href=&quot;https://github.com/jaredhanson/passport-github&quot;&gt;passport-github package&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Now add the following just below the declarations. Be sure to insert your client id and secret as shown on your newly created GitHub application. You should not need to change the callbackURL. Just make sure it matches what you provided to GitHub.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;GithubStrategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;passport-github&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Strategy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;passport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;GithubStrategy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;clientID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;-- ENTER YOUR GITHUB CLIENT ID --&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;clientSecret&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;-- ENTER YOUR GITHUB CLIENT SECRET --&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;callbackURL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost:30000/auth/github/callback&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;refreshToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;profile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;profile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add the session and user management code. See the &lt;a href=&quot;https://github.com/jaredhanson/passport#sessions&quot;&gt;passport.js documentation on sessions and users&lt;/a&gt; to understand how it works. The &lt;code&gt;serializeUser&lt;/code&gt; and &lt;code&gt;deserializeUser&lt;/code&gt; functions are required. For now we will just pass the entire &lt;code&gt;user&lt;/code&gt; object along. In a proper implementation we would perform specific business logic and proper saving/retrieval. The session secret can be anything for this tutorial.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Express and Passport Session&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;express-session&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;secret&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;-- ENTER CUSTOM SESSION SECRET --&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}));&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;passport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;passport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;passport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;serializeUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// placeholder for custom user serialization&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// null is for errors&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;passport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;deserializeUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// placeholder for custom user deserialization.&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// maybe you are going to get the user from mongo by id?&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// null is for errors&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Add the following two routes for the GitHub OAuth flow. The first one starts the OAuth workflow and the second is the URL GitHub will redirect to when finished.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// we will call this to start the GitHub Login process&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/auth/github&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;passport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;authenticate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;github&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// GitHub will call this URL&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/auth/github/callback&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;passport&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;authenticate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;github&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;failureRedirect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}),&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Lets also add some debug information to our main menu route so we can indicate when the authentication has worked. Add this to the main &lt;code&gt;/&lt;/code&gt; route below our hacked HTML menu.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// dump the user for debugging&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isAuthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;p&amp;gt;authenticated as user:&amp;lt;/p&amp;gt;&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;pre&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;/pre&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Run the application and we should be able to login through GitHub and then get redirected back to main menu. The main menu page should also dump out your user information provided by GitHub. Lastly, the Logout route should also work correctly.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.compublic/github-authorize-oauth.png&quot; titl&quot;Screenshot GitHub OAuth permissions&quot; style=&quot;width:400px; border:solid 1px #444;&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.compublic/github-logged-in.png&quot; title=&quot;Screenshot Logged in with user data&quot; style=&quot;width:400px; border:solid 1px #444;&quot;/&gt;&lt;/p&gt;
+
+&lt;h2&gt;5) Protecting/Securing a custom route&lt;/h2&gt;
+
+&lt;p&gt;Now that we are able to login with OAuth how do we protect individual routes and require that the user be authenticated? To do this we will add a new middleware function called &lt;code&gt;ensureAuthenticated&lt;/code&gt;. The middleware will intercept the request and ensure that the request has been authenticated with passport. The key line in this function is &lt;code&gt;req.isAuthenticated()&lt;/code&gt;. This method is poorly documented and this &lt;a href=&quot;http://stackoverflow.com/a/14301657/215502&quot;&gt;SO answer&lt;/a&gt; was my very helpful. If the authenticated check fails we will redirect to the main menu route.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;We will create a new stub route and call it &lt;code&gt;protected&lt;/code&gt;. Copy below code that includes the route and &lt;code&gt;ensureAuthenticated&lt;/code&gt; middleware.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Simple middleware to ensure user is authenticated.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Use this middleware on any resource that needs to be protected.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// If the request is authenticated (typically via a persistent login session),&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// the request will proceed.  Otherwise, the user will be redirected to the&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// login page.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ensureAuthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isAuthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// req.user is available for use here&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// denied. redirect to login&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;/protected&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ensureAuthenticated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;access granted. secure stuff happens here&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Run the application again and login then visit &lt;a href=&quot;http://localhost:30000/protected&quot;&gt;http://localhost:30000/protected&lt;/a&gt;. Try again after you logout. If you have errors compare your code to the entire &lt;a href=&quot;https://gist.github.com/jokecamp/65604d50227b8ea8e0d3&quot;&gt;tutorial source code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;pitfalls&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Common Pitfalls and Gotchas&lt;/h3&gt;
+
+&lt;p&gt;A list of errors I encountered myself that might be roadblocks.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Getting the &lt;code&gt;FacebookTokenError: This authorization code has been used.&lt;/code&gt; error on login.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How many times is the &lt;code&gt;passport.deserializeUser&lt;/code&gt; function called?&lt;/li&gt;
+&lt;li&gt;I was getting this error when I incorrectly had the &lt;code&gt;passport.authenticate(&amp;#39;github&amp;#39;)&lt;/code&gt; middleware on a route I wanted to protect after the OAuth workflow. This was creating the OAuth workflow to execute again after authentication. Only use the &lt;code&gt;passport.authenticate&lt;/code&gt; middleware on the two OAuth methods per provider. If you have a similar issue keep the Chrome Network console open and watch the requests.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;req.isAuthenticated()&lt;/code&gt; method is not documented very well in passport. You can find the &lt;code&gt;ensureAuthenticated&lt;/code&gt; middleware reference in the official passport example apps. For more reading see the article &lt;a href=&quot;https://www.learnallthenodes.com/episodes/23-authorization-with-passport-part-1-ensuring-theyre-logged-in&quot;&gt;Authorization with Passport (Part 1: Ensuring they&amp;#39;re logged in)&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Getting the &lt;code&gt;Error: Failed to serialize user into session&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You are missing the two methods &lt;code&gt;passport.deserializeUser&lt;/code&gt; and &lt;code&gt;passport.serializeUser&lt;/code&gt;. These are required for session use and authentication. Check for open source examples on GitHub to see how people implement this methods.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Problems with &lt;a href=&quot;https://github.com/jaredhanson/passport-local&quot;&gt;passport-local strategy&lt;/a&gt; (user and password form)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Outside the scope of this tutorial but make sure you are using the &lt;code&gt;body-parser&lt;/code&gt; package to &lt;code&gt;POST&lt;/code&gt; the login form.&lt;/li&gt;
+&lt;li&gt;Make sure your form field names match the expected names in passport. If they do not match you will need to configure passport to know what field names to expect on a POST.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Resources&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://gist.github.com/jokecamp/65604d50227b8ea8e0d3&quot;&gt;View/Download the source code for this tutorial&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/jaredhanson/passport-github&quot;&gt;passport-github&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://passportjs.org/&quot;&gt;passport.js&lt;/a&gt; - and source at &lt;a href=&quot;https://github.com/jaredhanson/passport&quot;&gt;github.com/jaredhanson/passport&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.learnallthenodes.com/episodes/23-authorization-with-passport-part-1-ensuring-theyre-logged-in&quot;&gt;Authorization with Passport (Part 1: Ensuring they&amp;#39;re logged in)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/14301657/215502&quot;&gt;Express, passport. Where is the documentation for “ensureAuthentication”, “isAuthenticated”?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Getting started with openfootball data</title>
@@ -792,7 +1019,8 @@ sudo pip install requests
    <link href="http://www.jokecamp.com//blog/resolving-angularjs-paths-in-asp-mvc-spa-iis"/>
    <updated>2014-06-06T17:49:35-06:00</updated>
    <id>http://www.jokecamp.com/blog/resolving-angularjs-paths-in-asp-mvc-spa-iis</id>
-   <content type="html">&lt;p&gt;[caption id=&amp;quot;attachment_1509&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;212&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/iis-application.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/iis-application.png&quot; alt=&quot;Example IIS Application Setup&quot;&gt;&lt;/a&gt; Problems when your IIS Application is not at the root[/caption]&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/iis-application.png&quot;&gt;
+&lt;caption align=&quot;right&quot;&gt;Problems when your IIS Application is not at the root&lt;/caption&gt;&lt;/p&gt;
 
 &lt;p&gt;Routing in the development of a AngularJS SPA (single page application) inside an ASP.NET MVC application can be problematic. Trying to resolve relative file paths when developing locally vs deploying to a remote server can have different behaviors, especially when your deployed application does not live at the root of your IIS website. Below is the problem I encountered and my solution.&lt;/p&gt;
 
@@ -822,7 +1050,8 @@ sudo pip install requests
 &lt;li&gt;&lt;strong&gt;The templateUrl will not resolve correctly inside AngularJS&lt;/strong&gt;. AngularJS will look for “http://server//angularApp/admins/admins.html instead of the correct location of http://server/app/angularApp/admins/admins.html&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;[caption id=&amp;quot;attachment_1510&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;85&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/directory-structure.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/directory-structure.png?w=85&quot; alt=&quot;My AngularJS SPA Visual Studio Project Structure&quot;&gt;&lt;/a&gt; My AngularJS SPA Visual Studio Project Structure[/caption]&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/directory-structure.png&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/directory-structure.png?w=85&quot; alt=&quot;My AngularJS SPA Visual Studio Project Structure&quot;&gt;&lt;/a&gt;
+&lt;caption&gt;My AngularJS SPA Visual Studio Project Structure&lt;/caption&gt;&lt;/p&gt;
 
 &lt;h2&gt;Solution&lt;/h2&gt;
 

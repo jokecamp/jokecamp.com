@@ -39,7 +39,8 @@
         <div class="post">
   <h1 class="post-title">Resolving AngularJS paths in a ASP.NET MVC SPA and IIS</h1>
   <span class="post-date">06 Jun 2014</span>
-  <p>[caption id=&quot;attachment_1509&quot; align=&quot;alignright&quot; width=&quot;212&quot;]<a href="https://jokecamp.files.wordpress.com/2014/06/iis-application.png"><img src="http://jokecamp.files.wordpress.com/2014/06/iis-application.png" alt="Example IIS Application Setup"></a> Problems when your IIS Application is not at the root[/caption]</p>
+  <p><img src="http://jokecamp.files.wordpress.com/2014/06/iis-application.png">
+<caption align="right">Problems when your IIS Application is not at the root</caption></p>
 
 <p>Routing in the development of a AngularJS SPA (single page application) inside an ASP.NET MVC application can be problematic. Trying to resolve relative file paths when developing locally vs deploying to a remote server can have different behaviors, especially when your deployed application does not live at the root of your IIS website. Below is the problem I encountered and my solution.</p>
 
@@ -69,7 +70,8 @@
 <li><strong>The templateUrl will not resolve correctly inside AngularJS</strong>. AngularJS will look for “http://server//angularApp/admins/admins.html instead of the correct location of http://server/app/angularApp/admins/admins.html</li>
 </ul>
 
-<p>[caption id=&quot;attachment_1510&quot; align=&quot;alignright&quot; width=&quot;85&quot;]<a href="https://jokecamp.files.wordpress.com/2014/06/directory-structure.png"><img src="http://jokecamp.files.wordpress.com/2014/06/directory-structure.png?w=85" alt="My AngularJS SPA Visual Studio Project Structure"></a> My AngularJS SPA Visual Studio Project Structure[/caption]</p>
+<p><a href="https://jokecamp.files.wordpress.com/2014/06/directory-structure.png"><img src="http://jokecamp.files.wordpress.com/2014/06/directory-structure.png?w=85" alt="My AngularJS SPA Visual Studio Project Structure"></a>
+<caption>My AngularJS SPA Visual Studio Project Structure</caption></p>
 
 <h2>Solution</h2>
 
@@ -131,7 +133,7 @@
 
 <div class="tags">
 Tags
- <div class='tag'><a href='tag/#angularjs'>angularjs</a></div>  <div class='tag'><a href='tag/#C#'>C#</a></div>  <div class='tag'><a href='tag/#iis'>iis</a></div>  <div class='tag'><a href='tag/#javascript'>javascript</a></div>  <div class='tag'><a href='tag/#mvc'>mvc</a></div>  <div class='tag'><a href='tag/#razor'>razor</a></div> 
+ <div class='tag'><a href='/tag/#angularjs'>angularjs</a></div>  <div class='tag'><a href='/tag/#C#'>C#</a></div>  <div class='tag'><a href='/tag/#iis'>iis</a></div>  <div class='tag'><a href='/tag/#javascript'>javascript</a></div>  <div class='tag'><a href='/tag/#mvc'>mvc</a></div>  <div class='tag'><a href='/tag/#razor'>razor</a></div> 
 </div>
 
 <div class="post-footer">

@@ -12,6 +12,7 @@ permalink:        /blog/:title
 title:            Joe Kampschmidt's Code
 description:      "a pragmatic approach to web and software development"
 url:              http://www.jokecamp.com
+#url:              http://localhost:4000/
 baseurl:          /
 
 author:
