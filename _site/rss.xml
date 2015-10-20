@@ -88,7 +88,7 @@ npm install passport-github --save
 &lt;/ul&gt;
 
 &lt;p&gt;See my example application settings in the image below
-&lt;img src=&quot;http://www.jokecamp.compublic/github-application.png&quot; title=&quot;GitHub Application Registration&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&quot;http://www.jokecamp.com/public/github-application.png&quot; title=&quot;GitHub Application Registration&quot;&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Make note of your new &amp;quot;Client ID&amp;quot; and &amp;quot;Client Secret&amp;quot; properties provided by GitHub.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -158,9 +158,9 @@ npm install passport-github --save
 &lt;li&gt;Run the application and we should be able to login through GitHub and then get redirected back to main menu. The main menu page should also dump out your user information provided by GitHub. Lastly, the Logout route should also work correctly.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.compublic/github-authorize-oauth.png&quot; titl&quot;Screenshot GitHub OAuth permissions&quot; style=&quot;width:400px; border:solid 1px #444;&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.com/public/github-authorize-oauth.png&quot; titl&quot;Screenshot GitHub OAuth permissions&quot; style=&quot;width:400px; border:solid 1px #444;&quot;/&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.compublic/github-logged-in.png&quot; title=&quot;Screenshot Logged in with user data&quot; style=&quot;width:400px; border:solid 1px #444;&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.com/public/github-logged-in.png&quot; title=&quot;Screenshot Logged in with user data&quot; style=&quot;width:400px; border:solid 1px #444;&quot;/&gt;&lt;/p&gt;
 
 &lt;h2&gt;5) Protecting/Securing a custom route&lt;/h2&gt;
 

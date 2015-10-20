@@ -94,7 +94,7 @@ You can now test the app and you will see that clicking on logout redirects you 
   - The most important property to set is the **Authorization callback URL**. Use `http://localhost:30000/auth/github/callback`. GitHub allows for localhost address. Be warned that not all oauth providers will allow you to test using localhost.
 
     See my example application settings in the image below
-<img src="{{ site.url }}public/github-application.png" title="GitHub Application Registration">
+<img src="{{ site.url }}/public/github-application.png" title="GitHub Application Registration">
 
 - Make note of your new "Client ID" and "Client Secret" properties provided by GitHub.
 
@@ -168,9 +168,9 @@ if (req.isAuthenticated()) {
 - Run the application and we should be able to login through GitHub and then get redirected back to main menu. The main menu page should also dump out your user information provided by GitHub. Lastly, the Logout route should also work correctly.
 
 
-<img src="{{ site.url }}public/github-authorize-oauth.png" titl"Screenshot GitHub OAuth permissions" style="width:400px; border:solid 1px #444;"/>
+<img src="{{ site.url }}/public/github-authorize-oauth.png" titl"Screenshot GitHub OAuth permissions" style="width:400px; border:solid 1px #444;"/>
 
-<img src="{{ site.url }}public/github-logged-in.png" title="Screenshot Logged in with user data" style="width:400px; border:solid 1px #444;"/>
+<img src="{{ site.url }}/public/github-logged-in.png" title="Screenshot Logged in with user data" style="width:400px; border:solid 1px #444;"/>
 
 
 ## 5) Protecting/Securing a custom route
