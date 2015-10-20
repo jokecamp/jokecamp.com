@@ -53,7 +53,9 @@
 <li><strong>express.js</strong> - a fast minimalist web framework for Node.js.</li>
 </ul>
 
-<h2>1) Setup a simple Express.js app</h2>
+<p><a name="start"></a></p>
+
+<h2>1) <a href="#start">Setup a simple Express.js app</a></h2>
 
 <p>For this tutorial I will use the port <code>30000</code>. This is important because when we register our developer applications at various OAuth provider websites we will have to specify the port number in our callback url in order to test on with <a href="http://localhost:30000">http://localhost:30000</a>.</p>
 
@@ -91,7 +93,9 @@ npm install passport-github --save
 <li>Test the application by running <code>node sever.js</code> and viewing <a href="http://localhost:30000/">http://localhost:30000/</a>. It should output a simple menu with broken (stub) links.</li>
 </ul>
 
-<h2>2) Logout Route</h2>
+<p><a name="logout"></a></p>
+
+<h2>2) <a href="#logout">Logout Route</a></h2>
 
 <p>The logout route will be very useful for testing so we will create it first.</p>
 
@@ -109,7 +113,9 @@ npm install passport-github --save
 </code></pre></div>
 <p>You can now test the app and you will see that clicking on logout redirects you to the main menu on each click.</p>
 
-<h2>3) Register a new developer application with GitHub</h2>
+<p><a name="register"></a></p>
+
+<h2>3) <a href="#register">Register a new developer application with GitHub</a></h2>
 
 <ul>
 <li><p>Register a new GitHub dev application at <a href="https://github.com/settings/applications/new">https://github.com/settings/applications/new</a>.</p>
@@ -123,7 +129,9 @@ npm install passport-github --save
 <li><p>Make note of your new &quot;Client ID&quot; and &quot;Client Secret&quot; properties provided by GitHub.</p></li>
 </ul>
 
-<h2>4) OAuth and passport-github strategy implementation</h2>
+<p><a name="github"></a></p>
+
+<h2>4) <a href="#github">OAuth and passport-github strategy implementation</a></h2>
 
 <ul>
 <li><p>We should have already added the <a href="https://github.com/jaredhanson/passport-github">passport-github package</a>.</p></li>
@@ -193,7 +201,9 @@ npm install passport-github --save
 
 <p><img src="http://www.jokecamp.com/public/github-logged-in.png" title="Screenshot Logged in with user data" style="width:400px; border:solid 1px #444;"/></p>
 
-<h2>5) Protecting/Securing a custom route</h2>
+<p><a name="protect"></a></p>
+
+<h2>5) <a href="#protect">Protecting/Securing a custom route</a></h2>
 
 <p>Now that we are able to login with OAuth how do we protect individual routes and require that the user be authenticated? To do this we will add a new middleware function called <code>ensureAuthenticated</code>. The middleware will intercept the request and ensure that the request has been authenticated with passport. The key line in this function is <code>req.isAuthenticated()</code>. This method is poorly documented and this <a href="http://stackoverflow.com/a/14301657/215502">SO answer</a> was my very helpful. If the authenticated check fails we will redirect to the main menu route.</p>
 
@@ -224,7 +234,7 @@ npm install passport-github --save
 
 <p><a name="pitfalls"></a></p>
 
-<h3>Common Pitfalls and Gotchas</h3>
+<h3><a href="#pitfalls">Common Pitfalls and Gotchas</a></h3>
 
 <p>A list of errors I encountered myself that might be roadblocks.</p>
 

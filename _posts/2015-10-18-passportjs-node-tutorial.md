@@ -29,7 +29,8 @@ This tutorial is geared towards developers just getting started with [passport.j
 - **OAuth** - an open standard for authorization. OAuth provides client applications a secure delegated access to server resources on behalf of a resource owner. [OAuth on wikipedia][4]
 - **express.js** - a fast minimalist web framework for Node.js.
 
-## 1) Setup a simple Express.js app
+<a name="start"></a>
+## 1) [Setup a simple Express.js app](#start)
 
 For this tutorial I will use the port `30000`. This is important because when we register our developer applications at various OAuth provider websites we will have to specify the port number in our callback url in order to test on with <http://localhost:30000>.
 
@@ -66,7 +67,8 @@ var server = app.listen(30000, function () {
 ```
 - Test the application by running `node sever.js` and viewing [http://localhost:30000/](http://localhost:30000/). It should output a simple menu with broken (stub) links.
 
-## 2) Logout Route
+<a name="logout"></a>
+## 2) [Logout Route](#logout)
 
 The logout route will be very useful for testing so we will create it first.
 
@@ -88,7 +90,8 @@ app.get('/logout', function(req, res){
 
 You can now test the app and you will see that clicking on logout redirects you to the main menu on each click.
 
-## 3) Register a new developer application with GitHub
+<a name="register"></a>
+## 3) [Register a new developer application with GitHub](#register)
 
 - Register a new GitHub dev application at [https://github.com/settings/applications/new](https://github.com/settings/applications/new).
   - The most important property to set is the **Authorization callback URL**. Use `http://localhost:30000/auth/github/callback`. GitHub allows for localhost address. Be warned that not all oauth providers will allow you to test using localhost.
@@ -98,7 +101,8 @@ You can now test the app and you will see that clicking on logout redirects you 
 
 - Make note of your new "Client ID" and "Client Secret" properties provided by GitHub.
 
-## 4) OAuth and passport-github strategy implementation
+<a name="github"></a>
+## 4) [OAuth and passport-github strategy implementation](#github)
 
 - We should have already added the [passport-github package](https://github.com/jaredhanson/passport-github).
 
@@ -172,8 +176,8 @@ if (req.isAuthenticated()) {
 
 <img src="{{ site.url }}/public/github-logged-in.png" title="Screenshot Logged in with user data" style="width:400px; border:solid 1px #444;"/>
 
-
-## 5) Protecting/Securing a custom route
+<a name="protect"></a>
+## 5) [Protecting/Securing a custom route](#protect)
 
 Now that we are able to login with OAuth how do we protect individual routes and require that the user be authenticated? To do this we will add a new middleware function called `ensureAuthenticated`. The middleware will intercept the request and ensure that the request has been authenticated with passport. The key line in this function is `req.isAuthenticated()`. This method is poorly documented and this [SO answer](http://stackoverflow.com/a/14301657/215502) was my very helpful. If the authenticated check fails we will redirect to the main menu route.
 
@@ -203,7 +207,7 @@ app.get('/protected', ensureAuthenticated, function(req, res) {
 - Run the application again and login then visit <http://localhost:30000/protected>. Try again after you logout. If you have errors compare your code to the entire [tutorial source code](https://gist.github.com/jokecamp/65604d50227b8ea8e0d3)
 
 <a name="pitfalls"></a>
-### Common Pitfalls and Gotchas
+### [Common Pitfalls and Gotchas](#pitfalls)
 
 A list of errors I encountered myself that might be roadblocks.
 

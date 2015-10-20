@@ -22,7 +22,9 @@
 &lt;li&gt;&lt;strong&gt;express.js&lt;/strong&gt; - a fast minimalist web framework for Node.js.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;1) Setup a simple Express.js app&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;start&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;1) &lt;a href=&quot;#start&quot;&gt;Setup a simple Express.js app&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;For this tutorial I will use the port &lt;code&gt;30000&lt;/code&gt;. This is important because when we register our developer applications at various OAuth provider websites we will have to specify the port number in our callback url in order to test on with &lt;a href=&quot;http://localhost:30000&quot;&gt;http://localhost:30000&lt;/a&gt;.&lt;/p&gt;
 
@@ -60,7 +62,9 @@ npm install passport-github --save
 &lt;li&gt;Test the application by running &lt;code&gt;node sever.js&lt;/code&gt; and viewing &lt;a href=&quot;http://localhost:30000/&quot;&gt;http://localhost:30000/&lt;/a&gt;. It should output a simple menu with broken (stub) links.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;2) Logout Route&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;logout&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;2) &lt;a href=&quot;#logout&quot;&gt;Logout Route&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;The logout route will be very useful for testing so we will create it first.&lt;/p&gt;
 
@@ -78,7 +82,9 @@ npm install passport-github --save
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;You can now test the app and you will see that clicking on logout redirects you to the main menu on each click.&lt;/p&gt;
 
-&lt;h2&gt;3) Register a new developer application with GitHub&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;register&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;3) &lt;a href=&quot;#register&quot;&gt;Register a new developer application with GitHub&lt;/a&gt;&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Register a new GitHub dev application at &lt;a href=&quot;https://github.com/settings/applications/new&quot;&gt;https://github.com/settings/applications/new&lt;/a&gt;.&lt;/p&gt;
@@ -92,7 +98,9 @@ npm install passport-github --save
 &lt;li&gt;&lt;p&gt;Make note of your new &amp;quot;Client ID&amp;quot; and &amp;quot;Client Secret&amp;quot; properties provided by GitHub.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;4) OAuth and passport-github strategy implementation&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;github&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;4) &lt;a href=&quot;#github&quot;&gt;OAuth and passport-github strategy implementation&lt;/a&gt;&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;We should have already added the &lt;a href=&quot;https://github.com/jaredhanson/passport-github&quot;&gt;passport-github package&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
@@ -162,7 +170,9 @@ npm install passport-github --save
 
 &lt;p&gt;&lt;img src=&quot;http://www.jokecamp.com/public/github-logged-in.png&quot; title=&quot;Screenshot Logged in with user data&quot; style=&quot;width:400px; border:solid 1px #444;&quot;/&gt;&lt;/p&gt;
 
-&lt;h2&gt;5) Protecting/Securing a custom route&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;protect&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;5) &lt;a href=&quot;#protect&quot;&gt;Protecting/Securing a custom route&lt;/a&gt;&lt;/h2&gt;
 
 &lt;p&gt;Now that we are able to login with OAuth how do we protect individual routes and require that the user be authenticated? To do this we will add a new middleware function called &lt;code&gt;ensureAuthenticated&lt;/code&gt;. The middleware will intercept the request and ensure that the request has been authenticated with passport. The key line in this function is &lt;code&gt;req.isAuthenticated()&lt;/code&gt;. This method is poorly documented and this &lt;a href=&quot;http://stackoverflow.com/a/14301657/215502&quot;&gt;SO answer&lt;/a&gt; was my very helpful. If the authenticated check fails we will redirect to the main menu route.&lt;/p&gt;
 
@@ -193,7 +203,7 @@ npm install passport-github --save
 
 &lt;p&gt;&lt;a name=&quot;pitfalls&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Common Pitfalls and Gotchas&lt;/h3&gt;
+&lt;h3&gt;&lt;a href=&quot;#pitfalls&quot;&gt;Common Pitfalls and Gotchas&lt;/a&gt;&lt;/h3&gt;
 
 &lt;p&gt;A list of errors I encountered myself that might be roadblocks.&lt;/p&gt;
 
