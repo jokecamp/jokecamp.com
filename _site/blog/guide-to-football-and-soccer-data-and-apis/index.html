@@ -196,17 +196,30 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 <p>Some example calls:</p>
 
 <ul>
-<li><a href="http://www.football-data.org/soccerseasons/">http://www.football-data.org/soccerseasons/</a></li>
-<li><a href="http://www.football-data.org/soccerseasons/351/teams">http://www.football-data.org/soccerseasons/351/teams</a></li>
-<li><a href="http://www.football-data.org/fixtures">http://www.football-data.org/fixtures</a></li>
-<li><a href="http://www.football-data.org/teams/5">http://www.football-data.org/teams/5</a></li>
+<li><a href="http://api.football-data.org/v1/soccerseasons">http://api.football-data.org/v1/soccerseasons</a></li>
+<li><a href="http://api.football-data.org/v1/soccerseasons/351/teams">http://api.football-data.org/v1/soccerseasons/351/teams</a></li>
+<li><a href="http://api.football-data.org/v1/fixtures">http://api.football-data.org/v1/fixtures</a></li>
+<li><a href="http://api.football-data.org/v1/teams/5">http://api.football-data.org/v1/teams/5</a></li>
 </ul>
 
 <p>Example JSON output for a team:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">{ &quot;id&quot;:5,
-  &quot;name&quot;:&quot;FC Bayern München&quot;,
-  &quot;shortName&quot;:&quot;Bayern&quot;,
-  &quot;crestUrl&quot;:&quot;http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_M%C3%BCnchen.svg&quot;
+<div class="highlight"><pre><code class="language-text" data-lang="text">{
+   &quot;_links&quot;:{
+      &quot;self&quot;:{
+         &quot;href&quot;:&quot;http://api.football-data.org/v1/teams/5&quot;
+      },
+      &quot;fixtures&quot;:{
+         &quot;href&quot;:&quot;http://api.football-data.org/v1/teams/5/fixtures&quot;
+      },
+      &quot;players&quot;:{
+         &quot;href&quot;:&quot;http://api.football-data.org/v1/teams/5/players&quot;
+      }
+   },
+   &quot;name&quot;:&quot;FC Bayern München&quot;,
+   &quot;code&quot;:&quot;FCB&quot;,
+   &quot;shortName&quot;:&quot;Bayern&quot;,
+   &quot;squadMarketValue&quot;:&quot;559,100,000 €&quot;,
+   &quot;crestUrl&quot;:&quot;http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_München.svg&quot;
 }
 </code></pre></div>
 <p><a name="openfooty"></a></p>

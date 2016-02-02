@@ -150,18 +150,31 @@ Available endpoints
 
 Some example calls:
 
-- <http://www.football-data.org/soccerseasons/>
-- <http://www.football-data.org/soccerseasons/351/teams>
-- <http://www.football-data.org/fixtures>
-- <http://www.football-data.org/teams/5>
+- <http://api.football-data.org/v1/soccerseasons>
+- <http://api.football-data.org/v1/soccerseasons/351/teams>
+- <http://api.football-data.org/v1/fixtures>
+- <http://api.football-data.org/v1/teams/5>
 
 
 Example JSON output for a team:
 
-    { "id":5,
-      "name":"FC Bayern München",
-      "shortName":"Bayern",
-      "crestUrl":"http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_M%C3%BCnchen.svg"
+    {
+       "_links":{
+          "self":{
+             "href":"http://api.football-data.org/v1/teams/5"
+          },
+          "fixtures":{
+             "href":"http://api.football-data.org/v1/teams/5/fixtures"
+          },
+          "players":{
+             "href":"http://api.football-data.org/v1/teams/5/players"
+          }
+       },
+       "name":"FC Bayern München",
+       "code":"FCB",
+       "shortName":"Bayern",
+       "squadMarketValue":"559,100,000 €",
+       "crestUrl":"http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_München.svg"
     }
 
 <a name="openfooty"></a>
