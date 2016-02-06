@@ -9,7 +9,7 @@
     <url>
       <loc>http://www.jokecamp.com/atom.xml</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -24,7 +24,7 @@
     <url>
       <loc>http://www.jokecamp.com/blog/</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -39,7 +39,7 @@
     <url>
       <loc>http://www.jokecamp.com/books-for-geeks/</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -54,7 +54,7 @@
     <url>
       <loc>http://www.jokecamp.com/ideas/</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -69,7 +69,7 @@
     <url>
       <loc>http://www.jokecamp.com/</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -84,7 +84,7 @@
     <url>
       <loc>http://www.jokecamp.com/projects/</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -99,7 +99,7 @@
     <url>
       <loc>http://www.jokecamp.com/rss.xml</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -114,7 +114,7 @@
     <url>
       <loc>http://www.jokecamp.com/singularity/</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -131,7 +131,7 @@
     <url>
       <loc>http://www.jokecamp.com/tag/</loc>
       
-        <lastmod>2016-02-01T18:06:13-07:00</lastmod>
+        <lastmod>2016-02-05T19:26:18-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -142,102 +142,12 @@
     </url>
     
   
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/blog/remote-work/</loc>
-      
-        <lastmod>2016-02-01T16:28:19-07:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/blog/2015-10-06-getting-started-with-openfootball-data/</loc>
-      
-        <lastmod>2015-10-19T18:32:42-06:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
   
     
     <url>
       <loc>http://www.jokecamp.com/tutorial-passportjs-authentication-in-nodejs/</loc>
       
         <lastmod>2015-10-18T00:00:00-06:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/blog/off-the-grid/</loc>
-      
-        <lastmod>2015-10-13T18:23:36-06:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/blog/seen-security-flaws/</loc>
-      
-        <lastmod>2015-07-30T18:31:24-06:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/blog/manu-data/</loc>
-      
-        <lastmod>2015-07-25T09:05:56-06:00</lastmod>
-      
-      
-        <changefreq>weekly</changefreq>
-      
-      
-        <priority>0.5</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>http://www.jokecamp.com/blog/useful-angularjs-filters/</loc>
-      
-        <lastmod>2015-01-26T06:09:34-07:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
