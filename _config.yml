@@ -2,7 +2,7 @@
 markdown:         redcarpet
 highlighter:      pygments
 
-exclude:          ['.asset_pipeline']
+exclude:          ['.asset_pipeline', 'deploy.sh', 'server-script.sh']
 
 # Permalinks
 #permalink:        pretty

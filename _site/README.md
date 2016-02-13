@@ -33,3 +33,26 @@ https://github.com/matthodan/jekyll-asset-pipeline/blob/master/README.md
 
 Main page as of 9/6/2015 = 46.9K HTTP Requests - 6
 Primed Cache = 5.9K HTTP Requests - 3
+
+
+
+## Compress static content
+
+Run on server
+```
+#!/usr/local/bin/perl
+
+# This script should be uploaded to the web server.
+
+use warnings;
+use strict;
+use File::Find;
+find (\&wanted, ("."));
+sub wanted
+{
+ if (/(.*\.(?:html|htm|css|js)$)/i) {
+     print "Compressing $File::Find::name\n";
+     system ("gzip --keep --best --force $_");
+ }
+}
+```
