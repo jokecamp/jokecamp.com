@@ -38,6 +38,8 @@ Primed Cache = 5.9K HTTP Requests - 3
 
 ## Compress static content
 
+See <https://members.nearlyfreespeech.net/wiki/HowTo/GzipStatic>
+
 Run on server
 ```
 #!/usr/local/bin/perl
