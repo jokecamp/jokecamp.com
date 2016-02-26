@@ -4,13 +4,47 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2016-02-12T18:29:45-07:00</updated>
+ <updated>2016-02-26T15:24:44-07:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Running a local MongoDB with npm scripts for dev work</title>
+   <link href="http://www.jokecamp.com//blog/running-local-mongodb-with-npm-scripts"/>
+   <updated>2016-02-26T00:00:00-07:00</updated>
+   <id>http://www.jokecamp.com/blog/running-local-mongodb-with-npm-scripts</id>
+   <content type="html">&lt;p&gt;Below are two very simple &lt;a href=&quot;https://docs.npmjs.com/misc/scripts&quot;&gt;npm scripts&lt;/a&gt; to run a local MongoDb instance for development work. There are two scripts that will work for Windows (x64) environments and mac OS X environments.&lt;/p&gt;
+
+&lt;h4&gt;1) First install MongoDb&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;For OS X I prefer &lt;code&gt;brew install mongodb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;On Windows x64 install the &lt;a href=&quot;https://www.mongodb.org/downloads#production&quot;&gt;official MSI&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You may want to add to the path to your environment variable: &lt;code&gt;set PATH=%PATH%;C:/Program Files/MongoDB/Server/3.2/bin/&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;2) Add the following to your &lt;code&gt;packages.json&lt;/code&gt; file under &lt;code&gt;scripts&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;quot;mongo-mac&amp;quot;: &amp;quot;mkdir mongo-db; mongod --dbpath mongo-db&amp;quot;,
+&amp;quot;mongo-win&amp;quot;: &amp;quot;md mongo-db &amp;amp; \&amp;quot;C:/Program Files/MongoDb/Server/3.2/bin/mongod.exe\&amp;quot; --dbpath mongo-db&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;3) Now windows users can easily run with &lt;code&gt;npm run mongo-win&lt;/code&gt; and OS X users can use &lt;code&gt;npm run mongo-mac&lt;/code&gt;.&lt;/h4&gt;
+
+&lt;h4&gt;Gotchas&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your mongod.exe path may be slightly different.&lt;/li&gt;
+&lt;li&gt;The script assumes your database files will go in project folder &lt;code&gt;mongo-db&lt;/code&gt;. I added it to &lt;code&gt;.gitignore.&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;You must keep your console open to run the db instance. I prefer this to always running the service so I can easily close everything when done.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Tutorial for Passport.js authentication in a Node.js Express application</title>
