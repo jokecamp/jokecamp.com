@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: Feb 5 2016
+Last updated: March 15 2016
 
 ## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
@@ -154,7 +154,7 @@ Some example calls:
 - <http://api.football-data.org/v1/soccerseasons/351/teams>
 - <http://api.football-data.org/v1/fixtures>
 - <http://api.football-data.org/v1/teams/5>
-
+- <http://api.football-data.org/v1/soccerseasons/424> (European Championships France 2016)
 
 Example JSON output for a team:
 
@@ -189,15 +189,26 @@ Example JSON output for a team:
 <a name="footballapi"></a>
 #### football-api
 
-[football-api.com](http://football-api.com/) is a paid API service but does offer the English Premier League endpoints for free (demo use). The API will restrict by IP addresses and limit calls based on your package. Includes endponts for Competitions, teams, standings, live scores, fixtures and commentaries. See the [pricing page](http://football-api.com/pricing/). Prices range from $15 to $200 per month.
+[football-api.com](http://football-api.com/) is a paid API service. The API restricts by IP addresses and limit calls based on your package. Includes endpoints for competitions, teams, standings, live scores, fixtures and commentaries. See the [pricing page](http://football-api.com/pricing/). Prices range from $15 to $200 per month.
 
 Example endpoints:
 
-    api/?Action=competitions&APIKey=####
-    api/?Action=standings&comp_id=1204&APIKey=####
-    api/?Action=today&comp_id=1204&APIKey=####
-    api/?Action=fixtures&comp_id=1024&&match_date=[DATE_IN_d.m.Y_FORMAT]&APIKey=####
-    api/?Action=commentaries&APIKey=###&match_id=[MATCH_ID]
+    api/?Action=competitions&APIKey=xxxx
+    api/?Action=standings&comp_id=1204&APIKey=xxxx
+    api/?Action=today&comp_id=1204&APIKey=xxxx
+    api/?Action=fixtures&comp_id=1024&&match_date=[DATE_IN_d.m.Y_FORMAT]&APIKey=xxxx
+    api/?Action=commentaries&APIKey=xxxx&match_id=[MATCH_ID]
+
+The demo (EPL) free feature is no longer available. Here is part of the [email notice](http://football-api.com/?na=v&id=2&nk=276-ef27b4e6d5) sent:
+
+> Discontinuation Of The Demo Plan (March 3 2016)
+>
+>  In the last couple of weekends, we experienced a very high load on our servers. This lead to delayed responses and very slow data return. We had to take emergency measures and unfortunately, we had to suspend the demo access to the English Premier League in favour of our paying customers. This decision is hard for us since we would like to offer this demo access for free. However, with around 3000 demo users, the load on our servers was too high.
+
+> Since the demo plan was not planned for production purposes (hence the name), we apologize if we have disturbed your development and surprised you with a lot of error messages.
+
+
+<i>This is why we can't have nice things.</i>
 
 <a name="CrowdScores"></a>
 #### CrowdScores and FastestLiveScores API
