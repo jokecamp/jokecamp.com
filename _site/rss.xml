@@ -7,6 +7,63 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Using variables with the SSH Task on Bamboo Build Server</title>
+				<description>&lt;p&gt;&lt;strong&gt;The quick solution is you can use &lt;code&gt;${bamboo.env}&lt;/code&gt;, where env is your case-sensitive var, in any Task field (except the password).&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Example Usage with Screenshots&lt;/h2&gt;
+
+&lt;p&gt;The Atlassian &lt;a href=&quot;https://confluence.atlassian.com/bamboo059/using-the-ssh-task-in-bamboo-800858088.html&quot;&gt;SSH Task&lt;/a&gt; and &lt;a href=&quot;https://confluence.atlassian.com/display/BAMBOO055/Bamboo+variables&quot;&gt;Bamboo Variables&lt;/a&gt; docs do not give actual variable usage examples so I wanted to share a basic example with helpful screenshots. Below are some key features of Bamboo vars:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Variable names are case sensitive&lt;/li&gt;
+&lt;li&gt;You DO include the &lt;code&gt;bamboo&lt;/code&gt; prefix for &lt;code&gt;${bamboo.env}&lt;/code&gt; when referencing but not when defining.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;${bamboo.env}&lt;/code&gt; syntax works on both windows and unix build agents&lt;/li&gt;
+&lt;li&gt;Variables can be used with build plans and deployments.&lt;/li&gt;
+&lt;li&gt;Variables can be used in all fields of a Task, with the exception of password variables.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I used this in a deployment project to deploy to an environment named &lt;code&gt;DT&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;1) Setup Deployment and Global variables&lt;/h3&gt;
+
+&lt;p&gt;I have defined the following variables in Bamboo. I suggest using all &lt;em&gt;lowercase&lt;/em&gt; since the variables are case-sensitive.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A global variable called &lt;code&gt;unix_user&lt;/code&gt; = &lt;code&gt;joe&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;A deployment variable called &lt;code&gt;env&lt;/code&gt; = &lt;code&gt;dt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;A deployment variable called &lt;code&gt;web_server_ip&lt;/code&gt; = &lt;code&gt;a real ip address or hostname&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2) Configure the SSH Task&lt;/h3&gt;
+
+&lt;p&gt;Inside the the ssh task for this deployment you can now use &lt;code&gt;${bamboo.env}&lt;/code&gt;. In this example I am using variables two different ways.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;As replacements for the &lt;code&gt;Host&lt;/code&gt; and &lt;code&gt;Username&lt;/code&gt; fields.&lt;/li&gt;
+&lt;li&gt;Inside the actual &lt;code&gt;SSH Command&lt;/code&gt;. In this example I echo &lt;code&gt;${bamboo.deploy.release}&lt;/code&gt; (deploy.release is a &lt;a href=&quot;https://confluence.atlassian.com/display/BAMBOO055/Bamboo+variables&quot;&gt;built in bamboo deployment var&lt;/a&gt;) for the logs and then I use my &lt;code&gt;${bamboo.env}&lt;/code&gt; as a parameter to my custom deployment script that exists on the targeted server.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;They are referenced with the same syntax. &lt;strong&gt;It does not matter that my build server is windows and my targeted host is unix.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.com/public/bamboo-ssh-task.png&quot; alt=&quot;SSH Task Configuration Example&quot; class=&quot;screenshot&quot; style=&quot;width:60%;&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;3) Verifying the substitutions in the logs&lt;/h3&gt;
+
+&lt;p&gt;Bamboo will log each substitution. Below is what to look for in the deployment logs.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Substituting variable: ${bamboo.env} with dt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you are watching the live/dynamic logs as it runs you will see an even more obvious notification like the one below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.com/public/bamboo-log.png&quot; alt=&quot;SSH Task Configuration Example&quot; class=&quot;screenshot&quot; style=&quot;width:80%;&quot;&gt;&lt;/p&gt;
+</description>
+				<pubDate>Thu, 17 Mar 2016 00:00:00 -0600</pubDate>
+				<link>http://www.jokecamp.com/blog/ssh-task-variables-with-bamboo-build-server</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/ssh-task-variables-with-bamboo-build-server</guid>
+			</item>
+		
+			<item>
 				<title>Running a local MongoDB with npm scripts for dev work</title>
 				<description>&lt;p&gt;Below are two very simple &lt;a href=&quot;https://docs.npmjs.com/misc/scripts&quot;&gt;npm scripts&lt;/a&gt; to run a local MongoDb instance for development work. There are two scripts that will work for Windows (x64) environments and mac OS X environments.&lt;/p&gt;
 
@@ -940,70 +997,6 @@ Stats:
 				<pubDate>Sat, 28 Jun 2014 14:50:15 -0600</pubDate>
 				<link>http://www.jokecamp.com/blog/alternate-way-to-build-your-own-football-db-sqlite-database</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/alternate-way-to-build-your-own-football-db-sqlite-database</guid>
-			</item>
-		
-			<item>
-				<title>Building a Raspberry Pi Photo Frame</title>
-				<description>&lt;p&gt;First off, my inspiration and instructions came from this article &lt;a href=&quot;http://www.ofbrooklyn.com/2014/01/2/building-photo-frame-raspberry-pi-motion-detector&quot;&gt;Building a living photo frame with a Raspberry Pi and a motion detector&lt;/a&gt;. The author is more knowledgeable and the article is more in-depth than mine. See that article for specific configuration and for the actual contents of the python script to pull photos from flickr. I hope my post will help others by sharing my first time experiences with the pi and the issues/frustrations I encountered.&lt;/p&gt;
-
-&lt;h2&gt;The shopping list&lt;/h2&gt;
-
-&lt;p&gt;Purchased from &lt;a href=&quot;http://www.adafruit.com/&quot;&gt;Adafruit&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;1 x Raspberry Pi Model A 256MB RAM[ID:1344] = $29.95&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1 x RCA coupler - Male to Male[ID:951] = $1.50&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1 x Miniature WiFi (802.11b/g/n) Module: For Raspberry Pi and more[ID:814] = $11.95&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1 x NTSC/PAL (Television) TFT Display - 3.5&amp;quot; Diagonal[ID:913] = $44.95&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1 x PIR (motion) sensor[ID:189] = $9.95&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1 x 4GB SD card for Raspberry Pi preinstalled with Raspbian Wheezy[ID:1121] = $9.95&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;1 x Micro USB cable - free - I used an old phone power charger to power the pi board&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A total of about $120 after taxes. Expensive for a digital picture frame but relatively cheap after for a hobby.&lt;/p&gt;
-
-&lt;p&gt;[caption id=&amp;quot;attachment_1541&amp;quot; align=&amp;quot;alignright&amp;quot; width=&amp;quot;225&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/2014-06-07-16-13-54.jpg&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/2014-06-07-16-13-54.jpg?w=225&quot; alt=&quot;Raspberry pi&quot;&gt;&lt;/a&gt; Raspberry Pi[/caption]&lt;/p&gt;
-
-&lt;h2&gt;My issues and frustrations&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;My WIFI dongle is finicky&lt;/strong&gt;. It only works when I insert it half-way and it will often drop the connection. I knew when it was working by watching for the flashing blue light. When the light turns a solid blue light the connection no longer works. This was my must frustrating experience. I am unsure if the root of the issue is software, the dongle, or the actual pi. I hope to replace the dongle soon and also try some pi firmware upgrades.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;A bluetooth keyboard and mouse did not work with the pi.&lt;/strong&gt; The pi would miss key presses and stutter. The devices were running low on power and the bluetooth was a bad idea. The solution was to use a basic wired USB keyboard and mouse. I ended up picking up a basic USB splitter for about $12. After reading up it looks like there are a lot of advocates for USB hubs with independent power sources but I was hoping to keep not introduce a cumbersome USB hub.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Remoting into the pi from my mac was tricky at first&lt;/strong&gt;. I needed to find the pi&amp;#39;s ip address and in my case I needed to do this without having access to the pi. In the end I did this by logging into the remote administration web console for my wireless router. From there I could see a list of connected devices via the &amp;quot;DHCP Reservations&amp;quot; section. Once you have the ip it as a simple as opening the mac terminal and running [code]ssh pi@192.168.1.125[/code] then entering the password.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;The LDC screen was too small for dev work.&lt;/strong&gt; After connecting everything and powering on the pi I realized that my 3.5 inch display was going to be too small to read anything. It was a bit anticlimactic and ended my development work for the day. &lt;strong&gt;Roadblocks that ended the days work were common&lt;/strong&gt;. Be prepared to have to wait a few days for new parts or to research. I ended up connecting my pi directly to my TV in the living room via my really long HDMI cable. This made it readable but a bit hard and impractical for working on. Luckily, I only needed to use the TV until I could get the WIFI dongle setup. Once connected to the local network I could switch to controlling the pi via my mac laptop using SSH.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Getting familiar with UNIX&lt;/strong&gt;. Some common commands I utilized:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sudo reboot&lt;/li&gt;
-&lt;li&gt;sudo halt&lt;/li&gt;
-&lt;li&gt;raspi-config - menu for setting common pi settings. It looks like a BIOS menu&lt;/li&gt;
-&lt;li&gt;startx - start the GUI. I ended up using the terminal more&lt;/li&gt;
-&lt;li&gt;df -h - check the disk space&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Installing the dependent software&lt;/strong&gt; to power the python script to download the flickr photos.
-Install &lt;a href=&quot;https://pypi.python.org/pypi/pip&quot;&gt;pip&lt;/a&gt; a python package manager. We will need the flickrarpi and requests packages.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-sudo python get-pip.py
-# ready to install the packages
-sudo pip install flickrapi
-sudo pip install requests
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Installing fbi - frame buffer imageviewer&lt;/strong&gt;. This is the program that actually displays the slideshow.
-&lt;code&gt;sudo apt-get install fbi&lt;/code&gt; Once fbi is running you can kill it by getting the pid with &lt;code&gt;pidof fbi&lt;/code&gt; and then killing it by &lt;code&gt;kill #pid&lt;/code&gt; where #pid is the process id.&lt;/p&gt;
-
-&lt;h2&gt;Fully Operational!&lt;/h2&gt;
-
-&lt;p&gt;The slideshow is operational now and pulling images directly from my flickr stream. I still have some work to do with a proper display and fixing my wifi issues but the project has been very satisfying. It was fun to make something tangible again. As I have been writing this post I have been quite distracted. Distracted by my new pi slideshow.&lt;/p&gt;
-
-&lt;p&gt;[caption id=&amp;quot;attachment_1572&amp;quot; align=&amp;quot;aligncenter&amp;quot; width=&amp;quot;225&amp;quot;]&lt;a href=&quot;https://jokecamp.files.wordpress.com/2014/06/2014-06-09-21-53-58.jpg&quot;&gt;&lt;img src=&quot;http://jokecamp.files.wordpress.com/2014/06/2014-06-09-21-53-58.jpg?w=225&quot; alt=&quot;Final Frame&quot;&gt;&lt;/a&gt; Final Frame[/caption]&lt;/p&gt;
-</description>
-				<pubDate>Sat, 07 Jun 2014 19:34:58 -0600</pubDate>
-				<link>http://www.jokecamp.com/blog/building-a-raspberry-pi-photo-frame</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/building-a-raspberry-pi-photo-frame</guid>
 			</item>
 		
 	</channel>

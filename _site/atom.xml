@@ -4,13 +4,70 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2016-03-15T15:10:42-06:00</updated>
+ <updated>2016-03-20T08:31:51-06:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Using variables with the SSH Task on Bamboo Build Server</title>
+   <link href="http://www.jokecamp.com//blog/ssh-task-variables-with-bamboo-build-server"/>
+   <updated>2016-03-17T00:00:00-06:00</updated>
+   <id>http://www.jokecamp.com/blog/ssh-task-variables-with-bamboo-build-server</id>
+   <content type="html">&lt;p&gt;&lt;strong&gt;The quick solution is you can use &lt;code&gt;${bamboo.env}&lt;/code&gt;, where env is your case-sensitive var, in any Task field (except the password).&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Example Usage with Screenshots&lt;/h2&gt;
+
+&lt;p&gt;The Atlassian &lt;a href=&quot;https://confluence.atlassian.com/bamboo059/using-the-ssh-task-in-bamboo-800858088.html&quot;&gt;SSH Task&lt;/a&gt; and &lt;a href=&quot;https://confluence.atlassian.com/display/BAMBOO055/Bamboo+variables&quot;&gt;Bamboo Variables&lt;/a&gt; docs do not give actual variable usage examples so I wanted to share a basic example with helpful screenshots. Below are some key features of Bamboo vars:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Variable names are case sensitive&lt;/li&gt;
+&lt;li&gt;You DO include the &lt;code&gt;bamboo&lt;/code&gt; prefix for &lt;code&gt;${bamboo.env}&lt;/code&gt; when referencing but not when defining.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;${bamboo.env}&lt;/code&gt; syntax works on both windows and unix build agents&lt;/li&gt;
+&lt;li&gt;Variables can be used with build plans and deployments.&lt;/li&gt;
+&lt;li&gt;Variables can be used in all fields of a Task, with the exception of password variables.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I used this in a deployment project to deploy to an environment named &lt;code&gt;DT&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;1) Setup Deployment and Global variables&lt;/h3&gt;
+
+&lt;p&gt;I have defined the following variables in Bamboo. I suggest using all &lt;em&gt;lowercase&lt;/em&gt; since the variables are case-sensitive.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A global variable called &lt;code&gt;unix_user&lt;/code&gt; = &lt;code&gt;joe&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;A deployment variable called &lt;code&gt;env&lt;/code&gt; = &lt;code&gt;dt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;A deployment variable called &lt;code&gt;web_server_ip&lt;/code&gt; = &lt;code&gt;a real ip address or hostname&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;2) Configure the SSH Task&lt;/h3&gt;
+
+&lt;p&gt;Inside the the ssh task for this deployment you can now use &lt;code&gt;${bamboo.env}&lt;/code&gt;. In this example I am using variables two different ways.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;As replacements for the &lt;code&gt;Host&lt;/code&gt; and &lt;code&gt;Username&lt;/code&gt; fields.&lt;/li&gt;
+&lt;li&gt;Inside the actual &lt;code&gt;SSH Command&lt;/code&gt;. In this example I echo &lt;code&gt;${bamboo.deploy.release}&lt;/code&gt; (deploy.release is a &lt;a href=&quot;https://confluence.atlassian.com/display/BAMBOO055/Bamboo+variables&quot;&gt;built in bamboo deployment var&lt;/a&gt;) for the logs and then I use my &lt;code&gt;${bamboo.env}&lt;/code&gt; as a parameter to my custom deployment script that exists on the targeted server.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;They are referenced with the same syntax. &lt;strong&gt;It does not matter that my build server is windows and my targeted host is unix.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.com/public/bamboo-ssh-task.png&quot; alt=&quot;SSH Task Configuration Example&quot; class=&quot;screenshot&quot; style=&quot;width:60%;&quot;&gt;&lt;/p&gt;
+
+&lt;h3&gt;3) Verifying the substitutions in the logs&lt;/h3&gt;
+
+&lt;p&gt;Bamboo will log each substitution. Below is what to look for in the deployment logs.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;Substituting variable: ${bamboo.env} with dt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you are watching the live/dynamic logs as it runs you will see an even more obvious notification like the one below:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.jokecamp.com/public/bamboo-log.png&quot; alt=&quot;SSH Task Configuration Example&quot; class=&quot;screenshot&quot; style=&quot;width:80%;&quot;&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Running a local MongoDB with npm scripts for dev work</title>
