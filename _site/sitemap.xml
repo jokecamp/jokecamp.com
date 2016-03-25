@@ -9,7 +9,7 @@
     <url>
       <loc>http://www.jokecamp.com/atom.xml</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -24,7 +24,7 @@
     <url>
       <loc>http://www.jokecamp.com/blog/</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -39,7 +39,7 @@
     <url>
       <loc>http://www.jokecamp.com/books-for-geeks/</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -54,7 +54,7 @@
     <url>
       <loc>http://www.jokecamp.com/ideas/</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -69,7 +69,7 @@
     <url>
       <loc>http://www.jokecamp.com/</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -84,7 +84,7 @@
     <url>
       <loc>http://www.jokecamp.com/projects/</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -99,7 +99,7 @@
     <url>
       <loc>http://www.jokecamp.com/rss.xml</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -114,7 +114,7 @@
     <url>
       <loc>http://www.jokecamp.com/singularity/</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -131,7 +131,7 @@
     <url>
       <loc>http://www.jokecamp.com/tag/</loc>
       
-        <lastmod>2016-03-20T08:31:51-06:00</lastmod>
+        <lastmod>2016-03-25T15:00:49-06:00</lastmod>
       
       
         <changefreq>weekly</changefreq>
@@ -142,6 +142,21 @@
     </url>
     
   
+  
+    
+    <url>
+      <loc>http://www.jokecamp.com/blog/passing-http-headers-to-ffmpeg/</loc>
+      
+        <lastmod>2016-03-25T00:00:00-06:00</lastmod>
+      
+      
+        <changefreq>weekly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
   
     
     <url>

@@ -4,13 +4,61 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2016-03-20T08:31:51-06:00</updated>
+ <updated>2016-03-25T15:00:49-06:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Passing HTTP Headers to FFmpeg</title>
+   <link href="http://www.jokecamp.com//blog/passing-http-headers-to-ffmpeg"/>
+   <updated>2016-03-25T00:00:00-06:00</updated>
+   <id>http://www.jokecamp.com/blog/passing-http-headers-to-ffmpeg</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://ffmpeg.org/&quot;&gt;FFmpeg&lt;/a&gt; is&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;a very fast video and audio converter that can also grab from a live audio/video source. It can also convert between arbitrary sample rates and resize video on the fly with a high quality polyphase filter.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Great. So how do you consume a url with custom HTTP headers? The &lt;a href=&quot;http://ffmpeg.org/ffmpeg.html&quot;&gt;documentation&lt;/a&gt; for providing custom HTTP headers is non existent.&lt;/p&gt;
+
+&lt;p&gt;The below example is for adding a single header:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ffmpeg -headers $&amp;#39;X-API-KEY: MyApiKey&amp;#39; -i http://localhost:8080/file -v trace
+
+# Results in
+
+GET /file HTTP/1.1
+User-Agent: Lavf/56.40.101
+Accept: */*
+Range: bytes=0-
+Connection: close
+Host: localhost:8080
+Icy-MetaData: 1
+X-API-KEY: MyApiKey
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The below example is for adding multiple headers. Notice the &lt;strong&gt;required line breaks&lt;/strong&gt; &lt;code&gt;\r\n&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ffmpeg -headers $&amp;#39;X-API-KEY: MyApiKey\r\nX-API-SECRET:asfd\r\n&amp;#39; -i http://localhost:8080/file -v trace
+
+# Results in:
+
+GET /file HTTP/1.1
+User-Agent: Lavf/56.40.101
+Accept: */*
+Range: bytes=0-
+Connection: close
+Host: localhost:8080
+Icy-MetaData: 1
+X-API-KEY: MyApiKey
+X-API-SECRET:asfd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you need to do this from a Windows command line you will have &lt;a href=&quot;https://trac.ffmpeg.org/ticket/3268&quot;&gt;issues injecting the CRLF&lt;/a&gt;. Read more about &lt;a href=&quot;http://thread.gmane.org/gmane.comp.video.ffmpeg.devel/189500&quot;&gt;potential fixes&lt;/a&gt; (and more than you ever wanted to know about line breaks in Windows).&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;-v trace&lt;/code&gt; options gives the most detailed logging.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Using variables with the SSH Task on Bamboo Build Server</title>
