@@ -38,6 +38,7 @@ Jump to a specific source:
   - [football-api.com](#footballapi)
   - [CrowdScores and FastestLiveScores API](#CrowdScores)
   - [SPAPI](#spapi)
+  - [Soccerama.pro](#soccerama)
   - [XMLSoccer.com](#xmlsoccer)
   - [opta](#opta)
   - [prozone](#prozone)
@@ -281,6 +282,62 @@ Example endpoints:
     https://spapi.pw/api/v1/players/1/statistics
 
 Pretty impressive but this level of detail comes at a price. Authentication method is a API key in querystring.
+
+<a name="soccerama"></a>
+####Soccerama.pro
+
+[soccerama.pro](https://soccerama.pro) Offer fast & reliable data feeds in JSON format. You can choose out of default plans but also are allowed to apply for a custom plan. Pricing of the default plans is between 15 to 125 euro's and is a monthly fee. This API support lazy loading meaning you pass parameters in your request to load relationship and nested relationships. This makes the API fast, accrutate and reliable.
+
+Registration to this API is free and every plans has a 14 day trial.
+
+Some example endpoints are:
+    https://api.soccerama.pro/v1/livescore?api_token=__YOURTOKEN__
+    https://api.soccerama.pro/v1/competitions?api_token=__YOURTOKEN__
+    https://api.soccerama.pro/v1/competitions/{id}?api_token=__YOURTOKEN__
+    https://api.soccerama.pro/v1/matches/{id}?api_token=__YOURTOKEN__&include=hometeam,awayTeam,events
+    https://api.soccerama.pro/v1/statistics/match/{id}?api_token=__YOURTOKEN__
+
+And example response might look like this
+```json
+{
+  "home": {
+    "team_id": 39,
+    "shots_on_goal": 6,
+    "shots_total": 16,
+    "fouls_total": 11,
+    "corners_total": 5,
+    "offsides_total": 5,
+    "possesion": 68,
+    "yellowcards": 2,
+    "redcards": 0,
+    "saves": 1,
+    "team": {
+      "id": 39,
+      "name": "Bayern München",
+      "logo": "/img/teams/GER/39.png",
+      "twitter": "@FCBayern"
+    }
+  },
+  "away": {
+    "team_id": 123,
+    "shots_on_goal": 1,
+    "shots_total": 10,
+    "fouls_total": 12,
+    "corners_total": 2,
+    "offsides_total": 2,
+    "possesion": 32,
+    "yellowcards": 2,
+    "redcards": 0,
+    "saves": 5,
+    "team": {
+      "id": 123,
+      "name": "Benfica",
+      "logo": "/img/teams/POR/123.png",
+      "twitter": "@SL_Benfica"
+    }
+  }
+}
+```
 
 <a name="xmlsoccer"></a>
 #### XMLSoccer.com
