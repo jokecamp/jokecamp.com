@@ -286,7 +286,7 @@ Pretty impressive but this level of detail comes at a price. Authentication meth
 <a name="soccerama"></a>
 ####Soccerama.pro
 
-[soccerama.pro](https://soccerama.pro) Offer fast & reliable data feeds in JSON format. You can choose out of default plans but also are allowed to apply for a custom plan. Pricing of the default plans is between 15 to 125 euro's and is a monthly fee. This API support lazy loading meaning you pass parameters in your request to load relationship and nested relationships. This makes the API fast, accrutate and reliable.
+[soccerama.pro](https://soccerama.pro) Offer fast & reliable data feeds in JSON format. You can choose out of default plans but also are allowed to apply for a custom plan. Pricing of the default plans is between 15 to 125 euro's and is a monthly fee. This API support lazy loading meaning you pass parameters in your request to load relationships and nested relationships. This makes the API fast, accurate and reliable.
 
 Registration to this API is free and every plans has a 14 day trial.
 
