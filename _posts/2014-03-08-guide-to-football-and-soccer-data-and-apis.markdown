@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: March 15 2016
+Last updated: May 10 2016
 
 ## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
@@ -286,18 +286,20 @@ Pretty impressive but this level of detail comes at a price. Authentication meth
 <a name="soccerama"></a>
 ####Soccerama.pro
 
-[soccerama.pro](https://soccerama.pro) Offer fast & reliable data feeds in JSON format. You can choose out of default plans but also are allowed to apply for a custom plan. Pricing of the default plans is between 15 to 125 euro's and is a monthly fee. This API support lazy loading meaning you pass parameters in your request to load relationships and nested relationships. This makes the API fast, accurate and reliable.
+[soccerama.pro](https://soccerama.pro) offers a JSON API. There are plans with prices ranging between 15 to 125 euro's per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.
 
-Registration to this API is free and every plans has a 14 day trial.
+Registration to this API is free and every plan has a 14 day trial.
 
 Some example endpoints are:
+
     https://api.soccerama.pro/v1/livescore?api_token=__YOURTOKEN__
     https://api.soccerama.pro/v1/competitions?api_token=__YOURTOKEN__
     https://api.soccerama.pro/v1/competitions/{id}?api_token=__YOURTOKEN__
     https://api.soccerama.pro/v1/matches/{id}?api_token=__YOURTOKEN__&include=hometeam,awayTeam,events
     https://api.soccerama.pro/v1/statistics/match/{id}?api_token=__YOURTOKEN__
 
-And example response might look like this
+And an example response looks like:
+
 ```json
 {
   "home": {

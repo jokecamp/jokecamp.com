@@ -49,7 +49,7 @@ X-API-SECRET:asfd
 
 &lt;p&gt;The &lt;code&gt;-v trace&lt;/code&gt; options gives the most detailed logging.&lt;/p&gt;
 </description>
-				<pubDate>Fri, 25 Mar 2016 00:00:00 -0600</pubDate>
+				<pubDate>Fri, 25 Mar 2016 00:00:00 -0400</pubDate>
 				<link>http://www.jokecamp.com/blog/passing-http-headers-to-ffmpeg</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/passing-http-headers-to-ffmpeg</guid>
 			</item>
@@ -106,7 +106,7 @@ X-API-SECRET:asfd
 
 &lt;p&gt;&lt;img src=&quot;http://www.jokecamp.com/public/bamboo-log.png&quot; alt=&quot;SSH Task Configuration Example&quot; class=&quot;screenshot&quot; style=&quot;width:80%;&quot;&gt;&lt;/p&gt;
 </description>
-				<pubDate>Thu, 17 Mar 2016 00:00:00 -0600</pubDate>
+				<pubDate>Thu, 17 Mar 2016 00:00:00 -0400</pubDate>
 				<link>http://www.jokecamp.com/blog/ssh-task-variables-with-bamboo-build-server</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/ssh-task-variables-with-bamboo-build-server</guid>
 			</item>
@@ -140,7 +140,7 @@ X-API-SECRET:asfd
 &lt;li&gt;You must keep your console open to run the db instance. I prefer this to always running the service so I can easily close everything when done.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-				<pubDate>Fri, 26 Feb 2016 00:00:00 -0700</pubDate>
+				<pubDate>Fri, 26 Feb 2016 00:00:00 -0500</pubDate>
 				<link>http://www.jokecamp.com/blog/running-local-mongodb-with-npm-scripts</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/running-local-mongodb-with-npm-scripts</guid>
 			</item>
@@ -377,7 +377,7 @@ npm install passport-github --save
 &lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/a/14301657/215502&quot;&gt;Express, passport. Where is the documentation for “ensureAuthentication”, “isAuthenticated”?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-				<pubDate>Sun, 18 Oct 2015 00:00:00 -0600</pubDate>
+				<pubDate>Sun, 18 Oct 2015 00:00:00 -0400</pubDate>
 				<link>http://www.jokecamp.com/tutorial-passportjs-authentication-in-nodejs</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/tutorial-passportjs-authentication-in-nodejs</guid>
 			</item>
@@ -454,7 +454,7 @@ npm install passport-github --save
 
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/9foi342LXQE&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
 </description>
-				<pubDate>Mon, 26 Jan 2015 00:00:00 -0700</pubDate>
+				<pubDate>Mon, 26 Jan 2015 00:00:00 -0500</pubDate>
 				<link>http://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</guid>
 			</item>
@@ -481,7 +481,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 
 &lt;p&gt;I hope this saves you some time.&lt;/p&gt;
 </description>
-				<pubDate>Thu, 06 Nov 2014 00:00:00 -0700</pubDate>
+				<pubDate>Thu, 06 Nov 2014 00:00:00 -0500</pubDate>
 				<link>http://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</guid>
 			</item>
@@ -515,7 +515,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 &lt;h2&gt;DELETE example&lt;/h2&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$response&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Invoke-RestMethod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://example.com/api/people/1&amp;#39;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Delete&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-				<pubDate>Wed, 01 Oct 2014 00:00:00 -0600</pubDate>
+				<pubDate>Wed, 01 Oct 2014 00:00:00 -0400</pubDate>
 				<link>http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</guid>
 			</item>
@@ -560,7 +560,7 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
 {% endfor %}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-				<pubDate>Fri, 05 Sep 2014 00:00:00 -0600</pubDate>
+				<pubDate>Fri, 05 Sep 2014 00:00:00 -0400</pubDate>
 				<link>http://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</guid>
 			</item>
@@ -638,7 +638,7 @@ username@your.remote.host.for.ssh.com&amp;#39;s password:
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;That is all. Our website has been deployed!&lt;/p&gt;
 </description>
-				<pubDate>Sat, 23 Aug 2014 00:00:00 -0600</pubDate>
+				<pubDate>Sat, 23 Aug 2014 00:00:00 -0400</pubDate>
 				<link>http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</guid>
 			</item>
@@ -833,7 +833,7 @@ The post describes the key components, relationships and a short description of 
 &lt;li&gt;&lt;a href=&quot;http://ranjithblogs.azurewebsites.net/?p=98&quot;&gt;Debugging IISNODE Applications: new node-inspector integrated with iisnode&lt;/a&gt; by Ranjith Ramachandra&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-				<pubDate>Fri, 08 Aug 2014 00:00:00 -0600</pubDate>
+				<pubDate>Fri, 08 Aug 2014 00:00:00 -0400</pubDate>
 				<link>http://www.jokecamp.com/blog/getting-started-with-iisnode</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/getting-started-with-iisnode</guid>
 			</item>

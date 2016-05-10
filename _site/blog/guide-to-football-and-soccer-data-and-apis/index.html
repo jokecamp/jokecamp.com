@@ -39,7 +39,7 @@
         <div class="post">
   <h1 class="post-title">Guide to Football/Soccer data and APIs</h1>
   <span class="post-date">08 Mar 2014</span>
-  <p>Last updated: March 15 2016</p>
+  <p>Last updated: May 10 2016</p>
 
 <h2><i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?</h2>
 
@@ -73,6 +73,7 @@
 <li><a href="#footballapi">football-api.com</a></li>
 <li><a href="#CrowdScores">CrowdScores and FastestLiveScores API</a></li>
 <li><a href="#spapi">SPAPI</a></li>
+<li><a href="#soccerama">Soccerama.pro</a></li>
 <li><a href="#xmlsoccer">XMLSoccer.com</a></li>
 <li><a href="#opta">opta</a></li>
 <li><a href="#prozone">prozone</a></li>
@@ -328,6 +329,61 @@ https://spapi.pw/api/v1/players/1/statistics
 </code></pre></div>
 <p>Pretty impressive but this level of detail comes at a price. Authentication method is a API key in querystring.</p>
 
+<p><a name="soccerama"></a></p>
+
+<h4>Soccerama.pro</h4>
+
+<p><a href="https://soccerama.pro">soccerama.pro</a> offers a JSON API. There are plans with prices ranging between 15 to 125 euro&#39;s per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.</p>
+
+<p>Registration to this API is free and every plan has a 14 day trial.</p>
+
+<p>Some example endpoints are:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">https://api.soccerama.pro/v1/livescore?api_token=__YOURTOKEN__
+https://api.soccerama.pro/v1/competitions?api_token=__YOURTOKEN__
+https://api.soccerama.pro/v1/competitions/{id}?api_token=__YOURTOKEN__
+https://api.soccerama.pro/v1/matches/{id}?api_token=__YOURTOKEN__&amp;include=hometeam,awayTeam,events
+https://api.soccerama.pro/v1/statistics/match/{id}?api_token=__YOURTOKEN__
+</code></pre></div>
+<p>And an example response looks like:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;home&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;team_id&quot;</span><span class="p">:</span> <span class="mi">39</span><span class="p">,</span>
+    <span class="nt">&quot;shots_on_goal&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="nt">&quot;shots_total&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="nt">&quot;fouls_total&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="nt">&quot;corners_total&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;offsides_total&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;possesion&quot;</span><span class="p">:</span> <span class="mi">68</span><span class="p">,</span>
+    <span class="nt">&quot;yellowcards&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;redcards&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;saves&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;team&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">39</span><span class="p">,</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bayern München&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;logo&quot;</span><span class="p">:</span> <span class="s2">&quot;/img/teams/GER/39.png&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;twitter&quot;</span><span class="p">:</span> <span class="s2">&quot;@FCBayern&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;away&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;team_id&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+    <span class="nt">&quot;shots_on_goal&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;shots_total&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="nt">&quot;fouls_total&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="nt">&quot;corners_total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;offsides_total&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;possesion&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+    <span class="nt">&quot;yellowcards&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nt">&quot;redcards&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&quot;saves&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="nt">&quot;team&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Benfica&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;logo&quot;</span><span class="p">:</span> <span class="s2">&quot;/img/teams/POR/123.png&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;twitter&quot;</span><span class="p">:</span> <span class="s2">&quot;@SL_Benfica&quot;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><a name="xmlsoccer"></a></p>
 
 <h4>XMLSoccer.com</h4>
