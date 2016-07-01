@@ -32,6 +32,7 @@ Jump to a specific source:
   - [socerstats.us](#soccerstats)
   - [Other smaller projects/repos](#repos)
 - Free APIs
+  - [betlines ninja API](#betlinesNinja) (RESTful API on Mashape)
   - [football-data.org](#footballdata) (RESTful API)
   - [openfooty API](#openfooty) (hard to get an API Key)
 - Commercial APIs
@@ -133,6 +134,16 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 
 <a name="free"></a>
 ### <i class="fa fa-futbol-o"></i> Free APIs
+
+<a name="betlinesNinja"></a>
+#### Betlines Ninja
+The Free API on Mashape is [here](https://market.mashape.com/arisalexis/soccer-odds)  
+[Betlines Ninja](http://betlines.ninja) (Website)  
+
+This is a service that provides upcoming fixtures for all major soccer leagues in the world (38 currently). Along with the matches data the service provides **constantly updated odds data from all major sportsbooks** (11 currently) including Bwin, Paddy Power, Betfair etc.  
+Results can be obtained for a maximum of 3 days back in the free plan.  
+There is a big database of historical data that is not free.
+
 
 <a name="footballdata"></a>
 #### football-data.org (beta)
