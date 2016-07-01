@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2016-07-01T17:01:16-04:00</updated>
+ <updated>2016-07-01T17:38:03-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1293,7 +1293,7 @@ Fn  Function Key&lt;/p&gt;
    <link href="http://www.jokecamp.com//blog/guide-to-football-and-soccer-data-and-apis"/>
    <updated>2014-03-08T12:08:40-05:00</updated>
    <id>http://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</id>
-   <content type="html">&lt;p&gt;Last updated: May 10 2016&lt;/p&gt;
+   <content type="html">&lt;p&gt;Last updated: July 1 2016&lt;/p&gt;
 
 &lt;h2&gt;&lt;i class=&quot;fa fa-futbol-o&quot;&gt;&lt;/i&gt; Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -1319,6 +1319,7 @@ Fn  Function Key&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#footballdata&quot;&gt;football-data.org&lt;/a&gt; (RESTful API)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#SportsOpenData&quot;&gt;Sports Open Data&lt;/a&gt; (RESTful API)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#betlinesNinja&quot;&gt;betlines ninja API&lt;/a&gt; (RESTful API on Mashape)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
@@ -1477,6 +1478,57 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
    &amp;quot;shortName&amp;quot;:&amp;quot;Bayern&amp;quot;,
    &amp;quot;squadMarketValue&amp;quot;:&amp;quot;559,100,000 €&amp;quot;,
    &amp;quot;crestUrl&amp;quot;:&amp;quot;http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_München.svg&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;SportsOpenData&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Sports Open Data API&lt;/h3&gt;
+
+&lt;p&gt;This free RESTful &lt;a href=&quot;https://market.mashape.com/sportsop/soccer-sports-open-data&quot;&gt;API&lt;/a&gt; (hosted on Mashape) is an impressive service provided by &lt;a href=&quot;http://sportsopendata.net/&quot;&gt;http://sportsopendata.net/&lt;/a&gt;. Introduced in early 2016 it is very promising. The data is under a &lt;a href=&quot;http://sportsopendata.net/updates/sports-open-data-creative-commons-license/&quot;&gt;Creative Commons license&lt;/a&gt;. Limited to 10,000 requests a month. Mashape registration is required.&lt;/p&gt;
+
+&lt;p&gt;Available Endpoints:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;/leagues
+/leagues/{league_slug}/seasons
+/leagues/{league_slug}/seasons/{season_slug}/managers
+/leagues/{league_slug}/seasons/{season_slug}/referees
+/leagues/{league_slug}/seasons/{season_slug}/topscorers
+/leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}/matches
+/leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}/matches/{match_slug}
+/leagues/{league_slug}/seasons/{season_slug}
+/leagues/{league_slug}/seasons/{season_slug}/rounds
+/leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}
+/leagues/{league_slug}/seasons/{season_slug}/standings
+/leagues/{league_slug}/seasons/{season_slug}/standings/{position}
+/leagues/{league_slug}/seasons/{season_slug}/teams
+/leagues/{league_slug}/seasons/{season_slug}/teams/{team_slug}/players
+/stadiums
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Example Season JSON&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{
+  &amp;quot;identifier&amp;quot;: &amp;quot;0e5b67aa8cff15b2c6781454e55d1609&amp;quot;,
+  &amp;quot;league_identifier&amp;quot;: &amp;quot;bc425f51d5ee924580c35c38da138de8&amp;quot;,
+  &amp;quot;season_slug&amp;quot;: &amp;quot;15-16&amp;quot;,
+  &amp;quot;name&amp;quot;: &amp;quot;2015-2016&amp;quot;,
+  &amp;quot;season_start&amp;quot;: &amp;quot;2015-07-01T00:00:00+0200&amp;quot;,
+  &amp;quot;season_end&amp;quot;: &amp;quot;2016-06-30T00:00:00+0200&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Example Standings JSON&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;{
+    &amp;quot;identifier&amp;quot;: &amp;quot;a963a7776379b3c8b818930ae9d9d0ca&amp;quot;,
+    &amp;quot;position&amp;quot;: 1,
+    &amp;quot;team_identifier&amp;quot;: &amp;quot;a9ef824ba73b0a57e982df21467c3efc&amp;quot;,
+    &amp;quot;team&amp;quot;: &amp;quot;Juventus&amp;quot;,
+    &amp;quot;overall&amp;quot;: {
+    &amp;quot;wins&amp;quot;: 26,
+    &amp;quot;draws&amp;quot;: 9,
+    &amp;quot;losts&amp;quot;: 3,
+    &amp;quot;points&amp;quot;: 87,
+    &amp;quot;scores&amp;quot;: 72,
+    &amp;quot;conceded&amp;quot;: 24,
+    &amp;quot;last_5&amp;quot;: &amp;quot;WNWWN&amp;quot;,
+    &amp;quot;macthes_played&amp;quot;: 0,
+    &amp;quot;goal_difference&amp;quot;: 0
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a name=&quot;openfooty&quot;&gt;&lt;/a&gt;&lt;/p&gt;

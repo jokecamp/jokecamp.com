@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: May 10 2016
+Last updated: July 1 2016
 
 ## <i class="fa fa-futbol-o"></i> Where can I actually find football/soccer data?
 
@@ -33,6 +33,7 @@ Jump to a specific source:
   - [Other smaller projects/repos](#repos)
 - Free APIs
   - [football-data.org](#footballdata) (RESTful API)
+  - [Sports Open Data](#SportsOpenData) (RESTful API)
   - [openfooty API](#openfooty) (hard to get an API Key)
   - [betlines ninja API](#betlinesNinja) (RESTful API on Mashape)
 - Commercial APIs
@@ -177,6 +178,59 @@ Example JSON output for a team:
        "shortName":"Bayern",
        "squadMarketValue":"559,100,000 €",
        "crestUrl":"http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_München.svg"
+    }
+
+<a name="SportsOpenData"></a>
+### Sports Open Data API
+
+This free RESTful [API](https://market.mashape.com/sportsop/soccer-sports-open-data) (hosted on Mashape) is an impressive service provided by [http://sportsopendata.net/](http://sportsopendata.net/). Introduced in early 2016 it is very promising. The data is under a [Creative Commons license](http://sportsopendata.net/updates/sports-open-data-creative-commons-license/). Limited to 10,000 requests a month. Mashape registration is required.
+
+Available Endpoints:
+
+    /leagues
+    /leagues/{league_slug}/seasons
+    /leagues/{league_slug}/seasons/{season_slug}/managers
+    /leagues/{league_slug}/seasons/{season_slug}/referees
+    /leagues/{league_slug}/seasons/{season_slug}/topscorers
+    /leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}/matches
+    /leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}/matches/{match_slug}
+    /leagues/{league_slug}/seasons/{season_slug}
+    /leagues/{league_slug}/seasons/{season_slug}/rounds
+    /leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}
+    /leagues/{league_slug}/seasons/{season_slug}/standings
+    /leagues/{league_slug}/seasons/{season_slug}/standings/{position}
+    /leagues/{league_slug}/seasons/{season_slug}/teams
+    /leagues/{league_slug}/seasons/{season_slug}/teams/{team_slug}/players
+    /stadiums
+
+Example Season JSON
+
+    {
+      "identifier": "0e5b67aa8cff15b2c6781454e55d1609",
+      "league_identifier": "bc425f51d5ee924580c35c38da138de8",
+      "season_slug": "15-16",
+      "name": "2015-2016",
+      "season_start": "2015-07-01T00:00:00+0200",
+      "season_end": "2016-06-30T00:00:00+0200"
+    }
+
+Example Standings JSON
+
+    {
+        "identifier": "a963a7776379b3c8b818930ae9d9d0ca",
+        "position": 1,
+        "team_identifier": "a9ef824ba73b0a57e982df21467c3efc",
+        "team": "Juventus",
+        "overall": {
+        "wins": 26,
+        "draws": 9,
+        "losts": 3,
+        "points": 87,
+        "scores": 72,
+        "conceded": 24,
+        "last_5": "WNWWN",
+        "macthes_played": 0,
+        "goal_difference": 0
     }
 
 <a name="openfooty"></a>
