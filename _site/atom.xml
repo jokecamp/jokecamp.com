@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2016-06-28T18:08:41-04:00</updated>
+ <updated>2016-07-01T17:01:16-04:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1320,6 +1320,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;#footballdata&quot;&gt;football-data.org&lt;/a&gt; (RESTful API)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#betlinesNinja&quot;&gt;betlines ninja API&lt;/a&gt; (RESTful API on Mashape)&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Commercial APIs
 
@@ -1483,6 +1484,12 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 &lt;h4&gt;openfooty API&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.footytube.com/openfooty/&quot;&gt;openfooty API&lt;/a&gt; had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;betlinesNinja&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Betlines Ninja API (betting/odds)&lt;/h4&gt;
+
+&lt;p&gt;The free &lt;a href=&quot;https://market.mashape.com/arisalexis/soccer-odds&quot;&gt;API&lt;/a&gt; (hosted on Mashape) is for betting odds but contains a lot of upcoming fixture data. The API is provided by the &lt;a href=&quot;http://betlines.ninja&quot;&gt;Betlines Ninja&lt;/a&gt;. Along with match data the service provides recent odds data from all major sportsbooks (11 currently including Bwin, Paddy Power, Betfair etc.) Results can be obtained for a maximum of 3 days back in the free plan. There is also a data-dump database of historical data for sale.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;commerical&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
