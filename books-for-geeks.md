@@ -10,6 +10,8 @@ sitemap:
 
 The following is a list of fun books to please your inner computer and science geek. I've read them and can vouch for the geekyness.
 
+**[Saturn Run](http://amzn.to/29EWqWm) by John Standford and Ctein (2015)
+
 **[Snow Crash](http://amzn.to/1WZR8I4) by Neal Stephenson** (2003) - Considered one of the best cyberpunk novels.
 
 **[Armada][7] by Ernest Cline** (2015) - The second book is not as strong as the first by Cline but this tale tells us what happens when you favorite MMORP space video game becomes reality.
