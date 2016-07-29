@@ -42,6 +42,7 @@ Jump to a specific source:
   - [SPAPI](#spapi)
   - [Soccerama.pro](#soccerama)
   - [XMLSoccer.com](#xmlsoccer)
+  - [Resultados de Fútbol API](#resultados)
   - [opta](#opta)
   - [prozone](#prozone)
   - [Match Analaysis](#matchanalysis)
@@ -441,6 +442,15 @@ Player data
 ```
 
 Open source [Python client for XmlSoccer API](https://github.com/martineastwood/xmlsoccer)
+
+<a name="resultados"></a>
+#### Resultados de Fútbol API
+
+[Resultados-futbol.com](http://www.resultados-futbol.com/api) is a spanish football website with live scores and historical data with a database of more than four million matches and hundreds of competitions all around the world. When they decided to make their own mobile apps they created an API to serve both the apps and the website and made it available to developers.
+
+Their API covers a lot from live scores with events to player stats, transfers, betting odds, etc. Chances are that if you find some info on the website it will be available on the API also. It is well documented in spanish only.
+
+Their prices range from 99€ per year for around 1,000 requests per day to 499€ per month for 100k request per day. They offer a one month free trial with full access to the API and 500 request per day. Authentication method is a API key in the querystring.
 
 <a name="opta"></a>
 #### opta
