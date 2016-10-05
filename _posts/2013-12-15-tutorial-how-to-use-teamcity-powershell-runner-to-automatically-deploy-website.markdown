@@ -74,7 +74,8 @@ The script performs the following:
   * The screenshot references different project names. Yours will match
   * Also you see I am passing two parameters in the screenshot. You will likely only need one.
 
-[caption id="attachment_1228" align="aligncenter" width="300"][![Example of a TeamCity PowerShell settings.](http://jokecamp.files.wordpress.com/2013/12/teamcitypowershellstep.png?w=300)](http://jokecamp.files.wordpress.com/2013/12/teamcitypowershellstep.png) Example of a TeamCity PowerShell settings.[/caption]
+
+<img src="{{ site.url }}/public/teamcitypowershellstep.png" title="Example of a TeamCity PowerShell settings" style=" border:solid 1px #444;"/>
 
 #### Next steps in improving the process
 
