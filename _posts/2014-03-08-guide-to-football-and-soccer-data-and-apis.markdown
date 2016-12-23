@@ -24,8 +24,6 @@ There are three main ways to get data. You can parse/scrape it from a hobbyist p
 
 Jump to a specific source:
 
-- Newsletter
-  - [Football Data Report](#newsletter)
 - Open source data on github
   - [openfootball - football.db](#openfootball)
   - [jokecamp/FootballData](#fdata)
@@ -59,30 +57,6 @@ Jump to a specific source:
   - [Deprecated/Retired - "The Graveyard of APIs](#api-graveyard)
   - [More Reading / Resources / Links](#other)
   - [Fantasy Data](#fantasy)
-
-
-<a name="newsletter"></a>
-### <i class="fa fa-futbol-o"></i> Football Data Report Newsletter
-
-If you would like more frequent updates regarding football APIs, football data and open source football projects then signup for the newsletter. Emails will be sent about once or twice per month. I will try to highlight free data and open source projects. Please email any links or newsletter suggestions.
-
-<link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-	/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-</style>
-<div id="mc_embed_signup">
-<form action="//jokecamp.us11.list-manage.com/subscribe/post?u=cb6e46591377b9e37de1f674f&amp;id=9ed21f2b6d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-    <div id="mc_embed_signup_scroll">
-	<label for="mce-EMAIL">Subscribe to the &quot;Football Data Report&quot; newsletter</label>
-	<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-    <div style="position: absolute; left: -5000px;"><input type="text" name="b_cb6e46591377b9e37de1f674f_9ed21f2b6d" tabindex="-1" value=""></div>
-    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-    </div>
-</form>
-</div>
-
 
 
 <a name="github"></a>
