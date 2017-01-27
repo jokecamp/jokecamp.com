@@ -3,7 +3,7 @@ author: Joe Kampschmidt
 comments: true
 layout: post
 slug: angular-whitespace-validator-directive
-title: Create an Angular2 Custom Validator Directive for Whitespace and Empty Strings
+title: Create an Angular 2 Custom Validator Directive for Whitespace and Empty Strings
 desc: 'Code for creating a validator that requires input that is more than just whitespace.'
 tags:
 - angular
@@ -11,7 +11,7 @@ tags:
 - angular2
 ---
 
-How do we create a custom validator directive to treat **whitespace as invalid** in Angular (Angular2)? The built in angular `required` input is easily fooled by a run of spaces so lets create our own validator. I read the [Angular.io Custom Validator](https://angular.io/docs/ts/latest/cookbook/form-validation.html#!#custom-validation) docs for you.
+How do we create a custom validator directive to treat **whitespace as invalid** in Angular (Angular 2)? The built in angular `required` input is easily fooled by a run of spaces so lets create our own validator. I read the [Angular.io Custom Validator](https://angular.io/docs/ts/latest/cookbook/form-validation.html#!#custom-validation) docs for you.
 
 We can use this rather simple idea to demonstrate a validator with unit testing, wrapped in a simple directive.
 
