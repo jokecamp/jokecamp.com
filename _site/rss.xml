@@ -7,6 +7,141 @@
 		<atom:link href="http://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Create an Angular2 Custom Validator Directive for Whitespace and Empty Strings</title>
+				<description>&lt;p&gt;How do we create a custom validator directive to treat &lt;strong&gt;whitespace as invalid&lt;/strong&gt; in Angular (Angular2)? The built in angular &lt;code&gt;required&lt;/code&gt; input is easily fooled by a run of spaces so lets create our own validator. I read the &lt;a href=&quot;https://angular.io/docs/ts/latest/cookbook/form-validation.html#!#custom-validation&quot;&gt;Angular.io Custom Validator&lt;/a&gt; docs for you.&lt;/p&gt;
+
+&lt;p&gt;We can use this rather simple idea to demonstrate a validator with unit testing, wrapped in a simple directive.&lt;/p&gt;
+
+&lt;p&gt;Jump to the code:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#validator&quot;&gt;no-whitespace.validator.ts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#tests&quot;&gt;no-whitespace.validator.specs.ts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#directive&quot;&gt;no-whitespace.directive.ts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#usage&quot;&gt;Example Usage on a control&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;validator&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Custom Validator Function for Whitespace&lt;/h2&gt;
+
+&lt;p&gt;The tricky part here is returning a &lt;code&gt;ValidatorFn&lt;/code&gt; function that returns &lt;code&gt;null&lt;/code&gt; on valid state and a &lt;code&gt;{key: value}&lt;/code&gt; on an invalid state.&lt;/p&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://github.com/angular/angular/blob/d169c2434e3b5cd5991e38ffd8904e0919f11788/modules/%40angular/forms/src/validators.ts#L66&quot;&gt;Angular source code for the required validator&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;no-whitespace.validator.ts&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractControl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ValidatorFn&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;@angular/forms&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NoWhitespaceValidator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ValidatorFn&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractControl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;any&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+     &lt;span class=&quot;c1&quot;&gt;// messy but you get the idea&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;isWhitespace&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;trim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;isValid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isWhitespace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;isValid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;whitespace&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;value is only whitespace&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;tests&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;How to Write Tests for our Custom Validator Function&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;no-whitespace.validator.spec.ts&lt;/code&gt; file using Jasmine.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractControl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;@angular/forms&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NoWhitespaceValidator&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;./no-whitespace.validator&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;describe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Whitespace Validator&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;validatorFn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NoWhitespaceValidator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;empty string is invalid&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;validatorFn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractControl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toBe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;whitespace&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toBe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;value is only whitespace&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;spaces only are invalid&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;    &amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;validatorFn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractControl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toBe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;null is invalid&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;any&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;validatorFn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractControl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toBe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;text is not considered invalid&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;i have whitespace on the inside&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;validatorFn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;control&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractControl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toBe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;directive&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Directive for our Custom Validator function&lt;/h2&gt;
+
+&lt;p&gt;We can wrap our validator in a simple directive for use as an HTML attribute.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;it is best practice to prefix your own directives. I used &lt;code&gt;my&lt;/code&gt; for &lt;code&gt;myNoSpaces&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;be sure you are providing &lt;code&gt;NG_VALIDATORS&lt;/code&gt; in the directive providers array. Nothing will happen without it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;code&gt;no-whitespace.directive.ts&lt;/code&gt; file:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;import { Directive, Input, OnChanges, SimpleChanges } from &amp;#39;@angular/core&amp;#39;;
+import { Validator, AbstractControl, Validators, NG_VALIDATORS } from &amp;#39;@angular/forms&amp;#39;;
+
+import { NoWhitespaceValidator } from &amp;#39;./no-whitespace.validator&amp;#39;;
+
+/**
+ * This validator works like &amp;quot;required&amp;quot; but it does not allow whitespace either
+ *
+ * @export
+ * @class NoWhitespaceDirective
+ * @implements {Validator}
+ */
+@Directive({
+    selector: &amp;#39;[myNoSpaces]&amp;#39;,
+    providers: [{ provide: NG_VALIDATORS, useExisting: NoWhitespaceDirective, multi: true }]
+})
+export class NoWhitespaceDirective implements Validator {
+
+    private valFn = NoWhitespaceValidator();
+    validate(control: AbstractControl): { [key: string]: any } {
+        return this.valFn(control);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;usage&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Example Usage in HTML&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Be sure to include a reference to the directive in the necessary &lt;strong&gt;module declarations&lt;/strong&gt; array.&lt;/li&gt;
+&lt;li&gt;It can be used in substitution of &lt;code&gt;required&lt;/code&gt; because it also treats an empty string as invalid.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;&amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;name&amp;quot; myNoSpaces name=&amp;quot;name&amp;quot; [(ngModel)]=&amp;quot;hero.name&amp;quot; #name=&amp;quot;ngModel&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Resources&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://angular.io/docs/ts/latest/cookbook/form-validation.html#!#custom-validation&quot;&gt;Angular.io Custom Validator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/angular/angular/blob/d169c2434e3b5cd5991e38ffd8904e0919f11788/modules/%40angular/forms/src/validators.ts#L66&quot;&gt;Angular Built-in Validators Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Thu, 26 Jan 2017 00:00:00 -0500</pubDate>
+				<link>http://www.jokecamp.com/blog/angular-whitespace-validator-directive</link>
+				<guid isPermaLink="true">http://www.jokecamp.com/blog/angular-whitespace-validator-directive</guid>
+			</item>
+		
+			<item>
 				<title>Passing HTTP Headers to FFmpeg</title>
 				<description>&lt;p&gt;&lt;a href=&quot;http://ffmpeg.org/&quot;&gt;FFmpeg&lt;/a&gt; is&lt;/p&gt;
 
@@ -641,201 +776,6 @@ username@your.remote.host.for.ssh.com&amp;#39;s password:
 				<pubDate>Sat, 23 Aug 2014 00:00:00 -0400</pubDate>
 				<link>http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</link>
 				<guid isPermaLink="true">http://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</guid>
-			</item>
-		
-			<item>
-				<title>Getting started with iisnode: node.js on Windows</title>
-				<description>&lt;p&gt;I&amp;#39;ve spent some time learning and working with &lt;a href=&quot;https://twitter.com/tjanczuk&quot;&gt;Tomasz Janczuk&amp;#39;s&lt;/a&gt; impressive &lt;a href=&quot;https://github.com/tjanczuk/iisnode&quot;&gt;iisnode&lt;/a&gt; project. He has done well to explain the open source project but the documentation is fragmented between the &lt;a href=&quot;https://github.com/tjanczuk/iisnode/tree/master/src/iisnode&quot;&gt;source code&lt;/a&gt;, &lt;a href=&quot;https://github.com/tjanczuk/iisnode/issues&quot;&gt;github issues&lt;/a&gt; and &lt;a href=&quot;http://tomasz.janczuk.org/&quot;&gt;tjanczuk&amp;#39;s blog&lt;/a&gt;. I will retrace my learning process in order to help others get started with iisnode.&lt;/p&gt;
-
-&lt;h2&gt;Why use issnode?&lt;/h2&gt;
-
-&lt;p&gt;Here are the three main benefits taken directly from the &lt;a href=&quot;https://github.com/tjanczuk/iisnode/wiki#benefits&quot;&gt;project wiki&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Process management&lt;/strong&gt;. The iisnode module takes care of lifetime management of node.exe processes making it simple to improve overall reliability. You don’t have to implement infrastructure to start, stop, and monitor the processes.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Side by side with other content types&lt;/strong&gt;. The iisnode module integrates with IIS in a way that allows a single web site to contain a variety of content types. For example, a single site can contain a node.js application, static HTML and JavaScript files, PHP applications, and ASP.NET applications. This enables choosing the best tools for the job at hand as well progressive migration of existing applications.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Scalability on multi-core servers&lt;/strong&gt;. Since node.exe is a single threaded process, it only scales to one CPU core. The iisnode module allows creation of multiple node.exe processes per application and load balances the HTTP traffic between them, therefore enabling full utilization of a server’s CPU capacity without requiring additional infrastructure code from an application developer.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/tjanczuk/iisnode/wiki#benefits&quot;&gt;See the full list...&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Some other notable benefits:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Use built-in IIS features like security. You could put your nodejs server behind windows authentication&lt;/li&gt;
-&lt;li&gt;Use your already existing windows technology stack and avoid complicating the deployment process&lt;/li&gt;
-&lt;li&gt;Take advantage of the &lt;span title=&#39;Would you save I have a plethora of pinatas?&#39;&gt;plethora&lt;/span&gt; of node packages available&lt;/li&gt;
-&lt;li&gt;No unix servers or &lt;a href=&quot;http://xkcd.com/149/&quot; title=&quot;The ones who go around demanding sandwiches&quot;&gt;unix administrators&lt;/a&gt; necessary&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4&gt;What are the alternatives to iisnode for Windows?&lt;/h4&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Run nodejs as a windows service with &lt;a href=&quot;https://github.com/coreybutler/node-windows&quot;&gt;node-windows&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Run nodejs as a windows service with &lt;a href=&quot;http://nssm.cc/&quot;&gt;NSSM - the Non-Sucking Service Manager&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Run nodejs on a unix server&lt;/li&gt;
-&lt;li&gt;Run it in a windows console and cross your fingers that no one closes the window... ever... Just kidding. Although it is fun to pretend it is this easy.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Ok, I&amp;#39;ll try it. What is iisnode?&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/tjanczuk/iisnode&quot;&gt;iisnode&lt;/a&gt; is an open source &lt;strong&gt;native IIS module&lt;/strong&gt; written in C++ that allows &lt;a href=&quot;http://nodejs.org/&quot;&gt;node.js&lt;/a&gt; (node.exe) to be run inside Windows IIS.&lt;/p&gt;
-
-&lt;p&gt;First, a quick reminder about the difference between managed vs native modules.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;A module is either a Win32 DLL (native module) or a .NET 2.0 type contained within an assembly (managed module)&amp;quot; &lt;br&gt;-Full article at &lt;a href=&quot;http://www.iis.net/learn/get-started/introduction-to-iis/iis-modules-overview&quot;&gt;iis.net&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;To reiterate, iisnode is a native module. The C++ code gets compiled into a &lt;code&gt;iisnode.dll&lt;/code&gt; file and installed into IIS as a module. Download and install iisnode via the &lt;a href=&quot;https://github.com/tjanczuk/iisnode/releases/&quot;&gt;releases page&lt;/a&gt;. Be sure to select the MSI that matches your processor (x86 vs x64).&lt;/p&gt;
-
-&lt;h3&gt;How does iisnode work?&lt;/h3&gt;
-
-&lt;p&gt;To over simplify here is how it works with the assumption that we have a nodejs server called &lt;code&gt;server.js&lt;/code&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;A client browser makes a request to your server.js in IIS&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;From your web.config IIS sees that you want to use iisnode module for &lt;code&gt;server.js&lt;/code&gt; requests&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;&amp;lt;add name=&amp;quot;iisnode&amp;quot; path=&amp;quot;hello.js&amp;quot; verb=&amp;quot;*&amp;quot; modules=&amp;quot;iisnode&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;iisnode will create a node.exe process (or use existing) and communicate through a named pipe&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;node.exe sends the response back through the named pipe, iisnode and then iis&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;a href=&#39;http://tomasz.janczuk.org/2011/10/architecture-of-iisnode.html&#39;&gt;
-&lt;img style=&quot;float: right; margin:10px; width:150px;&quot; src=&quot;/public/iisnode-diagram.png&quot; title=&#39;See Architecture Diagram&#39; alt=&#39;See Architecture Diagram&#39; /&gt;
-&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;For a more complete picture see the diagrams on &lt;a href=&quot;http://blogs.msdn.com/b/hanuk/archive/2012/05/05/top-benefits-of-running-node-js-on-windows-azure.aspx&quot;&gt;Top Benefits of Running Node.js on Windows Azure&lt;/a&gt;. The article is from the context of Azure but it gives the best description of what is happening under the hood. Other recommended reading (with diagrams) includes &lt;a href=&quot;http://www.iis.net/learn/get-started/introduction-to-iis/introduction-to-iis-architecture#HTTP&quot;&gt;Introduction to IIS Architectures&lt;/a&gt; and &lt;a href=&quot;http://www.planetofcoders.com/difference-url-rewriting-url-routing/&quot;&gt;Difference between URL Rewriting and URL Routing&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you want to explore the iisnode C++ source code I would start with this blog post
-&lt;strong&gt;&lt;a href=&quot;http://tomasz.janczuk.org/2011/10/architecture-of-iisnode.html&quot;&gt;Architecture of iisnode&lt;/a&gt;&lt;/strong&gt; by the creator.
-The post describes the key components, relationships and a short description of the most important classes serving as a map of browsing the actual source code on github. &lt;strong&gt;This post was instrumental in understanding how iisnode works&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2&gt;iisnode key points and lessons learned&lt;/h2&gt;
-
-&lt;p&gt;Some key points to remember when working with iisnode. Reading though these will save you time.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Your nodejs server must listen on the &lt;code&gt;process.env.PORT&lt;/code&gt; variable passed from iisnode. This will end up being the named pipe instead of the traditional port number.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt; &lt;span class=&quot;nx&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;writeHead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;text/html&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello, world! [configuration sample]&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PORT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;You can promote server variables from IIS into nodejs. If you use windows authentication you can promote the username. See this &lt;a href=&quot;https://github.com/tjanczuk/iisnode/issues/87#issuecomment-3452395&quot;&gt;github issue&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Use can specify which variables to promote with a csv value like below.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;iisnode&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;promoteServerVars=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;AUTH_USER,AUTH_TYPE&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;These values get added to incoming requests as headers. In your nodejs code you then reference the values like below.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;username&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;x-iisnode-auth_user&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for example AD\username&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;authenticationType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;x-iisnode-auth_type&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt; You can use the URL Rewrite (native) module choose which requests get handled by iisnode and which requests skips iisnode. This was required when setting up a socket.io server inside iisnode.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;rewrite&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;rules&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;rule&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myapp&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;match&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;myapp/*&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-      &lt;span class=&quot;nt&quot;&gt;&amp;lt;action&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Rewrite&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;url=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;server.js&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/rule&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/rules&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/rewrite&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;iisnode can act as a load balancer. One IIS app can spawn up several node.exe processes.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;this is configured in the web.config with &lt;code&gt;nodeProcessCountPerApplication=2&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;the balancing is round robin load balancing. Which just means taking turns sequential.&lt;/li&gt;
-&lt;li&gt;See &lt;a href=&quot;http://tomasz.janczuk.org/2011/08/hosting-nodejs-applications-in-iis-on.html&quot;&gt;Scalability on multi-core servers&lt;/a&gt; for more on load balancing&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Several independent node.js applications can be present within a single IIS web application. You could have &lt;code&gt;server1.js&lt;/code&gt;, &lt;code&gt;server2.js&lt;/code&gt; and ect...&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Getting iisnode to work with IIS Express can be challenging depending on your Visual Studio version and processor. It is worthy of a separate blog post. Often I run my nodejs servers locally with &lt;code&gt;nodemon&lt;/code&gt; for development work then deploy to remote windows server with IIS for QA.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;iisnode configuration&lt;/h2&gt;
-
-&lt;p&gt;There are multiple ways to configure iisnode. Configuration will take this precedence order (1 taking precedence over 2 and ect)&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;yaml file. See example &lt;a href=&quot;https://github.com/tjanczuk/iisnode/blob/master/src/samples/configuration/iisnode.yml&quot;&gt;iisnode.yml&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;environment variables. i.e. &lt;code&gt;process.env.PORT&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;web.config. View example &lt;a href=&quot;https://github.com/tjanczuk/iisnode/blob/master/src/samples/configuration/web.config&quot;&gt;web.config&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;defaults to values in &lt;a href=&quot;https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml&quot; title=&quot;See default values&quot;&gt;iisnode_schema.xml&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Here are the defaults to give you an idea of what options are available.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;node_env&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;%node_env%&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;asyncCompletionThreadCount&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;nodeProcessCountPerApplication&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;nodeProcessCommandLine&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;node.exe&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;interceptor&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;amp;quot;%programfiles%\iisnode\interceptor.js&amp;amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxConcurrentRequestsPerProcess&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;allowInfitnite=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1024&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxNamedPipeConnectionRetry&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;100&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;namedPipeConnectionRetryDelay&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;250&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxNamedPipeConnectionPoolSize&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;512&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxNamedPipePooledConnectionAge&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;30000&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;initialRequestBufferSize&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;4096&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxRequestBufferSize&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;65536&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uncFileChangesPollingInterval&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;5000&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;gracefulShutdownTimeout&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;60000&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;logDirectory&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;iisnode&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggingEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggerExtensionDll&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;iisnode-inspector-0.7.3.dll&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debugHeaderEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggerVirtualDir&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggerPathSegment&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debug&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;debuggerPortRange&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;5058-6058&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxLogFileSizeInKB&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;128&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxTotalLogFileSizeInKB&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;1024&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;maxLogFiles&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;uint&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;20&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;loggingEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;devErrorsEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;flushResponse&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;watchedFiles&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;*.js;iisnode.yml&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;enableXFF&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;promoteServerVars&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;configOverrides&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;expanded=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;true&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;iisnode.yml&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;attribute&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;recycleSignalEnabled&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;bool&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;defaultValue=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;false&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;Brief notes on iisnode and socket.io&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;if you are trying to setup a socket server keep the &lt;code&gt;nodeProcessCountPerApplication=1&lt;/code&gt; setting at 1. The socket handshake will fail if the client ends up negotiating with multiple/different node.exe instances.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Most of the example code and demos assume you will host your application at the &amp;quot;Default Web Site&amp;quot; root level in iis. However, if you are hosting at a sub directory level like &amp;quot;Default Web Site/app.&amp;quot; You will need to add some extra configuration for the socket.io server. You will need to specify the full paths for socket.io.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;socket.io has just upgraded its api from 0.9 to 1.0. Most of the iisnode examples target v 0.9. Be mindful of your version since there were some socket.io API changes.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;a good test is trying to to see if iisnode can successfully load the client library at &lt;code&gt;fullpath/socket.io/socket.io.js&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Troubleshooting&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Check the &lt;code&gt;nodeProcessCommandLine&lt;/code&gt; parameter in web.config. It specifies the path to node.exe installation. Does the path/file exist?&lt;/li&gt;
-&lt;li&gt;Check the &lt;code&gt;interceptor&lt;/code&gt; parameter in the web.config. Does the path/file exist?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Resources&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://tomasz.janczuk.org/2011/08/hosting-nodejs-applications-in-iis-on.html&quot;&gt;Hosting node.js applications in IIS on Windows&lt;/a&gt; by Tomas Janczuk&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://tomasz.janczuk.org/2011/08/hosting-express-nodejs-applications-in.html&quot;&gt;Hosting express node.js applications in IIS using iisnode&lt;/a&gt; by Tomas Janczuk&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://tomasz.janczuk.org/2011/08/developing-nodejs-applications-in.html&quot;&gt;Developing node.js applications in WebMatrix and testing in IIS Express on Windows&lt;/a&gt; by Tomas Janczuk&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.hanselman.com/blog/InstallingAndRunningNodejsApplicationsWithinIISOnWindowsAreYouMad.aspx&quot;&gt;Installing and Running node.js applications within IIS on Windows - Are you mad?&lt;/a&gt; by Scott Hanselman&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://ranjithblogs.azurewebsites.net/?p=98&quot;&gt;Debugging IISNODE Applications: new node-inspector integrated with iisnode&lt;/a&gt; by Ranjith Ramachandra&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-				<pubDate>Fri, 08 Aug 2014 00:00:00 -0400</pubDate>
-				<link>http://www.jokecamp.com/blog/getting-started-with-iisnode</link>
-				<guid isPermaLink="true">http://www.jokecamp.com/blog/getting-started-with-iisnode</guid>
 			</item>
 		
 	</channel>
