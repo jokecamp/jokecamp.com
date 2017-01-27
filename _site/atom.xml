@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="http://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="http://www.jokecamp.com/"/>
- <updated>2017-01-26T19:55:14-05:00</updated>
+ <updated>2017-01-27T08:11:49-05:00</updated>
  <id>http://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -13,11 +13,11 @@
 
  
  <entry>
-   <title>Create an Angular2 Custom Validator Directive for Whitespace and Empty Strings</title>
+   <title>Create an Angular 2 Custom Validator Directive for Whitespace and Empty Strings</title>
    <link href="http://www.jokecamp.com//blog/angular-whitespace-validator-directive"/>
    <updated>2017-01-26T00:00:00-05:00</updated>
    <id>http://www.jokecamp.com/blog/angular-whitespace-validator-directive</id>
-   <content type="html">&lt;p&gt;How do we create a custom validator directive to treat &lt;strong&gt;whitespace as invalid&lt;/strong&gt; in Angular (Angular2)? The built in angular &lt;code&gt;required&lt;/code&gt; input is easily fooled by a run of spaces so lets create our own validator. I read the &lt;a href=&quot;https://angular.io/docs/ts/latest/cookbook/form-validation.html#!#custom-validation&quot;&gt;Angular.io Custom Validator&lt;/a&gt; docs for you.&lt;/p&gt;
+   <content type="html">&lt;p&gt;How do we create a custom validator directive to treat &lt;strong&gt;whitespace as invalid&lt;/strong&gt; in Angular (Angular 2)? The built in angular &lt;code&gt;required&lt;/code&gt; input is easily fooled by a run of spaces so lets create our own validator. I read the &lt;a href=&quot;https://angular.io/docs/ts/latest/cookbook/form-validation.html#!#custom-validation&quot;&gt;Angular.io Custom Validator&lt;/a&gt; docs for you.&lt;/p&gt;
 
 &lt;p&gt;We can use this rather simple idea to demonstrate a validator with unit testing, wrapped in a simple directive.&lt;/p&gt;
 
