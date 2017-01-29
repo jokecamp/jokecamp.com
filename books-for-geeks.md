@@ -10,7 +10,7 @@ sitemap:
 
 The following is a list of fun books to please your inner computer and science geek. I've read them and can vouch for the geekyness.
 
-**[Saturn Run](http://amzn.to/29EWqWm) by John Standford and Ctein (2015)
+**[Saturn Run](http://amzn.to/29EWqWm) by John Standford and Ctein** (2015)
 
 **[Snow Crash](http://amzn.to/1WZR8I4) by Neal Stephenson** (2003) - Considered one of the best cyberpunk novels.
 
@@ -45,9 +45,9 @@ An insider's view of the companies and developer's who create Doom, Quake and nu
 
 - [Alan Kay's Reading List](http://c2.com/cgi/wiki?AlanKaysReadingList) - a long list of books organized by subject curated by an accomplished reader/computer scientist.
 
-- Ernest Clines Ten Favorite sci-fi books http://www.barnesandnoble.com/blog/sci-fi-fantasy/ernest-clines-10-favorite-sff-novels/
+- [Ernest Clines Ten Favorite sci-fi books](http://www.barnesandnoble.com/blog/sci-fi-fantasy/ernest-clines-10-favorite-sff-novels/)
 
-- http://www.npr.org/2011/08/11/139085843/your-picks-top-100-science-fiction-fantasy-books
+- [NPR: Your Picks: Top 100 Science-Fiction, Fantasy Books](http://www.npr.org/2011/08/11/139085843/your-picks-top-100-science-fiction-fantasy-books)
 
 [1]: http://www.amazon.com/gp/product/B00EMXBDMA/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00EMXBDMA&linkCode=as2&tag=jokecamp-20&linkId=7IRGJBD2LF73UZCF
 [2]: http://www.amazon.com/gp/product/0060512806/ref=as_li_ss_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0060512806&amp;linkCode=as2&amp;tag=jokecamp-20
