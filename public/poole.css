@@ -265,7 +265,7 @@ nav ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
 .page ul, .related ul { list-style-type: none; margin:0; padding:0; }
 .page ul li, .related ul li { margin-bottom:.7rem; margin-top:.7rem; }
 
-.post-footer { text-align:center; font-size:.8em; margin:20px 0; }
+.post-footer { text-align:center; margin:20px 0; }
 
 #tagcloud { font-size:.9em;  }
 .tags li { display:inline; padding:0 4px; background:#EEE;}

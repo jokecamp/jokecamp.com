@@ -127,7 +127,7 @@ The post describes the key components, relationships and a short description of 
 <span class="kd">var</span> <span class="nx">authenticationType</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s1">&#39;x-iisnode-auth_type&#39;</span><span class="p">];</span>
 </code></pre></div>
 <ul>
-<li> You can use the URL Rewrite (native) module choose which requests get handled by iisnode and which requests skips iisnode. This was required when setting up a socket.io server inside iisnode.</li>
+<li> You can use the URL Rewrite (native) module to choose which requests get handled by iisnode and which requests will skip iisnode. This was required when setting up a socket.io server inside iisnode.</li>
 </ul>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"> <span class="nt">&lt;rewrite&gt;</span>
   <span class="nt">&lt;rules&gt;</span>
@@ -231,20 +231,7 @@ Tags
 
 <div class="post-footer">
   Notice a typo or something incorrect?<br>
-  Leave a comment or submit a <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2014-08-08-getting-started-with-iisnode.md">pull request on GitHub</a>.
-</div>
-
-<div class="comments">
-    <div id="disqus_thread"></div>
-    <script>
-    (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://jokecamp.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  Leave a comment or submit changes via <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2014-08-08-getting-started-with-iisnode.md">GitHub</a>.
 </div>
 
       </div>

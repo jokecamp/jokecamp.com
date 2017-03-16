@@ -107,7 +107,7 @@ var username = req.headers['x-iisnode-auth_user']; // for example AD\username
 var authenticationType = req.headers['x-iisnode-auth_type'];
 ```
 
--  You can use the URL Rewrite (native) module choose which requests get handled by iisnode and which requests skips iisnode. This was required when setting up a socket.io server inside iisnode.
+-  You can use the URL Rewrite (native) module to choose which requests get handled by iisnode and which requests will skip iisnode. This was required when setting up a socket.io server inside iisnode.
 
  ```xml
  <rewrite>
