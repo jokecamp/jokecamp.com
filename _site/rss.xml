@@ -7,6 +7,105 @@
 		<atom:link href="https://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Powerhsell script to dynamically set .NET Assembly/DLL versions for git</title>
+				<description>&lt;p&gt;How can you dynamically set a C# .net project assembly (dll) version attributes on a build server specifially for git version control?&lt;/p&gt;
+
+&lt;p&gt;A simple solution is to &lt;strong&gt;just use a powershell script on the build server to change all the AssemblyVersion attributes on the fly right before compiling the solution&lt;/strong&gt;. This requires no special dev tooling or msbuild changes and you can utilize the popular practice of git tags for release/version tagging.&lt;/p&gt;
+
+&lt;h2&gt;.NET Project Versioning&lt;/h2&gt;
+
+&lt;p&gt;Our script will target the following attributes in the &lt;code&gt;properties &amp;gt; AssemblyInfo.cs&lt;/code&gt; file.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;na&quot;&gt;[assembly: AssemblyVersion(&amp;quot;0.0.0.0&amp;quot;)]&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;[assembly: AssemblyFileVersion(&amp;quot;0.0.0.0&amp;quot;)]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Powershell script details&lt;/h2&gt;
+
+&lt;p&gt;Our script will:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Query git for the latest version tag and number of commits on the branch&lt;/li&gt;
+&lt;li&gt;Find all the &lt;code&gt;AssemblyInfo.cs&lt;/code&gt; files and just use regex to swap in our versions&lt;/li&gt;
+&lt;li&gt;Build the solution&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Some assumptions for this method:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The version parser expects you have already tagged your git repo with a version. For example: &lt;code&gt;git tag -l &amp;quot;v2.0.0&amp;quot;&lt;/code&gt; and be sure to push the tag.&lt;/li&gt;
+&lt;li&gt;I use &lt;code&gt;git describe --long --tags --always&lt;/code&gt; to get the most recent tag and the number of commits. I use the number of commits to easily track incremental changes for devs and QA.&lt;/li&gt;
+&lt;li&gt;The regex expects either a 3 or 4 digit version number already exists in your &lt;code&gt;AssemblyInfo.cs&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;In Bamboo Build server make sure you are not using &amp;quot;Shallow Clones&amp;quot; for the repo. They will not include the git tags.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Powershell script to dynamically change AssemblyInfo.cs Files&lt;/h2&gt;
+
+&lt;p&gt;The script can easily be tailored to fit your needs. As a powershell amateur I just did the bare minimum to get the script working.&lt;/p&gt;
+
+&lt;p&gt;View as &lt;a href=&quot;https://gist.github.com/jokecamp/a2a314d62490fca1517a9a031c5606e9&quot;&gt;Gist&lt;/a&gt; or the code below:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getVersion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$tag&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iex&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;git describe --long --tags --always&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[regex]&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;v\d+\.\d+\.\d+\-\d+&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Captures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-replace&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-replace&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;v&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Version found: $b&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SetVersion&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;s2&quot;&gt;&amp;quot;Changing version in $file to $version&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$fileObject&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;get-item&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#$fileObject.Set_IsReadOnly($False)&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$sr&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;new-object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;StreamReader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[System.Text.Encoding]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetEncoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$sr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ReadToEnd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$sr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[Regex]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;(\d+)\.(\d+)\.(\d+)[\.(\d+)]*&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$sw&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;new-object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;StreamWriter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[System.Text.Encoding]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GetEncoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$sw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$sw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#$fileObject.Set_IsReadOnly($True)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;setVersionInDir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$dir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$version&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-eq&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;version not found&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;# Set the Assembly version&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$info_files&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Get-ChildItem&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$dir&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Recurse&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Include&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;AssemblyInfo.cs&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-match&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;my.namespace&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$info_files&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Setversion&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$version&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# First get tag from Git&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$version&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getVersion&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$dir&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;./&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;setVersionInDir&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$dir&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$version&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Other Solutions&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use a &lt;a href=&quot;http://stackoverflow.com/a/4970347/215502&quot;&gt;MSBuild Community Task&lt;/a&gt; that requires remembering to manually edit the &lt;code&gt;.csproj&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Fri, 17 Mar 2017 00:00:00 -0400</pubDate>
+				<link>https://www.jokecamp.com/blog/powerhsell-script-dynamically-set-dotnet-assebmly-versions</link>
+				<guid isPermaLink="true">https://www.jokecamp.com/blog/powerhsell-script-dynamically-set-dotnet-assebmly-versions</guid>
+			</item>
+		
+			<item>
 				<title>Create an Angular 2 Custom Validator Directive for Whitespace and Empty Strings</title>
 				<description>&lt;p&gt;How do we create a custom validator directive to treat &lt;strong&gt;whitespace as invalid&lt;/strong&gt; in Angular (Angular 2)? The built in angular &lt;code&gt;required&lt;/code&gt; input is easily fooled by a run of spaces so lets create our own validator. I read the &lt;a href=&quot;https://angular.io/docs/ts/latest/cookbook/form-validation.html#!#custom-validation&quot;&gt;Angular.io Custom Validator&lt;/a&gt; docs for you.&lt;/p&gt;
 
@@ -698,84 +797,6 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 				<pubDate>Fri, 05 Sep 2014 00:00:00 -0400</pubDate>
 				<link>https://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</link>
 				<guid isPermaLink="true">https://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</guid>
-			</item>
-		
-			<item>
-				<title>Simple jekyll deployment with a shell script and GitHub</title>
-				<description>&lt;p&gt;I wanted to document and share my process for deploying this very website (jokecamp.com).&lt;/p&gt;
-
-&lt;p&gt;There are many ways to automate the &lt;a href=&quot;http://jekyllrb.com/docs/deployment-methods/&quot;&gt;deployment of a jekyll website&lt;/a&gt;. I tried a few methods but settled on a very simple ssh script I can run from my local computer. These steps could be used for any type of code deployment. It is not specific to a jekyll website.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Quick Summary&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Execute the &lt;code&gt;deploy.sh&lt;/code&gt; script on your local computer and enter your password when prompted&lt;/li&gt;
-&lt;li&gt;The script will then
-
-&lt;ul&gt;
-&lt;li&gt;connect and login to the remote server via ssh&lt;/li&gt;
-&lt;li&gt;git pull the entire project from GitHub into a private directory&lt;/li&gt;
-&lt;li&gt;Copy the contents of the &lt;code&gt;_site&lt;/code&gt; folder your public website directory&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Specific Setup and Configuration&lt;/h2&gt;
-
-&lt;p&gt;Prerequisites:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;commit your website to GitHub
-
-&lt;ul&gt;
-&lt;li&gt;include the auto-generated &lt;code&gt;_site&lt;/code&gt; folder&lt;/li&gt;
-&lt;li&gt;for example: &lt;a href=&quot;https://github.com/jokecamp/jokecamp.com/&quot;&gt;https://github.com/jokecamp/jokecamp.com/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;a remote unix server that supports ssh (secure shell) access
-
-&lt;ul&gt;
-&lt;li&gt;I use &lt;a href=&quot;https://www.nearlyfreespeech.net/&quot;&gt;nearlyfreespeech.net&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;a local computer that can run shell scripts
-
-&lt;ul&gt;
-&lt;li&gt;Mac, Linux or Windows with &lt;a href=&quot;https://www.cygwin.com/&quot;&gt;cygwin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Create the following scripts on your local computer. I prefer and would advise not to commit these to your project. I keep my deployment scripts on &lt;a href=&quot;http://dropbox.com&quot;&gt;dropbox&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Create &lt;code&gt;deploy.sh&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/bash
-
-ssh username@your.remote.host.for.ssh.com &amp;#39;bash -s&amp;#39; &amp;lt; server-script.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Create &lt;code&gt;server-script.sh&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;#!/bin/bash
-
-echo &amp;#39;getting latest from github&amp;#39;
-cd /home/private/jokecamp.com/
-git pull -v
-
-echo &amp;#39;deploying to home/public&amp;#39;
-cp -av /home/private/jokecamp.com/_site/. /home/public/
-
-echo &amp;#39;** done. www.jokecamp.com deployed. **&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;A couple notes about my environment. &lt;code&gt;/home/private&lt;/code&gt; is a directory that cannot be accessed from the public facing internet. It is safe to keep the entire GitHub project here. The &lt;code&gt;/home/public/&lt;/code&gt; directory is the root directory serving this website (jokecamp.com).&lt;/p&gt;
-
-&lt;p&gt;You will need to do a one time change of permissions on the scripts in order be able to execute them. Run these commands on your local computer&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;chmod 755 deploy.sh
-chmod 755 server-script.sh
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now I can deployment the site with &lt;strong&gt;one script&lt;/strong&gt;. It will &lt;strong&gt;prompt me for my password&lt;/strong&gt; then connect to the site via ssh, pull the latest from GitHub and update my website.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;$ ./deploy.sh
-username@your.remote.host.for.ssh.com&amp;#39;s password:
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;That is all. Our website has been deployed!&lt;/p&gt;
-</description>
-				<pubDate>Sat, 23 Aug 2014 00:00:00 -0400</pubDate>
-				<link>https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</link>
-				<guid isPermaLink="true">https://www.jokecamp.com/blog/Simple-jekyll-deployment-with-a-shell-script-and-github</guid>
 			</item>
 		
 	</channel>

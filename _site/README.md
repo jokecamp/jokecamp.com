@@ -58,3 +58,13 @@ sub wanted
  }
 }
 ```
+
+
+## To Deploy
+
+```
+jekyll serve
+get commit
+git push origin master
+./deploy.sh
+```
