@@ -1,14 +1,16 @@
 ---
 author: Joe Kampschmidt
-comments: true
+comments: false
 layout: post
-slug: powerhsell-script-dynamically-set-dotnet-assebmly-versions
-title: Powerhsell script to dynamically set .NET Assembly/DLL versions for git
-desc: 'A build server powerhsell script to dynamically set C# .NET Assembly and DLL versions using git tags for automated build dll versioning'
+slug: powershell-script-dynamically-set-dotnet-assebmly-versions
+title: Powershell script to dynamically set .NET Assembly/DLL versions for git
+desc: 'A build server powershell script to dynamically set C# .NET Assembly and DLL versions using git tags for automated build dll versioning'
 tags:
 - devops
 - powershell
 ---
+
+
 
 How can you dynamically set a C# .net project assembly (dll) version attributes on a build server specifially for git version control?
 

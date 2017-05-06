@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2017-03-18T13:37:06-04:00</updated>
+ <updated>2017-05-06T09:23:49-04:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -13,10 +13,51 @@
 
  
  <entry>
-   <title>Powerhsell script to dynamically set .NET Assembly/DLL versions for git</title>
-   <link href="https://www.jokecamp.com//blog/powerhsell-script-dynamically-set-dotnet-assebmly-versions"/>
+   <title>Simple Powershell script to replace values in a .net configuration file</title>
+   <link href="https://www.jokecamp.com//blog/powerhsell-script-update-webconfig"/>
+   <updated>2017-05-05T00:00:00-04:00</updated>
+   <id>https://www.jokecamp.com/blog/powerhsell-script-update-webconfig</id>
+   <content type="html">&lt;p&gt;The following powershell script shows how to perform quick and dirty .net XML config file swapping. I use these quick swaps for our build server and continous deployments in Bamboo. This should work on Powershell version 2+.&lt;/p&gt;
+
+&lt;p&gt;There are two functions below:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;One for finding and replacing the key value pairs for AppSettings.&lt;/li&gt;
+&lt;li&gt;Replacing the log4net RollingFileAppender filename.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;c&quot;&gt;# swap a key/value in AppSettings&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swapAppSetting&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$obj&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-eq&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# swap the log4net filename&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swaplog4Net&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$fileAppender&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log4net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appender&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-eq&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;log4net.Appender.RollingFileAppender&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$fileAppender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;nv&quot;&gt;$webConfig&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;\\server\path\app.config&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$doc&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[Xml]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Content&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$webConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;swaplog4Net&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;server-custom-name.log&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;swapAppSetting&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;env&amp;#39;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$webConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully this saves you a few minutes.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Powershell script to dynamically set .NET Assembly/DLL versions for git</title>
+   <link href="https://www.jokecamp.com//blog/powershell-script-dynamically-set-dotnet-assebmly-versions"/>
    <updated>2017-03-17T00:00:00-04:00</updated>
-   <id>https://www.jokecamp.com/blog/powerhsell-script-dynamically-set-dotnet-assebmly-versions</id>
+   <id>https://www.jokecamp.com/blog/powershell-script-dynamically-set-dotnet-assebmly-versions</id>
    <content type="html">&lt;p&gt;How can you dynamically set a C# .net project assembly (dll) version attributes on a build server specifially for git version control?&lt;/p&gt;
 
 &lt;p&gt;A simple solution is to &lt;strong&gt;just use a powershell script on the build server to change all the AssemblyVersion attributes on the fly right before compiling the solution&lt;/strong&gt;. This requires no special dev tooling or msbuild changes and you can utilize the popular practice of git tags for release/version tagging.&lt;/p&gt;

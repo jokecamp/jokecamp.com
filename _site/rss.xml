@@ -7,7 +7,48 @@
 		<atom:link href="https://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
-				<title>Powerhsell script to dynamically set .NET Assembly/DLL versions for git</title>
+				<title>Simple Powershell script to replace values in a .net configuration file</title>
+				<description>&lt;p&gt;The following powershell script shows how to perform quick and dirty .net XML config file swapping. I use these quick swaps for our build server and continous deployments in Bamboo. This should work on Powershell version 2+.&lt;/p&gt;
+
+&lt;p&gt;There are two functions below:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;One for finding and replacing the key value pairs for AppSettings.&lt;/li&gt;
+&lt;li&gt;Replacing the log4net RollingFileAppender filename.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;c&quot;&gt;# swap a key/value in AppSettings&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swapAppSetting&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$obj&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appSettings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-eq&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$key&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# swap the log4net filename&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;swaplog4Net&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$fileAppender&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log4net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appender&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-eq&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;log4net.Appender.RollingFileAppender&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$fileAppender&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$value&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;nv&quot;&gt;$webConfig&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;\\server\path\app.config&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$doc&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;[Xml]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Content&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$webConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;swaplog4Net&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;server-custom-name.log&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;swapAppSetting&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;env&amp;#39;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$doc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$webConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully this saves you a few minutes.&lt;/p&gt;
+</description>
+				<pubDate>Fri, 05 May 2017 00:00:00 -0400</pubDate>
+				<link>https://www.jokecamp.com/blog/powerhsell-script-update-webconfig</link>
+				<guid isPermaLink="true">https://www.jokecamp.com/blog/powerhsell-script-update-webconfig</guid>
+			</item>
+		
+			<item>
+				<title>Powershell script to dynamically set .NET Assembly/DLL versions for git</title>
 				<description>&lt;p&gt;How can you dynamically set a C# .net project assembly (dll) version attributes on a build server specifially for git version control?&lt;/p&gt;
 
 &lt;p&gt;A simple solution is to &lt;strong&gt;just use a powershell script on the build server to change all the AssemblyVersion attributes on the fly right before compiling the solution&lt;/strong&gt;. This requires no special dev tooling or msbuild changes and you can utilize the popular practice of git tags for release/version tagging.&lt;/p&gt;
@@ -101,8 +142,8 @@
 &lt;/ul&gt;
 </description>
 				<pubDate>Fri, 17 Mar 2017 00:00:00 -0400</pubDate>
-				<link>https://www.jokecamp.com/blog/powerhsell-script-dynamically-set-dotnet-assebmly-versions</link>
-				<guid isPermaLink="true">https://www.jokecamp.com/blog/powerhsell-script-dynamically-set-dotnet-assebmly-versions</guid>
+				<link>https://www.jokecamp.com/blog/powershell-script-dynamically-set-dotnet-assebmly-versions</link>
+				<guid isPermaLink="true">https://www.jokecamp.com/blog/powershell-script-dynamically-set-dotnet-assebmly-versions</guid>
 			</item>
 		
 			<item>
@@ -752,51 +793,6 @@ svn: E200004: Merge from foreign repository is not compatible with mergeinfo mod
 				<pubDate>Wed, 01 Oct 2014 00:00:00 -0400</pubDate>
 				<link>https://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</link>
 				<guid isPermaLink="true">https://www.jokecamp.com/blog/invoke-restmethod-powershell-examples</guid>
-			</item>
-		
-			<item>
-				<title>How to list your jekyll posts by tags</title>
-				<description>&lt;p&gt;The below example code demonstrates how to show and organize your posts by &lt;a href=&quot;http://jekyllrb.com/docs/frontmatter/&quot;&gt;tags&lt;/a&gt; using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;jekyll&lt;/a&gt; and the &lt;a href=&quot;http://docs.shopify.com/themes/liquid-documentation/basics&quot;&gt;liquid template language&lt;/a&gt;. This is basically the same code I use for my own &lt;a href=&quot;/tag/&quot;&gt;listing of posts by tag&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The below code shows:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;How to generate a list all the tags on your website. A tag cloud could be created by using the number of posts and CSS.&lt;/li&gt;
-&lt;li&gt;How to get the number of posts per tag&lt;/li&gt;
-&lt;li&gt;How to use filters to convert the tag to lowercase and strip out spaces, which is useful for creating anchors&lt;/li&gt;
-&lt;li&gt;How to list all the tags and includes a sublist of posts that are associated to that tag.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Listing all Tags&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-{% for tag in site.tags %}
-  {% assign t = tag | first %}
-  {% assign posts = tag | last %}
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;{{t | downcase | replace:&amp;quot; &amp;quot;,&amp;quot;-&amp;quot; }} has {{ posts | size }} posts&lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-{% endfor %}
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Listing all Tags and the posts containing that Tag&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;{% for tag in site.tags %}
-  {% assign t = tag | first %}
-  {% assign posts = tag | last %}
-
-{{ t | downcase }}
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-{% for post in posts %}
-  {% if post.tags contains t %}
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{{ post.url }}&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;{{ post.date | date: &amp;quot;%B %-d, %Y&amp;quot;  }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
-  {% endif %}
-{% endfor %}
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
-{% endfor %}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-				<pubDate>Fri, 05 Sep 2014 00:00:00 -0400</pubDate>
-				<link>https://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</link>
-				<guid isPermaLink="true">https://www.jokecamp.com/blog/listing-jekyll-posts-by-tag</guid>
 			</item>
 		
 	</channel>
