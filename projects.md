@@ -16,6 +16,8 @@ sitemap:
 
  - [PaulTenwalde.com](http://www.paultenwalde.com/) - Uses the [flickr API](http://www.flickr.com/services/api/) with PHP. Caching results and creating a photo gallery with jQuery. Built with a focus on unobtrusive javascript, clean html and CSS.
 
+- [Travel Log](http://travellogjoe.blogspot.com/) - travel pictures of my backpacking trip in 2008/2009.
+
 ## Graveyard
 
 Let's be honest most of our code ends up here:
@@ -33,8 +35,6 @@ Let's be honest most of our code ends up here:
 - [Capital BikeShare Data for Washington DC](http://www.jokecamp.com/lab/dcbikeshare/bike.html) - Displays bikeshare trip data into clean sortable tables (2012)
 
 - [JavaScript UI Notification System](http://www.jokecamp.com/lab/javascriptNotifications.html) - Simple example of using jQuery for on screen notifications (2011)
-
-- [Travel Log](http://travellogjoe.blogspot.com/) - travel pictures of my backpacking trip in 2008/2009.
 
 - [Mario in Flash](http://www.jokecamp.com/lab/mario/mario.html) - Fun little advertisement (made in 2005)
 

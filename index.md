@@ -10,28 +10,29 @@ sitemap:
 # About
 
 <div itemscope itemtype="http://data-vocabulary.org/Person">
-My name is <span itemprop="name">Joe Kampschmidt</span>. I usually appear online as <em itemprop="nickname">jokecamp</em>. I am a <span itemprop='role'>developer</span>.
-This website is open sourced on <a href="https://github.com/jokecamp/jokecamp.com">github at jokecamp/jokecamp.com</a>. Feel free to fix any errors or typos in a pull request. Or feel free to use the code.
+My name is <span itemprop="name">Joe Kampschmidt</span>. I usually appear online as <em itemprop="nickname">jokecamp</em>. I am a <span itemprop='role'>developer</span>. I tend to write very specific blog posts solving practical issues with the goal of saving the reader's time.
 </div>
+
+<br>
+<div>
+This website is open sourced on <a href="https://github.com/jokecamp/jokecamp.com">github at jokecamp/jokecamp.com</a>. Feel free to submit pull requests when you find my typos.
+</div>
+
 
 ## Online Presence
 
 - <a rel="me" href="{{ site.stackoverflow }}" title="Joe's stackoverflow account - aka street credit">kampsj on StackOverflow</a>
 - <a rel="me" href="{{ site.twitter }}" title="Joe's twitter account">@jokecamp on twitter</a>
 
+## Blog Posts
 
-## Featured Blog Posts
-
-<ul class="posts-list">
-{% for post in site.posts %}{% if post.featured == true %}
-  <li><a href="{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %-d %Y"  }}</span></li>
-{% endif %}{% endfor %}
+<ul class="features">
+{% for post in site.posts  %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %-d, %Y"  }}</span></li>
+{% endfor %}
 </ul>
+<hr>
 
-
-## Random fun
-
-<ul>
-  <li><a href="/books-for-geeks/">A reading list of books for geeks</a> - harness your geekiness</li>
-  <li><a href="/singularity/">Singularity, AI and robots</a> - books, articles and movies for singularity preppers</li>
-</li>
+<div class="center">
+<a href="/tag/" title="View Posts by Tag">View Posts organized by Tags</a>
+</div>
