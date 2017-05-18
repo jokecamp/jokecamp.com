@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: July 1 2016
+Last updated: May 18 2017
 
 ##  Where can I actually find football/soccer data?
 
@@ -44,6 +44,7 @@ Jump to a specific source:
   - [opta](#opta)
   - [prozone](#prozone)
   - [Match Analaysis](#matchanalysis)
+  - [apifootball.com](#apifootball)
 - Other Websites
   - [footballsquads.co.uk](#footballsquads.co.uk)
   - [Rec.Sport.Soccer Statistics Foundation (RSSSF)](#rsssf)
@@ -451,6 +452,16 @@ An example of an "event" in xml
 #### Match Analysis
 
 [Match Analysis](http://matchanalysis.com/) is another large commercial data provider that lists Fox Soccer Channel, US National Team and the MLS among their clients.
+
+<a name="apifootball"></a>
+#### APIfootball
+
+[apifootball.com](https://apifootball.com/) is one affordable livescore service for mobile applications and small websites.
+The service covers livescores for cups, football leagues, and intenational matches for all of the major football federations all over the world, along with many minor leagues, allowing you to integrate information regarding the football matches into your websites. Included in the available information are livescores, in play events, results, fixtures, standings and odds from 60+ bookmakers.
+
+You can check [here](https://apifootball.com/documentation/) the API comprehensive and very easy to use [documentation](https://apifootball.com/documentation/)
+
+Their prices range from $25 for the european plan to $50 for worldwide plan. [Here](https://apifootball.com/) is  the complete [list](https://apifootball.com/) of prices and features.
 
 <a name="other"></a>
 ###  Other Websites
