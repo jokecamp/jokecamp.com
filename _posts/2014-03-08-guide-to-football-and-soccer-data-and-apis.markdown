@@ -456,8 +456,8 @@ An example of an "event" in xml
 <a name="apifootball"></a>
 #### APIfootball
 
-[apifootball.com](https://apifootball.com/) is one affordable livescore service for mobile applications and small websites.
-The service covers livescores for cups, football leagues, and intenational matches for all of the major football federations all over the world, along with many minor leagues, allowing you to integrate information regarding the football matches into your websites. Included in the available information are livescores, in play events, results, fixtures, standings and odds from 60+ bookmakers.
+[apifootball.com](https://apifootball.com/) is an affordable service with live scores for mobile applications and small websites.
+The service covers live scores for cups, football leagues, and intenational matches for all of the major football federations all over the world, along with many minor leagues, allowing you to integrate information regarding the football matches into your websites. Included in the available information are livescores, in play events, results, fixtures, standings and odds from 60+ bookmakers.
 
 You can check [here](https://apifootball.com/documentation/) the API comprehensive and very easy to use [documentation](https://apifootball.com/documentation/)
 
