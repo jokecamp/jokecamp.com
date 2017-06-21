@@ -38,7 +38,7 @@ Jump to a specific source:
   - [football-api.com](#footballapi)
   - [CrowdScores and FastestLiveScores API](#CrowdScores)
   - [SPAPI](#spapi)
-  - [Soccerama.pro](#soccerama)
+  - [SportMonks.com](#sportmonks)
   - [XMLSoccer.com](#xmlsoccer)
   - [Resultados de Fútbol API](#resultados)
   - [opta](#opta)
@@ -318,20 +318,19 @@ Example endpoints:
 
 Pretty impressive but this level of detail comes at a price. Authentication method is a API key in querystring.
 
-<a name="soccerama"></a>
-####Soccerama.pro
+<a name="sportmonks"></a>
+####Sportmonks.com
 
-[soccerama.pro](https://soccerama.pro) offers a JSON API. There are plans with prices ranging between 15 to 125 euro's per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.
+[https://sportmonks.com](https://sportmonks.com) offers a JSON API. There are plans with prices ranging between 15 to 200 euro's per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.
 
 Registration to this API is free and every plan has a 14 day trial.
 
 Some example endpoints are:
 
-    https://api.soccerama.pro/v1/livescore?api_token=__YOURTOKEN__
-    https://api.soccerama.pro/v1/competitions?api_token=__YOURTOKEN__
-    https://api.soccerama.pro/v1/competitions/{id}?api_token=__YOURTOKEN__
-    https://api.soccerama.pro/v1/matches/{id}?api_token=__YOURTOKEN__&include=hometeam,awayTeam,events
-    https://api.soccerama.pro/v1/statistics/match/{id}?api_token=__YOURTOKEN__
+    https://soccer.sportmonks.com/api/v2.0/livescores?api_token=__YOURTOKEN__
+    https://soccer.sportmonks.com/api/v2.0/leagues?api_token=__YOURTOKEN__
+    https://soccer.sportmonks.com/api/v2.0/leagues/{id}?api_token=__YOURTOKEN__
+    https://soccer.sportmonks.com/api/v2.0/fixtures/{id}?api_token=__YOURTOKEN__&include=localTeam,visitorTeam,events
 
 And an example response looks like:
 
