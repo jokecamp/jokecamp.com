@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: May 18 2017
+Last updated: June 21 2017
 
 ##  Where can I actually find football/soccer data?
 

@@ -34,7 +34,7 @@
         <div class="post">
   <h1 class="post-title">Guide to Football/Soccer data and APIs</h1>
   <span class="post-date">08 Mar 2014</span>
-  <p>Last updated: May 18 2017</p>
+  <p>Last updated: June 21 2017</p>
 
 <h2>Where can I actually find football/soccer data?</h2>
 
@@ -65,7 +65,7 @@
 <li><a href="#footballapi">football-api.com</a></li>
 <li><a href="#CrowdScores">CrowdScores and FastestLiveScores API</a></li>
 <li><a href="#spapi">SPAPI</a></li>
-<li><a href="#soccerama">Soccerama.pro</a></li>
+<li><a href="#sportmonks">SportMonks.com</a></li>
 <li><a href="#xmlsoccer">XMLSoccer.com</a></li>
 <li><a href="#resultados">Resultados de Fútbol API</a></li>
 <li><a href="#opta">opta</a></li>
@@ -357,20 +357,19 @@ https://spapi.pw/api/v1/players/1/statistics
 </code></pre></div>
 <p>Pretty impressive but this level of detail comes at a price. Authentication method is a API key in querystring.</p>
 
-<p><a name="soccerama"></a></p>
+<p><a name="sportmonks"></a></p>
 
-<h4>Soccerama.pro</h4>
+<h4>Sportmonks.com</h4>
 
-<p><a href="https://soccerama.pro">soccerama.pro</a> offers a JSON API. There are plans with prices ranging between 15 to 125 euro&#39;s per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.</p>
+<p><a href="https://sportmonks.com">https://sportmonks.com</a> offers a JSON API. There are plans with prices ranging between 15 to 200 euro&#39;s per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.</p>
 
 <p>Registration to this API is free and every plan has a 14 day trial.</p>
 
 <p>Some example endpoints are:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">https://api.soccerama.pro/v1/livescore?api_token=__YOURTOKEN__
-https://api.soccerama.pro/v1/competitions?api_token=__YOURTOKEN__
-https://api.soccerama.pro/v1/competitions/{id}?api_token=__YOURTOKEN__
-https://api.soccerama.pro/v1/matches/{id}?api_token=__YOURTOKEN__&amp;include=hometeam,awayTeam,events
-https://api.soccerama.pro/v1/statistics/match/{id}?api_token=__YOURTOKEN__
+<div class="highlight"><pre><code class="language-text" data-lang="text">https://soccer.sportmonks.com/api/v2.0/livescores?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/leagues?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/leagues/{id}?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/fixtures/{id}?api_token=__YOURTOKEN__&amp;include=localTeam,visitorTeam,events
 </code></pre></div>
 <p>And an example response looks like:</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>

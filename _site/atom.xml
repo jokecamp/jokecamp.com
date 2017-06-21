@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2017-05-31T16:19:51-04:00</updated>
+ <updated>2017-06-21T09:11:46-04:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1568,7 +1568,7 @@ Fn  Function Key&lt;/p&gt;
    <link href="https://www.jokecamp.com//blog/guide-to-football-and-soccer-data-and-apis"/>
    <updated>2014-03-08T12:08:40-05:00</updated>
    <id>https://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</id>
-   <content type="html">&lt;p&gt;Last updated: May 18 2017&lt;/p&gt;
+   <content type="html">&lt;p&gt;Last updated: June 21 2017&lt;/p&gt;
 
 &lt;h2&gt;Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -1599,7 +1599,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#footballapi&quot;&gt;football-api.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#CrowdScores&quot;&gt;CrowdScores and FastestLiveScores API&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#spapi&quot;&gt;SPAPI&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#soccerama&quot;&gt;Soccerama.pro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sportmonks&quot;&gt;SportMonks.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#xmlsoccer&quot;&gt;XMLSoccer.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#resultados&quot;&gt;Resultados de Fútbol API&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#opta&quot;&gt;opta&lt;/a&gt;&lt;/li&gt;
@@ -1891,20 +1891,19 @@ https://spapi.pw/api/v1/players/1/statistics
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Pretty impressive but this level of detail comes at a price. Authentication method is a API key in querystring.&lt;/p&gt;
 
-&lt;p&gt;&lt;a name=&quot;soccerama&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;sportmonks&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h4&gt;Soccerama.pro&lt;/h4&gt;
+&lt;h4&gt;Sportmonks.com&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://soccerama.pro&quot;&gt;soccerama.pro&lt;/a&gt; offers a JSON API. There are plans with prices ranging between 15 to 125 euro&amp;#39;s per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://sportmonks.com&quot;&gt;https://sportmonks.com&lt;/a&gt; offers a JSON API. There are plans with prices ranging between 15 to 200 euro&amp;#39;s per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.&lt;/p&gt;
 
 &lt;p&gt;Registration to this API is free and every plan has a 14 day trial.&lt;/p&gt;
 
 &lt;p&gt;Some example endpoints are:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;https://api.soccerama.pro/v1/livescore?api_token=__YOURTOKEN__
-https://api.soccerama.pro/v1/competitions?api_token=__YOURTOKEN__
-https://api.soccerama.pro/v1/competitions/{id}?api_token=__YOURTOKEN__
-https://api.soccerama.pro/v1/matches/{id}?api_token=__YOURTOKEN__&amp;amp;include=hometeam,awayTeam,events
-https://api.soccerama.pro/v1/statistics/match/{id}?api_token=__YOURTOKEN__
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;https://soccer.sportmonks.com/api/v2.0/livescores?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/leagues?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/leagues/{id}?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/fixtures/{id}?api_token=__YOURTOKEN__&amp;amp;include=localTeam,visitorTeam,events
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And an example response looks like:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
