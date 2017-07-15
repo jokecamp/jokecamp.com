@@ -28,7 +28,7 @@ This website is open sourced on <a href="https://github.com/jokecamp/jokecamp.co
 
 <ul class="features">
 {% for post in site.posts  %}
-    <li><a href="{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %-d, %Y"  }}</span></li>
+    <li><a href="{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date | date: "%B %Y"  }}</span></li>
 {% endfor %}
 </ul>
 <hr>
