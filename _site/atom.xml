@@ -4,13 +4,244 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2017-07-15T10:04:50-04:00</updated>
+ <updated>2017-08-12T18:01:50-04:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
    <email>joe.kampschmidt@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Migrating a project to Angular CLI build system</title>
+   <link href="https://www.jokecamp.com//blog/migrating-to-angular-cli"/>
+   <updated>2017-08-12T00:00:00-04:00</updated>
+   <id>https://www.jokecamp.com/blog/migrating-to-angular-cli</id>
+   <content type="html">&lt;p&gt;I recently migrated an Angular app from a gulp build system to an &lt;a href=&quot;https://cli.angular.io/&quot;&gt;Angular CLI&lt;/a&gt; (version 1.2.6). I wanted to share the process, some pain points and lessons learned.&lt;/p&gt;
+
+&lt;p&gt;A good starting point for migrating is the angular-cli &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories-1.0-update&quot;&gt;migration guide&lt;/a&gt; and &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories-moving-into-the-cli&quot;&gt;moving guide&lt;/a&gt;. Also check out the &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories&quot;&gt;list of general stories&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Our migration plan was a little more involved since our project consists of &lt;strong&gt;an Angular client app and a backend node typescript server with Express.js to serve our client app and proxy an external API&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;migration&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#migration&quot;&gt;Migration Outline&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a new angular-cli project&lt;/li&gt;
+&lt;li&gt;Copy over (move) your existing application into the new project&lt;/li&gt;
+&lt;li&gt;Merge package.json files and resolve package versions&lt;/li&gt;
+&lt;li&gt;Iterate over the app, build and tests&lt;/li&gt;
+&lt;li&gt;Switch over build and run scripts&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;goals&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#goals&quot;&gt;Goals&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Replace current gulp commands and code with angular-cli and npm scripts&lt;/li&gt;
+&lt;li&gt;Work on both windows and mac development machines&lt;/li&gt;
+&lt;li&gt;Be able to run a local server to host an API and client ap&lt;/li&gt;
+&lt;li&gt;Create a shell script for build and packinging for the build server&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;preparation&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#preparation&quot;&gt;Migration Preparation&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Move all static resources into the &lt;code&gt;assets&lt;/code&gt; folder and ensure relative paths&lt;/li&gt;
+&lt;li&gt;Ensure &lt;code&gt;node&lt;/code&gt; and &lt;code&gt;npm&lt;/code&gt; prereqs for &lt;code&gt;angular-cli&lt;/code&gt;. I prefer &lt;code&gt;nvm&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Find and fix any private variables being referenced in components. Make those vars public.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;lessons-learned&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#lessons-learned&quot;&gt;Lessons Learned and Pain Points&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;I only had one global &lt;code&gt;tsconfig.json&lt;/code&gt; file before but angular-cli makes use of multiple &lt;code&gt;tsconfig.json&lt;/code&gt; files and for a new &lt;code&gt;tsconfig.app.json&lt;/code&gt; file. Also, as of right now some editors ( &lt;a href=&quot;https://github.com/Microsoft/vscode/issues/24362&quot;&gt;VS Code #24362&lt;/a&gt;) don&amp;#39;t support custom tsconfig filenames yet. In some cases I had to create a &lt;code&gt;tsconfig.json&lt;/code&gt; for VS Code alongside the &lt;code&gt;tsconfig.app.json&lt;/code&gt; file in order for the editor to recognize specific paths. Not an ideal solution.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I used to be to run &lt;code&gt;tsc&lt;/code&gt; and compile both server and client apps at the same time. Unfortunately, with the cli I now have to compile the client and server apps seperately and with different commands and config.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you are going to ditch gulp entirely you will need to embrace &lt;code&gt;npm scripts&lt;/code&gt; to augment &lt;code&gt;angular-cli&lt;/code&gt;. I found this resource &lt;a href=&quot;https://medium.freecodecamp.org/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8&quot;&gt;&amp;quot;Why I Left Gulp and Grunt for npm Scripts&amp;quot;&lt;/a&gt; by Cory House a must read before the migration.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It is important to realize that &lt;code&gt;ng serve&lt;/code&gt; and &lt;code&gt;ng test&lt;/code&gt; compile your typscript into memory and NOT physical files.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you are clueless as to why &lt;code&gt;ng test&lt;/code&gt; doesn&amp;#39;t work with cyrptic errors look into the &lt;code&gt;pollyfills.ts&lt;/code&gt; file and start uncommenting lines.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I would recommend locking package.json versions with exact version numbers, shrinkwrap, lockfile or even yarn. There is no joy in debugging &lt;code&gt;@types&lt;/code&gt;, &lt;code&gt;tsc&lt;/code&gt; versions and incompatible modules.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Building with &lt;code&gt;ng build --prod&lt;/code&gt; which uses AOT compilation is a lot more strict than the default typescript rules with &lt;code&gt;ng serve&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You may run into libraries that don&amp;#39;t support AOT compilation yet. For example, we had to switch from &lt;a href=&quot;https://github.com/Alberplz/angular2-color-picker&quot;&gt;Alberplz/angular2-color-picker&lt;/a&gt; to &lt;a href=&quot;https://github.com/zefoy/ngx-color-picker&quot;&gt;zefoy/ngx-color-picker&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In cases where you want to (not really necessary to remove just for the sake) but you can use plain old js node processes and wrap them in &lt;code&gt;npm scripts&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Using &lt;code&gt;sass&lt;/code&gt; for css is straightforward by setting &lt;code&gt;&amp;quot;styleExt&amp;quot;: &amp;quot;scss&amp;quot;&lt;/code&gt; in &lt;code&gt;.angular-cli.json&lt;/code&gt;. See &lt;a href=&quot;https://stackoverflow.com/questions/36220256/angular2-angular-cli-sass-options&quot;&gt;Angular2 - Angular-CLI SASS options&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Using &lt;code&gt;font awesome&lt;/code&gt; was straightforward by simply adding &lt;code&gt;&amp;quot;../node_modules/font-awesome/css/font-awesome.css&amp;quot;&lt;/code&gt; to the &lt;code&gt;styles&lt;/code&gt; array in &lt;code&gt;.angular-cli.json&lt;/code&gt; file.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a name=&quot;scripts&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#scripts&quot;&gt;Serve and Build Scripts&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Just use &lt;code&gt;npm start&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Running &lt;code&gt;npm start&lt;/code&gt; will compile the server and client apps and then host the server and client apps.&lt;/p&gt;
+
+&lt;p&gt;I make use of the cross platform &lt;code&gt;cross-env&lt;/code&gt; and &lt;code&gt;npm-run-all&lt;/code&gt; libraries to allow the commands to work on macs and windows machines.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Serving for development work&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;compile-server&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;tsc -p ./src/server&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+
+&lt;span class=&quot;s2&quot;&gt;&amp;quot;server&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;npm run compile-server &amp;amp;&amp;amp; cross-env NODE_CONFIG_DIR=./src/server/config node dist/server/index.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+
+&lt;span class=&quot;s2&quot;&gt;&amp;quot;client&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ng serve --base-href=/ --proxy-config dev.proxy.conf.json -p 3000 --sourcemap=true --watch &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+
+&lt;span class=&quot;s2&quot;&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;cross-env NODE_PORT=1337 npm-run-all --parallel client server&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Buliding for prod (Bundling and AOT)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The below table explains the difference between &lt;code&gt;ng build --prod&lt;/code&gt; and &lt;code&gt;ng serve&lt;/code&gt; (aka &lt;code&gt;ng build&lt;/code&gt;)
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Flag&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;--dev&lt;/code&gt;&lt;/th&gt;
+&lt;th&gt;&lt;code&gt;--prod&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--aot&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--environment&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;dev&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;prod&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--output-hashing&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;media&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;all&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--sourcemaps&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;--extract-css&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;Below are the &lt;code&gt;package.json&lt;/code&gt; scripts:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;build&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ng build --prod --base-href=/app/ --watch&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;s2&quot;&gt;&amp;quot;start-build&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;cross-env NODE_ENV=dev NODE_PORT=3000 npm-run-all --parallel build server&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Running Tests&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Use &lt;code&gt;ng test&lt;/code&gt; or &lt;code&gt;ng test --single-run --browsers PhantomJS&lt;/code&gt; for the build server and PhantomJS.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;build-script&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#build-script&quot;&gt;Build Script and Deployment Server&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;I won&amp;#39;t go into great depth regarding our build script but I will include it for the big picture. We use this on our Bamboo build server. It is not perfect and rather inefficent but it works.&lt;/p&gt;
+
+&lt;p&gt;In the end we want a my-client-x-x-x.zip with the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;compiled client bundles&lt;/li&gt;
+&lt;li&gt;compiled server code&lt;/li&gt;
+&lt;li&gt;node_modules required for server app&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# get build number and branch provided in bamboo task&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$2&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;build $build and branch $branch&amp;quot;&lt;/span&gt;
+
+. ~/.nvm/nvm.sh
+nvm use 7.2.0
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;node -v&amp;#39;&lt;/span&gt;
+node  -v
+
+npm install -g npm@5.2.0 --no-progress
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;npm -v&amp;#39;&lt;/span&gt;
+npm -v
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;npm install&amp;#39;&lt;/span&gt;
+npm install --no-progress
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;npm install finished&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;showing verions with npm ls&amp;#39;&lt;/span&gt;
+npm ls
+
+&lt;span class=&quot;c&quot;&gt;# Dump versions for logs&lt;/span&gt;
+ng version
+
+npm run clean
+
+npm run compile-server
+npm run compile-lib
+
+npm run &lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;-build-server
+
+&lt;span class=&quot;c&quot;&gt;# remove current dist folder files&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Removing current ./dist folder&amp;#39;&lt;/span&gt;
+rm -rf ./dist
+mkdir ./dist
+
+rm -rf artifacts
+mkdir -p artifacts
+
+&lt;span class=&quot;c&quot;&gt;# Creates dist/app files&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Running ng build --prod&amp;#39;&lt;/span&gt;
+ng build --prod --progress&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;ng build finished&amp;#39;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;optomize build images&amp;#39;&lt;/span&gt;
+node ./devops/scripts/min-images.js
+
+&lt;span class=&quot;c&quot;&gt;# Creates dist/server files. we have to compile server tsc seperately&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;src/server
+
+&lt;span class=&quot;c&quot;&gt;# run tsc from bin modules to control our tsc version with package.json&lt;/span&gt;
+../../node_modules/.bin/tsc
+
+&lt;span class=&quot;c&quot;&gt;# back to root proj directory&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ../../
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;copy server config directory&amp;#39;&lt;/span&gt;
+cp -rf ./src/server/config ./dist/server
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Run devops/version.it.js to get version and bamboo build&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Create version.json and bamboo vars text file&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;node devops/version-it.js &lt;span class=&quot;nv&quot;&gt;$build&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$branch&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;npm prune --production&amp;#39;&lt;/span&gt;
+npm prune --production
+
+&lt;span class=&quot;c&quot;&gt;# copy over to dist&lt;/span&gt;
+cp -rf ./node_modules ./dist/node_modules
+
+&lt;span class=&quot;nv&quot;&gt;zipFileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;my-client-&lt;span class=&quot;nv&quot;&gt;$version&lt;/span&gt;.zip
+zip -r &lt;span class=&quot;s2&quot;&gt;&amp;quot;./artifacts/$zipFileName&amp;quot;&lt;/span&gt; dist devops
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Created ZIP file for dist at ${zipFileName}&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;questions&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href=&quot;#questions&quot;&gt;Questions and Next Steps&lt;/a&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;How to force devs to verify &lt;code&gt;ng build --prod&lt;/code&gt; before committing?&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/45642545/how-to-run-angular-cli-ng-test-with-production-build-settings-and-aot-enabled&quot;&gt;How to use AOT compilation when using &lt;code&gt;ng test&lt;/code&gt;?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Simple Powershell script to replace values in a .net configuration file</title>
