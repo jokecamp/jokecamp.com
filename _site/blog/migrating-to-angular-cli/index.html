@@ -60,7 +60,7 @@
 <li>Replace current gulp commands and code with angular-cli and npm scripts</li>
 <li>Work on both windows and mac development machines</li>
 <li>Be able to run a local server to host an API and client ap</li>
-<li>Create a shell script for build and packinging for the build server</li>
+<li>Create a shell script for build and packaging for the build server</li>
 </ul>
 
 <p><a name="preparation"></a></p>
@@ -79,10 +79,10 @@
 
 <ul>
 <li><p>I only had one global <code>tsconfig.json</code> file before but angular-cli makes use of multiple <code>tsconfig.json</code> files and for a new <code>tsconfig.app.json</code> file. Also, as of right now some editors ( <a href="https://github.com/Microsoft/vscode/issues/24362">VS Code #24362</a>) don&#39;t support custom tsconfig filenames yet. In some cases I had to create a <code>tsconfig.json</code> for VS Code alongside the <code>tsconfig.app.json</code> file in order for the editor to recognize specific paths. Not an ideal solution.</p></li>
-<li><p>I used to be to run <code>tsc</code> and compile both server and client apps at the same time. Unfortunately, with the cli I now have to compile the client and server apps seperately and with different commands and config.</p></li>
+<li><p>I used to be to run <code>tsc</code> and compile both server and client apps at the same time. Unfortunately, with the cli I now have to compile the client and server apps separately and with different commands and config.</p></li>
 <li><p>If you are going to ditch gulp entirely you will need to embrace <code>npm scripts</code> to augment <code>angular-cli</code>. I found this resource <a href="https://medium.freecodecamp.org/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8">&quot;Why I Left Gulp and Grunt for npm Scripts&quot;</a> by Cory House a must read before the migration.</p></li>
-<li><p>It is important to realize that <code>ng serve</code> and <code>ng test</code> compile your typscript into memory and NOT physical files.</p></li>
-<li><p>If you are clueless as to why <code>ng test</code> doesn&#39;t work with cyrptic errors look into the <code>pollyfills.ts</code> file and start uncommenting lines.</p></li>
+<li><p>It is important to realize that <code>ng serve</code> and <code>ng test</code> compile your typescript into memory and NOT physical files.</p></li>
+<li><p>If you are clueless as to why <code>ng test</code> doesn&#39;t work with cryptic errors look into the <code>pollyfills.ts</code> file and start uncommenting lines.</p></li>
 <li><p>I would recommend locking package.json versions with exact version numbers, shrinkwrap, lockfile or even yarn. There is no joy in debugging <code>@types</code>, <code>tsc</code> versions and incompatible modules.</p></li>
 <li><p>Building with <code>ng build --prod</code> which uses AOT compilation is a lot more strict than the default typescript rules with <code>ng serve</code>.</p></li>
 <li><p>You may run into libraries that don&#39;t support AOT compilation yet. For example, we had to switch from <a href="https://github.com/Alberplz/angular2-color-picker">Alberplz/angular2-color-picker</a> to <a href="https://github.com/zefoy/ngx-color-picker">zefoy/ngx-color-picker</a></p></li>
@@ -95,13 +95,19 @@
 
 <h2><a href="#scripts">Serve and Build Scripts</a></h2>
 
+<p><strong>Serving for development work</strong></p>
+
 <p>Just use <code>npm start</code>.</p>
 
-<p>Running <code>npm start</code> will compile the server and client apps and then host the server and client apps.</p>
+<p>This compiles and serves the client app from memory.</p>
 
-<p>I make use of the cross platform <code>cross-env</code> and <code>npm-run-all</code> libraries to allow the commands to work on macs and windows machines.</p>
+<p>Underneath the hood, serving our client and server requires some extra steps since we also need to compile a typescript server application. This gets tricky since <code>ng serve</code> is running its own lite http server. We can actually proxy some routes in the <code>ng serve</code> to our backend server running on a different port. This is available with a <code>--proxy-config</code> switch.</p>
 
-<p><strong>Serving for development work</strong></p>
+<p>When we compile our client app with <code>ng build</code> we can actually just serve our node server and the compiled client since our app handles all the routing by design.</p>
+
+<p>This is why there are some port number and proxy switching between the <strong>serve</strong> and <strong>build</strong> tasks.</p>
+
+<p>Below are the baisc npm scripts we run in parallel in order to reduce the command into a simple <code>npm start</code></p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="s2">&quot;compile-server&quot;</span><span class="o">:</span> <span class="s2">&quot;tsc -p ./src/server&quot;</span><span class="p">,</span>
 
 <span class="s2">&quot;server&quot;</span><span class="o">:</span> <span class="s2">&quot;npm run compile-server &amp;&amp; cross-env NODE_CONFIG_DIR=./src/server/config node dist/server/index.js&quot;</span><span class="p">,</span>
@@ -110,6 +116,8 @@
 
 <span class="s2">&quot;start&quot;</span><span class="o">:</span> <span class="s2">&quot;cross-env NODE_PORT=1337 npm-run-all --parallel client server&quot;</span>
 </code></pre></div>
+<p>I make use of the cross platform <code>cross-env</code> and <code>npm-run-all</code> libraries to support macs and window machines.</p>
+
 <p><strong>Buliding for prod (Bundling and AOT)</strong></p>
 
 <p>The below table explains the difference between <code>ng build --prod</code> and <code>ng serve</code> (aka <code>ng build</code>)
@@ -150,6 +158,8 @@
 </tbody>
 </table></p>
 
+<p>Run <code>npm run start-build</code> in order to compile the client and server apps into the <code>dist</code> directory and run a node server for that directoy. This is actually how we will in a deploy (production) mode.</p>
+
 <p>Below are the <code>package.json</code> scripts:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="s2">&quot;build&quot;</span><span class="o">:</span> <span class="s2">&quot;ng build --prod --base-href=/app/ --watch&quot;</span><span class="p">,</span>
 <span class="s2">&quot;start-build&quot;</span><span class="o">:</span> <span class="s2">&quot;cross-env NODE_ENV=dev NODE_PORT=3000 npm-run-all --parallel build server&quot;</span><span class="p">,</span>
@@ -162,7 +172,7 @@
 
 <h2><a href="#build-script">Build Script and Deployment Server</a></h2>
 
-<p>I won&#39;t go into great depth regarding our build script but I will include it for the big picture. We use this on our Bamboo build server. It is not perfect and rather inefficent but it works.</p>
+<p>I won&#39;t go into great depth regarding our build script but I will include it for the big picture. We use this on our Bamboo build server. It works but is rather inefficient.</p>
 
 <p>In the end we want a my-client-x-x-x.zip with the following:</p>
 
@@ -194,7 +204,7 @@ npm -v
 npm install --no-progress
 <span class="nb">echo</span> <span class="s1">&#39;npm install finished&#39;</span>
 
-<span class="nb">echo</span> <span class="s1">&#39;showing verions with npm ls&#39;</span>
+<span class="nb">echo</span> <span class="s1">&#39;showing versions with npm ls&#39;</span>
 npm ls
 
 <span class="c"># Dump versions for logs</span>
@@ -223,7 +233,7 @@ ng build --prod --progress<span class="o">=</span><span class="nb">false</span>
 <span class="nb">echo</span> <span class="s1">&#39;optomize build images&#39;</span>
 node ./devops/scripts/min-images.js
 
-<span class="c"># Creates dist/server files. we have to compile server tsc seperately</span>
+<span class="c"># Creates dist/server files. we have to compile server tsc separately</span>
 <span class="nb">cd </span>src/server
 
 <span class="c"># run tsc from bin modules to control our tsc version with package.json</span>

@@ -34,7 +34,7 @@
 &lt;li&gt;Replace current gulp commands and code with angular-cli and npm scripts&lt;/li&gt;
 &lt;li&gt;Work on both windows and mac development machines&lt;/li&gt;
 &lt;li&gt;Be able to run a local server to host an API and client ap&lt;/li&gt;
-&lt;li&gt;Create a shell script for build and packinging for the build server&lt;/li&gt;
+&lt;li&gt;Create a shell script for build and packaging for the build server&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a name=&quot;preparation&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -53,10 +53,10 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;I only had one global &lt;code&gt;tsconfig.json&lt;/code&gt; file before but angular-cli makes use of multiple &lt;code&gt;tsconfig.json&lt;/code&gt; files and for a new &lt;code&gt;tsconfig.app.json&lt;/code&gt; file. Also, as of right now some editors ( &lt;a href=&quot;https://github.com/Microsoft/vscode/issues/24362&quot;&gt;VS Code #24362&lt;/a&gt;) don&amp;#39;t support custom tsconfig filenames yet. In some cases I had to create a &lt;code&gt;tsconfig.json&lt;/code&gt; for VS Code alongside the &lt;code&gt;tsconfig.app.json&lt;/code&gt; file in order for the editor to recognize specific paths. Not an ideal solution.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;I used to be to run &lt;code&gt;tsc&lt;/code&gt; and compile both server and client apps at the same time. Unfortunately, with the cli I now have to compile the client and server apps seperately and with different commands and config.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;I used to be to run &lt;code&gt;tsc&lt;/code&gt; and compile both server and client apps at the same time. Unfortunately, with the cli I now have to compile the client and server apps separately and with different commands and config.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;If you are going to ditch gulp entirely you will need to embrace &lt;code&gt;npm scripts&lt;/code&gt; to augment &lt;code&gt;angular-cli&lt;/code&gt;. I found this resource &lt;a href=&quot;https://medium.freecodecamp.org/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8&quot;&gt;&amp;quot;Why I Left Gulp and Grunt for npm Scripts&amp;quot;&lt;/a&gt; by Cory House a must read before the migration.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;It is important to realize that &lt;code&gt;ng serve&lt;/code&gt; and &lt;code&gt;ng test&lt;/code&gt; compile your typscript into memory and NOT physical files.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If you are clueless as to why &lt;code&gt;ng test&lt;/code&gt; doesn&amp;#39;t work with cyrptic errors look into the &lt;code&gt;pollyfills.ts&lt;/code&gt; file and start uncommenting lines.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;It is important to realize that &lt;code&gt;ng serve&lt;/code&gt; and &lt;code&gt;ng test&lt;/code&gt; compile your typescript into memory and NOT physical files.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;If you are clueless as to why &lt;code&gt;ng test&lt;/code&gt; doesn&amp;#39;t work with cryptic errors look into the &lt;code&gt;pollyfills.ts&lt;/code&gt; file and start uncommenting lines.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;I would recommend locking package.json versions with exact version numbers, shrinkwrap, lockfile or even yarn. There is no joy in debugging &lt;code&gt;@types&lt;/code&gt;, &lt;code&gt;tsc&lt;/code&gt; versions and incompatible modules.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Building with &lt;code&gt;ng build --prod&lt;/code&gt; which uses AOT compilation is a lot more strict than the default typescript rules with &lt;code&gt;ng serve&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;You may run into libraries that don&amp;#39;t support AOT compilation yet. For example, we had to switch from &lt;a href=&quot;https://github.com/Alberplz/angular2-color-picker&quot;&gt;Alberplz/angular2-color-picker&lt;/a&gt; to &lt;a href=&quot;https://github.com/zefoy/ngx-color-picker&quot;&gt;zefoy/ngx-color-picker&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
@@ -69,13 +69,19 @@
 
 &lt;h2&gt;&lt;a href=&quot;#scripts&quot;&gt;Serve and Build Scripts&lt;/a&gt;&lt;/h2&gt;
 
+&lt;p&gt;&lt;strong&gt;Serving for development work&lt;/strong&gt;&lt;/p&gt;
+
 &lt;p&gt;Just use &lt;code&gt;npm start&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Running &lt;code&gt;npm start&lt;/code&gt; will compile the server and client apps and then host the server and client apps.&lt;/p&gt;
+&lt;p&gt;This compiles and serves the client app from memory.&lt;/p&gt;
 
-&lt;p&gt;I make use of the cross platform &lt;code&gt;cross-env&lt;/code&gt; and &lt;code&gt;npm-run-all&lt;/code&gt; libraries to allow the commands to work on macs and windows machines.&lt;/p&gt;
+&lt;p&gt;Underneath the hood, serving our client and server requires some extra steps since we also need to compile a typescript server application. This gets tricky since &lt;code&gt;ng serve&lt;/code&gt; is running its own lite http server. We can actually proxy some routes in the &lt;code&gt;ng serve&lt;/code&gt; to our backend server running on a different port. This is available with a &lt;code&gt;--proxy-config&lt;/code&gt; switch.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Serving for development work&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When we compile our client app with &lt;code&gt;ng build&lt;/code&gt; we can actually just serve our node server and the compiled client since our app handles all the routing by design.&lt;/p&gt;
+
+&lt;p&gt;This is why there are some port number and proxy switching between the &lt;strong&gt;serve&lt;/strong&gt; and &lt;strong&gt;build&lt;/strong&gt; tasks.&lt;/p&gt;
+
+&lt;p&gt;Below are the baisc npm scripts we run in parallel in order to reduce the command into a simple &lt;code&gt;npm start&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;compile-server&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;tsc -p ./src/server&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 
 &lt;span class=&quot;s2&quot;&gt;&amp;quot;server&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;npm run compile-server &amp;amp;&amp;amp; cross-env NODE_CONFIG_DIR=./src/server/config node dist/server/index.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -84,6 +90,8 @@
 
 &lt;span class=&quot;s2&quot;&gt;&amp;quot;start&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;cross-env NODE_PORT=1337 npm-run-all --parallel client server&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;I make use of the cross platform &lt;code&gt;cross-env&lt;/code&gt; and &lt;code&gt;npm-run-all&lt;/code&gt; libraries to support macs and window machines.&lt;/p&gt;
+
 &lt;p&gt;&lt;strong&gt;Buliding for prod (Bundling and AOT)&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;The below table explains the difference between &lt;code&gt;ng build --prod&lt;/code&gt; and &lt;code&gt;ng serve&lt;/code&gt; (aka &lt;code&gt;ng build&lt;/code&gt;)
@@ -124,6 +132,8 @@
 &lt;/tbody&gt;
 &lt;/table&gt;&lt;/p&gt;
 
+&lt;p&gt;Run &lt;code&gt;npm run start-build&lt;/code&gt; in order to compile the client and server apps into the &lt;code&gt;dist&lt;/code&gt; directory and run a node server for that directoy. This is actually how we will in a deploy (production) mode.&lt;/p&gt;
+
 &lt;p&gt;Below are the &lt;code&gt;package.json&lt;/code&gt; scripts:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;build&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ng build --prod --base-href=/app/ --watch&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 &lt;span class=&quot;s2&quot;&gt;&amp;quot;start-build&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;cross-env NODE_ENV=dev NODE_PORT=3000 npm-run-all --parallel build server&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -136,7 +146,7 @@
 
 &lt;h2&gt;&lt;a href=&quot;#build-script&quot;&gt;Build Script and Deployment Server&lt;/a&gt;&lt;/h2&gt;
 
-&lt;p&gt;I won&amp;#39;t go into great depth regarding our build script but I will include it for the big picture. We use this on our Bamboo build server. It is not perfect and rather inefficent but it works.&lt;/p&gt;
+&lt;p&gt;I won&amp;#39;t go into great depth regarding our build script but I will include it for the big picture. We use this on our Bamboo build server. It works but is rather inefficient.&lt;/p&gt;
 
 &lt;p&gt;In the end we want a my-client-x-x-x.zip with the following:&lt;/p&gt;
 
@@ -168,7 +178,7 @@ npm -v
 npm install --no-progress
 &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;npm install finished&amp;#39;&lt;/span&gt;
 
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;showing verions with npm ls&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;showing versions with npm ls&amp;#39;&lt;/span&gt;
 npm ls
 
 &lt;span class=&quot;c&quot;&gt;# Dump versions for logs&lt;/span&gt;
@@ -197,7 +207,7 @@ ng build --prod --progress&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span
 &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;optomize build images&amp;#39;&lt;/span&gt;
 node ./devops/scripts/min-images.js
 
-&lt;span class=&quot;c&quot;&gt;# Creates dist/server files. we have to compile server tsc seperately&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Creates dist/server files. we have to compile server tsc separately&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;src/server
 
 &lt;span class=&quot;c&quot;&gt;# run tsc from bin modules to control our tsc version with package.json&lt;/span&gt;
