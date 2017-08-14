@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2017-08-13T19:55:16-04:00</updated>
+ <updated>2017-08-13T20:00:59-04:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -17,7 +17,7 @@
    <link href="https://www.jokecamp.com//blog/migrating-to-angular-cli"/>
    <updated>2017-08-12T00:00:00-04:00</updated>
    <id>https://www.jokecamp.com/blog/migrating-to-angular-cli</id>
-   <content type="html">&lt;p&gt;I recently migrated an Angular app from a gulp build system to an &lt;a href=&quot;https://cli.angular.io/&quot;&gt;Angular CLI&lt;/a&gt; (version 1.2.6). I wanted to share the process, some pain points and lessons learned.&lt;/p&gt;
+   <content type="html">&lt;p&gt;I recently migrated an Angular app from a gulp build system to an &lt;a href=&quot;https://cli.angular.io/&quot;&gt;Angular CLI&lt;/a&gt; (version 1.2.6). I am enjoying the new build system and the improved Angular performance. I wanted to share the process, some pain points and lessons learned.&lt;/p&gt;
 
 &lt;p&gt;A good starting point for migrating is the angular-cli &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories-1.0-update&quot;&gt;migration guide&lt;/a&gt; and &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories-moving-into-the-cli&quot;&gt;moving guide&lt;/a&gt;. Also check out the &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories&quot;&gt;list of general stories&lt;/a&gt;&lt;/p&gt;
 

@@ -4,14 +4,14 @@ comments: true
 layout: post
 slug: migrating-to-angular-cli-build
 title: Migrating a project to Angular CLI build system
-desc: 'A real example of migrating an existing Angular app and backend typescript node server to Angular CLI from a gulp build system.'
+desc: 'A real example of migrating an existing Angular client app and backend typescript Express server to an Angular CLI build system. Including in-depth scripts, lessons learned, pain points and build server implementation.'
 tags:
 - devops
 - angular-cli
 - javascript
 ---
 
-I recently migrated an Angular app from a gulp build system to an [Angular CLI](https://cli.angular.io/) (version 1.2.6). I wanted to share the process, some pain points and lessons learned.
+I recently migrated an Angular app from a gulp build system to an [Angular CLI](https://cli.angular.io/) (version 1.2.6). I am enjoying the new build system and the improved Angular performance. I wanted to share the process, some pain points and lessons learned.
 
 A good starting point for migrating is the angular-cli [migration guide](https://github.com/angular/angular-cli/wiki/stories-1.0-update) and [moving guide](https://github.com/angular/angular-cli/wiki/stories-moving-into-the-cli). Also check out the [list of general stories](https://github.com/angular/angular-cli/wiki/stories)
 
