@@ -65,7 +65,7 @@ var server = app.listen(30000, function () {
     server.address().address, server.address().port);
 });
 ```
-- Test the application by running `node sever.js` and viewing [http://localhost:30000/](http://localhost:30000/). It should output a simple menu with broken (stub) links.
+- Test the application by running `node server.js` and viewing [http://localhost:30000/](http://localhost:30000/). It should output a simple menu with broken (stub) links.
 
 <a name="logout"></a>
 ## 2) [Logout Route](#logout)
