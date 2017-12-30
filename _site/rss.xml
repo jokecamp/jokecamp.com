@@ -714,7 +714,7 @@ npm install passport-github --save
 &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Test the application by running &lt;code&gt;node sever.js&lt;/code&gt; and viewing &lt;a href=&quot;http://localhost:30000/&quot;&gt;http://localhost:30000/&lt;/a&gt;. It should output a simple menu with broken (stub) links.&lt;/li&gt;
+&lt;li&gt;Test the application by running &lt;code&gt;node server.js&lt;/code&gt; and viewing &lt;a href=&quot;http://localhost:30000/&quot;&gt;http://localhost:30000/&lt;/a&gt;. It should output a simple menu with broken (stub) links.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a name=&quot;logout&quot;&gt;&lt;/a&gt;&lt;/p&gt;

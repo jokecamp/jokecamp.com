@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2017-08-13T20:00:59-04:00</updated>
+ <updated>2017-12-30T15:03:41-05:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -723,7 +723,7 @@ npm install passport-github --save
 &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;Test the application by running &lt;code&gt;node sever.js&lt;/code&gt; and viewing &lt;a href=&quot;http://localhost:30000/&quot;&gt;http://localhost:30000/&lt;/a&gt;. It should output a simple menu with broken (stub) links.&lt;/li&gt;
+&lt;li&gt;Test the application by running &lt;code&gt;node server.js&lt;/code&gt; and viewing &lt;a href=&quot;http://localhost:30000/&quot;&gt;http://localhost:30000/&lt;/a&gt;. It should output a simple menu with broken (stub) links.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a name=&quot;logout&quot;&gt;&lt;/a&gt;&lt;/p&gt;
