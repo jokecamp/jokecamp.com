@@ -224,7 +224,7 @@ The free [API](https://market.mashape.com/arisalexis/soccer-odds) (hosted on Mas
 ### Subscription Services/APIs
 
 <a name="sportdeer"></a>
-####Sportdeer.com
+#### Sportdeer.com
 
 [https://sportdeer.com](https://sportdeer.com) offers 3 different plans to get football data of many football leagues. Plans are from 0€/month to 15€/month but it will be free of charge till the end of 2018. 
 
