@@ -226,13 +226,13 @@ The free [API](https://market.mashape.com/arisalexis/soccer-odds) (hosted on Mas
 <a name="sportdeer"></a>
 #### Sportdeer.com
 
-[SportDeer.com](https://sportdeer.com) offers 3 different plans to get football data of many football leagues. Plans are from 0€/month to 15€/month but it will be free of charge till the end of 2018. 
+[SportDeer.com](https://sportdeer.com) offers 3 different plans to get data of many football leagues. Plans are from 0€/month to 15€/month but it will be free of charge till the end of 2018. 
 
-In order to get the access token (a key that you need to put in every call), you have to create a refresh token in your profile area. Navigate to [https://www.SportDeer.com](https://sportdeer.com) and sign up.
+In order to get the access token (a key that you need to put in every call), you need to create a refresh token in your profile area. Navigate to [https://www.SportDeer.com](https://sportdeer.com) and open an account.
 
-Once you get a refresh token, hit the following endpoint to get the access token
+Once you get your refresh token, hit the following endpoint to get the access token
 
-  https://api.sportdeer.com/v1/accessToken?refresh_token=***YOUR_REFRESH_TOKEN***
+    https://api.sportdeer.com/v1/accessToken?refresh_token=***YOUR_REFRESH_TOKEN***
 
 Some example endpoints are:
 
