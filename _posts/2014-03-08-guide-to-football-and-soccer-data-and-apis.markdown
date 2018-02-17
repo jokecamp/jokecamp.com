@@ -35,6 +35,7 @@ Jump to a specific source:
   - [openfooty API](#openfooty) (hard to get an API Key)
   - [betlines ninja API](#betlinesNinja) (RESTful API on Mashape)
 - Commercial APIs
+  - [sportdeer.com](#sportdeer)
   - [football-api.com](#footballapi)
   - [CrowdScores and FastestLiveScores API](#CrowdScores)
   - [SPAPI](#spapi)
@@ -221,6 +222,24 @@ The free [API](https://market.mashape.com/arisalexis/soccer-odds) (hosted on Mas
 
 <a name="commerical"></a>
 ### Subscription Services/APIs
+
+<a name="sportdeer"></a>
+####Sportdeer.com
+
+[https://sportdeer.com](https://sportdeer.com) offers 3 different plans to get football data of many football leagues. Plans are from 0€/month to 15€/month but it will be free of charge till the end of 2018. 
+
+In order to get the access token (a key that you need to put in every call), you have to create a refresh token in your profile area. Navigate to [https://sportdeer.com](https://sportdeer.com) and sign up.
+
+Once you get a refresh token, hit the following endpoint to get the access token
+
+https://api.sportdeer.com/v1/accessToken?refresh_token=***YOUR_REFRESH_TOKEN***
+
+Some example endpoints are:
+
+    https://api.sportdeer.com/v1/countries?access_token=***YOUR_ACCES_TOKEN***
+    https://api.sportdeer.com/v1/countries/:id?access_token=***YOUR_ACCES_TOKEN***
+    https://api.sportdeer.com/v1/leagues?access_token=***YOUR_ACCES_TOKEN***
+    
 
 <a name="footballapi"></a>
 #### football-api
