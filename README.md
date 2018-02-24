@@ -13,14 +13,6 @@ Then browse to <http://localhost:4000/>
 
 Pull requests will be accepted for any typos or editing and your contribution will be credited.
 
-
-Use one of the following categories for each post:
-
- - Guide
- - Blog
- - Code
-
-
 ## Asset Pipeline
 
 https://github.com/matthodan/jekyll-asset-pipeline/blob/master/README.md
@@ -28,19 +20,11 @@ https://github.com/matthodan/jekyll-asset-pipeline/blob/master/README.md
 - gem install jekyll-asset-pipeline
 - gem install yui-compressor
 
-
-## Optimizing for fun
-
-Main page as of 9/6/2015 = 46.9K HTTP Requests - 6
-Primed Cache = 5.9K HTTP Requests - 3
-
-
-
-## Compress static content
+## Script to Compress static content
 
 See <https://members.nearlyfreespeech.net/wiki/HowTo/GzipStatic>
 
-Run on server
+Run on unix web server
 ```
 #!/usr/local/bin/perl
 
@@ -58,7 +42,6 @@ sub wanted
  }
 }
 ```
-
 
 ## To Deploy
 
