@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2018-02-24T14:53:15-05:00</updated>
+ <updated>2018-02-24T14:58:42-05:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1848,6 +1848,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#prozone&quot;&gt;prozone&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#matchanalysis&quot;&gt;Match Analaysis&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#apifootball&quot;&gt;apifootball.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#sportdeer&quot;&gt;SportDeer.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Other Websites
 
@@ -2044,6 +2045,17 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;h3&gt;Subscription Services/APIs&lt;/h3&gt;
 
+&lt;p&gt;&lt;a name=&quot;sportdeer&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;Sportdeer.com&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://sportdeer.com&quot;&gt;SportDeer.com&lt;/a&gt; offers three different plans. Basic, Normal and Advanced. Plans range from 5€/month to 15€/month but will be free of charge till the end of 2018. Registration is required. &lt;a href=&quot;https://sportdeer.com/documentation/football/api&quot;&gt;API Documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Some example endpoints are:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;https://api.sportdeer.com/v1/countries?access_token=***YOUR_ACCES_TOKEN***
+https://api.sportdeer.com/v1/countries/:id?access_token=***YOUR_ACCES_TOKEN***
+https://api.sportdeer.com/v1/leagues?access_token=***YOUR_ACCES_TOKEN***
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a name=&quot;footballapi&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4&gt;football-api&lt;/h4&gt;
