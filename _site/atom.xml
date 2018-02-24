@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2018-02-24T14:58:42-05:00</updated>
+ <updated>2018-02-24T15:02:55-05:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1809,7 +1809,7 @@ Fn  Function Key&lt;/p&gt;
    <link href="https://www.jokecamp.com//blog/guide-to-football-and-soccer-data-and-apis"/>
    <updated>2014-03-08T12:08:40-05:00</updated>
    <id>https://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</id>
-   <content type="html">&lt;p&gt;Last updated: June 21 2017&lt;/p&gt;
+   <content type="html">&lt;p&gt;Last updated: Feb 24 2018&lt;/p&gt;
 
 &lt;h2&gt;Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -1917,7 +1917,7 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;h4&gt;WoSo Stats&lt;/h4&gt;
 
-&lt;p&gt;Women&amp;#39;s Soccer Stats. Collecting, analyzing, and sharing data about women&amp;#39;s soccer from around the world. &lt;a href=&quot;https://wosostats.wordpress.com/&quot;&gt;WoSo Stats Homepage&lt;/a&gt; and their github &lt;a href=&quot;https://github.com/amj2012/wosostats&quot;&gt;amj2012/wosostats&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Women&amp;#39;s Soccer Stats. Collecting, analyzing, and sharing data about women&amp;#39;s soccer from around the world. &lt;a href=&quot;https://wosostats.wordpress.com/&quot;&gt;WoSo Stats Homepage&lt;/a&gt; and their github &lt;a href=&quot;https://github.com/amj2012/wosostats&quot;&gt;amj2012/wosostats&lt;/a&gt;. &lt;a href=&quot;https://amj2012.shinyapps.io/wosostats/&quot;&gt;Browse their data app&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;repos&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 

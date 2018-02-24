@@ -107,7 +107,7 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 <a name="woso"></a>
 #### WoSo Stats
 
-Women's Soccer Stats. Collecting, analyzing, and sharing data about women's soccer from around the world. [WoSo Stats Homepage](https://wosostats.wordpress.com/) and their github [amj2012/wosostats](https://github.com/amj2012/wosostats).
+Women's Soccer Stats. Collecting, analyzing, and sharing data about women's soccer from around the world. [WoSo Stats Homepage](https://wosostats.wordpress.com/) and their github [amj2012/wosostats](https://github.com/amj2012/wosostats). [Browse their data app](https://amj2012.shinyapps.io/wosostats/).
 
 <a name="repos"></a>
 #### Other smaller Projects/Repos
