@@ -27,7 +27,8 @@ Jump to a specific source:
 - Open source data on github
   - [openfootball - football.db](#openfootball)
   - [jokecamp/FootballData](#fdata)
-  - [socerstats.us](#soccerstats)
+  - [soccerstats.us](#soccerstats)
+  - [WoSo (Womens) Stats](#woso)
   - [Other smaller projects/repos](#repos)
 - Free APIs
   - [football-data.org](#footballdata) (RESTful API)
@@ -101,6 +102,11 @@ There is also an open source football.db HTTP JSON(P) [API](http://openfootball.
 #### soccerstats.us
 
 **[soccerstats.us](http://soccerstats.us)** is github [organization](https://github.com/soccerstatsus) with multiple repositories for sets of data (with a focus on North American data). The [parser](https://github.com/SoccerStatsUS/parse) is written in python and looks like it was designed to parse the rsssf.com text data.
+
+<a name="woso"></a>
+#### WoSo Stats
+
+Women's Soccer Stats. Collecting, analyzing, and sharing data about women's soccer from around the world. [WoSo Stats Homepage](https://wosostats.wordpress.com/) and their github [amj2012/wosostats](https://github.com/amj2012/wosostats).
 
 <a name="repos"></a>
 #### Other smaller Projects/Repos
