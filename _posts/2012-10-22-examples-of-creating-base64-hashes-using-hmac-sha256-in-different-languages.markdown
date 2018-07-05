@@ -26,6 +26,7 @@ tags:
 - security
 - sha256
 - swift
+- shell
 featured: true
 ---
 
@@ -49,6 +50,7 @@ Jump to an implementation:
   * [Swift]({{page.url}}#swift)
   * [Rust]({{page.url}}#rust)
   * [Powershell]({{page.url}}#powershell)
+  * [Shell]({{page.url}}#shell)  
 
 ### <a name='js'></a>Javascript HMAC SHA256
 
@@ -338,3 +340,15 @@ echo $signature
 # Do we get the expected signature?
 echo ($signature -eq 'qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=')
 ```
+
+### <a name='shell'></a>Shell (Bash etc) HMAC SHA256
+
+Using openssl
+
+```shell
+MESSAGE="Message"
+SECRET="secret"
+
+echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base64
+```
+
