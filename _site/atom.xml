@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2018-07-24T19:47:36-04:00</updated>
+ <updated>2018-07-24T19:58:22-04:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1834,6 +1834,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#SportsOpenData&quot;&gt;Sports Open Data&lt;/a&gt; (RESTful API)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#betlinesNinja&quot;&gt;betlines ninja API&lt;/a&gt; (RESTful API on Mashape)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#apifootball&quot;&gt;API-Football&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Commercial APIs
 
@@ -1849,6 +1850,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#matchanalysis&quot;&gt;Match Analaysis&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#apifootball&quot;&gt;apifootball.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#sportdeer&quot;&gt;SportDeer.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#fantasysportnet&quot;&gt;fantasysportnet.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Other Websites
 
@@ -1927,6 +1929,8 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 &lt;li&gt;&lt;a href=&quot;https://github.com/jalapic/engsoccerdata&quot;&gt;github.com/jalapic/engsoccerdata&lt;/a&gt; includes a &lt;a href=&quot;https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv&quot;&gt;csv file&lt;/a&gt; of the top 4 tier English League Soccer games from 1888 to 2014.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/planetopendata/awesome-football&quot;&gt;planetopendata/awesome-football&lt;/a&gt; includes another list of repos&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/architv/soccer-cli&quot;&gt;architv/soccer-cli&lt;/a&gt; - A command line interface for retrieving football scores.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/pssguy/epldata&quot;&gt;pssguy/epldata&lt;/a&gt; - Datasets of the English Premier League 1992-2018&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/jalapic/engsoccerdata&quot;&gt;jalapic/engsoccerdata&lt;/a&gt; - English and European soccer results 1871-2017. Includes three English ones (League data, FA Cup data, Playoff data), several European leagues (Spain, Germany, Italy, Holland, France, Belgium, Portugal, Turkey, Scotland, Greece) as well as South Africa and MLS.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;a name=&quot;free&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -2041,6 +2045,17 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 
 &lt;p&gt;The free &lt;a href=&quot;https://market.mashape.com/arisalexis/soccer-odds&quot;&gt;API&lt;/a&gt; (hosted on Mashape) is for betting odds but contains a lot of upcoming fixture data. The API is provided by the &lt;a href=&quot;http://betlines.ninja&quot;&gt;Betlines Ninja&lt;/a&gt;. Along with match data the service provides recent odds data from all major sportsbooks (11 currently including Bwin, Paddy Power, Betfair etc.) Results can be obtained for a maximum of 3 days back in the free plan. There is also a data-dump database of historical data for sale.&lt;/p&gt;
 
+&lt;p&gt;&lt;a name=&quot;apifootball&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;API-Football&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.api-football.com/&quot;&gt;API-Football&lt;/a&gt; covers major and minor football leagues and many more are pending. They ask for league suggestions. Livescore, pre-matchs odds, events, standings, we all put in our API. Free tier is 50 requests a day. More &lt;a href=&quot;https://www.api-football.com/pricing/&quot;&gt;pricing details&lt;/a&gt;. Also on &lt;a href=&quot;https://market.mashape.com/gaudinjeremy/winbot-soccer-api&quot;&gt;mashape&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Curl Example:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;curl --get --include &amp;#39;https://api-football-v1.p.mashape.com/seasons&amp;#39; \
+   -H &amp;#39;X-Mashape-Key: XXXXXXXXXXXXXXXXXXXXXXXXX&amp;#39; \
+   -H &amp;#39;Accept: application/json&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a name=&quot;commerical&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Subscription Services/APIs&lt;/h3&gt;
@@ -2056,6 +2071,12 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 https://api.sportdeer.com/v1/countries/:id?access_token=***YOUR_ACCES_TOKEN***
 https://api.sportdeer.com/v1/leagues?access_token=***YOUR_ACCES_TOKEN***
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a name=&quot;fantasysportnet&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;fantasysportnet&lt;/h4&gt;
+
+&lt;p&gt;I have not had time to check this out but adding to the list for now. &lt;a href=&quot;http://www.fantasysportnet.com/data/home.jsp&quot;&gt;http://www.fantasysportnet.com/data/home.jsp&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;a name=&quot;footballapi&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4&gt;football-api&lt;/h4&gt;

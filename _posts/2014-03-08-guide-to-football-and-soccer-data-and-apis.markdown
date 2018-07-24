@@ -35,6 +35,7 @@ Jump to a specific source:
   - [Sports Open Data](#SportsOpenData) (RESTful API)
   - [openfooty API](#openfooty) (hard to get an API Key)
   - [betlines ninja API](#betlinesNinja) (RESTful API on Mashape)
+  - [API-Football](#apifootball)
 - Commercial APIs
   - [football-api.com](#footballapi)
   - [CrowdScores and FastestLiveScores API](#CrowdScores)
@@ -47,6 +48,7 @@ Jump to a specific source:
   - [Match Analaysis](#matchanalysis)
   - [apifootball.com](#apifootball)
   - [SportDeer.com](#sportdeer)
+  - [fantasysportnet.com](#fantasysportnet)
 - Other Websites
   - [footballsquads.co.uk](#footballsquads.co.uk)
   - [Rec.Sport.Soccer Statistics Foundation (RSSSF)](#rsssf)
@@ -115,6 +117,8 @@ Women's Soccer Stats. Collecting, analyzing, and sharing data about women's socc
  - [github.com/jalapic/engsoccerdata](https://github.com/jalapic/engsoccerdata) includes a [csv file](https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv) of the top 4 tier English League Soccer games from 1888 to 2014.
  - [planetopendata/awesome-football](https://github.com/planetopendata/awesome-football) includes another list of repos
  - [architv/soccer-cli](https://github.com/architv/soccer-cli) - A command line interface for retrieving football scores.
+ - [pssguy/epldata](https://github.com/pssguy/epldata) - Datasets of the English Premier League 1992-2018
+ - [jalapic/engsoccerdata](https://github.com/jalapic/engsoccerdata) - English and European soccer results 1871-2017. Includes three English ones (League data, FA Cup data, Playoff data), several European leagues (Spain, Germany, Italy, Holland, France, Belgium, Portugal, Turkey, Scotland, Greece) as well as South Africa and MLS.
 
 <a name="free"></a>
 ###  Free APIs
@@ -226,6 +230,19 @@ Example Standings JSON
 
 The free [API](https://market.mashape.com/arisalexis/soccer-odds) (hosted on Mashape) is for betting odds but contains a lot of upcoming fixture data. The API is provided by the [Betlines Ninja](http://betlines.ninja). Along with match data the service provides recent odds data from all major sportsbooks (11 currently including Bwin, Paddy Power, Betfair etc.) Results can be obtained for a maximum of 3 days back in the free plan. There is also a data-dump database of historical data for sale.
 
+<a name="apifootball"></a>
+### API-Football
+
+[API-Football](https://www.api-football.com/) covers major and minor football leagues and many more are pending. They ask for league suggestions. Livescore, pre-matchs odds, events, standings, we all put in our API. Free tier is 50 requests a day. More [pricing details](https://www.api-football.com/pricing/). Also on [mashape](https://market.mashape.com/gaudinjeremy/winbot-soccer-api)
+
+Curl Example:
+
+```
+curl --get --include 'https://api-football-v1.p.mashape.com/seasons' \
+   -H 'X-Mashape-Key: XXXXXXXXXXXXXXXXXXXXXXXXX' \
+   -H 'Accept: application/json'
+```
+
 <a name="commerical"></a>
 ### Subscription Services/APIs
 
@@ -240,6 +257,10 @@ Some example endpoints are:
     https://api.sportdeer.com/v1/countries/:id?access_token=***YOUR_ACCES_TOKEN***
     https://api.sportdeer.com/v1/leagues?access_token=***YOUR_ACCES_TOKEN***
 
+<a name="fantasysportnet"></a>
+#### fantasysportnet
+
+I have not had time to check this out but adding to the list for now. <http://www.fantasysportnet.com/data/home.jsp>
 
 <a name="footballapi"></a>
 #### football-api
