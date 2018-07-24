@@ -50,7 +50,7 @@ Jump to an implementation:
   * [Swift]({{page.url}}#swift)
   * [Rust]({{page.url}}#rust)
   * [Powershell]({{page.url}}#powershell)
-  * [Shell]({{page.url}}#shell)  
+  * [Shell]({{page.url}}#shell)
 
 ### <a name='js'></a>Javascript HMAC SHA256
 
@@ -343,12 +343,13 @@ echo ($signature -eq 'qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=')
 
 ### <a name='shell'></a>Shell (Bash etc) HMAC SHA256
 
-Using openssl
+Using openssl. Credit to [@CzechJiri](https://github.com/CzechJiri)
 
-```shell
+```
 MESSAGE="Message"
 SECRET="secret"
 
 echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base64
 ```
+
 

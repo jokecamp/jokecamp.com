@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2018-02-24T15:02:55-05:00</updated>
+ <updated>2018-07-24T19:47:36-04:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -3628,14 +3628,16 @@ fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
 &lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#swift&quot;&gt;Swift&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#rust&quot;&gt;Rust&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#powershell&quot;&gt;Powershell&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#shell&quot;&gt;Shell&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3&gt;&lt;a name=&#39;js&#39;&gt;&lt;/a&gt;Javascript HMAC SHA256&lt;/h3&gt;
 
-&lt;p&gt;Run the code online with this &lt;a href=&quot;http://jsfiddle.net/7f8m7/&quot;&gt;jsfiddle&lt;/a&gt;.
+&lt;p&gt;Run the code online with this &lt;a href=&quot;http://jsfiddle.net/af9ps1yk/6/&quot;&gt;jsfiddle&lt;/a&gt;.
 Dependent upon an open source js library called &lt;a href=&quot;http://code.google.com/p/crypto-js/&quot;&gt;http://code.google.com/p/crypto-js/&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hash&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CryptoJS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;HmacSHA256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Message&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;secret&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -3884,6 +3886,14 @@ echo $signature
 
 # Do we get the expected signature?
 echo ($signature -eq &amp;#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;&lt;a name=&#39;shell&#39;&gt;&lt;/a&gt;Shell (Bash etc) HMAC SHA256&lt;/h3&gt;
+
+&lt;p&gt;Using openssl. Credit to &lt;a href=&quot;https://github.com/CzechJiri&quot;&gt;@CzechJiri&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;MESSAGE=&amp;quot;Message&amp;quot;
+SECRET=&amp;quot;secret&amp;quot;
+
+echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base64
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
  </entry>
  

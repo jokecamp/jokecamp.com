@@ -55,14 +55,16 @@
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#swift">Swift</a></li>
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#rust">Rust</a></li>
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#powershell">Powershell</a></li>
+<li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#shell">Shell</a></li>
 </ul>
 
 <h3><a name='js'></a>Javascript HMAC SHA256</h3>
 
-<p>Run the code online with this <a href="http://jsfiddle.net/7f8m7/">jsfiddle</a>.
+<p>Run the code online with this <a href="http://jsfiddle.net/af9ps1yk/6/">jsfiddle</a>.
 Dependent upon an open source js library called <a href="http://code.google.com/p/crypto-js/">http://code.google.com/p/crypto-js/</a>.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/hmac-sha256.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js&quot;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
 
 <span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
   <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">CryptoJS</span><span class="p">.</span><span class="nx">HmacSHA256</span><span class="p">(</span><span class="s2">&quot;Message&quot;</span><span class="p">,</span> <span class="s2">&quot;secret&quot;</span><span class="p">);</span>
@@ -312,11 +314,19 @@ echo $signature
 # Do we get the expected signature?
 echo ($signature -eq &#39;qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=&#39;)
 </code></pre></div>
+<h3><a name='shell'></a>Shell (Bash etc) HMAC SHA256</h3>
+
+<p>Using openssl. Credit to <a href="https://github.com/CzechJiri">@CzechJiri</a></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">MESSAGE=&quot;Message&quot;
+SECRET=&quot;secret&quot;
+
+echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base64
+</code></pre></div>
 </div>
 
 <div class="tags">
 Tags
- <div class='tag'><a href='/tag/#C#'>C#</a></div>  <div class='tag'><a href='/tag/#powershell'>powershell</a></div>  <div class='tag'><a href='/tag/#dart'>dart</a></div>  <div class='tag'><a href='/tag/#go'>go</a></div>  <div class='tag'><a href='/tag/#hmac'>hmac</a></div>  <div class='tag'><a href='/tag/#java'>java</a></div>  <div class='tag'><a href='/tag/#javascript'>javascript</a></div>  <div class='tag'><a href='/tag/#objectiveC'>objectiveC</a></div>  <div class='tag'><a href='/tag/#perl'>perl</a></div>  <div class='tag'><a href='/tag/#php'>php</a></div>  <div class='tag'><a href='/tag/#python'>python</a></div>  <div class='tag'><a href='/tag/#rest'>rest</a></div>  <div class='tag'><a href='/tag/#ruby'>ruby</a></div>  <div class='tag'><a href='/tag/#security'>security</a></div>  <div class='tag'><a href='/tag/#sha256'>sha256</a></div>  <div class='tag'><a href='/tag/#swift'>swift</a></div> 
+ <div class='tag'><a href='/tag/#C#'>C#</a></div>  <div class='tag'><a href='/tag/#powershell'>powershell</a></div>  <div class='tag'><a href='/tag/#dart'>dart</a></div>  <div class='tag'><a href='/tag/#go'>go</a></div>  <div class='tag'><a href='/tag/#hmac'>hmac</a></div>  <div class='tag'><a href='/tag/#java'>java</a></div>  <div class='tag'><a href='/tag/#javascript'>javascript</a></div>  <div class='tag'><a href='/tag/#objectiveC'>objectiveC</a></div>  <div class='tag'><a href='/tag/#perl'>perl</a></div>  <div class='tag'><a href='/tag/#php'>php</a></div>  <div class='tag'><a href='/tag/#python'>python</a></div>  <div class='tag'><a href='/tag/#rest'>rest</a></div>  <div class='tag'><a href='/tag/#ruby'>ruby</a></div>  <div class='tag'><a href='/tag/#security'>security</a></div>  <div class='tag'><a href='/tag/#sha256'>sha256</a></div>  <div class='tag'><a href='/tag/#swift'>swift</a></div>  <div class='tag'><a href='/tag/#shell'>shell</a></div> 
 </div>
 
 <div class="post-footer">
