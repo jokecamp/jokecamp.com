@@ -7,6 +7,77 @@
 		<atom:link href="https://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Typescript in the Wild - Real World Examples Part 1</title>
+				<description>&lt;p&gt;In an ongoing series I will be reading and discussing various Typescript code found in the wild. Reading other people&amp;#39;s code is a great way to learn and improve your own code. First up is a random class from the popular &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VS Code&lt;/a&gt; editor.&lt;/p&gt;
+
+&lt;h3&gt;&lt;code&gt;editorAction.ts&lt;/code&gt; from &lt;a href=&quot;https://github.com/Microsoft/vscode&quot;&gt;github.com/Microsoft/vscode&lt;/a&gt;&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/*---------------------------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; *  Copyright (c) Microsoft Corporation. All rights reserved.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; *  Licensed under the MIT License. See License.txt in the project root for license information.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt; *--------------------------------------------------------------------------------------------*/&lt;/span&gt;
+&lt;span class=&quot;s1&quot;&gt;&amp;#39;use strict&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TPromise&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;vs/base/common/winjs.base&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IEditorAction&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;vs/editor/common/editorCommon&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kr&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IContextKeyService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ContextKeyExpr&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;vs/platform/contextkey/common/contextkey&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kr&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;InternalEditorAction&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IEditorAction&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readonly&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readonly&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readonly&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alias&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readonly&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_precondition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ContextKeyExpr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readonly&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TPromise&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readonly&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_contextKeyService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IContextKeyService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;alias&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;precondition&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ContextKeyExpr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;contextKeyService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IContextKeyService&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;alias&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_precondition&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;precondition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_run&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_contextKeyService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;contextKeyService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;isSupported&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_contextKeyService&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;contextMatchesRules&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_precondition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kr&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TPromise&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isSupported&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TPromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;kr&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_run&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TPromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This code is simple and readable but there are several bits that I found noteworthy unfamiliar. Below are my own thoughts and speculation.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Why the first line of &lt;code&gt;use strict&lt;/code&gt; in typescript? It seems redundant. It is likely included due to being developed against older tsc versions. Now it can be easily added via compile options. &lt;a href=&quot;https://stackoverflow.com/a/31392947/215502&quot;&gt;More info&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The use of underscores for private variables as a coding convention. Perhaps this convention is why they do not use common pattern of &lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/classes.html&quot;&gt;Parameter Properties&lt;/a&gt; like &lt;code&gt;constructor(private readonly id: string&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The usage of &lt;code&gt;|&lt;/code&gt; in &lt;code&gt;void | TPromise&amp;lt;void&amp;gt;&lt;/code&gt; for more flexible typing is a &lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/advanced-types.html#union-types&quot;&gt;Union Type&lt;/a&gt;. There is also a &lt;code&gt;&amp;amp;&lt;/code&gt; Intersection Types which I was not familiar with.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What is world is &lt;code&gt;void 0&lt;/code&gt; ? It turns out &lt;code&gt;undefined&lt;/code&gt; could be changed/re-assigned in some older js versions (like &lt;code&gt;var undefined=&amp;#39;ooops&amp;#39;;&lt;/code&gt;). The use of &lt;code&gt;void 0&lt;/code&gt; is a &lt;a href=&quot;https://stackoverflow.com/a/7452352/215502&quot;&gt;guaranteed shortcut for undefined&lt;/a&gt;. void is a function that takes one parameter and always returns undefined.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The constructor takes one parameter called &lt;code&gt;run: () =&amp;gt; void&lt;/code&gt; but defines the member as &lt;code&gt;_run: () =&amp;gt; void | TPromise&amp;lt;void&amp;gt;;&lt;/code&gt; Why?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;What is &lt;code&gt;TPromise&lt;/code&gt;? It looks like a custom &lt;a href=&quot;https://github.com/Microsoft/vscode/blob/master/src/vs/base/common/winjs.base.d.ts&quot;&gt;interface&lt;/a&gt; extracted from &lt;a href=&quot;https://github.com/winjs/winjs&quot;&gt;winjs&lt;/a&gt; shims and polyfills. I can see why large projects wrap their own Promises from having my own issues in upgrading projects to &lt;code&gt;async await&lt;/code&gt; features and running into incompatibility issues between bluebird and native promises.  More info at &lt;a href=&quot;https://github.com/petkaantonov/bluebird/issues/1434&quot;&gt;Official recommendation for using Bluebird with async functions? &lt;/a&gt; and &lt;a href=&quot;https://stackoverflow.com/a/44166729/215502&quot;&gt;Get Bluebird Promise from async await functions&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+				<pubDate>Sat, 22 Sep 2018 00:00:00 -0400</pubDate>
+				<link>https://www.jokecamp.com/blog/typescript-real-world-examples</link>
+				<guid isPermaLink="true">https://www.jokecamp.com/blog/typescript-real-world-examples</guid>
+			</item>
+		
+			<item>
 				<title>Migrating a project to Angular CLI build system</title>
 				<description>&lt;p&gt;I recently migrated an Angular app from a gulp build system to an &lt;a href=&quot;https://cli.angular.io/&quot;&gt;Angular CLI&lt;/a&gt; (version 1.2.6). I am enjoying the new build system and the improved Angular performance. I wanted to share the process, some pain points and lessons learned.&lt;/p&gt;
 
@@ -973,33 +1044,6 @@ npm install passport-github --save
 				<pubDate>Mon, 26 Jan 2015 00:00:00 -0500</pubDate>
 				<link>https://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</link>
 				<guid isPermaLink="true">https://www.jokecamp.com/blog/what-has-angularjs-ever-done-for-us</guid>
-			</item>
-		
-			<item>
-				<title>Why is SVN merge not tracking merged revisions?</title>
-				<description>&lt;p&gt;The most likely answer:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;The URL to merge from is case-sensitive. If you merge from a URL with the wrong casing the merge will work for the files but the revision will not be recorded in the MergeInfo property.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This can be a frustrating problem because SVN and &lt;a href=&quot;http://tortoisesvn.net/&quot;&gt;TortiseSVN&lt;/a&gt; do not give any feedback/notification about the mis-matching urls during a &lt;a href=&quot;http://svnbook.red-bean.com/en/1.7/svn.branchmerge.basicmerging.html&quot;&gt;merge&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2&gt;How I figured it out&lt;/h2&gt;
-
-&lt;p&gt;Recently, my svn client merge-tracking stopped working. I was performing merges with &lt;a href=&quot;http://tortoisesvn.net/&quot;&gt;TortiseSVN&lt;/a&gt; at the root level but the revision numbers where not being recorded in the MergeInfo Property. There were no error messages either.&lt;/p&gt;
-
-&lt;p&gt;I then tried merging directly with svn from the command line but got the same result. No error messages either.&lt;/p&gt;
-
-&lt;p&gt;It was not until I thought to try to do a merge from the command line with the &lt;code&gt;--record-only&lt;/code&gt; option. This was the only command that provided an actual error message:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;svn merge -c 16304 https://server/svn/project/trunk/ --record-only
-svn: E200004: Merge from foreign repository is not compatible with mergeinfo modification
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Once I had a meaningful error, I was able to track down this old forum conversation (argument) about &lt;a href=&quot;http://tigris-scm.10930.n7.nabble.com/Why-Merge-Tracking-is-disabled-td24815.html&quot;&gt;case sensitive urls and TortiseSVN&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I hope this saves you some time.&lt;/p&gt;
-</description>
-				<pubDate>Thu, 06 Nov 2014 00:00:00 -0500</pubDate>
-				<link>https://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</link>
-				<guid isPermaLink="true">https://www.jokecamp.com/blog/why-is-svn-merge-not-tracking-merged-revisions</guid>
 			</item>
 		
 	</channel>
