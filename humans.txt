@@ -1,6 +1,6 @@
 /* TEAM */
 
-Your title: Joe Kampschmidt.
-Role: Author.
+Name: Joe Kampschmidt
+Role: Author
 Twitter: @jokecamp
 Location: Washington DC, USA
