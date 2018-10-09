@@ -20,7 +20,8 @@ tags:
 - objectiveC
 - perl
 - php
-- python
+- python2
+- python3
 - rest
 - ruby
 - security
@@ -44,7 +45,8 @@ Jump to an implementation:
   * [Objective C]({{page.url}}#objc)
   * [Go]({{page.url}}#go)
   * [Ruby]({{page.url}}#ruby)
-  * [Python]({{page.url}}#python)
+  * [Python2]({{page.url}}#python2)
+  * [Python3]({{page.url}}#python3)
   * [Perl]({{page.url}}#perl)
   * [Dart]({{page.url}}#dart)
   * [Swift]({{page.url}}#swift)
@@ -250,7 +252,7 @@ hash  = OpenSSL::HMAC.digest('sha256', "secret", "Message")
 puts Base64.encode64(hash)
 ```
 
-### <a name='python'></a>Python (2.7) HMAC SHA256
+### <a name='python2'></a>Python (2.7) HMAC SHA256
 
 ```python
 import hashlib
@@ -265,6 +267,23 @@ print(signature)
 ```
 
 Tested with Python 2.7.6. Also, be sure not to name your python demo script the same as one of the imported libraries.
+
+### <a name='python3'></a>Python (3.7) HMAC SHA256
+
+```python
+import hashlib
+import hmac
+import base64
+
+message = bytes('Message', 'utf-8')
+secret = bytes('secret', 'utf-8')
+
+signature = base64.b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())
+print(signature)
+```
+
+Tested with Python 3.7.0. Also, be sure not to name your python demo script the same as one of the imported libraries.
+
 
 ### <a name='perl'></a>Perl HMAC SHA256
 
