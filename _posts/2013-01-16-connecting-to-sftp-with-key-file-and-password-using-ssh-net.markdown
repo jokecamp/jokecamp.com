@@ -45,10 +45,7 @@ using (var client = new SftpClient(con))
         using (var fs = new FileStream(localPath + file.Name, FileMode.Create))
         {
             client.DownloadFile(file.FullName, fs);
-            fs.Close();
         }
     }
-
-    client.Disconnect();
 }
 ```
