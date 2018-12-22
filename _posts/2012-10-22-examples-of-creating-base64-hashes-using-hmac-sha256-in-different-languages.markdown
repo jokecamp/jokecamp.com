@@ -282,7 +282,7 @@ signature = base64.b64encode(hmac.new(secret, message, digestmod=hashlib.sha256)
 print(signature)
 ```
 
-Tested with Python 3.7.0. Also, be sure not to name your python demo script the same as one of the imported libraries.
+Tested with Python 3.7.0. Also, be sure not to name your python demo script the same as one of the imported libraries. Thanks to [@biswapanda](https://github.com/biswapanda).
 
 
 ### <a name='perl'></a>Perl HMAC SHA256

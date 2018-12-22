@@ -49,7 +49,8 @@
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#objc">Objective C</a></li>
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#go">Go</a></li>
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#ruby">Ruby</a></li>
-<li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#python">Python</a></li>
+<li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#python2">Python2</a></li>
+<li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#python3">Python3</a></li>
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#perl">Perl</a></li>
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#dart">Dart</a></li>
 <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#swift">Swift</a></li>
@@ -235,7 +236,7 @@ outside dependencies. Say what you want about PHP but they have the cleanest cod
 <span class="nb">hash</span>  <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="o">.</span><span class="n">digest</span><span class="p">(</span><span class="s1">&#39;sha256&#39;</span><span class="p">,</span> <span class="s2">&quot;secret&quot;</span><span class="p">,</span> <span class="s2">&quot;Message&quot;</span><span class="p">)</span>
 <span class="nb">puts</span> <span class="no">Base64</span><span class="o">.</span><span class="n">encode64</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span>
 </code></pre></div>
-<h3><a name='python'></a>Python (2.7) HMAC SHA256</h3>
+<h3><a name='python2'></a>Python (2.7) HMAC SHA256</h3>
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">import</span> <span class="nn">hmac</span>
 <span class="kn">import</span> <span class="nn">base64</span>
@@ -247,6 +248,19 @@ outside dependencies. Say what you want about PHP but they have the cleanest cod
 <span class="k">print</span><span class="p">(</span><span class="n">signature</span><span class="p">)</span>
 </code></pre></div>
 <p>Tested with Python 2.7.6. Also, be sure not to name your python demo script the same as one of the imported libraries.</p>
+
+<h3><a name='python3'></a>Python (3.7) HMAC SHA256</h3>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="n">message</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="s">&#39;Message&#39;</span><span class="p">,</span> <span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="s">&#39;secret&#39;</span><span class="p">,</span> <span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+
+<span class="n">signature</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">signature</span><span class="p">)</span>
+</code></pre></div>
+<p>Tested with Python 3.7.0. Also, be sure not to name your python demo script the same as one of the imported libraries. Thanks to <a href="https://github.com/biswapanda">@biswapanda</a>.</p>
 
 <h3><a name='perl'></a>Perl HMAC SHA256</h3>
 
@@ -326,7 +340,7 @@ echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base64
 
 <div class="tags">
 Tags
- <div class='tag'><a href='/tag/#C#'>C#</a></div>  <div class='tag'><a href='/tag/#powershell'>powershell</a></div>  <div class='tag'><a href='/tag/#dart'>dart</a></div>  <div class='tag'><a href='/tag/#go'>go</a></div>  <div class='tag'><a href='/tag/#hmac'>hmac</a></div>  <div class='tag'><a href='/tag/#java'>java</a></div>  <div class='tag'><a href='/tag/#javascript'>javascript</a></div>  <div class='tag'><a href='/tag/#objectiveC'>objectiveC</a></div>  <div class='tag'><a href='/tag/#perl'>perl</a></div>  <div class='tag'><a href='/tag/#php'>php</a></div>  <div class='tag'><a href='/tag/#python'>python</a></div>  <div class='tag'><a href='/tag/#rest'>rest</a></div>  <div class='tag'><a href='/tag/#ruby'>ruby</a></div>  <div class='tag'><a href='/tag/#security'>security</a></div>  <div class='tag'><a href='/tag/#sha256'>sha256</a></div>  <div class='tag'><a href='/tag/#swift'>swift</a></div>  <div class='tag'><a href='/tag/#shell'>shell</a></div> 
+ <div class='tag'><a href='/tag/#C#'>C#</a></div>  <div class='tag'><a href='/tag/#powershell'>powershell</a></div>  <div class='tag'><a href='/tag/#dart'>dart</a></div>  <div class='tag'><a href='/tag/#go'>go</a></div>  <div class='tag'><a href='/tag/#hmac'>hmac</a></div>  <div class='tag'><a href='/tag/#java'>java</a></div>  <div class='tag'><a href='/tag/#javascript'>javascript</a></div>  <div class='tag'><a href='/tag/#objectiveC'>objectiveC</a></div>  <div class='tag'><a href='/tag/#perl'>perl</a></div>  <div class='tag'><a href='/tag/#php'>php</a></div>  <div class='tag'><a href='/tag/#python2'>python2</a></div>  <div class='tag'><a href='/tag/#python3'>python3</a></div>  <div class='tag'><a href='/tag/#rest'>rest</a></div>  <div class='tag'><a href='/tag/#ruby'>ruby</a></div>  <div class='tag'><a href='/tag/#security'>security</a></div>  <div class='tag'><a href='/tag/#sha256'>sha256</a></div>  <div class='tag'><a href='/tag/#swift'>swift</a></div>  <div class='tag'><a href='/tag/#shell'>shell</a></div> 
 </div>
 
 <div class="post-footer">

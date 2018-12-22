@@ -62,11 +62,8 @@
         <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">fs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FileStream</span><span class="p">(</span><span class="n">localPath</span> <span class="p">+</span> <span class="n">file</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">FileMode</span><span class="p">.</span><span class="n">Create</span><span class="p">))</span>
         <span class="p">{</span>
             <span class="n">client</span><span class="p">.</span><span class="n">DownloadFile</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="n">FullName</span><span class="p">,</span> <span class="n">fs</span><span class="p">);</span>
-            <span class="n">fs</span><span class="p">.</span><span class="n">Close</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span>
-
-    <span class="n">client</span><span class="p">.</span><span class="n">Disconnect</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 </div>
