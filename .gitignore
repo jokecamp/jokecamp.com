@@ -2,3 +2,5 @@
 server-script.sh
 
 deploy.sh
+
+private/
