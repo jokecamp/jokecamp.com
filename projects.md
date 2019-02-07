@@ -20,13 +20,11 @@ sitemap:
 
 ## Graveyard
 
-Let's be honest most of our code ends up here:
+Let's be honest most of our code ends up here. Most of the below pages don't work anymore.
 
 - HiddenScores - No longer available as of March 2014. Spoiler alerts for English Premier League soccer scores. Allowing users to only reveal the results they wish to see. Emphasis on responsive design with one site for all devices.
 
 - [Unsung Heroes - Random English Premier League Player Videos](http://www.jokecamp.com/lab/randomplayer/) - Random soccer (UK football) players and their youtube videos. Mashnup of the ESPN API and the YouTube API. (Made in Feb 2013)
-
-- [Interactive timeline for Masters of Doom book](http://www.jokecamp.com/doom/) - An example usage of Timeline JS to provide an interactive timeline to showcase the publish dates of the games described in the 2004 novel by David Kushner (made in 2013).
 
 - [DC NextBus Times](http://www.jokecamp.com/lab/metro/NextBus.html?Stopids=1002383,1002362) - Uses [WMATA's API](http://developer.wmata.com/) to show the next buses for the Washington DC area. Provide your bus stops ids in the querystring (made in 2013)
 
