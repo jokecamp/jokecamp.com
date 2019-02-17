@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2019-01-12T12:15:14-05:00</updated>
+ <updated>2019-02-17T11:25:15-05:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -1880,7 +1880,7 @@ Fn  Function Key&lt;/p&gt;
    <link href="https://www.jokecamp.com//blog/guide-to-football-and-soccer-data-and-apis"/>
    <updated>2014-03-08T12:08:40-05:00</updated>
    <id>https://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</id>
-   <content type="html">&lt;p&gt;Last updated: Feb 24 2018&lt;/p&gt;
+   <content type="html">&lt;p&gt;Last updated: Feb 17 2019&lt;/p&gt;
 
 &lt;h2&gt;Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -1906,6 +1906,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#openfooty&quot;&gt;openfooty API&lt;/a&gt; (hard to get an API Key)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#betlinesNinja&quot;&gt;betlines ninja API&lt;/a&gt; (RESTful API on Mashape)&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#apifootball&quot;&gt;API-Football&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#scorebat&quot;&gt;ScoreBat Video API&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Commercial APIs
 
@@ -2369,6 +2370,13 @@ https://soccer.sportmonks.com/api/v2.0/fixtures/{id}?api_token=__YOURTOKEN__&amp
 &lt;h4&gt;Match Analysis&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://matchanalysis.com/&quot;&gt;Match Analysis&lt;/a&gt; is another large commercial data provider that lists Fox Soccer Channel, US National Team and the MLS among their clients.&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;scorebat&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;ScoreBat Video API&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.scorebat.com/video-api/&quot;&gt;ScoreBat Video API&lt;/a&gt; is a free API that provides the embed codes for the videos of the goals and video highlights in real time. It covers most of the main football leagues and tournaments.
+The API is super fast and very easy to use and requires no authentication. Check the structure &lt;a href=&quot;https://www.scorebat.com/video-api/&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;apifootball&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
