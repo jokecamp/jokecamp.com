@@ -36,6 +36,7 @@ Jump to a specific source:
   - [openfooty API](#openfooty) (hard to get an API Key)
   - [betlines ninja API](#betlinesNinja) (RESTful API on Mashape)
   - [API-Football](#apifootball)
+  - [ScoreBat Video API](#scorebat)
 - Commercial APIs
   - [football-api.com](#footballapi)
   - [CrowdScores and FastestLiveScores API](#CrowdScores)
@@ -491,6 +492,13 @@ An example of an "event" in xml
 #### Match Analysis
 
 [Match Analysis](http://matchanalysis.com/) is another large commercial data provider that lists Fox Soccer Channel, US National Team and the MLS among their clients.
+
+
+<a name="scorebat"></a>
+#### ScoreBat Video API
+
+[ScoreBat Video API](https://www.scorebat.com/video-api/) is a free API that provides the embed codes for the videos of the goals and video highlights in real time. It covers most of the main football leagues and tournaments.
+The API is super fast and very easy to use and requires no authentication. Check the structure [here](https://www.scorebat.com/video-api/)
 
 <a name="apifootball"></a>
 #### APIfootball
