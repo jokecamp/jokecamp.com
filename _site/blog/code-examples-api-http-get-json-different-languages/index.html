@@ -39,7 +39,7 @@
 <p>Jump to an implementation:</p>
 
 <ul>
-<li><a href="/blog/code-examples-api-http-get-json-different-languages#node-js">Node.js</a></li>
+<li><a href="/blog/code-examples-api-http-get-json-different-languages#nodejs">Node.js</a></li>
 <li><a href="/blog/code-examples-api-http-get-json-different-languages#js">Javascript</a></li>
 <li><a href="/blog/code-examples-api-http-get-json-different-languages#php">PHP</a></li>
 <li><a href="/blog/code-examples-api-http-get-json-different-languages#java">Java</a></li>
@@ -67,17 +67,9 @@
 <li>when practical/terse include the code to parse JSON too</li>
 </ul>
 
-<p><strong>Please contribute (pull request) if you have a better approach or a new language.</strong></p>
+<p><strong>Please <a href="https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2019-02-17-code-examples-api-http-get-json-different-languages.markdown">contribute</a> (pull request) if you have a better approach or a new language.</strong></p>
 
-<h3><a name='js'></a>Javascript HTTP GET</h3>
-
-<p>Below is a sync example using <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send">XMLHttpRequest</a>. From <a href="https://stackoverflow.com/a/4033310/215502">StackOverflow: HTTP GET request in JavaScript</a></p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-  <span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;https://swapi.co/api/people/1/&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-  <span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
-</code></pre></div>
-<h3><a name='js-node'></a>Node.js HTTP GET</h3>
+<h3><a name='nodejs'></a>Node.js HTTP GET</h3>
 
 <p>See <a href="https://nodejs.org/api/https.html#https_https_get_options_callback">https</a></p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">https</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;https&#39;</span><span class="p">);</span>
@@ -112,6 +104,14 @@
 <span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
 <span class="p">});</span>
+</code></pre></div>
+<h3><a name='js'></a>Javascript HTTP GET</h3>
+
+<p>Below is a sync example using <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send">XMLHttpRequest</a>. From <a href="https://stackoverflow.com/a/4033310/215502">StackOverflow: HTTP GET request in JavaScript</a></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript">  <span class="kd">var</span> <span class="nx">req</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+  <span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;https://swapi.co/api/people/1/&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+  <span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
 </code></pre></div>
 <h3><a name='php'></a>PHP HTTP GET</h3>
 

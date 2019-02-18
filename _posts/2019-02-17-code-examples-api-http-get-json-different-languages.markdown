@@ -32,7 +32,7 @@ Downloading JSON via GET from a simple API should be the 2nd tutorial right afte
 
 Jump to an implementation:
 
-  * [Node.js]({{page.url}}#node-js)
+  * [Node.js]({{page.url}}#nodejs)
   * [Javascript]({{page.url}}#js)
   * [PHP]({{page.url}}#php)
   * [Java]({{page.url}}#java)
@@ -57,20 +57,9 @@ Jump to an implementation:
 * its ok to ignore errors and best practices
 * when practical/terse include the code to parse JSON too
 
-**Please contribute (pull request) if you have a better approach or a new language.**
+**Please [contribute](https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2019-02-17-code-examples-api-http-get-json-different-languages.markdown) (pull request) if you have a better approach or a new language.**
 
-### <a name='js'></a>Javascript HTTP GET
-
-Below is a sync example using [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send). From [StackOverflow: HTTP GET request in JavaScript](https://stackoverflow.com/a/4033310/215502)
-
-```javascript
-  var req = new XMLHttpRequest();
-  req.open('GET', 'https://swapi.co/api/people/1/', false);
-  req.send(null);
-  console.log(req.responseText);
-```
-
-### <a name='js-node'></a>Node.js HTTP GET
+### <a name='nodejs'></a>Node.js HTTP GET
 
 See [https](https://nodejs.org/api/https.html#https_https_get_options_callback)
 
@@ -109,6 +98,17 @@ https.get(options, function (res) {
 });
 ```
 
+
+### <a name='js'></a>Javascript HTTP GET
+
+Below is a sync example using [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send). From [StackOverflow: HTTP GET request in JavaScript](https://stackoverflow.com/a/4033310/215502)
+
+```javascript
+  var req = new XMLHttpRequest();
+  req.open('GET', 'https://swapi.co/api/people/1/', false);
+  req.send(null);
+  console.log(req.responseText);
+```
 
 ### <a name='php'></a>PHP HTTP GET
 
