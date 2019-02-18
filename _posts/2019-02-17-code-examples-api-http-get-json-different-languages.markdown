@@ -28,7 +28,7 @@ tags:
 - shell
 ---
 
-Downloading JSON via GET from a simple API should be the 2nd tutorial right after Hello World for every language. Below is an ever-growing collection of code examples to hightlight the differences in different programming languages and serve as a practical reference.
+Downloading JSON via GET from a simple API should be the 2nd tutorial right after Hello World for every language. Below is an ever-growing collection of code examples to highlight the differences in different programming languages and serve as a practical reference.
 
 Jump to an implementation:
 
