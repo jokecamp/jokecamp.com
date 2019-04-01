@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2019-02-18T13:23:42-05:00</updated>
+ <updated>2019-03-31T20:43:12-04:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -17,7 +17,7 @@
    <link href="https://www.jokecamp.com//blog/code-examples-api-http-get-json-different-languages"/>
    <updated>2019-02-17T00:00:00-05:00</updated>
    <id>https://www.jokecamp.com/blog/code-examples-api-http-get-json-different-languages</id>
-   <content type="html">&lt;p&gt;Downloading JSON via GET from a simple API should be the 2nd tutorial right after Hello World for every language. Below is an ever-growing collection of code examples to hightlight the differences in different programming languages and serve as a practical reference.&lt;/p&gt;
+   <content type="html">&lt;p&gt;Downloading JSON via GET from a simple API should be the 2nd tutorial right after Hello World for every language. Below is an ever-growing collection of code examples to highlight the differences in different programming languages and serve as a practical reference.&lt;/p&gt;
 
 &lt;p&gt;Jump to an implementation:&lt;/p&gt;
 
@@ -2176,7 +2176,7 @@ Fn  Function Key&lt;/p&gt;
    <link href="https://www.jokecamp.com//blog/guide-to-football-and-soccer-data-and-apis"/>
    <updated>2014-03-08T12:08:40-05:00</updated>
    <id>https://www.jokecamp.com/blog/guide-to-football-and-soccer-data-and-apis</id>
-   <content type="html">&lt;p&gt;Last updated: Feb 17 2019&lt;/p&gt;
+   <content type="html">&lt;p&gt;Last updated: March 31 2019&lt;/p&gt;
 
 &lt;h2&gt;Where can I actually find football/soccer data?&lt;/h2&gt;
 
@@ -2219,6 +2219,7 @@ Fn  Function Key&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;#apifootball&quot;&gt;apifootball.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#sportdeer&quot;&gt;SportDeer.com&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#fantasysportnet&quot;&gt;fantasysportnet.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#goalserve&quot;&gt;Goalserve.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Other Websites
 
@@ -2444,6 +2445,14 @@ https://api.sportdeer.com/v1/leagues?access_token=***YOUR_ACCES_TOKEN***
 &lt;h4&gt;fantasysportnet&lt;/h4&gt;
 
 &lt;p&gt;I have not had time to check this out but adding to the list for now. &lt;a href=&quot;http://www.fantasysportnet.com/data/home.jsp&quot;&gt;http://www.fantasysportnet.com/data/home.jsp&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&quot;goalserve&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4&gt;GoalServe.com&lt;/h4&gt;
+
+&lt;p&gt;Goalserve Soccer Data Feeds API provide live score services, fixtures and results, In-Game player stats, profiles, injuries, historical data, prematch and inplay Odds. More than 400 football leagues in live data coverage. XML and JSON formats. Free Trial period available. Pricing starts at $150+.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.goalserve.com/en/sport-data-feeds/soccer-api/prices&quot;&gt;https://www.goalserve.com/en/sport-data-feeds/soccer-api/prices&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a name=&quot;footballapi&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 

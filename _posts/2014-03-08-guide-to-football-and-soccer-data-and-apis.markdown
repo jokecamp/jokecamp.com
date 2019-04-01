@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: Feb 17 2019
+Last updated: March 31 2019
 
 ##  Where can I actually find football/soccer data?
 
@@ -50,6 +50,7 @@ Jump to a specific source:
   - [apifootball.com](#apifootball)
   - [SportDeer.com](#sportdeer)
   - [fantasysportnet.com](#fantasysportnet)
+  - [Goalserve.com](#goalserve)
 - Other Websites
   - [footballsquads.co.uk](#footballsquads.co.uk)
   - [Rec.Sport.Soccer Statistics Foundation (RSSSF)](#rsssf)
@@ -262,6 +263,13 @@ Some example endpoints are:
 #### fantasysportnet
 
 I have not had time to check this out but adding to the list for now. <http://www.fantasysportnet.com/data/home.jsp>
+
+<a name="goalserve"></a>
+#### GoalServe.com
+
+Goalserve Soccer Data Feeds API provide live score services, fixtures and results, In-Game player stats, profiles, injuries, historical data, prematch and inplay Odds. More than 400 football leagues in live data coverage. XML and JSON formats. Free Trial period available. Pricing starts at $150+.
+
+<https://www.goalserve.com/en/sport-data-feeds/soccer-api/prices>
 
 <a name="footballapi"></a>
 #### football-api
