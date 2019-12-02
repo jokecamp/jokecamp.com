@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2019-05-06T09:10:00-04:00</updated>
+ <updated>2019-12-02T16:08:34-05:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -23,7 +23,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#nodejs&quot;&gt;Node.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&...</content>
+&lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#js&quot;&gt;Javascript&lt;...</content>
  </entry>
  
  <entry>
@@ -33,7 +33,8 @@
    <id>https://www.jokecamp.com/blog/typescript-real-world-examples</id>
    <content type="html">&lt;p&gt;In an ongoing series I will be reading and discussing various Typescript code found in the wild. Reading other people&amp;#39;s code is a great way to learn and improve your own code. First up is a random class from the popular &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VS Code&lt;/a&gt; editor.&lt;/p&gt;
 
-&lt;h3&gt;&lt;code&gt;editorAction.ts&lt;/code&gt; from &lt;a href=&quot;https://github.com/Microsoft/vscode&quot;&gt;github.com/Microsoft/vscode&lt;/a&gt;&lt;/h3&gt;...</content>
+&lt;h3&gt;&lt;code&gt;editorAction.ts&lt;/code&gt; from &lt;a href=&quot;https://github.com/Microsoft/vscode&quot;&gt;github.com/Microsoft/vscode&lt;/a&gt;&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript...</content>
  </entry>
  
  <entry>
@@ -43,7 +44,7 @@
    <id>https://www.jokecamp.com/blog/migrating-to-angular-cli</id>
    <content type="html">&lt;p&gt;I recently migrated an Angular app from a gulp build system to an &lt;a href=&quot;https://cli.angular.io/&quot;&gt;Angular CLI&lt;/a&gt; (version 1.2.6). I am enjoying the new build system and the improved Angular performance. I wanted to share the process, some pain points and lessons learned.&lt;/p&gt;
 
-&lt;p&gt;A good starting point for migrating is the angular-cli &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories-1.0-update&quot;&gt;migration guide&lt;/a&gt; a...</content>
+&lt;p&gt;A good starting point for migrating is the angular-cli &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories-1.0-update&quot;&gt;migration guide&lt;/a&gt; and &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/storie...</content>
  </entry>
  
 

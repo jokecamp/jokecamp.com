@@ -16,7 +16,7 @@ tags:
 featured: true
 ---
 
-Last updated: March 31 2019
+Last updated: December 2 2019
 
 ##  Where can I actually find football/soccer data?
 
@@ -51,6 +51,7 @@ Jump to a specific source:
   - [SportDeer.com](#sportdeer)
   - [fantasysportnet.com](#fantasysportnet)
   - [Goalserve.com](#goalserve)
+  - [Soccer's API](#soccersapi)
 - Other Websites
   - [footballsquads.co.uk](#footballsquads.co.uk)
   - [Rec.Sport.Soccer Statistics Foundation (RSSSF)](#rsssf)
@@ -271,10 +272,122 @@ Goalserve Soccer Data Feeds API provide live score services, fixtures and result
 
 <https://www.goalserve.com/en/sport-data-feeds/soccer-api/prices>
 
+<a name="soccersapi"></a>
+#### Soccer's API
+
+[Soccer's API](https://soccersapi.com) offers live scores and stats. More than 800 leagues, match statistics, stats of teams and players, squads and player profiles, lineups, information about online broadcasts (DAZN, ESPN...), TV channels and data about Bookmakers with up to 30 of them with pre-match and Inplay odds. [Plans price](https://soccersapi.com/page/pricing) range from $30-$300 USD per month. A 15-day free trial available.
+
+Example for Match by ID - Endpoint Response (Real Madrid vs PSG - 2019-11-26). Url format is <https://api.soccersapi.com/v2.2/fixtures/?user=YOUR_USER&token=YOUR_TOKEN&t=info2&id=11999203>
+
+```
+{
+  "data": {
+      "id": 11965947,
+      "status": 3,
+      "pitch": null,
+      "time": {
+          "datetime": "2019-11-26 20:00:00",
+          "date": "2019-11-26",
+          "time": "20:00:00",
+          "minute": null,
+          "timestamp": 1574798400,
+          "timezone": "UTC"
+      },
+      "teams": {
+          "home": {
+              "id": 3468,
+              "name": "Real Madrid",
+              "short_code": "RMA",
+              "img": "https://cdn.soccersapi.com/images/soccer/teams/150/3468.png",
+              "form": "4-3-1-2",
+              "coach_id": 407775
+          },
+          "away": {
+              "id": 0,
+              "name": "Paris Saint Germain",
+              "short_code": "PSG",
+              "img": "https://cdn.soccersapi.com/images/soccer/teams/150/0.png",
+              "form": "4-3-3",
+              "coach_id": 523937
+          }
+      },
+      "league": {
+          "id": 2,
+          "name": "Champions League",
+          "type": "cup_international",
+          "country_id": 41,
+          "country_name": "Republic of Ireland",
+          "country_flag": ""
+      },
+      "scores": {
+          "home_score": 2,
+          "away_score": 2,
+          "ht_score": "1-0",
+          "ft_score": "2-2",
+          "et_score": null,
+          "ps_score": null
+      },
+      "referee_id": 16678,
+      "round_id": 184042,
+      "season_id": 16029,
+      "stage_id": 77443828,
+      "group_id": 242175,
+      "aggregate_id": null,
+      "winner_team_id": null,
+      "venue_id": 2020,
+      "standings": {
+          "home_position": 2,
+          "away_position": 1
+      },
+      "assistants": {
+          "first_assistant_id": 12857,
+          "second_assistant_id": 12861,
+          "fourth_assistant_id": null
+      },
+      "colors": {
+          "home": {
+              "color": "#F0F0F0",
+              "kit_colors": "#F0F0F0,#F0F0F0,#F0F0F0,#F0F0F0,#EEEEEE,#EEEEEE,#F0F0F0"
+          },
+          "away": {
+              "color": null,
+              "kit_colors": null
+          }
+      },
+      "weather_report": {
+          "code": "drizzle",
+          "type": "light intensity drizzle",
+          "temperature": {
+              "fahrenheit": {
+                  "temp": 53.83,
+                  "unit": "fahrenheit"
+              },
+              "celcius": {
+                  "temp": 12.1,
+                  "unit": "celcius"
+              }
+          },
+          "clouds": "75%",
+          "humidity": "100%",
+          "pressure": 1010,
+          "wind": {
+              "speed": "8.05 m/s",
+              "degree": 180
+          },
+          "coordinates": {
+              "lat": 40.42,
+              "lon": -3.7
+          },
+          "updated_at": "2019-11-26T19:45:04.436942Z"
+      }
+  },
+...
+```
+
 <a name="footballapi"></a>
 #### football-api
 
-[football-api.com](http://football-api.com/) is a paid API service. The API restricts by IP addresses and limit calls based on your package. Includes endpoints for competitions, teams, standings, live scores, fixtures and commentaries. See the [pricing page](http://football-api.com/pricing/). Prices range from $15 to $200 per month.
+[football-api.com](http://football-api.com/) is a paid API service. The API rxrestricts by IP addresses and limit calls based on your package. Includes endpoints for competitions, teams, standings, live scores, fixtures and commentaries. See the [pricing page](http://football-api.com/pricing/). Prices range from $15 to $200 per month.
 
 Example endpoints:
 

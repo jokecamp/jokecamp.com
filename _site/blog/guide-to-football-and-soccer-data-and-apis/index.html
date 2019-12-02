@@ -34,7 +34,7 @@
         <div class="post">
   <h1 class="post-title">Guide to Football/Soccer data and APIs</h1>
   <span class="post-date">08 Mar 2014</span>
-  <p>Last updated: March 31 2019</p>
+  <p>Last updated: December 2 2019</p>
 
 <h2>Where can I actually find football/soccer data?</h2>
 
@@ -78,6 +78,7 @@
 <li><a href="#sportdeer">SportDeer.com</a></li>
 <li><a href="#fantasysportnet">fantasysportnet.com</a></li>
 <li><a href="#goalserve">Goalserve.com</a></li>
+<li><a href="#soccersapi">Soccer&#39;s API</a></li>
 </ul></li>
 <li>Other Websites
 
@@ -312,11 +313,121 @@ https://api.sportdeer.com/v1/leagues?access_token=***YOUR_ACCES_TOKEN***
 
 <p><a href="https://www.goalserve.com/en/sport-data-feeds/soccer-api/prices">https://www.goalserve.com/en/sport-data-feeds/soccer-api/prices</a></p>
 
+<p><a name="soccersapi"></a></p>
+
+<h4>Soccer&#39;s API</h4>
+
+<p><a href="https://soccersapi.com">Soccer&#39;s API</a> offers live scores and stats. More than 800 leagues, match statistics, stats of teams and players, squads and player profiles, lineups, information about online broadcasts (DAZN, ESPN...), TV channels and data about Bookmakers with up to 30 of them with pre-match and Inplay odds. <a href="https://soccersapi.com/page/pricing">Plans price</a> range from $30-$300 USD per month. A 15-day free trial available.</p>
+
+<p>Example for Match by ID - Endpoint Response (Real Madrid vs PSG - 2019-11-26). Url format is <a href="https://api.soccersapi.com/v2.2/fixtures/?user=YOUR_USER&amp;token=YOUR_TOKEN&amp;t=info2&amp;id=11999203">https://api.soccersapi.com/v2.2/fixtures/?user=YOUR_USER&amp;token=YOUR_TOKEN&amp;t=info2&amp;id=11999203</a></p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">{
+  &quot;data&quot;: {
+      &quot;id&quot;: 11965947,
+      &quot;status&quot;: 3,
+      &quot;pitch&quot;: null,
+      &quot;time&quot;: {
+          &quot;datetime&quot;: &quot;2019-11-26 20:00:00&quot;,
+          &quot;date&quot;: &quot;2019-11-26&quot;,
+          &quot;time&quot;: &quot;20:00:00&quot;,
+          &quot;minute&quot;: null,
+          &quot;timestamp&quot;: 1574798400,
+          &quot;timezone&quot;: &quot;UTC&quot;
+      },
+      &quot;teams&quot;: {
+          &quot;home&quot;: {
+              &quot;id&quot;: 3468,
+              &quot;name&quot;: &quot;Real Madrid&quot;,
+              &quot;short_code&quot;: &quot;RMA&quot;,
+              &quot;img&quot;: &quot;https://cdn.soccersapi.com/images/soccer/teams/150/3468.png&quot;,
+              &quot;form&quot;: &quot;4-3-1-2&quot;,
+              &quot;coach_id&quot;: 407775
+          },
+          &quot;away&quot;: {
+              &quot;id&quot;: 0,
+              &quot;name&quot;: &quot;Paris Saint Germain&quot;,
+              &quot;short_code&quot;: &quot;PSG&quot;,
+              &quot;img&quot;: &quot;https://cdn.soccersapi.com/images/soccer/teams/150/0.png&quot;,
+              &quot;form&quot;: &quot;4-3-3&quot;,
+              &quot;coach_id&quot;: 523937
+          }
+      },
+      &quot;league&quot;: {
+          &quot;id&quot;: 2,
+          &quot;name&quot;: &quot;Champions League&quot;,
+          &quot;type&quot;: &quot;cup_international&quot;,
+          &quot;country_id&quot;: 41,
+          &quot;country_name&quot;: &quot;Republic of Ireland&quot;,
+          &quot;country_flag&quot;: &quot;&quot;
+      },
+      &quot;scores&quot;: {
+          &quot;home_score&quot;: 2,
+          &quot;away_score&quot;: 2,
+          &quot;ht_score&quot;: &quot;1-0&quot;,
+          &quot;ft_score&quot;: &quot;2-2&quot;,
+          &quot;et_score&quot;: null,
+          &quot;ps_score&quot;: null
+      },
+      &quot;referee_id&quot;: 16678,
+      &quot;round_id&quot;: 184042,
+      &quot;season_id&quot;: 16029,
+      &quot;stage_id&quot;: 77443828,
+      &quot;group_id&quot;: 242175,
+      &quot;aggregate_id&quot;: null,
+      &quot;winner_team_id&quot;: null,
+      &quot;venue_id&quot;: 2020,
+      &quot;standings&quot;: {
+          &quot;home_position&quot;: 2,
+          &quot;away_position&quot;: 1
+      },
+      &quot;assistants&quot;: {
+          &quot;first_assistant_id&quot;: 12857,
+          &quot;second_assistant_id&quot;: 12861,
+          &quot;fourth_assistant_id&quot;: null
+      },
+      &quot;colors&quot;: {
+          &quot;home&quot;: {
+              &quot;color&quot;: &quot;#F0F0F0&quot;,
+              &quot;kit_colors&quot;: &quot;#F0F0F0,#F0F0F0,#F0F0F0,#F0F0F0,#EEEEEE,#EEEEEE,#F0F0F0&quot;
+          },
+          &quot;away&quot;: {
+              &quot;color&quot;: null,
+              &quot;kit_colors&quot;: null
+          }
+      },
+      &quot;weather_report&quot;: {
+          &quot;code&quot;: &quot;drizzle&quot;,
+          &quot;type&quot;: &quot;light intensity drizzle&quot;,
+          &quot;temperature&quot;: {
+              &quot;fahrenheit&quot;: {
+                  &quot;temp&quot;: 53.83,
+                  &quot;unit&quot;: &quot;fahrenheit&quot;
+              },
+              &quot;celcius&quot;: {
+                  &quot;temp&quot;: 12.1,
+                  &quot;unit&quot;: &quot;celcius&quot;
+              }
+          },
+          &quot;clouds&quot;: &quot;75%&quot;,
+          &quot;humidity&quot;: &quot;100%&quot;,
+          &quot;pressure&quot;: 1010,
+          &quot;wind&quot;: {
+              &quot;speed&quot;: &quot;8.05 m/s&quot;,
+              &quot;degree&quot;: 180
+          },
+          &quot;coordinates&quot;: {
+              &quot;lat&quot;: 40.42,
+              &quot;lon&quot;: -3.7
+          },
+          &quot;updated_at&quot;: &quot;2019-11-26T19:45:04.436942Z&quot;
+      }
+  },
+...
+</code></pre></div>
 <p><a name="footballapi"></a></p>
 
 <h4>football-api</h4>
 
-<p><a href="http://football-api.com/">football-api.com</a> is a paid API service. The API restricts by IP addresses and limit calls based on your package. Includes endpoints for competitions, teams, standings, live scores, fixtures and commentaries. See the <a href="http://football-api.com/pricing/">pricing page</a>. Prices range from $15 to $200 per month.</p>
+<p><a href="http://football-api.com/">football-api.com</a> is a paid API service. The API rxrestricts by IP addresses and limit calls based on your package. Includes endpoints for competitions, teams, standings, live scores, fixtures and commentaries. See the <a href="http://football-api.com/pricing/">pricing page</a>. Prices range from $15 to $200 per month.</p>
 
 <p>Example endpoints:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text">api/?Action=competitions&amp;APIKey=xxxx
