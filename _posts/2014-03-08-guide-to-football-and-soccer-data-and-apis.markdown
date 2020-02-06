@@ -48,6 +48,7 @@ Jump to a specific source:
   - [prozone](#prozone)
   - [Match Analaysis](#matchanalysis)
   - [apifootball.com](#apifootball)
+  - [ElenaSport.io](#elenasport)
   - [SportDeer.com](#sportdeer)
   - [fantasysportnet.com](#fantasysportnet)
   - [Goalserve.com](#goalserve)
@@ -248,6 +249,246 @@ curl --get --include 'https://api-football-v1.p.mashape.com/seasons' \
 
 <a name="commerical"></a>
 ### Subscription Services/APIs
+
+<a name="elenasport"></a>
+#### Sportdeer.com
+
+[ElenaSport.io](https://elenasport.io) offers historical&live data of over 140 soccer leagues. The service is also pretty cheap, with plans starting from 0€/month. The service is entirely hosted in [RapidApi](https://rapidapi.com/mararrdeveloper/api/elenasport-io1) for the users' convenience. Find out more on the documentation page [API Documentation](https://elenasport.io/documentation/getting_started/)
+
+curl example:
+```
+curl --location --request GET 'https://elenasport-io1.p.rapidapi.com//v1/fixtures/14143' \
+--header 'x-rapidapi-key: $$$_YOUR_SECRET_RAPID_API_TOKEN_$$$' \
+```
+ 
+Response example:
+```
+{
+    "results": [
+        {
+            "id": 14143,
+            "idSeason": 435,
+            "seasonName": "2019/2020",
+            "idHome": 909,
+            "homeName": "Parma",
+            "idAway": 854,
+            "awayName": "Juventus",
+            "idStage": 131,
+            "idVenue": 709,
+            "venueName": "Stadio Ennio Tardini",
+            "date": "2019-08-24 16:00:00",
+            "status": "finished",
+            "round": 1,
+            "attendance": null,
+            "team_home_90min_goals": 0,
+            "team_away_90min_goals": 1,
+            "team_home_ET_goals": 0,
+            "team_away_ET_goals": 0,
+            "team_home_PEN_goals": 0,
+            "team_away_PEN_goals": 0,
+            "team_home_1stHalf_goals": 0,
+            "team_away_1stHalf_goals": 1,
+            "team_home_2ndHalf_goals": 0,
+            "team_away_2ndHalf_goals": 0,
+            "elapsed": 0,
+            "elapsedPlus": 0,
+            "eventsHash": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
+            "lineupsHash": "878f32f76b159494f5a39f9321616c6068cdb82e88df89bcc739bbc1ea78e1f9",
+            "statsHash": "6a4875ddaceaa91fb3369f0f6d962f77442daf1b1d97733457d12bcabdf79441",
+            "referees": [
+                {
+                    "type": "referee",
+                    "idReferee": 8309,
+                    "refereeName": "F. Maresca"
+                },
+                {
+                    "type": "assitant referee",
+                    "idReferee": 8323,
+                    "refereeName": "P. De Meo"
+                },
+                {
+                    "type": "assitant referee",
+                    "idReferee": 8114,
+                    "refereeName": "M. Piccinini"
+                }
+            ],
+            "events": [
+                {
+                    "id": 135422,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12000,
+                    "player1Name": "G. Chiellini",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 21,
+                    "elapsedPlus": 0,
+                    "type": "goal"
+                },
+                {
+                    "id": 135423,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 15892,
+                    "player1Name": "D. Kulusevski",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 27,
+                    "elapsedPlus": 0,
+                    "type": "y_card"
+                },
+                {
+                    "id": 135424,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 15893,
+                    "player1Name": "Hernani",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 45,
+                    "elapsedPlus": 0,
+                    "type": "y_card"
+                },
+                {
+                    "id": 135425,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12278,
+                    "player1Name": "S. Khedira",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 53,
+                    "elapsedPlus": 0,
+                    "type": "y_card"
+                },
+                {
+                    "id": 135457,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 8132,
+                    "player1Name": "L. Siligardi",
+                    "idPlayer2": 15892,
+                    "player2Name": "D. Kulusevski",
+                    "elapsed": 57,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135458,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 15073,
+                    "player1Name": "A. Rabiot",
+                    "idPlayer2": 12278,
+                    "player2Name": "S. Khedira",
+                    "elapsed": 63,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135459,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12193,
+                    "player1Name": "J. Cuadrado",
+                    "idPlayer2": 15894,
+                    "player2Name": "Douglas Costa",
+                    "elapsed": 71,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135460,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 11893,
+                    "player1Name": "A. Grassi",
+                    "idPlayer2": 8478,
+                    "player2Name": "G. Brugman",
+                    "elapsed": 77,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135461,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12135,
+                    "player1Name": "F. Bernardeschi",
+                    "idPlayer2": 11848,
+                    "player2Name": "G. Higuaín",
+                    "elapsed": 83,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135462,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 15899,
+                    "player1Name": "Y. Karamoh",
+                    "idPlayer2": 8449,
+                    "player2Name": "A. Barillà",
+                    "elapsed": 85,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135426,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12135,
+                    "player1Name": "F. Bernardeschi",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 88,
+                    "elapsedPlus": 0,
+                    "type": "y_card"
+                },
+                {
+                    "id": 135427,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12159,
+                    "player1Name": "M. Pjanić",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 90,
+                    "elapsedPlus": 1,
+                    "type": "y_card"
+                }
+            ]
+        }
+    ],
+    "page": 1,
+    "itemsPerPage": 20
+}
+```  
+<a name="fantasysportnet"></a>
 
 <a name="sportdeer"></a>
 #### Sportdeer.com
