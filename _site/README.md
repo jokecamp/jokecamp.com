@@ -47,7 +47,7 @@ sub wanted
 
 ```
 jekyll serve
-get commit
+git commit -m "
 git push origin master
 ./deploy.sh
 ```
