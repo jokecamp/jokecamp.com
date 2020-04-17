@@ -75,6 +75,7 @@
 <li><a href="#prozone">prozone</a></li>
 <li><a href="#matchanalysis">Match Analaysis</a></li>
 <li><a href="#apifootball">apifootball.com</a></li>
+<li><a href="#elenasport">ElenaSport.io</a></li>
 <li><a href="#sportdeer">SportDeer.com</a></li>
 <li><a href="#fantasysportnet">fantasysportnet.com</a></li>
 <li><a href="#goalserve">Goalserve.com</a></li>
@@ -287,6 +288,247 @@ http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
 <p><a name="commerical"></a></p>
 
 <h3>Subscription Services/APIs</h3>
+
+<p><a name="elenasport"></a></p>
+
+<h4>Sportdeer.com</h4>
+
+<p><a href="https://elenasport.io">ElenaSport.io</a> offers historical&amp;live data of over 140 soccer leagues. The service is also pretty cheap, with plans starting from 0€/month. The service is entirely hosted in <a href="https://rapidapi.com/mararrdeveloper/api/elenasport-io1">RapidApi</a> for the users&#39; convenience. Find out more on the documentation page <a href="https://elenasport.io/documentation/getting_started/">API Documentation</a></p>
+
+<p>curl example:
+<code>
+curl --location --request GET &#39;https://elenasport-io1.p.rapidapi.com//v1/fixtures/14143&#39; \
+--header &#39;x-rapidapi-key: $$$_YOUR_SECRET_RAPID_API_TOKEN_$$$&#39; \
+</code></p>
+
+<p>Response example:
+<code>
+{
+    &quot;results&quot;: [
+        {
+            &quot;id&quot;: 14143,
+            &quot;idSeason&quot;: 435,
+            &quot;seasonName&quot;: &quot;2019/2020&quot;,
+            &quot;idHome&quot;: 909,
+            &quot;homeName&quot;: &quot;Parma&quot;,
+            &quot;idAway&quot;: 854,
+            &quot;awayName&quot;: &quot;Juventus&quot;,
+            &quot;idStage&quot;: 131,
+            &quot;idVenue&quot;: 709,
+            &quot;venueName&quot;: &quot;Stadio Ennio Tardini&quot;,
+            &quot;date&quot;: &quot;2019-08-24 16:00:00&quot;,
+            &quot;status&quot;: &quot;finished&quot;,
+            &quot;round&quot;: 1,
+            &quot;attendance&quot;: null,
+            &quot;team_home_90min_goals&quot;: 0,
+            &quot;team_away_90min_goals&quot;: 1,
+            &quot;team_home_ET_goals&quot;: 0,
+            &quot;team_away_ET_goals&quot;: 0,
+            &quot;team_home_PEN_goals&quot;: 0,
+            &quot;team_away_PEN_goals&quot;: 0,
+            &quot;team_home_1stHalf_goals&quot;: 0,
+            &quot;team_away_1stHalf_goals&quot;: 1,
+            &quot;team_home_2ndHalf_goals&quot;: 0,
+            &quot;team_away_2ndHalf_goals&quot;: 0,
+            &quot;elapsed&quot;: 0,
+            &quot;elapsedPlus&quot;: 0,
+            &quot;eventsHash&quot;: &quot;15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b&quot;,
+            &quot;lineupsHash&quot;: &quot;878f32f76b159494f5a39f9321616c6068cdb82e88df89bcc739bbc1ea78e1f9&quot;,
+            &quot;statsHash&quot;: &quot;6a4875ddaceaa91fb3369f0f6d962f77442daf1b1d97733457d12bcabdf79441&quot;,
+            &quot;referees&quot;: [
+                {
+                    &quot;type&quot;: &quot;referee&quot;,
+                    &quot;idReferee&quot;: 8309,
+                    &quot;refereeName&quot;: &quot;F. Maresca&quot;
+                },
+                {
+                    &quot;type&quot;: &quot;assitant referee&quot;,
+                    &quot;idReferee&quot;: 8323,
+                    &quot;refereeName&quot;: &quot;P. De Meo&quot;
+                },
+                {
+                    &quot;type&quot;: &quot;assitant referee&quot;,
+                    &quot;idReferee&quot;: 8114,
+                    &quot;refereeName&quot;: &quot;M. Piccinini&quot;
+                }
+            ],
+            &quot;events&quot;: [
+                {
+                    &quot;id&quot;: 135422,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 854,
+                    &quot;teamName&quot;: &quot;Juventus&quot;,
+                    &quot;idPlayer1&quot;: 12000,
+                    &quot;player1Name&quot;: &quot;G. Chiellini&quot;,
+                    &quot;idPlayer2&quot;: null,
+                    &quot;player2Name&quot;: null,
+                    &quot;elapsed&quot;: 21,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;goal&quot;
+                },
+                {
+                    &quot;id&quot;: 135423,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 909,
+                    &quot;teamName&quot;: &quot;Parma&quot;,
+                    &quot;idPlayer1&quot;: 15892,
+                    &quot;player1Name&quot;: &quot;D. Kulusevski&quot;,
+                    &quot;idPlayer2&quot;: null,
+                    &quot;player2Name&quot;: null,
+                    &quot;elapsed&quot;: 27,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;y_card&quot;
+                },
+                {
+                    &quot;id&quot;: 135424,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 909,
+                    &quot;teamName&quot;: &quot;Parma&quot;,
+                    &quot;idPlayer1&quot;: 15893,
+                    &quot;player1Name&quot;: &quot;Hernani&quot;,
+                    &quot;idPlayer2&quot;: null,
+                    &quot;player2Name&quot;: null,
+                    &quot;elapsed&quot;: 45,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;y_card&quot;
+                },
+                {
+                    &quot;id&quot;: 135425,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 854,
+                    &quot;teamName&quot;: &quot;Juventus&quot;,
+                    &quot;idPlayer1&quot;: 12278,
+                    &quot;player1Name&quot;: &quot;S. Khedira&quot;,
+                    &quot;idPlayer2&quot;: null,
+                    &quot;player2Name&quot;: null,
+                    &quot;elapsed&quot;: 53,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;y_card&quot;
+                },
+                {
+                    &quot;id&quot;: 135457,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 909,
+                    &quot;teamName&quot;: &quot;Parma&quot;,
+                    &quot;idPlayer1&quot;: 8132,
+                    &quot;player1Name&quot;: &quot;L. Siligardi&quot;,
+                    &quot;idPlayer2&quot;: 15892,
+                    &quot;player2Name&quot;: &quot;D. Kulusevski&quot;,
+                    &quot;elapsed&quot;: 57,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;subst&quot;
+                },
+                {
+                    &quot;id&quot;: 135458,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 854,
+                    &quot;teamName&quot;: &quot;Juventus&quot;,
+                    &quot;idPlayer1&quot;: 15073,
+                    &quot;player1Name&quot;: &quot;A. Rabiot&quot;,
+                    &quot;idPlayer2&quot;: 12278,
+                    &quot;player2Name&quot;: &quot;S. Khedira&quot;,
+                    &quot;elapsed&quot;: 63,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;subst&quot;
+                },
+                {
+                    &quot;id&quot;: 135459,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 854,
+                    &quot;teamName&quot;: &quot;Juventus&quot;,
+                    &quot;idPlayer1&quot;: 12193,
+                    &quot;player1Name&quot;: &quot;J. Cuadrado&quot;,
+                    &quot;idPlayer2&quot;: 15894,
+                    &quot;player2Name&quot;: &quot;Douglas Costa&quot;,
+                    &quot;elapsed&quot;: 71,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;subst&quot;
+                },
+                {
+                    &quot;id&quot;: 135460,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 909,
+                    &quot;teamName&quot;: &quot;Parma&quot;,
+                    &quot;idPlayer1&quot;: 11893,
+                    &quot;player1Name&quot;: &quot;A. Grassi&quot;,
+                    &quot;idPlayer2&quot;: 8478,
+                    &quot;player2Name&quot;: &quot;G. Brugman&quot;,
+                    &quot;elapsed&quot;: 77,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;subst&quot;
+                },
+                {
+                    &quot;id&quot;: 135461,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 854,
+                    &quot;teamName&quot;: &quot;Juventus&quot;,
+                    &quot;idPlayer1&quot;: 12135,
+                    &quot;player1Name&quot;: &quot;F. Bernardeschi&quot;,
+                    &quot;idPlayer2&quot;: 11848,
+                    &quot;player2Name&quot;: &quot;G. Higuaín&quot;,
+                    &quot;elapsed&quot;: 83,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;subst&quot;
+                },
+                {
+                    &quot;id&quot;: 135462,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 909,
+                    &quot;teamName&quot;: &quot;Parma&quot;,
+                    &quot;idPlayer1&quot;: 15899,
+                    &quot;player1Name&quot;: &quot;Y. Karamoh&quot;,
+                    &quot;idPlayer2&quot;: 8449,
+                    &quot;player2Name&quot;: &quot;A. Barillà&quot;,
+                    &quot;elapsed&quot;: 85,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;subst&quot;
+                },
+                {
+                    &quot;id&quot;: 135426,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 854,
+                    &quot;teamName&quot;: &quot;Juventus&quot;,
+                    &quot;idPlayer1&quot;: 12135,
+                    &quot;player1Name&quot;: &quot;F. Bernardeschi&quot;,
+                    &quot;idPlayer2&quot;: null,
+                    &quot;player2Name&quot;: null,
+                    &quot;elapsed&quot;: 88,
+                    &quot;elapsedPlus&quot;: 0,
+                    &quot;type&quot;: &quot;y_card&quot;
+                },
+                {
+                    &quot;id&quot;: 135427,
+                    &quot;idFixture&quot;: 14143,
+                    &quot;idSeason&quot;: 435,
+                    &quot;idTeam&quot;: 854,
+                    &quot;teamName&quot;: &quot;Juventus&quot;,
+                    &quot;idPlayer1&quot;: 12159,
+                    &quot;player1Name&quot;: &quot;M. Pjanić&quot;,
+                    &quot;idPlayer2&quot;: null,
+                    &quot;player2Name&quot;: null,
+                    &quot;elapsed&quot;: 90,
+                    &quot;elapsedPlus&quot;: 1,
+                    &quot;type&quot;: &quot;y_card&quot;
+                }
+            ]
+        }
+    ],
+    &quot;page&quot;: 1,
+    &quot;itemsPerPage&quot;: 20
+}
+</code><br>
+<a name="fantasysportnet"></a></p>
 
 <p><a name="sportdeer"></a></p>
 

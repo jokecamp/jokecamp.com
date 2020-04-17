@@ -53,6 +53,7 @@ Jump to an implementation:
   * [Rust]({{page.url}}#rust)
   * [Powershell]({{page.url}}#powershell)
   * [Shell]({{page.url}}#shell)
+  * [Delphi]({{page.url}}#delphi)
 
 ### <a name='js'></a>Javascript HMAC SHA256
 
@@ -371,4 +372,8 @@ SECRET="secret"
 echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base64
 ```
 
+
+### ### <a name='delphi'></a>Delphi HMAC SHA256
+
+<https://stackoverflow.com/a/40182566/215502>
 
