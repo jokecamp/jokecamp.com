@@ -26,6 +26,7 @@ tags:
 - sha256
 - swift
 - shell
+- deno
 ---
 
 Downloading JSON via GET from a simple API should be the 2nd tutorial right after Hello World for every language. Below is an ever-growing collection of code examples to highlight the differences in different programming languages and serve as a practical reference.
@@ -34,6 +35,7 @@ Jump to an implementation:
 
   * [Node.js]({{page.url}}#nodejs)
   * [Javascript]({{page.url}}#js)
+  * [Deno]({{page.url}}#deno)
   * [PHP]({{page.url}}#php)
   * [Java]({{page.url}}#java)
   * [Groovy]({{page.url}}#groovy)
@@ -108,6 +110,21 @@ Below is a sync example using [XMLHttpRequest](https://developer.mozilla.org/en-
   req.open('GET', 'https://swapi.co/api/people/1/', false);
   req.send(null);
   console.log(req.responseText);
+```
+
+### <a name='deno'></a>Deno HTTP GET
+
+[Deno](https://deno.land/) is a "simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust."
+
+You will need to use `--allow-net` to allow network access.
+
+```javascript
+// Name the below go.ts
+// Then run with: deno run --allow-net go.ts https://jsonplaceholder.typicode.com/todos/
+const url = Deno.args[0];
+const res = await fetch(url);
+const items = await res.json();
+console.log(items);
 ```
 
 ### <a name='php'></a>PHP HTTP GET
