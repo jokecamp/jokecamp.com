@@ -58,12 +58,10 @@ Jump to an implementation:
 ### <a name='js'></a>Javascript HMAC SHA256
 
 Run the code online with this [jsfiddle](http://jsfiddle.net/af9ps1yk/6/).
-Dependent upon an open source js library called [http://code.google.com/p/crypto-js/](http://code.google.com/p/crypto-js/).
+Dependent upon an open source js library called [crypto-js](https://github.com/brix/crypto-js).
 
 ```javascript
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
 <script>
   var hash = CryptoJS.HmacSHA256("Message", "secret");
