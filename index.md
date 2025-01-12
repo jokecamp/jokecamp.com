@@ -10,7 +10,7 @@ sitemap:
 # About
 
 <div itemscope itemtype="http://data-vocabulary.org/Person">
-My name is <span itemprop="name">Joe Kampschmidt</span>. I usually appear online as <em itemprop="nickname">jokecamp</em>. I am a <span itemprop='role'>developer</span>. I tend to write very specific blog posts solving practical issues with the goal of saving the reader's time.
+My name is <span itemprop="name">Joe Kampschmidt</span>. I usually appear online as <em itemprop="nickname">jokecamp</em>. I am a <span itemprop='role'>developer</span>.
 </div>
 
 <br>
@@ -21,8 +21,9 @@ This website is open sourced on <a href="https://github.com/jokecamp/jokecamp.co
 
 ## Online Presence
 
-- <a rel="me" href="{{ site.stackoverflow }}" title="Joe's stackoverflow account - aka street credit">kampsj on StackOverflow</a>
-- <a rel="me" href="{{ site.twitter }}" title="Joe's twitter account">@jokecamp on twitter</a>
+- <a rel="me" href="{{ site.github }}" title="Joe's GitHub account">jokecamp on GitHub</a>
+- <a rel="me" href="{{ site.linkedin }}" title="Joe's LinkedIn account">Joe on LinkedIn</a>
+- <a rel="me" href="{{ site.stackoverflow }}" title="Joe's stackoverflow account">kampsj on StackOverflow</a>
 
 ## Blog Posts
 

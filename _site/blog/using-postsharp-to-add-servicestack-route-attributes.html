@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta charset="utf-8">
+  <title>Using PostSharp to Add ServiceStack Route Attributes - Joe Kampschmidt's Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="description" content="Using PostSharp to add custom ServiceStack route attributes to your DTOs">
+  <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
+  <meta name="author" content="Joe Kampschmidt" />
+  <link href='/public/poole.css' rel='stylesheet' type='text/css'>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<link rel="me" type="text/html" href="https://plus.google.com/+JoeKampschmidt?rel=me"/>
+	<link rel="me" type="text/html" href="https://twitter.com/jokecamp"/>
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+        <a href="/" title="also known as @jokecamp" class="masthead-title">Joe Kampschmidt's Code</a>
+
+        <nav class="nav" role="navigation">
+          <ul>
+            <li><a class="" href="/blog/" title="Joe's Blog">Blog</a></li><li><a class="" href="/projects/" title="Joe's Projects">Projects</a></li>
+            <li><a rel="me" href="https://github.com/jokecamp" title="Joe's github page - commit all the things">Code</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div> <!-- end masthead -->
+
+    <div class="container content">
+
+      <div role="main">
+        <div class="post">
+  <h1 class="post-title">Using PostSharp to Add ServiceStack Route Attributes</h1>
+  <span class="post-date">11 Jun 2013</span>
+  <p><strong>Updated</strong>:  The latest version of ServiceStack (v3.9.53) now includes the <a href="https://github.com/ServiceStack/ServiceStack/wiki/Routing#content-negotiation">.ext routing option</a> using the AllowRouteContentTypeExtensions configuration property. See The comments section for more information. I would use the framework instead of this custom approach. This example now really serves as a demonstration of using PostSharp to apply attributes in general.</p>
+
+<hr />
+
+<p><strong>An aspect oriented approach to adding data format to the route</strong></p>
+
+<p>A common approach in restful APIs is to allow the consumer to provide the content type in the route as a file extension. For example: /api/movies.json or /api/movies.xml?genre=Action.</p>
+
+<p>Currently, ServiceStack supports different formats via the querystring “format” parameter or via the headers. You can easily override the HTTP content type by simply specifying urls like the following: /api/movies?format=json. One way to make ServiceStack work with the file extensions is to explicitly put the formats into the RouteAttribute paths and adding your own RequestFilter to check for a provided format. See the RequestFilter code at the bottom of the post.</p>
+
+<p>For Example:</p>
+
+<pre><code class="language-csharp">  [Routes("/shows.json")]
+  [Routes("/shows.xml")]
+  [Routes("/shows.csv")]
+  [Routes("/shows.jsv")
+  [Routes("/shows.jsv")
+  [Routes("/shows")
+</code></pre>
+
+<p>However, this becomes cumbersome to manage. If you are using Aspect oriented programming and PostSharp there is an easier way. You can create an aspect to decorate your DTOs with the accepted content types.</p>
+
+<p><strong>PostSharp Attribute to Turn one Route attribute into many route attributes.</strong></p>
+
+<pre><code class="language-csharp">///
+/// Turns one Route into many routes with different data formats
+///
+/// For example:
+///
+///     [RoutesWithDataFormats("/shows") =&gt; [Routes("/shows.json")]
+///                                         [Routes("/shows.xml")]
+///                                         [Routes("/shows.csv")]
+///                                         [Routes("/shows.jsv")]
+///                                         [Routes("/shows")]
+///
+[MulticastAttributeUsage(MulticastTargets.Class, Inheritance = MulticastInheritance.Strict)]
+[Serializable]
+public sealed class RoutesWithDataFormatsAttribute : TypeLevelAspect, IAspectProvider
+{
+    private string _path;
+    private string _verbs;
+
+    public RoutesWithDataFormatsAttribute(string path, string verbs)
+    {
+        _path = path;
+        _verbs = verbs;
+    }
+
+    public RoutesWithDataFormatsAttribute(string path)
+    {
+        _path = path;
+    }
+
+    // This method is called at build time and should just provide other aspects.
+    public IEnumerable ProvideAspects(object targetElement)
+    {
+        var attributes = new List();
+
+        var formats = new[] {"json", "xml", "csv", "jsv"};
+
+        // Add data format routes first!
+        foreach (var format in formats)
+        {
+            var dataFormatPath = string.Format("{0}.{1}", _path, format);
+            attributes.Add(CreateAspect(targetElement, dataFormatPath, _verbs));
+        }
+
+        // Then add plain route last
+        attributes.Add(CreateAspect(targetElement, _path, _verbs));
+
+        return attributes;
+    }
+
+    private AspectInstance CreateAspect(object targetElement, string path, string verbs)
+    {
+        var constructor = string.IsNullOrWhiteSpace(verbs)
+                        ? new ObjectConstruction(typeof(RouteAttribute), path)
+                        : new ObjectConstruction(typeof(RouteAttribute), path, verbs);
+
+        var introduceDataContractAspect = new CustomAttributeIntroductionAspect(constructor);
+
+        return new AspectInstance(targetElement, introduceDataContractAspect);
+    }
+}
+</code></pre>
+
+<p><strong>AppHost Request Filters to make it work</strong></p>
+
+<p>You will of course need to filter for these formats and override the content types. You can do this by adding a RequestFilter in your AppHost.</p>
+
+<pre><code class="language-csharp">// Filters happen before every request! Even before auth check
+this.RequestFilters.Add((httpReq, httpResp, requestDto) =&gt;
+    {
+        // allow .xml and .json
+        if (httpReq.PathInfo.EndsWith(".xml"))
+        {
+            httpReq.ResponseContentType = ContentType.Xml;
+        }
+        else if (httpReq.PathInfo.EndsWith(".json"))
+        {
+            httpReq.ResponseContentType = ContentType.Json;
+            httpResp.ContentType = ContentType.Json;
+        }
+        // and ect for the other data types. You can refactor this into cleaner code
+    });
+</code></pre>
+
+</div>
+
+<div class="tags">
+Tags
+ <div class='tag'><a href='/tag/#api'>api</a></div>  <div class='tag'><a href='/tag/#restful'>restful</a></div>  <div class='tag'><a href='/tag/#servicestack'>servicestack</a></div> 
+</div>
+
+<div class="post-footer">
+  Notice a typo or something incorrect?<br>
+  Leave a comment or submit changes via <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2013-06-11-using-postsharp-to-add-servicestack-route-attributes.markdown">GitHub</a>.
+</div>
+
+      </div>
+
+      <div class="footer" role="contentinfo">
+        <ul>
+          <li><a href="/atom.xml" title="Atom Feed">Atom Feed</a></li>
+          <li><a href="/rss.xml" title="RSS Feed">RSS Feed</a></li>
+          <li><a href="https://github.com/jokecamp/jokecamp.com/" title="View Source on GitHub">View Source</a></li>
+          <li><a href="mailto:joe.kampschmidt@gmail.com" title="email me">Contact me</a></li>
+        </ul>
+      </div>
+
+    </div> <!-- end container -->
+
+  </body>
+</html>

@@ -1,5 +1,5 @@
 # Dependencies
-markdown:         redcarpet
+#markdown:         redcarpet 
 highlighter:      pygments
 
 exclude:          ['.asset_pipeline', 'deploy.sh', 'server-script.sh']
@@ -27,6 +27,7 @@ githubBranch:     tree/master/
 github:           https://github.com/jokecamp
 twitter:          https://twitter.com/jokecamp
 stackoverflow:    http://stackoverflow.com/users/215502/kampsj
+linkedin:         https://www.linkedin.com/in/joe-kampschmidt-950711239/
 
 version:          1.0
 

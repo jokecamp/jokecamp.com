@@ -4,3 +4,4 @@ server-script.sh
 deploy.sh
 
 private/
+.DS_Store

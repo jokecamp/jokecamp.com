@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Joe Kampschmidt&#39;s Code</title>
+		<title>Joe Kampschmidt&apos;s Code</title>
 		<description>a pragmatic approach to web and software development</description>
-		<link>https://www.jokecamp.com</link>
-		<atom:link href="https://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
+		<link>http://localhost:4000</link>
+		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Building a Tree House</title>
+				<description>&lt;h1 id=&quot;tree-house-project&quot;&gt;Tree House Project&lt;/h1&gt;
+
+&lt;p&gt;I built a tree house in the backyard for my kids in the summer of 2021. I usuaully build in the digital world so this was a very satisfying project.&lt;/p&gt;
+
+&lt;div class=&quot;photo-gallery&quot;&gt;
+    &lt;img src=&quot;http://localhost:4000/public/treehouse/1.jpg&quot; title=&quot;Kids and the Treehouse in action&quot; /&gt;
+    &lt;img src=&quot;http://localhost:4000/public/treehouse/2.jpg&quot; title=&quot;Kids and the Treehouse in action&quot; /&gt;
+    &lt;img src=&quot;http://localhost:4000/public/treehous...</description>
+				<pubDate>Sat, 11 Jan 2025 00:00:00 -0500</pubDate>
+				<link>http://localhost:4000/blog/building-a-tree-house</link>
+				<guid isPermaLink="true">http://localhost:4000/blog/building-a-tree-house</guid>
+			</item>
 		
 			<item>
 				<title>Examples of calling an API HTTP GET for JSON in different languages</title>
@@ -13,32 +28,23 @@
 &lt;p&gt;Jump to an implementation:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#nodejs&quot;&gt;Node.js&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#js&quot;&gt;Javascript&lt;...</description>
+  &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#nodejs&quot;&gt;Node.js&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#js&quot;&gt;Javascr...</description>
 				<pubDate>Sun, 17 Feb 2019 00:00:00 -0500</pubDate>
-				<link>https://www.jokecamp.com/blog/code-examples-api-http-get-json-different-languages</link>
-				<guid isPermaLink="true">https://www.jokecamp.com/blog/code-examples-api-http-get-json-different-languages</guid>
+				<link>http://localhost:4000/blog/code-examples-api-http-get-json-different-languages</link>
+				<guid isPermaLink="true">http://localhost:4000/blog/code-examples-api-http-get-json-different-languages</guid>
 			</item>
 		
 			<item>
 				<title>Typescript in the Wild - Real World Examples Part 1</title>
-				<description>&lt;p&gt;In an ongoing series I will be reading and discussing various Typescript code found in the wild. Reading other people&amp;#39;s code is a great way to learn and improve your own code. First up is a random class from the popular &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VS Code&lt;/a&gt; editor.&lt;/p&gt;
+				<description>&lt;p&gt;In an ongoing series I will be reading and discussing various Typescript code found in the wild. Reading other people’s code is a great way to learn and improve your own code. First up is a random class from the popular &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VS Code&lt;/a&gt; editor.&lt;/p&gt;
 
-&lt;h3&gt;&lt;code&gt;editorAction.ts&lt;/code&gt; from &lt;a href=&quot;https://github.com/Microsoft/vscode&quot;&gt;github.com/Microsoft/vscode&lt;/a&gt;&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript...</description>
+&lt;h3 id=&quot;editoractionts-from-githubcommicrosoftvscode&quot;&gt;&lt;code&gt;editorAction.ts&lt;/code&gt; from &lt;a href=&quot;https://github.com/Microsoft/vscode&quot;&gt;github.com/Microsoft/vscode&lt;/a&gt;&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-javascrip...</description>
 				<pubDate>Sat, 22 Sep 2018 00:00:00 -0400</pubDate>
-				<link>https://www.jokecamp.com/blog/typescript-real-world-examples</link>
-				<guid isPermaLink="true">https://www.jokecamp.com/blog/typescript-real-world-examples</guid>
-			</item>
-		
-			<item>
-				<title>Migrating a project to Angular CLI build system</title>
-				<description>&lt;p&gt;I recently migrated an Angular app from a gulp build system to an &lt;a href=&quot;https://cli.angular.io/&quot;&gt;Angular CLI&lt;/a&gt; (version 1.2.6). I am enjoying the new build system and the improved Angular performance. I wanted to share the process, some pain points and lessons learned.&lt;/p&gt;
-
-&lt;p&gt;A good starting point for migrating is the angular-cli &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/stories-1.0-update&quot;&gt;migration guide&lt;/a&gt; and &lt;a href=&quot;https://github.com/angular/angular-cli/wiki/storie...</description>
-				<pubDate>Sat, 12 Aug 2017 00:00:00 -0400</pubDate>
-				<link>https://www.jokecamp.com/blog/migrating-to-angular-cli</link>
-				<guid isPermaLink="true">https://www.jokecamp.com/blog/migrating-to-angular-cli</guid>
+				<link>http://localhost:4000/blog/typescript-real-world-examples</link>
+				<guid isPermaLink="true">http://localhost:4000/blog/typescript-real-world-examples</guid>
 			</item>
 		
 	</channel>
