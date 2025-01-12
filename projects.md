@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Projects
-desc: 'A showcase of personal projects and websites created by Joe Kampschmidt'
+desc: 'A graveyard of personal projects and websites created by Joe Kampschmidt'
 permalink: /projects/
 featured: true
 sitemap:
@@ -12,15 +12,15 @@ sitemap:
 [1]: https://github.com/jokecamp/epl-fantasy-geek
 [2]: http://jokecamp.github.io/epl-fantasy-geek/
 
- - [EPL Fantasy Geek][2] - an [open source AngularJS][1] (1.x) website to allow for easy filtering and sorting of the player data for the 2014-2015 English Premier League Fantasy game. I'll update the stats throughout the season (2014).
-
- - [PaulTenwalde.com](http://www.paultenwalde.com/) - Uses the [flickr API](http://www.flickr.com/services/api/) with PHP. Caching results and creating a photo gallery with jQuery. Built with a focus on unobtrusive javascript, clean html and CSS.
+ - [A Treehouse](../blog/building-a-tree-house) - My favorite project. I will still be reminding my kids twenty years later, "Remember that treehouse I built for you...?" (Summer 2021)
+ 
+ - [PaulTenwalde.com](http://www.paultenwalde.com/) - Uses the [flickr API](http://www.flickr.com/services/api/) with PHP. Caching results and creating a photo gallery with jQuery. Built with a focus on unobtrusive javascript, clean html and CSS. Due for a design refresh. You could date this by the retro design.
 
 - [Travel Log](http://travellogjoe.blogspot.com/) - travel pictures of my backpacking trip in 2008/2009.
 
-## Graveyard
+#### Most of the below pages don't work anymore but fun to remember.
 
-Let's be honest most of our code ends up here. Most of the below pages don't work anymore.
+ - [EPL Fantasy Geek][2] - an [open source AngularJS][1] (1.x) website to allow for easy filtering and sorting of the player data for the 2014-2015 English Premier League Fantasy game. I'll update the stats throughout the season (2014).
 
 - HiddenScores - No longer available as of March 2014. Spoiler alerts for English Premier League soccer scores. Allowing users to only reveal the results they wish to see. Emphasis on responsive design with one site for all devices.
 

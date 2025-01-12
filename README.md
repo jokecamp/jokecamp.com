@@ -51,3 +51,18 @@ git commit -m "
 git push origin master
 ./deploy.sh
 ```
+
+
+
+https://jekyllrb.com/docs/installation/macos/
+```
+brew install chruby ruby-install
+ruby-install ruby 3.3.5
+echo "source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh" >> ~/.zshrc
+echo "source $(brew --prefix)/opt/chruby/share/chruby/auto.sh" >> ~/.zshrc
+echo "chruby ruby-3.3.5" >> ~/.zshrc # run 'chruby' to see actual version
+chruby
+gem install jekyll
+jekyll --version
+# 4.3.4
+```

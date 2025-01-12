@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta charset="utf-8">
+  <title>Querying Groups and Users across multiple domains with LDAP in C# .NET - Joe Kampschmidt's Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="description" content="Example C# .NET code to query groups and users across multiple domains with LDAP">
+  <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
+  <meta name="author" content="Joe Kampschmidt" />
+  <link href='/public/poole.css' rel='stylesheet' type='text/css'>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<link rel="me" type="text/html" href="https://plus.google.com/+JoeKampschmidt?rel=me"/>
+	<link rel="me" type="text/html" href="https://twitter.com/jokecamp"/>
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+        <a href="/" title="also known as @jokecamp" class="masthead-title">Joe Kampschmidt's Code</a>
+
+        <nav class="nav" role="navigation">
+          <ul>
+            <li><a class="" href="/blog/" title="Joe's Blog">Blog</a></li><li><a class="" href="/projects/" title="Joe's Projects">Projects</a></li>
+            <li><a rel="me" href="https://github.com/jokecamp" title="Joe's github page - commit all the things">Code</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div> <!-- end masthead -->
+
+    <div class="container content">
+
+      <div role="main">
+        <div class="post">
+  <h1 class="post-title">Querying Groups and Users across multiple domains with LDAP in C# .NET</h1>
+  <span class="post-date">26 Mar 2012</span>
+  <p>I recently needed to fix some LDAP queries using DirectoryEntry and DirectorySearcher. The query was very simple. Find a group and return all the members of that group. There were two problems with the existing C# code:</p>
+
+<ol>
+  <li>the group DN (distinguished name) was hard coded</li>
+  <li>the groups and users were on different domains</li>
+</ol>
+
+<p><strong>Solution to #1</strong></p>
+
+<p>The group should have never been hard coded (even if it is in a config file.) The problem is that once a group moves the query will no longer work. A much better approach is to query first for the group by the exact name and return the full distinguished name (DN). Then use the group DN to get all the members of the group in a separate query.</p>
+
+<p><strong>Solution to #2</strong></p>
+
+<p>The network I was looking at involved two different domains. My users were on one domain but the groups were on another. I had no problems querying for the group. However, when I tried to get the group members that resided on a different domain the Directory Searcher returned zero members.</p>
+
+<p>I found two different ways to solve this and implemented both in the end.</p>
+
+<ul>
+  <li>Query the <strong>Global catalog (GC)</strong> instead of a specific LDAP domain (assuming the GC has been setup correctly).
+    <ul>
+      <li>Set the <strong><a href="http://msdn.microsoft.com/en-us/library/system.directoryservices.referralchasingoption.aspx">System.DirectoryServices.ReferralChasingOption ReferralChasing</a> option to ALL</strong>.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>All together an example for ad.example.org</p>
+
+<pre><code class="language-csharp">using (var de = new DirectoryEntry("GC://dc=ad,dc=example,dc=org"))
+{
+    using (var ds = new DirectorySearcher(de))
+    {
+        ds.ReferralChasing = ReferralChasingOption.All;
+        // perform search
+    }
+}
+</code></pre>
+
+<p>I’ve included my code for my custom LDAP Provider classes and implementation. It only performs the group and member lookups. Please feel free to use it and critique it.</p>
+
+<p>Calling from the main entry point:</p>
+
+<pre><code class="language-csharp">var provider = new LdapProvider("GC://dc=ad,dc=example,dc=org");
+var members = provider.GetMembersOfGroup("DevelopmentTeam");
+
+foreach (var m in members)
+{
+    if (!m.IsAccountDisabled)
+        Console.WriteLine("{0} {1} {2} {3}", m.FirstName, m.LastName, m.SamAccountName, m.UserAccountControl);
+}
+</code></pre>
+
+<p>Below is the Provider Implementation. I reuse my DirectoryEntry instance to reduce the number of queries and improve performance.</p>
+
+<pre><code class="language-csharp">public class LdapProvider
+{
+    // Called LDAP Path but can handle GC paths too
+    private readonly string _ldapPath;
+
+    public LdapProvider(string path)
+    {
+        _ldapPath = path;
+    }
+
+    /// &lt;summary&gt;
+    /// Provide the friendly name of the group to get all members of the group.
+    /// &lt;/summary&gt;
+    /// &lt;param name="groupName"&gt;&lt;/param&gt;
+    /// &lt;returns&gt;&lt;/returns&gt;
+    public IEnumerable&lt;LdapUserData&gt; GetMembersOfGroup(string groupName)
+    {
+        var members = new List&lt;LdapUserData&gt;();
+
+        try
+        {
+            using (var directoryEntry = new DirectoryEntry(_ldapPath))
+            {
+                var groupDistinguishedName = GetGroupDistinguishedName(directoryEntry, groupName);
+                members = GetMembersOfGroup(directoryEntry, groupDistinguishedName).ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Failed to query LDAP users {0} on {1}. {2}", groupName, _ldapPath, ex.Message);
+        }
+
+        return members;
+    }
+
+    private void SetupDefaultPropertiesOnDirectorySearcher(DirectorySearcher searcher)
+    {
+        // allow us to use references to other active dir domains.
+        searcher.ReferralChasing = ReferralChasingOption.All;
+    }
+
+    private string GetGroupDistinguishedName(DirectoryEntry directoryEntry, string groupName)
+    {
+        var distinguishedName = "";
+
+        var filter = string.Format("(&amp;(objectClass=group)(name={0}))", groupName);
+        var propertiesToLoad = new string[] {"distinguishedName"};
+
+        using (var ds = new DirectorySearcher(directoryEntry, filter, propertiesToLoad))
+        {
+            SetupDefaultPropertiesOnDirectorySearcher(ds);
+
+            var result = ds.FindOne();
+            if (result != null)
+            {
+                distinguishedName = result.Properties["distinguishedName"][0].ToString();
+            }
+        }
+
+        return distinguishedName;
+    }
+
+    private IEnumerable&lt;LdapUserData&gt; GetMembersOfGroup(DirectoryEntry directoryEntry, string groupDistinguishedName)
+    {
+        var members = new List&lt;LdapUserData&gt;();
+
+        if (string.IsNullOrEmpty(groupDistinguishedName))
+        {
+            throw new Exception("Group name not provided. Cannot look for group members.");
+        }
+
+        var filter = string.Format("(&amp;(objectClass=user)(memberof={0}))", groupDistinguishedName);
+
+        // Only load what we need
+        var propertiesToLoad = new string[] {"givenname", "samaccountname", "sn", "useraccountcontrol"};
+
+        using (var ds = new DirectorySearcher(directoryEntry, filter, propertiesToLoad))
+        {
+            SetupDefaultPropertiesOnDirectorySearcher(ds);
+
+            // get all members in a group
+            foreach (SearchResult result in ds.FindAll())
+            {
+                try
+                {
+                    members.Add(new LdapUserData()
+                                    {
+                                        SamAccountName = result.Properties["samaccountname"][0].ToString(),
+                                        UserAccountControl =
+                                            (result.Properties["useraccountcontrol"][0] is int)
+                                                ? (int) result.Properties["useraccountcontrol"][0]
+                                                : 0,
+                                        FirstName = result.Properties["givenname"][0].ToString(),
+                                        LastName = result.Properties["sn"][0].ToString()
+                                    });
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failed to add user.");
+                }
+            }
+        }
+
+        return members;
+    }
+}
+
+/// &lt;summary&gt;
+/// Very lightweight class to hold user account data
+/// &lt;/summary&gt;
+public class LdapUserData
+{
+    /// &lt;summary&gt;
+    /// SAM = Security Accounts Manager
+    /// &lt;/summary&gt;
+    public string SamAccountName { get; set; }
+
+    /// &lt;summary&gt;
+    /// Bit field flags that control the behavior of the AD user account.
+    ///
+    /// A few relevant ones:
+    /// 2   = ACCOUNTDISABLE
+    /// 512 = NORMAL_ACCOUNT
+    ///
+    /// 514 = NORMAL_ACCOUNT &amp;&amp; ACCOUNTDISABLE
+    /// &lt;/summary&gt;
+    public int UserAccountControl { get; set; }
+
+    /// &lt;summary&gt;
+    /// Check bit flag and include anything without a valid name as disabled.
+    /// &lt;/summary&gt;
+    public bool IsAccountDisabled
+    {
+        get { return UserAccountControl == 514 || string.IsNullOrEmpty(SamAccountName); }
+    }
+
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+
+}
+</code></pre>
+
+</div>
+
+<div class="tags">
+Tags
+ <div class='tag'><a href='/tag/#.NET'>.NET</a></div>  <div class='tag'><a href='/tag/#ActiveDirectory'>ActiveDirectory</a></div>  <div class='tag'><a href='/tag/#C#'>C#</a></div>  <div class='tag'><a href='/tag/#LDAP'>LDAP</a></div> 
+</div>
+
+<div class="post-footer">
+  Notice a typo or something incorrect?<br>
+  Leave a comment or submit changes via <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2012-03-26-querying-groups-and-users-across-multiple-domains-with-ldap-in-c-net.markdown">GitHub</a>.
+</div>
+
+      </div>
+
+      <div class="footer" role="contentinfo">
+        <ul>
+          <li><a href="/atom.xml" title="Atom Feed">Atom Feed</a></li>
+          <li><a href="/rss.xml" title="RSS Feed">RSS Feed</a></li>
+          <li><a href="https://github.com/jokecamp/jokecamp.com/" title="View Source on GitHub">View Source</a></li>
+          <li><a href="mailto:joe.kampschmidt@gmail.com" title="email me">Contact me</a></li>
+        </ul>
+      </div>
+
+    </div> <!-- end container -->
+
+  </body>
+</html>

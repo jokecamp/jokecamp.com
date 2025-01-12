@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta charset="utf-8">
+  <title>Examples of calling an API HTTP GET for JSON in different languages - Joe Kampschmidt's Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="description" content="A list of code examples in various languages that demonstrate how to perform an HTTP/HTTPS GET for JSON on an API in different coding languages.">
+  <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
+  <meta name="author" content="Joe Kampschmidt" />
+  <link href='/public/poole.css' rel='stylesheet' type='text/css'>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<link rel="me" type="text/html" href="https://plus.google.com/+JoeKampschmidt?rel=me"/>
+	<link rel="me" type="text/html" href="https://twitter.com/jokecamp"/>
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+        <a href="/" title="also known as @jokecamp" class="masthead-title">Joe Kampschmidt's Code</a>
+
+        <nav class="nav" role="navigation">
+          <ul>
+            <li><a class="" href="/blog/" title="Joe's Blog">Blog</a></li><li><a class="" href="/projects/" title="Joe's Projects">Projects</a></li>
+            <li><a rel="me" href="https://github.com/jokecamp" title="Joe's github page - commit all the things">Code</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div> <!-- end masthead -->
+
+    <div class="container content">
+
+      <div role="main">
+        <div class="post">
+  <h1 class="post-title">Examples of calling an API HTTP GET for JSON in different languages</h1>
+  <span class="post-date">17 Feb 2019</span>
+  <p>Downloading JSON via GET from a simple API should be the 2nd tutorial right after Hello World for every language. Below is an ever-growing collection of code examples to highlight the differences in different programming languages and serve as a practical reference.</p>
+
+<p>Jump to an implementation:</p>
+
+<ul>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#nodejs">Node.js</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#js">Javascript</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#deno">Deno</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#php">PHP</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#java">Java</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#groovy">Groovy</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#csharp">C#</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#objc">Objective C</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#go">Go</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#ruby">Ruby</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#python">Python</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#perl">Perl</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#dart">Dart</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#swift">Swift</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#rust">Rust</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#powershell">Powershell</a></li>
+  <li><a href="/blog/code-examples-api-http-get-json-different-languages#shell">Shell</a></li>
+</ul>
+
+<h2 id="contribution-rulesguidelines">Contribution Rules/Guidelines</h2>
+
+<ul>
+  <li>no 3rd party libraries/packages/modules allowed (unless required for HTTPS)</li>
+  <li>must be making an HTTPS request and use endpoint: <a href="https://swapi.co/api/people/1/">https://swapi.co/api/people/1/</a></li>
+  <li>keep it simple and readable</li>
+  <li>its ok to ignore errors and best practices</li>
+  <li>when practical/terse include the code to parse JSON too</li>
+</ul>
+
+<p><strong>Please <a href="https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2019-02-17-code-examples-api-http-get-json-different-languages.markdown">contribute</a> (pull request) if you have a better approach or a new language.</strong></p>
+
+<h3 id="nodejs-http-get"><a name="nodejs"></a>Node.js HTTP GET</h3>
+
+<p>See <a href="https://nodejs.org/api/https.html#https_https_get_options_callback">https</a></p>
+
+<pre><code class="language-js">var https = require('https');
+
+var options = {
+	host: 'swapi.co',
+	path: '/api/people/1/',
+	headers: {
+		'Accept': 'application/json'
+	}
+};
+https.get(options, function (res) {
+	var json = '';
+
+	res.on('data', function (chunk) {
+		json += chunk;
+	});
+
+	res.on('end', function () {
+		if (res.statusCode === 200) {
+			try {
+				var data = JSON.parse(json);
+				// data is available here:
+				console.log(json);
+			} catch (e) {
+				console.log('Error parsing JSON!');
+			}
+		} else {
+			console.log('Status:', res.statusCode);
+		}
+	});
+}).on('error', function (err) {
+	console.log('Error:', err);
+});
+</code></pre>
+
+<h3 id="javascript-http-get"><a name="js"></a>Javascript HTTP GET</h3>
+
+<p>Below is a sync example using <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send">XMLHttpRequest</a>. From <a href="https://stackoverflow.com/a/4033310/215502">StackOverflow: HTTP GET request in JavaScript</a></p>
+
+<pre><code class="language-javascript">  var req = new XMLHttpRequest();
+  req.open('GET', 'https://swapi.co/api/people/1/', false);
+  req.send(null);
+  console.log(req.responseText);
+</code></pre>
+
+<h3 id="deno-http-get"><a name="deno"></a>Deno HTTP GET</h3>
+
+<p><a href="https://deno.land/">Deno</a> is a “simple, modern and secure runtime for JavaScript and TypeScript that uses V8 and is built in Rust.”</p>
+
+<p>You will need to use <code>--allow-net</code> to allow network access.</p>
+
+<pre><code class="language-javascript">// Name the below go.ts
+// Then run with: deno run --allow-net go.ts https://jsonplaceholder.typicode.com/todos/
+const url = Deno.args[0];
+const res = await fetch(url);
+const items = await res.json();
+console.log(items);
+</code></pre>
+
+<h3 id="php-http-get"><a name="php"></a>PHP HTTP GET</h3>
+
+<p><a href="http://php.net/manual/en/function.json-decode.php">json_decode</a> and <a href="http://php.net/manual/en/function.file-get-contents.php">file_get_contents</a>. <a href="https://stackoverflow.com/a/959069/215502">Source</a></p>
+
+<pre><code class="language-php">$json = file_get_contents('https://swapi.co/api/people/1/');
+echo $json;
+$obj = json_decode($json);
+</code></pre>
+
+<h3 id="java-http-get"><a name="java"></a>Java HTTP GET</h3>
+
+<p>I don’t know Java. Is this really the most simple way without 3rd party packages? <a href="https://stackoverflow.com/a/4308662/215502">Source</a></p>
+
+<pre><code class="language-java">import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
+import java.nio.charset.Charset;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class JsonReader {
+
+  private static String readAll(Reader rd) throws IOException {
+    StringBuilder sb = new StringBuilder();
+    int cp;
+    while ((cp = rd.read()) != -1) {
+      sb.append((char) cp);
+    }
+    return sb.toString();
+  }
+
+  public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+    InputStream is = new URL(url).openStream();
+    try {
+      BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+      String jsonText = readAll(rd);
+      JSONObject json = new JSONObject(jsonText);
+      return json;
+    } finally {
+      is.close();
+    }
+  }
+
+  public static void main(String[] args) throws IOException, JSONException {
+    JSONObject json = readJsonFromUrl("https://swapi.co/api/people/1/");
+    System.out.println(json.toString());
+    System.out.println(json.get("id"));
+  }
+}
+
+</code></pre>
+
+<h3 id="groovy-http-get"><a name="groovy"></a>Groovy HTTP GET</h3>
+
+<p>Apache Groovy is a Java-syntax-compatible object-oriented programming language for the Java platform. <a href="https://sites.google.com/a/athaydes.com/renato-athaydes/code/groovy---rest-client-without-using-libraries">Source</a></p>
+
+<pre><code class="language-groovy">def connection = new URL( "https://swapi.co/api/people/1/")
+        .openConnection() as HttpURLConnection
+
+connection.setRequestProperty( 'Accept', 'application/json' )
+
+// get the response code - automatically sends the request
+println connection.inputStream.text
+</code></pre>
+
+<h3 id="c-http-get"><a name="csharp"></a>C# HTTP GET</h3>
+
+<p>With <a href="https://docs.microsoft.com/en-us/dotnet/api/system.net.webclient?view=netframework-4.7.2">WebClient</a>. <a href="https://stackoverflow.com/a/5566981/215502">Code Source</a></p>
+
+<pre><code class="language-csharp">using (WebClient wc = new System.Net.WebClient())
+{
+   var json = wc.DownloadString("https://swapi.co/api/people/1/");
+}
+</code></pre>
+
+<p>or an async and <a href="https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netframework-4.7.2">HttpClient</a></p>
+
+<pre><code class="language-csharp">using (var httpClient = new System.Net.Http.HttpClient())
+{
+    var json = await httpClient.GetStringAsync("https://swapi.co/api/people/1/");
+}
+</code></pre>
+
+<h3 id="objective-c-and-cocoa-http-get"><a name="objc"></a>Objective C and Cocoa HTTP GET</h3>
+
+<p><a href="https://stackoverflow.com/a/42669357/215502">Source</a></p>
+
+<pre><code class="language-objc">// making a GET request to /init
+NSString *targetUrl = @"https://swapi.co/api/people/1/";
+NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+[request setHTTPMethod:@"GET"];
+[request setURL:[NSURL URLWithString:targetUrl]];
+
+[[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+  ^(NSData * _Nullable data,
+    NSURLResponse * _Nullable response,
+    NSError * _Nullable error) {
+
+      NSString *myString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+      NSLog(@"Data received: %@", myString);
+}] resume];
+</code></pre>
+
+<h3 id="go-programming-language---golang-http-get"><a name="go"></a>Go programming language - Golang HTTP GET</h3>
+
+<p><a href="https://gist.github.com/ijt/950790/fca88967337b9371bb6f7155f3304b3ccbf3946f">Source</a></p>
+
+<pre><code class="language-go">package main
+
+import (
+    "fmt"
+    "net/http"
+    "io/ioutil"
+    "os"
+    )
+
+func main() {
+    response, err := http.Get("https://swapi.co/api/people/1/")
+    if err != nil {
+        fmt.Printf("%s", err)
+        os.Exit(1)
+    } else {
+        defer response.Body.Close()
+        contents, err := ioutil.ReadAll(response.Body)
+        if err != nil {
+            fmt.Printf("%s", err)
+            os.Exit(1)
+        }
+        fmt.Printf("%s\n", string(contents))
+    }
+}
+</code></pre>
+
+<h3 id="ruby-http-get"><a name="ruby"></a>Ruby HTTP GET</h3>
+
+<p><a href="https://www.twilio.com/blog/2015/10/4-ways-to-parse-a-json-api-with-ruby.html">Source</a></p>
+
+<pre><code class="language-ruby">require 'net/http'
+require 'json'
+
+url = 'https://swapi.co/api/people/1/'
+uri = URI(url)
+response = Net::HTTP.get(uri)
+JSON.parse(response)
+</code></pre>
+
+<h3 id="python-http-get"><a name="python"></a>Python HTTP GET</h3>
+
+<p><a href="https://stackoverflow.com/a/12402180/215502">Source</a></p>
+
+<pre><code class="language-python">import requests
+r = requests.get('https://swapi.co/api/people/1/')
+r.json()
+</code></pre>
+<p>Tested with Python 2.7.12.</p>
+
+<h3 id="perl-http-get"><a name="perl"></a>Perl HTTP GET</h3>
+
+<p><a href="https://stackoverflow.com/a/16690423/215502">Source</a></p>
+
+<pre><code class="language-perl">#!/usr/bin/perl
+
+ use LWP::UserAgent;
+ use HTTP::Request;
+
+ my $URL = 'https://swapi.co/api/people/1/';
+
+ my $ua = LWP::UserAgent-&gt;new(ssl_opts =&gt; { verify_hostname =&gt; 1 });
+ my $header = HTTP::Request-&gt;new(GET =&gt; $URL);
+ my $request = HTTP::Request-&gt;new('GET', $URL, $header);
+ my $response = $ua-&gt;request($request);
+
+ if ($response-&gt;is_success){
+     print "URL:$URL\nHeaders:\n";
+     print $response-&gt;headers_as_string;
+ }elsif ($response-&gt;is_error){
+     print "Error:$URL\n";
+     print $response-&gt;error_as_HTML;
+ }
+</code></pre>
+
+<p>For http (non https) it can be simply be:</p>
+
+<pre><code class="language-perl">#!/usr/bin/perl
+use LWP::Simple;
+my $content = get('http://jsonplaceholder.typicode.com/todos/1');
+print $content
+</code></pre>
+
+<h3 id="dart-http-get"><a name="dart"></a>Dart HTTP GET</h3>
+
+<p><a href="https://www.dartlang.org/">Dart</a> is “an object-oriented, class defined, garbage-collected language using a C-style syntax that transcompiles optionally into JavaScript.” - <a href="https://en.wikipedia.org/wiki/Dart_(programming_language)">Wikipedia</a>. <a href="https://dev.to/graphicbeacon/quick-tip-how-to-make-http-requests-dart-56dd">Code Source</a></p>
+
+<pre><code class="language-dart">import 'dart:io';
+import 'dart:convert';
+
+void main() {
+  HttpClient()
+    .getUrl(Uri.parse('https://swapi.co/api/people/1/')) // produces a request object
+    .then((request) =&gt; request.close()) // sends the request
+    .then((response) =&gt; response.transform(Utf8Decoder()).listen(print)); // transforms and prints the response
+}
+</code></pre>
+
+<h3 id="swift-http-get"><a name="swift"></a>Swift HTTP GET</h3>
+
+<p><a href="https://swift.org/">Swift</a> is a “general-purpose, multi-paradigm, compiled programming language developed by Apple.” -<a href="https://en.wikipedia.org/wiki/Swift_(programming_language)">Wikipedia</a>. <a href="https://stackoverflow.com/a/24016254/215502">Code Source</a>.</p>
+
+<pre><code class="language-c">let url = URL(string: "https://swapi.co/api/people/1/")!
+
+let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+    guard let data = data else { return }
+    print(String(data: data, encoding: .utf8)!)
+}
+
+task.resume()
+</code></pre>
+
+<h3 id="rust"><a name="rust"></a>Rust</h3>
+
+<p><a href="https://www.rust-lang.org/">Rust</a> is “a multi-paradigm systems programming language focused on safety, especially safe concurrency.” - <a href="https://en.wikipedia.org/wiki/Rust_(programming_language)">Wikipedia</a>. Similar to C++.</p>
+
+<p><a href="https://stackoverflow.com/q/43222429/215502">Rust does not expose an http client?</a>. You have to use <a href="https://github.com/hyperium/hyper">hyper</a> or <a href="https://github.com/seanmonstar/reqwest">reqwest</a>. Does anyone know if its possible with just Rust?</p>
+
+<h3 id="powershell-windows-http-get"><a name="powershell"></a>Powershell (Windows) HTTP GET</h3>
+
+<pre><code class="language-c">Invoke-WebRequest "https://swapi.co/api/people/1/"
+</code></pre>
+
+<h3 id="shell-bash-etc-http-get"><a name="shell"></a>Shell (Bash etc) HTTP GET</h3>
+
+<pre><code class="language-bash">curl "https://swapi.co/api/people/1/"
+# or
+curl -X GET -H "Accept: application/json" "https://swapi.co/api/people/1/"
+</code></pre>
+
+
+</div>
+
+<div class="tags">
+Tags
+ <div class='tag'><a href='/tag/#C#'>C#</a></div>  <div class='tag'><a href='/tag/#powershell'>powershell</a></div>  <div class='tag'><a href='/tag/#dart'>dart</a></div>  <div class='tag'><a href='/tag/#go'>go</a></div>  <div class='tag'><a href='/tag/#hmac'>hmac</a></div>  <div class='tag'><a href='/tag/#java'>java</a></div>  <div class='tag'><a href='/tag/#javascript'>javascript</a></div>  <div class='tag'><a href='/tag/#objectiveC'>objectiveC</a></div>  <div class='tag'><a href='/tag/#perl'>perl</a></div>  <div class='tag'><a href='/tag/#php'>php</a></div>  <div class='tag'><a href='/tag/#python2'>python2</a></div>  <div class='tag'><a href='/tag/#python3'>python3</a></div>  <div class='tag'><a href='/tag/#rest'>rest</a></div>  <div class='tag'><a href='/tag/#ruby'>ruby</a></div>  <div class='tag'><a href='/tag/#security'>security</a></div>  <div class='tag'><a href='/tag/#sha256'>sha256</a></div>  <div class='tag'><a href='/tag/#swift'>swift</a></div>  <div class='tag'><a href='/tag/#shell'>shell</a></div>  <div class='tag'><a href='/tag/#deno'>deno</a></div> 
+</div>
+
+<div class="post-footer">
+  Notice a typo or something incorrect?<br>
+  Leave a comment or submit changes via <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2019-02-17-code-examples-api-http-get-json-different-languages.markdown">GitHub</a>.
+</div>
+
+      </div>
+
+      <div class="footer" role="contentinfo">
+        <ul>
+          <li><a href="/atom.xml" title="Atom Feed">Atom Feed</a></li>
+          <li><a href="/rss.xml" title="RSS Feed">RSS Feed</a></li>
+          <li><a href="https://github.com/jokecamp/jokecamp.com/" title="View Source on GitHub">View Source</a></li>
+          <li><a href="mailto:joe.kampschmidt@gmail.com" title="email me">Contact me</a></li>
+        </ul>
+      </div>
+
+    </div> <!-- end container -->
+
+  </body>
+</html>

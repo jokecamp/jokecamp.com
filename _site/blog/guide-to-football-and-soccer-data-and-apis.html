@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta charset="utf-8">
+  <title>Guide to Football/Soccer data and APIs - Joe Kampschmidt's Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="description" content="A list of soccer and football apis, data sets, data services and websites available for developers looking for open data.">
+  <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
+  <meta name="author" content="Joe Kampschmidt" />
+  <link href='/public/poole.css' rel='stylesheet' type='text/css'>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<link rel="me" type="text/html" href="https://plus.google.com/+JoeKampschmidt?rel=me"/>
+	<link rel="me" type="text/html" href="https://twitter.com/jokecamp"/>
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+        <a href="/" title="also known as @jokecamp" class="masthead-title">Joe Kampschmidt's Code</a>
+
+        <nav class="nav" role="navigation">
+          <ul>
+            <li><a class="" href="/blog/" title="Joe's Blog">Blog</a></li><li><a class="" href="/projects/" title="Joe's Projects">Projects</a></li>
+            <li><a rel="me" href="https://github.com/jokecamp" title="Joe's github page - commit all the things">Code</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div> <!-- end masthead -->
+
+    <div class="container content">
+
+      <div role="main">
+        <div class="post">
+  <h1 class="post-title">Guide to Football/Soccer data and APIs</h1>
+  <span class="post-date">08 Mar 2014</span>
+  <p>Last updated: December 2 2019</p>
+
+<h2 id="where-can-i-actually-find-footballsoccer-data">Where can I actually find football/soccer data?</h2>
+
+<p>There are three main ways to get data. You can parse/scrape it from a hobbyist project/website, you can pay for it or you can try to collect it yourself.</p>
+
+<p>Jump to a specific source:</p>
+
+<ul>
+  <li>Open source data on github
+    <ul>
+      <li><a href="#openfootball">openfootball - football.db</a></li>
+      <li><a href="#fdata">jokecamp/FootballData</a></li>
+      <li><a href="#soccerstats">soccerstats.us</a></li>
+      <li><a href="#woso">WoSo (Womens) Stats</a></li>
+      <li><a href="#repos">Other smaller projects/repos</a></li>
+    </ul>
+  </li>
+  <li>Free APIs
+    <ul>
+      <li><a href="#footballdata">football-data.org</a> (RESTful API)</li>
+      <li><a href="#SportsOpenData">Sports Open Data</a> (RESTful API)</li>
+      <li><a href="#openfooty">openfooty API</a> (hard to get an API Key)</li>
+      <li><a href="#betlinesNinja">betlines ninja API</a> (RESTful API on Mashape)</li>
+      <li><a href="#apifootball">API-Football</a></li>
+      <li><a href="#scorebat">ScoreBat Video API</a></li>
+    </ul>
+  </li>
+  <li>Commercial APIs
+    <ul>
+      <li><a href="#footballapi">football-api.com</a></li>
+      <li><a href="#CrowdScores">CrowdScores and FastestLiveScores API</a></li>
+      <li><a href="#spapi">SPAPI</a></li>
+      <li><a href="#sportmonks">SportMonks.com</a></li>
+      <li><a href="#xmlsoccer">XMLSoccer.com</a></li>
+      <li><a href="#resultados">Resultados de Fútbol API</a></li>
+      <li><a href="#opta">opta</a></li>
+      <li><a href="#prozone">prozone</a></li>
+      <li><a href="#matchanalysis">Match Analaysis</a></li>
+      <li><a href="#apifootball">apifootball.com</a></li>
+      <li><a href="#elenasport">ElenaSport.io</a></li>
+      <li><a href="#sportdeer">SportDeer.com</a></li>
+      <li><a href="#fantasysportnet">fantasysportnet.com</a></li>
+      <li><a href="#goalserve">Goalserve.com</a></li>
+      <li><a href="#soccersapi">Soccer’s API</a></li>
+    </ul>
+  </li>
+  <li>Other Websites
+    <ul>
+      <li><a href="#footballsquads.co.uk">footballsquads.co.uk</a></li>
+      <li><a href="#rsssf">Rec.Sport.Soccer Statistics Foundation (RSSSF)</a></li>
+      <li><a href="#football-data.co.uk">football-data.co.uk</a></li>
+      <li><a href="#european-football-statistics.co.uk]">european-football-statistics.co.uk</a></li>
+      <li><a href="#openligadb.db">openligadb.db</a></li>
+      <li><a href="#wiki">Wikipedia</a></li>
+      <li><a href="#postwar">Post War English &amp; Scottish Football League A - Z Player’s Database</a></li>
+      <li><a href="#worldcup2015">2015 Women’s World Cup Data</a></li>
+      <li><a href="#worldcup">World Cup 2014 APIs</a></li>
+      <li><a href="#api-graveyard">Deprecated/Retired - “The Graveyard of APIs</a></li>
+      <li><a href="#other">More Reading / Resources / Links</a></li>
+      <li><a href="#fantasy">Fantasy Data</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><a name="github"></a></p>
+<h3 id="open-source-data-on-github">Open Source Data on Github</h3>
+
+<p><a name="openfootball"></a></p>
+<h4 id="openfootball---aka-footballdb">openfootball - aka football.db</h4>
+
+<p><strong><a href="http://openfootball.github.io/">openfootball (aka football.db)</a></strong> has started a free, open source public domain football database.
+The data is historical data, meaning no lives scores but the data does include the schedule, teams and players for the 2014 World Cup along with global league data. This is a very promising project and has the <strong>potential to be the definitive source for historical data for the public</strong>.
+See the <a href="https://groups.google.com/forum/#!forum/opensport">opensport Google Group</a> for discussion and questions. The data is stored in various repos on github.
+Consider contributing any data you have yourself and be sure to thank <a href="https://github.com/geraldb">Gerald Bauer</a>. All the various repos can be intimidating. A good place to start is at <a href="https://github.com/openfootball/">github.com/openfootball</a>.</p>
+
+<p>An example of the plain text (custom format):</p>
+
+<pre><code>[Sat Aug/16]
+  12.45  Manchester United    1-2  Swansea City
+  15.00  Leicester City       2-2  Everton FC
+  15.00  Queens Park Rangers  0-1  Hull City
+  15.00  Stoke City           0-1  Aston Villa
+</code></pre>
+
+<p>Check out the following github organizations for more listings:</p>
+
+<ul>
+  <li><a href="https://github.com/footballcsv">https://github.com/footballcsv</a></li>
+  <li><a href="https://github.com/openfootball">https://github.com/openfootball</a></li>
+  <li><a href="https://github.com/rsssf">https://github.com/rsssf</a></li>
+  <li><a href="https://github.com/footballdata">https://github.com/footballdata</a></li>
+</ul>
+
+<p>There is also an open source football.db HTTP JSON(P) <a href="http://openfootball.github.io/docs/json-api-intro.html">API</a> for demo purposes. Example Endpoints:</p>
+
+<pre><code>http://footballdb.herokuapp.com/api/v1/event/world.2014/teams
+http://footballdb.herokuapp.com/api/v1/event/world.2014/round/1
+</code></pre>
+
+<p><a name="fdata"></a></p>
+<h4 id="jokecampfootballdata">jokecamp/FootballData</h4>
+
+<p><a href="https://github.com/jokecamp/FootballData">jokecamp/FootballData</a> - my own hodgepodge of JSON and CSV Football/Soccer data on GitHub with a focus on the EPL</p>
+
+<p><a name="soccerstats"></a></p>
+<h4 id="soccerstatsus">soccerstats.us</h4>
+
+<p><strong><a href="http://soccerstats.us">soccerstats.us</a></strong> is github <a href="https://github.com/soccerstatsus">organization</a> with multiple repositories for sets of data (with a focus on North American data). The <a href="https://github.com/SoccerStatsUS/parse">parser</a> is written in python and looks like it was designed to parse the rsssf.com text data.</p>
+
+<p><a name="woso"></a></p>
+<h4 id="woso-stats">WoSo Stats</h4>
+
+<p>Women’s Soccer Stats. Collecting, analyzing, and sharing data about women’s soccer from around the world. <a href="https://wosostats.wordpress.com/">WoSo Stats Homepage</a> and their github <a href="https://github.com/amj2012/wosostats">amj2012/wosostats</a>. <a href="https://amj2012.shinyapps.io/wosostats/">Browse their data app</a>.</p>
+
+<p><a name="repos"></a></p>
+<h4 id="other-smaller-projectsrepos">Other smaller Projects/Repos</h4>
+
+<ul>
+  <li><a href="https://github.com/jalapic/engsoccerdata">github.com/jalapic/engsoccerdata</a> includes a <a href="https://github.com/jalapic/engsoccerdata/blob/master/engsoccerdata.csv">csv file</a> of the top 4 tier English League Soccer games from 1888 to 2014.</li>
+  <li><a href="https://github.com/planetopendata/awesome-football">planetopendata/awesome-football</a> includes another list of repos</li>
+  <li><a href="https://github.com/architv/soccer-cli">architv/soccer-cli</a> - A command line interface for retrieving football scores.</li>
+  <li><a href="https://github.com/pssguy/epldata">pssguy/epldata</a> - Datasets of the English Premier League 1992-2018</li>
+  <li><a href="https://github.com/jalapic/engsoccerdata">jalapic/engsoccerdata</a> - English and European soccer results 1871-2017. Includes three English ones (League data, FA Cup data, Playoff data), several European leagues (Spain, Germany, Italy, Holland, France, Belgium, Portugal, Turkey, Scotland, Greece) as well as South Africa and MLS.</li>
+  <li><a href="https://github.com/gavinr/usa-soccer">gavinr/usa-soccer</a> - USA soccer teams and location data for MLS, NWSL, and USL conferences. CSV or GeoJSON can be used as an API.</li>
+</ul>
+
+<p><a name="free"></a></p>
+<h3 id="free-apis">Free APIs</h3>
+
+<p><a name="footballdata"></a></p>
+<h4 id="football-dataorg-beta">football-data.org (beta)</h4>
+
+<p><a href="http://www.football-data.org/">football-data.org</a> is a RESTful API in beta with regularly updated data. If you <a href="http://www.football-data.org/register">register for a free API key</a> you will get CORS support. I recommend registering for a key to show your support and help the service track usage. However, a key is not required yet so you can try out the endpoints right now. I am excited to see this API grow and mature!</p>
+
+<p>Available endpoints</p>
+
+<pre><code>/soccerseasons/
+/soccerseasons/{id}/ranking
+/soccerseasons/{id}/fixtures
+/fixtures
+/soccerseasons/{id}/teams
+/teams/{id}
+/teams/{id}/fixtures/
+</code></pre>
+
+<p>Some example calls:</p>
+
+<ul>
+  <li><a href="http://api.football-data.org/v1/soccerseasons">http://api.football-data.org/v1/soccerseasons</a></li>
+  <li><a href="http://api.football-data.org/v1/soccerseasons/351/teams">http://api.football-data.org/v1/soccerseasons/351/teams</a></li>
+  <li><a href="http://api.football-data.org/v1/fixtures">http://api.football-data.org/v1/fixtures</a></li>
+  <li><a href="http://api.football-data.org/v1/teams/5">http://api.football-data.org/v1/teams/5</a></li>
+  <li><a href="http://api.football-data.org/v1/soccerseasons/424">http://api.football-data.org/v1/soccerseasons/424</a> (European Championships France 2016)</li>
+</ul>
+
+<p>Example JSON output for a team:</p>
+
+<pre><code>{
+   "_links":{
+      "self":{
+         "href":"http://api.football-data.org/v1/teams/5"
+      },
+      "fixtures":{
+         "href":"http://api.football-data.org/v1/teams/5/fixtures"
+      },
+      "players":{
+         "href":"http://api.football-data.org/v1/teams/5/players"
+      }
+   },
+   "name":"FC Bayern München",
+   "code":"FCB",
+   "shortName":"Bayern",
+   "squadMarketValue":"559,100,000 €",
+   "crestUrl":"http://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_FC_Bayern_München.svg"
+}
+</code></pre>
+
+<p><a name="SportsOpenData"></a></p>
+<h3 id="sports-open-data-api">Sports Open Data API</h3>
+
+<p>This free RESTful <a href="https://market.mashape.com/sportsop/soccer-sports-open-data">API</a> (hosted on Mashape) is an impressive service provided by <a href="http://sportsopendata.net/">http://sportsopendata.net/</a>. Introduced in early 2016 it is very promising. The data is under a <a href="http://sportsopendata.net/updates/sports-open-data-creative-commons-license/">Creative Commons license</a>. Limited to 10,000 requests a month. Mashape registration is required.</p>
+
+<p>Available Endpoints:</p>
+
+<pre><code>/leagues
+/leagues/{league_slug}/seasons
+/leagues/{league_slug}/seasons/{season_slug}/managers
+/leagues/{league_slug}/seasons/{season_slug}/referees
+/leagues/{league_slug}/seasons/{season_slug}/topscorers
+/leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}/matches
+/leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}/matches/{match_slug}
+/leagues/{league_slug}/seasons/{season_slug}
+/leagues/{league_slug}/seasons/{season_slug}/rounds
+/leagues/{league_slug}/seasons/{season_slug}/rounds/{round_slug}
+/leagues/{league_slug}/seasons/{season_slug}/standings
+/leagues/{league_slug}/seasons/{season_slug}/standings/{position}
+/leagues/{league_slug}/seasons/{season_slug}/teams
+/leagues/{league_slug}/seasons/{season_slug}/teams/{team_slug}/players
+/stadiums
+</code></pre>
+
+<p>Example Season JSON</p>
+
+<pre><code>{
+  "identifier": "0e5b67aa8cff15b2c6781454e55d1609",
+  "league_identifier": "bc425f51d5ee924580c35c38da138de8",
+  "season_slug": "15-16",
+  "name": "2015-2016",
+  "season_start": "2015-07-01T00:00:00+0200",
+  "season_end": "2016-06-30T00:00:00+0200"
+}
+</code></pre>
+
+<p>Example Standings JSON</p>
+
+<pre><code>{
+    "identifier": "a963a7776379b3c8b818930ae9d9d0ca",
+    "position": 1,
+    "team_identifier": "a9ef824ba73b0a57e982df21467c3efc",
+    "team": "Juventus",
+    "overall": {
+    "wins": 26,
+    "draws": 9,
+    "losts": 3,
+    "points": 87,
+    "scores": 72,
+    "conceded": 24,
+    "last_5": "WNWWN",
+    "macthes_played": 0,
+    "goal_difference": 0
+}
+</code></pre>
+
+<p><a name="openfooty"></a></p>
+<h4 id="openfooty-api">openfooty API</h4>
+
+<p><a href="http://www.footytube.com/openfooty/">openfooty API</a> had promising API documentation but a quick look at the developer forums shows a stale community and questions about why no one seems to actually be able to get a developer key.</p>
+
+<p><a name="betlinesNinja"></a></p>
+<h4 id="betlines-ninja-api-bettingodds">Betlines Ninja API (betting/odds)</h4>
+
+<p>The free <a href="https://market.mashape.com/arisalexis/soccer-odds">API</a> (hosted on Mashape) is for betting odds but contains a lot of upcoming fixture data. The API is provided by the <a href="http://betlines.ninja">Betlines Ninja</a>. Along with match data the service provides recent odds data from all major sportsbooks (11 currently including Bwin, Paddy Power, Betfair etc.) Results can be obtained for a maximum of 3 days back in the free plan. There is also a data-dump database of historical data for sale.</p>
+
+<p><a name="apifootball"></a></p>
+<h3 id="api-football">API-Football</h3>
+
+<p><a href="https://www.api-football.com/">API-Football</a> covers major and minor football leagues and many more are pending. They ask for league suggestions. Livescore, pre-matchs odds, events, standings, we all put in our API. Free tier is 50 requests a day. More <a href="https://www.api-football.com/pricing/">pricing details</a>. Also on <a href="https://market.mashape.com/gaudinjeremy/winbot-soccer-api">mashape</a></p>
+
+<p>Curl Example:</p>
+
+<pre><code>curl --get --include 'https://api-football-v1.p.mashape.com/seasons' \
+   -H 'X-Mashape-Key: XXXXXXXXXXXXXXXXXXXXXXXXX' \
+   -H 'Accept: application/json'
+</code></pre>
+
+<p><a name="commerical"></a></p>
+<h3 id="subscription-servicesapis">Subscription Services/APIs</h3>
+
+<p><a name="elenasport"></a></p>
+<h4 id="sportdeercom">Sportdeer.com</h4>
+
+<p><a href="https://elenasport.io">ElenaSport.io</a> offers historical&amp;live data of over 140 soccer leagues. The service is also pretty cheap, with plans starting from 0€/month. The service is entirely hosted in <a href="https://rapidapi.com/mararrdeveloper/api/elenasport-io1">RapidApi</a> for the users’ convenience. Find out more on the documentation page <a href="https://elenasport.io/documentation/getting_started/">API Documentation</a></p>
+
+<p>curl example:</p>
+<pre><code>curl --location --request GET 'https://elenasport-io1.p.rapidapi.com//v1/fixtures/14143' \
+--header 'x-rapidapi-key: $$$_YOUR_SECRET_RAPID_API_TOKEN_$$$' \
+</code></pre>
+
+<p>Response example:</p>
+<pre><code>{
+    "results": [
+        {
+            "id": 14143,
+            "idSeason": 435,
+            "seasonName": "2019/2020",
+            "idHome": 909,
+            "homeName": "Parma",
+            "idAway": 854,
+            "awayName": "Juventus",
+            "idStage": 131,
+            "idVenue": 709,
+            "venueName": "Stadio Ennio Tardini",
+            "date": "2019-08-24 16:00:00",
+            "status": "finished",
+            "round": 1,
+            "attendance": null,
+            "team_home_90min_goals": 0,
+            "team_away_90min_goals": 1,
+            "team_home_ET_goals": 0,
+            "team_away_ET_goals": 0,
+            "team_home_PEN_goals": 0,
+            "team_away_PEN_goals": 0,
+            "team_home_1stHalf_goals": 0,
+            "team_away_1stHalf_goals": 1,
+            "team_home_2ndHalf_goals": 0,
+            "team_away_2ndHalf_goals": 0,
+            "elapsed": 0,
+            "elapsedPlus": 0,
+            "eventsHash": "15ec7bf0b50732b49f8228e07d24365338f9e3ab994b00af08e5a3bffe55fd8b",
+            "lineupsHash": "878f32f76b159494f5a39f9321616c6068cdb82e88df89bcc739bbc1ea78e1f9",
+            "statsHash": "6a4875ddaceaa91fb3369f0f6d962f77442daf1b1d97733457d12bcabdf79441",
+            "referees": [
+                {
+                    "type": "referee",
+                    "idReferee": 8309,
+                    "refereeName": "F. Maresca"
+                },
+                {
+                    "type": "assitant referee",
+                    "idReferee": 8323,
+                    "refereeName": "P. De Meo"
+                },
+                {
+                    "type": "assitant referee",
+                    "idReferee": 8114,
+                    "refereeName": "M. Piccinini"
+                }
+            ],
+            "events": [
+                {
+                    "id": 135422,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12000,
+                    "player1Name": "G. Chiellini",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 21,
+                    "elapsedPlus": 0,
+                    "type": "goal"
+                },
+                {
+                    "id": 135423,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 15892,
+                    "player1Name": "D. Kulusevski",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 27,
+                    "elapsedPlus": 0,
+                    "type": "y_card"
+                },
+                {
+                    "id": 135424,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 15893,
+                    "player1Name": "Hernani",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 45,
+                    "elapsedPlus": 0,
+                    "type": "y_card"
+                },
+                {
+                    "id": 135425,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12278,
+                    "player1Name": "S. Khedira",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 53,
+                    "elapsedPlus": 0,
+                    "type": "y_card"
+                },
+                {
+                    "id": 135457,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 8132,
+                    "player1Name": "L. Siligardi",
+                    "idPlayer2": 15892,
+                    "player2Name": "D. Kulusevski",
+                    "elapsed": 57,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135458,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 15073,
+                    "player1Name": "A. Rabiot",
+                    "idPlayer2": 12278,
+                    "player2Name": "S. Khedira",
+                    "elapsed": 63,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135459,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12193,
+                    "player1Name": "J. Cuadrado",
+                    "idPlayer2": 15894,
+                    "player2Name": "Douglas Costa",
+                    "elapsed": 71,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135460,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 11893,
+                    "player1Name": "A. Grassi",
+                    "idPlayer2": 8478,
+                    "player2Name": "G. Brugman",
+                    "elapsed": 77,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135461,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12135,
+                    "player1Name": "F. Bernardeschi",
+                    "idPlayer2": 11848,
+                    "player2Name": "G. Higuaín",
+                    "elapsed": 83,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135462,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 909,
+                    "teamName": "Parma",
+                    "idPlayer1": 15899,
+                    "player1Name": "Y. Karamoh",
+                    "idPlayer2": 8449,
+                    "player2Name": "A. Barillà",
+                    "elapsed": 85,
+                    "elapsedPlus": 0,
+                    "type": "subst"
+                },
+                {
+                    "id": 135426,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12135,
+                    "player1Name": "F. Bernardeschi",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 88,
+                    "elapsedPlus": 0,
+                    "type": "y_card"
+                },
+                {
+                    "id": 135427,
+                    "idFixture": 14143,
+                    "idSeason": 435,
+                    "idTeam": 854,
+                    "teamName": "Juventus",
+                    "idPlayer1": 12159,
+                    "player1Name": "M. Pjanić",
+                    "idPlayer2": null,
+                    "player2Name": null,
+                    "elapsed": 90,
+                    "elapsedPlus": 1,
+                    "type": "y_card"
+                }
+            ]
+        }
+    ],
+    "page": 1,
+    "itemsPerPage": 20
+}
+</code></pre>
+<p><a name="fantasysportnet"></a></p>
+
+<p><a name="sportdeer"></a></p>
+<h4 id="sportdeercom-1">Sportdeer.com</h4>
+
+<p><a href="https://sportdeer.com">SportDeer.com</a> offers three different plans. Basic, Normal and Advanced. Plans range from 5€/month to 15€/month but will be free of charge till the end of 2018. Registration is required. <a href="https://sportdeer.com/documentation/football/api">API Documentation</a></p>
+
+<p>Some example endpoints are:</p>
+
+<pre><code>https://api.sportdeer.com/v1/countries?access_token=***YOUR_ACCES_TOKEN***
+https://api.sportdeer.com/v1/countries/:id?access_token=***YOUR_ACCES_TOKEN***
+https://api.sportdeer.com/v1/leagues?access_token=***YOUR_ACCES_TOKEN***
+</code></pre>
+
+<p><a name="fantasysportnet"></a></p>
+<h4 id="fantasysportnet">fantasysportnet</h4>
+
+<p>I have not had time to check this out but adding to the list for now. <a href="http://www.fantasysportnet.com/data/home.jsp">http://www.fantasysportnet.com/data/home.jsp</a></p>
+
+<p><a name="goalserve"></a></p>
+<h4 id="goalservecom">GoalServe.com</h4>
+
+<p>Goalserve Soccer Data Feeds API provide live score services, fixtures and results, In-Game player stats, profiles, injuries, historical data, prematch and inplay Odds. More than 400 football leagues in live data coverage. XML and JSON formats. Free Trial period available. Pricing starts at $150+.</p>
+
+<p><a href="https://www.goalserve.com/en/sport-data-feeds/soccer-api/prices">https://www.goalserve.com/en/sport-data-feeds/soccer-api/prices</a></p>
+
+<p><a name="soccersapi"></a></p>
+<h4 id="soccers-api">Soccer’s API</h4>
+
+<p><a href="https://soccersapi.com">Soccer’s API</a> offers live scores and stats. More than 800 leagues, match statistics, stats of teams and players, squads and player profiles, lineups, information about online broadcasts (DAZN, ESPN…), TV channels and data about Bookmakers with up to 30 of them with pre-match and Inplay odds. <a href="https://soccersapi.com/page/pricing">Plans price</a> range from $30-$300 USD per month. A 15-day free trial available.</p>
+
+<p>Example for Match by ID - Endpoint Response (Real Madrid vs PSG - 2019-11-26). Url format is <a href="https://api.soccersapi.com/v2.2/fixtures/?user=YOUR_USER&amp;token=YOUR_TOKEN&amp;t=info2&amp;id=11999203">https://api.soccersapi.com/v2.2/fixtures/?user=YOUR_USER&amp;token=YOUR_TOKEN&amp;t=info2&amp;id=11999203</a></p>
+
+<pre><code>{
+  "data": {
+      "id": 11965947,
+      "status": 3,
+      "pitch": null,
+      "time": {
+          "datetime": "2019-11-26 20:00:00",
+          "date": "2019-11-26",
+          "time": "20:00:00",
+          "minute": null,
+          "timestamp": 1574798400,
+          "timezone": "UTC"
+      },
+      "teams": {
+          "home": {
+              "id": 3468,
+              "name": "Real Madrid",
+              "short_code": "RMA",
+              "img": "https://cdn.soccersapi.com/images/soccer/teams/150/3468.png",
+              "form": "4-3-1-2",
+              "coach_id": 407775
+          },
+          "away": {
+              "id": 0,
+              "name": "Paris Saint Germain",
+              "short_code": "PSG",
+              "img": "https://cdn.soccersapi.com/images/soccer/teams/150/0.png",
+              "form": "4-3-3",
+              "coach_id": 523937
+          }
+      },
+      "league": {
+          "id": 2,
+          "name": "Champions League",
+          "type": "cup_international",
+          "country_id": 41,
+          "country_name": "Republic of Ireland",
+          "country_flag": ""
+      },
+      "scores": {
+          "home_score": 2,
+          "away_score": 2,
+          "ht_score": "1-0",
+          "ft_score": "2-2",
+          "et_score": null,
+          "ps_score": null
+      },
+      "referee_id": 16678,
+      "round_id": 184042,
+      "season_id": 16029,
+      "stage_id": 77443828,
+      "group_id": 242175,
+      "aggregate_id": null,
+      "winner_team_id": null,
+      "venue_id": 2020,
+      "standings": {
+          "home_position": 2,
+          "away_position": 1
+      },
+      "assistants": {
+          "first_assistant_id": 12857,
+          "second_assistant_id": 12861,
+          "fourth_assistant_id": null
+      },
+      "colors": {
+          "home": {
+              "color": "#F0F0F0",
+              "kit_colors": "#F0F0F0,#F0F0F0,#F0F0F0,#F0F0F0,#EEEEEE,#EEEEEE,#F0F0F0"
+          },
+          "away": {
+              "color": null,
+              "kit_colors": null
+          }
+      },
+      "weather_report": {
+          "code": "drizzle",
+          "type": "light intensity drizzle",
+          "temperature": {
+              "fahrenheit": {
+                  "temp": 53.83,
+                  "unit": "fahrenheit"
+              },
+              "celcius": {
+                  "temp": 12.1,
+                  "unit": "celcius"
+              }
+          },
+          "clouds": "75%",
+          "humidity": "100%",
+          "pressure": 1010,
+          "wind": {
+              "speed": "8.05 m/s",
+              "degree": 180
+          },
+          "coordinates": {
+              "lat": 40.42,
+              "lon": -3.7
+          },
+          "updated_at": "2019-11-26T19:45:04.436942Z"
+      }
+  },
+...
+</code></pre>
+
+<p><a name="footballapi"></a></p>
+<h4 id="football-api">football-api</h4>
+
+<p><a href="http://football-api.com/">football-api.com</a> is a paid API service. The API rxrestricts by IP addresses and limit calls based on your package. Includes endpoints for competitions, teams, standings, live scores, fixtures and commentaries. See the <a href="http://football-api.com/pricing/">pricing page</a>. Prices range from $15 to $200 per month.</p>
+
+<p>Example endpoints:</p>
+
+<pre><code>api/?Action=competitions&amp;APIKey=xxxx
+api/?Action=standings&amp;comp_id=1204&amp;APIKey=xxxx
+api/?Action=today&amp;comp_id=1204&amp;APIKey=xxxx
+api/?Action=fixtures&amp;comp_id=1024&amp;&amp;match_date=[DATE_IN_d.m.Y_FORMAT]&amp;APIKey=xxxx
+api/?Action=commentaries&amp;APIKey=xxxx&amp;match_id=[MATCH_ID]
+</code></pre>
+
+<p>The demo (EPL) free feature is no longer available. Here is part of the <a href="http://football-api.com/?na=v&amp;id=2&amp;nk=276-ef27b4e6d5">email notice</a> sent:</p>
+
+<blockquote>
+  <p>Discontinuation Of The Demo Plan (March 3 2016)</p>
+
+  <p>In the last couple of weekends, we experienced a very high load on our servers. This lead to delayed responses and very slow data return. We had to take emergency measures and unfortunately, we had to suspend the demo access to the English Premier League in favour of our paying customers. This decision is hard for us since we would like to offer this demo access for free. However, with around 3000 demo users, the load on our servers was too high.</p>
+</blockquote>
+
+<blockquote>
+  <p>Since the demo plan was not planned for production purposes (hence the name), we apologize if we have disturbed your development and surprised you with a lot of error messages.</p>
+</blockquote>
+
+<p><i>This is why we can’t have nice things.</i></p>
+
+<p><a name="CrowdScores"></a></p>
+<h4 id="crowdscores-and-fastestlivescores-api">CrowdScores and FastestLiveScores API</h4>
+
+<p><a href="https://crowdscores.com/">CrowdScores</a> is a UK company that uses a crowd-sourcing football data collection process. You sign up for an account and report game events to their servers. They have iPhone and android apps for reporting. The collected data is then available as an API on <a href="http://fastestlivescores.com/">FastestLiveScores.com</a>. They currently offer <a href="http://fastestlivescores.com/live-scores-api-feed/">three different API tiers</a>. Free trial ($0), Basic ($100 per month) and Pro (price unlisted). View the <a href="https://api.crowdscores.com/docs/v1#">API documentation</a>.</p>
+
+<p>Example endpoints and parameters:</p>
+
+<pre><code>/teams{?round_ids,competition_ids}
+/matches{?team_id,round_ids,competition_id,from,to}
+/competitions
+/rounds{?competition_ids}
+/seasons
+/league-table/{round_id}
+/league-tables?{team_id,round_id,competition_id}
+/football_states
+/events
+/playerstats?{team_ids,round_ids,competition_ids,season_ids}
+</code></pre>
+
+<p><a name="spapi"></a></p>
+<h3 id="spapi">SPAPI</h3>
+
+<p><a href="https://spapi.pw?code=jokecamp">SPAPI</a> offers subscriptions for a RESTful Sports API including live scores, player statistics, betting odds, pre-game data and match event data. The data response look pretty comprehensive.</p>
+
+<p>Pricing:</p>
+
+<pre><code>Starter Plan is $299 per month
+Growth pla is $499 per month
+Pro Plan is $899 per month
+</code></pre>
+
+<p>Look at the example of one of the action data objects. It looks like data for a defensive clearance including x,y coordinates.</p>
+
+<pre><code>{
+    "minute": 53,
+    "second": 10,
+    "team_id": 32,
+    "start_x": 20.8,
+    "start_y": 69.5,
+    "expanded_minute": 57,
+    "period": {
+      "name": "SecondHalf",
+      "value": 2
+    },
+    "type": {
+      "name": "Clearance",
+      "value": 12
+    },
+    "outcome_type": {
+      "name": "Successful",
+      "value": 1
+    },
+    "qualifiers": [{
+      "type": "Head"
+    }, {
+      "type": "Zone",
+      "value": "Back"
+    }],
+    "is_touch": true
+  }
+</code></pre>
+
+<p>Example endpoints:</p>
+
+<pre><code>https://spapi.pw/api/v1/competitions/5/upcoming_matches
+https://spapi.pw/api/v1/competitions/5/finished_matches
+https://spapi.pw/api/v1/competitions/5/standings?standing_type=standings
+https://spapi.pw/api/v1/competitions/5/player_rankings?ranking_type=all
+https://spapi.pw/api/v1/teams
+https://spapi.pw/api/v1/matches/17588/scores
+https://spapi.pw/api/v1/livescores
+https://spapi.pw/api/v1/players/1/statistics
+</code></pre>
+
+<p>Pretty impressive but this level of detail comes at a price. Authentication method is a API key in querystring.</p>
+
+<p><a name="sportmonks"></a>
+####Sportmonks.com</p>
+
+<p><a href="https://sportmonks.com">https://sportmonks.com</a> offers a JSON API. There are plans with prices ranging between 15 to 200 euro’s per month. There is also an option for custom plans. This API support lazy loading, meaning you pass parameters in your request to load relationships and nested relationships.</p>
+
+<p>Registration to this API is free and every plan has a 14 day trial.</p>
+
+<p>Some example endpoints are:</p>
+
+<pre><code>https://soccer.sportmonks.com/api/v2.0/livescores?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/leagues?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/leagues/{id}?api_token=__YOURTOKEN__
+https://soccer.sportmonks.com/api/v2.0/fixtures/{id}?api_token=__YOURTOKEN__&amp;include=localTeam,visitorTeam,events
+</code></pre>
+
+<p>And an example response looks like:</p>
+
+<pre><code class="language-json">{
+  "home": {
+    "team_id": 39,
+    "shots_on_goal": 6,
+    "shots_total": 16,
+    "fouls_total": 11,
+    "corners_total": 5,
+    "offsides_total": 5,
+    "possesion": 68,
+    "yellowcards": 2,
+    "redcards": 0,
+    "saves": 1,
+    "team": {
+      "id": 39,
+      "name": "Bayern München",
+      "logo": "/img/teams/GER/39.png",
+      "twitter": "@FCBayern"
+    }
+  },
+  "away": {
+    "team_id": 123,
+    "shots_on_goal": 1,
+    "shots_total": 10,
+    "fouls_total": 12,
+    "corners_total": 2,
+    "offsides_total": 2,
+    "possesion": 32,
+    "yellowcards": 2,
+    "redcards": 0,
+    "saves": 5,
+    "team": {
+      "id": 123,
+      "name": "Benfica",
+      "logo": "/img/teams/POR/123.png",
+      "twitter": "@SL_Benfica"
+    }
+  }
+}
+</code></pre>
+
+<p><a name="xmlsoccer"></a></p>
+<h4 id="xmlsoccercom">XMLSoccer.com</h4>
+
+<p><a href="http://www.xmlsoccer.com/">xmlsoccer.com</a> is another subscription service. You can demo the service for free with the Scottish Premier League. The monthly pricing is 10 € per 1 month, 25 € per 3 months and 90 € per 12 months. You can browse the demo web methods here to see the types of calls available <a href="http://www.xmlsoccer.com/FootballDataDemo.asmx">http://www.xmlsoccer.com/FootballDataDemo.asmx</a> and the <a href="http://www.xmlsoccer.com/FootballDataDemo.asmx?WSDL">WSDL</a>. The data is only returned in XML.</p>
+
+<p>Each call must provide an API Key. You can get a free demo API Key by registering.</p>
+
+<p>Example results for a team</p>
+
+<pre><code class="language-xml">&lt;XMLSOCCER.COM&gt;
+  &lt;Team&gt;
+    &lt;Team_Id&gt;45&lt;/Team_Id&gt;
+    &lt;Name&gt;Aberdeen&lt;/Name&gt;
+    &lt;Country&gt;Scotland&lt;/Country&gt;
+    &lt;Stadium&gt;Pittodrie Stadium&lt;/Stadium&gt;
+    &lt;HomePageURL&gt;http://www.afc.co.uk&lt;/HomePageURL&gt;
+    &lt;WIKILink&gt;http://en.wikipedia.org/wiki/Aberdeen_F.C.&lt;/WIKILink&gt;
+  &lt;/Team&gt;
+&lt;XMLSOCCER.COM&gt;
+</code></pre>
+
+<p>Player data</p>
+
+<pre><code class="language-xml">&lt;Player&gt;
+  &lt;Id&gt;2523&lt;/Id&gt;
+  &lt;Name&gt;David Goodwillie&lt;/Name&gt;
+  &lt;Height&gt;1.7&lt;/Height&gt;
+  &lt;Weight&gt;70.29&lt;/Weight&gt;
+  &lt;Nationality&gt;Scotland&lt;/Nationality&gt;
+  &lt;Position&gt;Forward&lt;/Position&gt;
+  &lt;Team_Id&gt;45&lt;/Team_Id&gt;
+  &lt;PlayerNumber&gt;17&lt;/PlayerNumber&gt;
+  &lt;DateOfBirth&gt;1989-03-28T00:00:00-08:00&lt;/DateOfBirth&gt;
+  &lt;DateOfSigning&gt;2014-07-07T00:00:00-07:00&lt;/DateOfSigning&gt;
+  &lt;Signing&gt;Free&lt;/Signing&gt;
+&lt;/Player&gt;
+</code></pre>
+
+<p>Open source <a href="https://github.com/martineastwood/xmlsoccer">Python client for XmlSoccer API</a></p>
+
+<p><a name="resultados"></a></p>
+<h4 id="resultados-de-fútbol-api">Resultados de Fútbol API</h4>
+
+<p><a href="http://www.resultados-futbol.com/api">Resultados-futbol.com</a> is a spanish football website with live scores and historical data with a database of more than four million matches and hundreds of competitions all around the world. When they decided to make their own mobile apps they created an API to serve both the apps and the website and made it available to developers.</p>
+
+<p>Their API covers a lot from live scores with events to player stats, transfers, betting odds, etc. Chances are that if you find some info on the website it will be available on the API also. It is well documented in spanish only.</p>
+
+<p>Their prices range from 99€ per year for around 1,000 requests per day to 499€ per month for 100k request per day. They offer a one month free trial with full access to the API and 500 request per day. Authentication method is a API key in the querystring.</p>
+
+<p><a name="opta"></a></p>
+<h4 id="opta">opta</h4>
+
+<p><a href="http://www.optasports.com">opta</a> is one of industry leaders. This is what the tv networks use and likely what the actual football clubs use for <a href="http://www.optasportspro.com/products/scouting-reports-and-data-feeds.aspx">scouting</a>. If only this data were public! Opta used to provide a developer program under the title “Opta Playground” but it seems that the <a href="http://www.optasports.com/playground-section.aspx">site</a> has been removed and now shows a 404 error. The site used to read “Opta can provide data for programmers wishing to develop a mobile app or website with selected historical data available to download.” You had to request permission in an email. I applied and they sent me the xml data set for 10 rounds of games from the start of the 2007/2008 Bundesliga 2. The more detailed game data had either x,y coordinates of game events. A very impressive dataset but it felt more like an advertisement. The data provided I had no interest in and I’m not sure why an indie developer would spend time working on a data set they could never afford. They even track this data point “Spectator on pitch.” Read this article <a href="http://fivethirtyeight.com/features/the-people-tracking-every-touch-pass-and-tackle-in-the-world-cup/">FiveThirtyEight behind the scenes look at how opta tracks data</a> (spoiler: young male gamers).</p>
+
+<p>An example of an “event” in xml</p>
+
+<pre><code class="language-xml">&lt;Event id="1115853439" event_id="9" type_id="3"
+    period_id="1" min="0" sec="19" player_id="21202"
+    team_id="1744" outcome="1" x="64.9" y="11.6"
+    timestamp="2007-08-19T13:02:08.482" last_modified="2007-08-19T13:02:13"&gt;
+        &lt;Q id="152113216" qualifier_id="56" value="Right"/&gt;
+&lt;/Event&gt;
+</code></pre>
+
+<p><a name="prozone"></a></p>
+<h4 id="prozone">prozone</h4>
+
+<p><a href="http://www.prozonesports.com/">prozone</a> is another large commercial data provider.</p>
+
+<p><a name="matchanalysis"></a></p>
+<h4 id="match-analysis">Match Analysis</h4>
+
+<p><a href="http://matchanalysis.com/">Match Analysis</a> is another large commercial data provider that lists Fox Soccer Channel, US National Team and the MLS among their clients.</p>
+
+<p><a name="scorebat"></a></p>
+<h4 id="scorebat-video-api">ScoreBat Video API</h4>
+
+<p><a href="https://www.scorebat.com/video-api/">ScoreBat Video API</a> is a free API that provides the embed codes for the videos of the goals and video highlights in real time. It covers most of the main football leagues and tournaments.
+The API is super fast and very easy to use and requires no authentication. Check the structure <a href="https://www.scorebat.com/video-api/">here</a></p>
+
+<p><a name="apifootball"></a></p>
+<h4 id="apifootball">APIfootball</h4>
+
+<p><a href="https://apifootball.com/">apifootball.com</a> is an affordable service with live scores for mobile applications and small websites.
+The service covers live scores for cups, football leagues, and intenational matches for all of the major football federations all over the world, along with many minor leagues, allowing you to integrate information regarding the football matches into your websites. Included in the available information are livescores, in play events, results, fixtures, standings and odds from 60+ bookmakers.</p>
+
+<p>You can check <a href="https://apifootball.com/documentation/">here</a> the API comprehensive and very easy to use <a href="https://apifootball.com/documentation/">documentation</a></p>
+
+<p>Their prices range from $25 for the european plan to $50 for worldwide plan. <a href="https://apifootball.com/">Here</a> is  the complete <a href="https://apifootball.com/">list</a> of prices and features.</p>
+
+<p><a name="other"></a></p>
+<h3 id="other-websites">Other Websites</h3>
+
+<p><a name="footballsquads.co.uk"></a></p>
+<h4 id="footballsquads">FootballSquads</h4>
+
+<p><a href="http://www.footballsquads.co.uk/">footballsquads.co.uk</a> has current and historical squad details for clubs (rosters) and national teams from all across the world for many leagues and competitions, including the 2014 World Cup squads.</p>
+
+<p>And example of the squad/roster data:</p>
+
+<pre><code>Num  Name         Nat	Pos  Height	  Weight	Date of Birth	 Birth Place	 Previous Club
+1    David De Gea ESP	 G	   1.92	   82	     07-11-90	     Madrid	         Atlético Madrid
+2    Rafael       BRA	 D	   1.72	   65	     09-07-90	     Petrópolis	  Fluminense
+</code></pre>
+
+<p><a name="rsssf"></a></p>
+<h4 id="recsportsoccer-statistics-foundation-rsssf">Rec.Sport.Soccer Statistics Foundation (RSSSF)</h4>
+
+<p><a href="http://www.rsssf.com/">Rec.Sport.Soccer Statistics Foundation</a> (RSSSF) has massive collection of formatted plain text statistics. <a href="http://www.rsssf.com/tablese/eng2015.html#premier">An example of English Premier leagues results</a>.</p>
+
+<p>Example of the data for table results:</p>
+
+<pre><code>1.Chelsea                  8   7  1  0  23- 8  22
+2.Manchester City          8   5  2  1  18- 8  17
+3.Southampton              8   5  1  2  19- 5  16
+4.West Ham United          8   4  1  3  15-11  13
+</code></pre>
+
+<p>and scores:</p>
+
+<pre><code>Round 1
+[Aug 16]
+Arsenal       2-1 Crystal P
+Leicester     2-2 Everton
+</code></pre>
+
+<p><a name="football-data.co.uk"></a></p>
+<h4 id="football-datacouk">football-data.co.uk</h4>
+
+<p><a href="http://www.football-data.co.uk/data.php">football-data.co.uk</a> is a betting and odds website that has made a lot of historical league data available as csv files. The data includes results and a lot of betting/odds related data. I have tried to aggregate and clean up the data in the following repo <a href="https://github.com/jokecamp/FootballData">github.com/jokecamp/FootballData</a></p>
+
+<p>Leagues and divisions included:</p>
+
+<pre><code>England Football Results  	Premiership &amp; Divs 1,2,3 &amp; Conference
+Scotland Football Results  	Premiership &amp; Divs 1,2 &amp; 3
+Germany Football Results  	Bundesligas 1 &amp; 2
+Italy Football Results  	Serie A &amp; B
+Spain Football Results  	La Liga (Premera &amp; Segunda)
+France Football Results  	Le Championnat &amp; Division 2
+Netherlands Football Results  	KPN Eredivisie
+Belgium Football Results  	Jupiler League
+Portugal Football Results  	Liga I
+Turkey Football Results  	Ligi 1
+Greece Football Results  	Ethniki Katigoria
+</code></pre>
+
+<p>The key/legend of all the field abbreviations gives you idea of what is available in the CSV files:</p>
+
+<pre><code>Div = League Division
+Date = Match Date (dd/mm/yy)
+HomeTeam = Home Team
+AwayTeam = Away Team
+FTHG = Full Time Home Team Goals
+FTAG = Full Time Away Team Goals
+FTR = Full Time Result (H=Home Win, D=Draw, A=Away Win)
+HTHG = Half Time Home Team Goals
+HTAG = Half Time Away Team Goals
+HTR = Half Time Result (H=Home Win, D=Draw, A=Away Win)
+
+Match Statistics (where available)
+Attendance = Crowd Attendance
+Referee = Match Referee
+HS = Home Team Shots
+AS = Away Team Shots
+HST = Home Team Shots on Target
+AST = Away Team Shots on Target
+HHW = Home Team Hit Woodwork
+AHW = Away Team Hit Woodwork
+HC = Home Team Corners
+AC = Away Team Corners
+HF = Home Team Fouls Committed
+AF = Away Team Fouls Committed
+HO = Home Team Offsides
+AO = Away Team Offsides
+HY = Home Team Yellow Cards
+AY = Away Team Yellow Cards
+HR = Home Team Red Cards
+AR = Away Team Red Cards
+HBP = Home Team Bookings Points (10 = yellow, 25 = red)
+ABP = Away Team Bookings Points (10 = yellow, 25 = red)
+</code></pre>
+
+<p><a name="european-football-statistics.co.uk]"></a></p>
+<h4 id="european-football-statisticscouk">european-football-statistics.co.uk</h4>
+
+<p><a href="http://www.european-football-statistics.co.uk/">www.european-football-statistics.co.uk</a> is a visually dated website but has a lot of historical football data (mostly an overview of league/tournament results) displayed in nice clean HTML tables. Looks like they already have 2014 EPL stats. The site claims “The target of this site is to collect european football statistics which are not easily found on internet.”</p>
+
+<p><a name="openligadb.db"></a></p>
+<h4 id="openligadbdb">openligadb.db</h4>
+
+<p><a href="http://www.openligadb.de/Webservices/Sportsdata.asmx">openligadb.db</a> has an old-school windows asmx web service with methods such as “GetGoalsByMatch()”</p>
+
+<p><a name="wiki"></a></p>
+<h4 id="wikipedia">Wikipedia</h4>
+
+<p><a href="http://www.wikipedia.org/">Wikipedia</a> - has a lot of structured data and is also crowd/public sourced. You can use their API to query then parse the data. It is very fragmented into specific pages making this a good source if you are looking for very specific team/player data. For example here is a table of Manchester United season results <a href="http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons">http://en.wikipedia.org/wiki/List_of_Manchester_United_F.C._seasons</a>.</p>
+
+<p><a name="postwar"></a></p>
+<h4 id="post-war-english--scottish-football-league-a---z-players-database">Post War English &amp; Scottish Football League A - Z Player’s Database</h4>
+
+<p><a href="http://www.neilbrown.newcastlefans.com/index.html">Post War English &amp; Scottish Football League A - Z Player’s Database</a> contains a lot of HTML tables of “players who appeared for their clubs between 1946/47 and the end of the 2013/14 season and who have now left their clubs.” Here is a list of <a href="http://www.neilbrown.newcastlefans.com/manutd/manutd.html">ex-Manchester United players</a>.</p>
+
+<p>Stats included are: NAME, POS, SEASONS, SOURCE, TRANSFERRED TO, APPS, GOALS</p>
+
+<p><a name="worldcup2015"></a></p>
+<h3 id="2015-womens-world-cup-data">2015 Women’s World Cup Data</h3>
+
+<p><a href="http://www.fifa.com/womensworldcup/organisation/documents/index.html">FIFA PDF files</a> - includes unformatted data on participating teams, schedules and random statistics</p>
+
+<p><a href="https://github.com/openfootball/world-cup-women">world-cup-women on github</a> - plain text file list of teams and schedule</p>
+
+<p><a href="http://en.wikipedia.org/wiki/2015_FIFA_Women%27s_World_Cup">2015 Women’s World Cup Wikipedia page</a> - includes a great visual bracket view</p>
+
+<p><a name="worldcup"></a></p>
+<h3 id="2014-world-cup-apis">2014 World Cup APIs</h3>
+
+<p><a href="https://www.kimonolabs.com/worldcup/explorer">kimono labs 2014 World Cup Api</a> - has a very nice restful API available. Free registration required to access the API. The API has a player, team, club, matches, and player_season_stats endpoints. See the <a href="https://www.kimonolabs.com/worldcup/docs">documentation</a> and start making calls withe the <a href="https://www.kimonolabs.com/worldcup/explorer">API explorer</a></p>
+
+<p><a href="http://softwareforgood.com/soccer-good/">2014 World Cup JSON API - Soccer for Good</a> - The API is available now. The author explains that the data is from a scraper so the availability is not guaranteed but should be available throughout the tournament. There are endpoints for <a href="http://worldcup.sfg.io/teams">teams</a>, <a href="http://worldcup.sfg.io/matches">matches</a>, <a href="http://worldcup.sfg.io/matches/today">today</a>, <a href="http://worldcup.sfg.io/matches/tomorrow">tomorrow</a> and <a href="http://worldcup.sfg.io/matches/current">current</a>. The Ruby on Rails source code is available on <a href="https://github.com/estiens/world_cup_json">Github</a></p>
+
+<p><a href="http://worldcup.sfg.io/">World Cup in JSON</a> - an open source ruby project available at <a href="https://github.com/estiens/world_cup_json">github.com/estiens/world_cup_json</a> that scrapes a few sources and combines into an API. API is available at http://worldcup.sfg.io/matches</p>
+
+<p><a href="http://live.mobileapp.fifa.com/api/wc/matches">Unofficial FIFA.com JSON API for Mobile Apps</a>  This is unofficial and I wouldn’t be surprised if it is protected/unavailable soon. Until then its nice to see data straight from the source. Known endpoints: <a href="http://live.mobileapp.fifa.com/api/wc/matches">matches</a>, <a href="http://live.mobileapp.fifa.com/api/wc/teams">teams</a> or detailed <a href="http://live.mobileapp.fifa.com/api/wc/match/300186492/en">match info</a></p>
+
+<p><a name="api-graveyard"></a></p>
+<h3 id="deprecatedretired---the-graveyard-of-apis">Deprecated/Retired - “The Graveyard of APIs”</h3>
+
+<p><a href="http://developer.espn.com/docs">ESPN API</a> has an API for registered users (free). You can get a list of all the players in the EPL. However they are very limited in their data. They restrict all fixtures and scores to “strategic partners.” However, you can get lists of players and teams. The <strong>Public API is being retired on Monday, December 8, 2014</strong> <a href="http://developer.espn.com/blog/read/publicretirement">Read the announcement</a></p>
+
+<p><a href="https://statsfc.com/">StatsFC</a> used to have an restful JSON API of all EPL scores and fixtures. It was about $8 us dollars a month but was recently shut down. See their <a href="https://statsfc.com/statement">official statement</a>. They still offer widgets and they plan on reviving their servies. See their comments at the bottom of the page.</p>
+
+<h3 id="other-reading--resources">Other Reading / Resources</h3>
+
+<h4 id="opendatastackexchange-forum">opendata.stackexchange forum</h4>
+
+<p><a href="http://opendata.stackexchange.com/questions/1007/are-there-any-open-datasets-for-soccer-statistics">Are there any open datasets for Soccer statistics?</a> - keep your eye on this open data forum for more answers.</p>
+
+<p><a name="linkedsoccerdata"></a></p>
+<h4 id="linked-soccer-data">Linked Soccer Data</h4>
+
+<p><a href="http://ceur-ws.org/Vol-1026/paper6.pdf">Linked Soccer Data (pdf)</a> is a white paper on one group’s attempt to “create a dataset including reliable information about soccer
+events covering as many historical data as available including recent competition
+results.” Some dead links but worth a skim.</p>
+
+<p><a name="fantasy"></a></p>
+<h3 id="fantasy-data">Fantasy Data</h3>
+
+<ul>
+  <li><a href="http://jokecamp.github.io/epl-fantasy-geek/">EPL Fantasy Geek</a> - Current season EPL Fantasy stats for every player.</li>
+  <li><a href="https://github.com/rasbt/datacollect/tree/master/collect_fantasysoccer">Fantasy Soccer Data Downloader on github</a> - A simple command line tool to download English Premier League (fantasy) soccer data</li>
+</ul>
+
+<h3 id="even-more-links-to-explore">Even more links to explore</h3>
+
+<p>You’ve made it this far. Why stop now?</p>
+
+<ul>
+  <li><a href="http://www.mlsplayers.org/salary_info.html">MLS Player Salary information</a> - 2007 to current salary amounts in pdf from the MLS Players union.</li>
+  <li>See this 2012 <a href="http://opisthokonta.net/?page_id=995">opisthokonta.net</a> blog post.</li>
+  <li><a href="http://clubelo.com/Data/">Football Club Elo Ratings Data &amp; Source</a></li>
+  <li><a href="http://sportscruncher.wordpress.com/2013/03/01/links-soccer_data/">sportscruncher links blog post</a> and <a href="http://sportscruncher.wordpress.com/2013/03/14/links-soccer-ratings/">soccer ratings post</a></li>
+  <li><a href="http://www.colours-of-football.com/">Football kit colors</a></li>
+  <li><a href="http://www.historicalkits.co.uk/">Historial kits</a></li>
+  <li><a href="http://www.enfa.co.uk/">ENFA - English National Football Archive</a></li>
+  <li><a href="http://www.11v11.com/about-afs/">Association of Football Statisticians (AFS)</a></li>
+  <li><a href="http://en.eufo.de/site/about-us">European football squads since 1999</a></li>
+  <li>FIFA Video Game Data at <a href="https://github.com/leereilly/fifa-soccer-12-ultimate-team-data">leereilly/fifa-soccer-12-ultimate-team-data</a></li>
+  <li><a href="http://www.statto.com/football/stats/">Football Stats and Betting data</a></li>
+</ul>
+
+<h3 id="share-your-own-sources--what-have-i-missed">Share your own sources – What have I missed?</h3>
+
+<p>Please let me know about your own data sources or add a pull request on <a href="https://github.com/jokecamp/jokecamp.com/blob/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown">github</a>. I have mainly searched for EPL data and would love to add data from other leagues/competitions to the list.</p>
+
+</div>
+
+<div class="tags">
+Tags
+ <div class='tag'><a href='/tag/#api'>api</a></div>  <div class='tag'><a href='/tag/#opendata'>opendata</a></div>  <div class='tag'><a href='/tag/#sportsdata'>sportsdata</a></div> 
+</div>
+
+<div class="post-footer">
+  Notice a typo or something incorrect?<br>
+  Leave a comment or submit changes via <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2014-03-08-guide-to-football-and-soccer-data-and-apis.markdown">GitHub</a>.
+</div>
+
+      </div>
+
+      <div class="footer" role="contentinfo">
+        <ul>
+          <li><a href="/atom.xml" title="Atom Feed">Atom Feed</a></li>
+          <li><a href="/rss.xml" title="RSS Feed">RSS Feed</a></li>
+          <li><a href="https://github.com/jokecamp/jokecamp.com/" title="View Source on GitHub">View Source</a></li>
+          <li><a href="mailto:joe.kampschmidt@gmail.com" title="email me">Contact me</a></li>
+        </ul>
+      </div>
+
+    </div> <!-- end container -->
+
+  </body>
+</html>

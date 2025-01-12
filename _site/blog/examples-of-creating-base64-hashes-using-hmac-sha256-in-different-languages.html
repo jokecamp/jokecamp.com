@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta charset="utf-8">
+  <title>Examples of creating base64 hashes using HMAC SHA256 in different languages - Joe Kampschmidt's Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="description" content="A list of code examples in various languages that demonstrate how to create base64 hashes using HMAC SHA256. Compare the different coding languages.">
+  <meta name="keywords" content="Joe, Computer, .NET, C#, Kampschmidt, blog, jokecamp, code, developer, API" />
+  <meta name="author" content="Joe Kampschmidt" />
+  <link href='/public/poole.css' rel='stylesheet' type='text/css'>
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	<link rel="me" type="text/html" href="https://plus.google.com/+JoeKampschmidt?rel=me"/>
+	<link rel="me" type="text/html" href="https://twitter.com/jokecamp"/>
+</head>
+
+  <body>
+    <div class="masthead">
+      <div class="container center">
+        <a href="/" title="also known as @jokecamp" class="masthead-title">Joe Kampschmidt's Code</a>
+
+        <nav class="nav" role="navigation">
+          <ul>
+            <li><a class="" href="/blog/" title="Joe's Blog">Blog</a></li><li><a class="" href="/projects/" title="Joe's Projects">Projects</a></li>
+            <li><a rel="me" href="https://github.com/jokecamp" title="Joe's github page - commit all the things">Code</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div> <!-- end masthead -->
+
+    <div class="container content">
+
+      <div role="main">
+        <div class="post">
+  <h1 class="post-title">Examples of creating base64 hashes using HMAC SHA256 in different languages</h1>
+  <span class="post-date">21 Oct 2012</span>
+  <p>I recently went through the processing of creating SDKs for an in house API. The API required signing every REST request with HMAC SHA256 signatures. Those signatures then needed to be converted to base64. Amazon S3 uses base64 strings for their hashes. There are some good reasons to use base64 encoding. See the stackOverflow question <a href="http://stackoverflow.com/a/201510/215502">What is the use of base 64 encoding?</a></p>
+
+<p>Below are some simplified HMAC SHA 256 solutions. They should all output <code>qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=</code> given the values of <code>secret</code> and <code>Message</code>. Take notice of the capital M. The hashed message is case sensitive.</p>
+
+<p>Jump to an implementation:</p>
+
+<ul>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#js">Javascript</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#php">PHP</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#java">Java</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#groovy">Groovy</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#csharp">C#</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#objc">Objective C</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#go">Go</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#ruby">Ruby</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#python2">Python2</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#python3">Python3</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#perl">Perl</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#dart">Dart</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#swift">Swift</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#rust">Rust</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#powershell">Powershell</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#shell">Shell</a></li>
+  <li><a href="/blog/examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages#delphi">Delphi</a></li>
+</ul>
+
+<h3 id="javascript-hmac-sha256"><a name="js"></a>Javascript HMAC SHA256</h3>
+
+<p>Run the code online with this <a href="http://jsfiddle.net/af9ps1yk/6/">jsfiddle</a>.
+Dependent upon an open source js library called <a href="https://github.com/brix/crypto-js">crypto-js</a>.</p>
+
+<pre><code class="language-javascript">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+  var hash = CryptoJS.HmacSHA256("Message", "secret");
+  var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
+  document.write(hashInBase64);
+&lt;/script&gt;
+</code></pre>
+
+<h3 id="php-hmac-sha256"><a name="php"></a>PHP HMAC SHA256</h3>
+
+<p>PHP has built in methods for <a href="http://php.net/manual/en/function.hash-hmac.php">hash_hmac</a> (PHP 5) and <a href="http://php.net/manual/en/function.base64-encode.php">base64_encode</a> (PHP 4, PHP 5) resulting in no
+outside dependencies. Say what you want about PHP but they have the cleanest code for this example.</p>
+
+<pre><code class="language-php">$s = hash_hmac('sha256', 'Message', 'secret', true);
+echo base64_encode($s);
+</code></pre>
+
+<h3 id="java-hmac-sha256"><a name="java"></a>Java HMAC SHA256</h3>
+
+<p>Dependent on <a href="http://commons.apache.org/codec/">Apache Commons Codec</a> to encode in base64.</p>
+
+<pre><code class="language-java">import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.codec.binary.Base64;
+
+public class ApiSecurityExample {
+  public static void main(String[] args) {
+    try {
+     String secret = "secret";
+     String message = "Message";
+
+     Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+     SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+     sha256_HMAC.init(secret_key);
+
+     String hash = Base64.encodeBase64String(sha256_HMAC.doFinal(message.getBytes()));
+     System.out.println(hash);
+    }
+    catch (Exception e){
+     System.out.println("Error");
+    }
+   }
+}
+</code></pre>
+
+<h3 id="groovy-hmac-sha256"><a name="groovy"></a>Groovy HMAC SHA256</h3>
+
+<p>It is mostly java code but there are some slight differences. Adapted from <a href="http://juliusgithaiga.blogspot.com/2013/06/hmacsha256-representation.html">Dev Takeout - Groovy HMAC/SHA256 representation</a>.</p>
+
+<pre><code class="language-groovy">import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.InvalidKeyException;
+
+def hmac_sha256(String secretKey, String data) {
+ try {
+ 	Mac mac = Mac.getInstance("HmacSHA256")
+ 	SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), "HmacSHA256")
+  	mac.init(secretKeySpec)
+  	byte[] digest = mac.doFinal(data.getBytes())
+  	return digest
+   } catch (InvalidKeyException e) {
+   	throw new RuntimeException("Invalid key exception while converting to HMac SHA256")
+  }
+}
+
+def hash = hmac_sha256("secret", "Message")
+encodedData = hash.encodeBase64().toString()
+log.info(encodedData)
+</code></pre>
+
+<h3 id="c-hmac-sha256"><a name="csharp"></a>C# HMAC SHA256</h3>
+
+<pre><code class="language-csharp">using System.Security.Cryptography;
+
+namespace Test
+{
+  public class MyHmac
+  {
+    private string CreateToken(string message, string secret)
+    {
+      secret = secret ?? "";
+      var encoding = new System.Text.ASCIIEncoding();
+      byte[] keyByte = encoding.GetBytes(secret);
+      byte[] messageBytes = encoding.GetBytes(message);
+      using (var hmacsha256 = new HMACSHA256(keyByte))
+      {
+        byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
+        return Convert.ToBase64String(hashmessage);
+      }
+    }
+  }
+}
+</code></pre>
+
+<h3 id="objective-c-and-cocoa-hmac-sha256"><a name="objc"></a>Objective C and Cocoa HMAC SHA256</h3>
+
+<p>Most of the code required was for converting to bae64 and working the NSString and NSData data types.</p>
+
+<pre><code class="language-objc">#import "AppDelegate.h"
+#import &lt;CommonCrypto/CommonHMAC.h&gt;
+
+@implementation AppDelegate
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+ NSString* key = @"secret";
+ NSString* data = @"Message";
+
+ const char *cKey = [key cStringUsingEncoding:NSASCIIStringEncoding];
+ const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
+ unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+ CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
+ NSData *hash = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
+
+ NSLog(@"%@", hash);
+
+ NSString* s = [AppDelegate base64forData:hash];
+ NSLog(s);
+}
+
++ (NSString*)base64forData:(NSData*)theData {
+ const uint8_t* input = (const uint8_t*)[theData bytes];
+ NSInteger length = [theData length];
+
+ static char table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+ NSMutableData* data = [NSMutableData dataWithLength:((length + 2) / 3) * 4];
+ uint8_t* output = (uint8_t*)data.mutableBytes;
+
+ NSInteger i;
+ for (i=0; i &lt; length; i += 3) {
+ NSInteger value = 0;
+ NSInteger j;
+ for (j = i; j &lt; (i + 3); j++) {
+ value &lt;&lt;= 8;
+
+ if (j &lt; length) {  value |= (0xFF &amp; input[j]);  }  }  NSInteger theIndex = (i / 3) * 4;  output[theIndex + 0] = table[(value &gt;&gt; 18) &amp; 0x3F];
+ output[theIndex + 1] = table[(value &gt;&gt; 12) &amp; 0x3F];
+ output[theIndex + 2] = (i + 1) &lt; length ? table[(value &gt;&gt; 6) &amp; 0x3F] : '=';
+ output[theIndex + 3] = (i + 2) &lt; length ? table[(value &gt;&gt; 0) &amp; 0x3F] : '=';
+ }
+
+ return [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]; }
+
+@end
+</code></pre>
+
+<h3 id="go-programming-language---golang-hmac-sha256"><a name="go"></a>Go programming language - Golang HMAC SHA256</h3>
+
+<ul>
+  <li><a href="http://play.golang.org/p/iTmI0RUCkD">Try it online in your browser with Play GoLang</a></li>
+  <li><a href="http://golang.org/pkg/crypto/hmac/">crypto/hmac package</a></li>
+</ul>
+
+<pre><code class="language-go">package main
+
+import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+)
+
+func ComputeHmac256(message string, secret string) string {
+	key := []byte(secret)
+	h := hmac.New(sha256.New, key)
+	h.Write([]byte(message))
+	return base64.StdEncoding.EncodeToString(h.Sum(nil))
+}
+
+func main() {
+	fmt.Println(ComputeHmac256("Message", "secret"))
+}
+</code></pre>
+<h3 id="ruby-hmac-sha256"><a name="ruby"></a>Ruby HMAC SHA256</h3>
+
+<p>Requires <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/openssl/rdoc/OpenSSL.html">openssl</a> and <a href="http://ruby-doc.org/stdlib-2.0/libdoc/base64/rdoc/Base64.html">base64</a>.</p>
+
+<pre><code class="language-ruby">require 'openssl'
+require "base64"
+
+hash  = OpenSSL::HMAC.digest('sha256', "secret", "Message")
+puts Base64.encode64(hash)
+</code></pre>
+
+<h3 id="python-27-hmac-sha256"><a name="python2"></a>Python (2.7) HMAC SHA256</h3>
+
+<pre><code class="language-python">import hashlib
+import hmac
+import base64
+
+message = bytes("Message").encode('utf-8')
+secret = bytes("secret").encode('utf-8')
+
+signature = base64.b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())
+print(signature)
+</code></pre>
+
+<p>Tested with Python 2.7.6. Also, be sure not to name your python demo script the same as one of the imported libraries.</p>
+
+<h3 id="python-37-hmac-sha256"><a name="python3"></a>Python (3.7) HMAC SHA256</h3>
+
+<pre><code class="language-python">import hashlib
+import hmac
+import base64
+
+message = bytes('Message', 'utf-8')
+secret = bytes('secret', 'utf-8')
+
+signature = base64.b64encode(hmac.new(secret, message, digestmod=hashlib.sha256).digest())
+print(signature)
+</code></pre>
+
+<p>Tested with Python 3.7.0. Also, be sure not to name your python demo script the same as one of the imported libraries. Thanks to <a href="https://github.com/biswapanda">@biswapanda</a>.</p>
+
+<h3 id="perl-hmac-sha256"><a name="perl"></a>Perl HMAC SHA256</h3>
+
+<p>See <a href="http://search.cpan.org/~mshelor/Digest-SHA-5.85/lib/Digest/SHA.pm">Digest::SHA documentation</a>. By convention, the Digest modules do not pad their Base64 output. To fix this you can test the length of the hash and append equal signs “=” until it is the length is a multiple of 4. We will use a modulus function below.</p>
+
+<pre><code class="language-perl">use Digest::SHA qw(hmac_sha256_base64);
+$digest = hmac_sha256_base64("Message", "secret");
+
+# digest is currently: qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc
+
+# Fix padding of Base64 digests
+while (length($digest) % 4) {
+	$digest .= '=';
+}
+
+print $digest;
+# digest is now: qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=
+</code></pre>
+
+<h3 id="dart-hmac-sha256"><a name="dart"></a>Dart HMAC SHA256</h3>
+
+<p>Dependent upon the Dart <a href="https://api.dartlang.org/docs/channels/stable/latest/crypto.html">crypto package</a>.</p>
+
+<pre><code class="language-dart">import 'dart:html';
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
+
+void main() {
+
+  String secret = 'secret';
+  String message = 'Message';
+
+  List&lt;int&gt; secretBytes = UTF8.encode('secret');
+  List&lt;int&gt; messageBytes = UTF8.encode('Message');
+
+  var hmac = new HMAC(new SHA256(), secretBytes);
+  hmac.add(messageBytes);
+  var digest = hmac.close();
+
+  var hash = CryptoUtils.bytesToBase64(digest);
+
+  // output to html page
+  querySelector('#hash').text = hash;
+  // hash =&gt; qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=
+}
+</code></pre>
+
+<h3 id="swift-hmac-sha256"><a name="swift"></a>Swift HMAC SHA256</h3>
+
+<p>I have not verified but see this <a href="http://stackoverflow.com/questions/24099520/commonhmac-in-swift">stackOverflow post</a></p>
+
+<h3 id="rust"><a name="rust"></a>Rust</h3>
+
+<p>Take a look at the <a href="https://github.com/alco/rust-digest/blob/master/hmac.rs">alco/rust-digest</a> repository for <a href="http://www.rust-lang.org/">Rust (lang)</a> guidance. I have not verified yet.</p>
+
+<h3 id="powershell-windows-hmac-sha256"><a name="powershell"></a>Powershell (Windows) HMAC SHA256</h3>
+
+<p>Mostly wrapping of .NET libraries but useful to see it in powershell’s befuddling syntax. See code as <a href="https://gist.github.com/jokecamp/2c1a67b8f277797ecdb3">gist</a></p>
+
+<pre><code>$message = 'Message'
+$secret = 'secret'
+
+$hmacsha = New-Object System.Security.Cryptography.HMACSHA256
+$hmacsha.key = [Text.Encoding]::ASCII.GetBytes($secret)
+$signature = $hmacsha.ComputeHash([Text.Encoding]::ASCII.GetBytes($message))
+$signature = [Convert]::ToBase64String($signature)
+
+echo $signature
+
+# Do we get the expected signature?
+echo ($signature -eq 'qnR8UCqJggD55PohusaBNviGoOJ67HC6Btry4qXLVZc=')
+</code></pre>
+
+<h3 id="shell-bash-etc-hmac-sha256"><a name="shell"></a>Shell (Bash etc) HMAC SHA256</h3>
+
+<p>Using openssl. Credit to <a href="https://github.com/CzechJiri">@CzechJiri</a></p>
+
+<pre><code>MESSAGE="Message"
+SECRET="secret"
+
+echo -n $MESSAGE | openssl dgst -sha256 -hmac $SECRET -binary | base64
+</code></pre>
+
+<h3 id="-delphi-hmac-sha256">### <a name="delphi"></a>Delphi HMAC SHA256</h3>
+
+<p><a href="https://stackoverflow.com/a/40182566/215502">https://stackoverflow.com/a/40182566/215502</a></p>
+
+
+</div>
+
+<div class="tags">
+Tags
+ <div class='tag'><a href='/tag/#C#'>C#</a></div>  <div class='tag'><a href='/tag/#powershell'>powershell</a></div>  <div class='tag'><a href='/tag/#dart'>dart</a></div>  <div class='tag'><a href='/tag/#go'>go</a></div>  <div class='tag'><a href='/tag/#hmac'>hmac</a></div>  <div class='tag'><a href='/tag/#java'>java</a></div>  <div class='tag'><a href='/tag/#javascript'>javascript</a></div>  <div class='tag'><a href='/tag/#objectiveC'>objectiveC</a></div>  <div class='tag'><a href='/tag/#perl'>perl</a></div>  <div class='tag'><a href='/tag/#php'>php</a></div>  <div class='tag'><a href='/tag/#python2'>python2</a></div>  <div class='tag'><a href='/tag/#python3'>python3</a></div>  <div class='tag'><a href='/tag/#rest'>rest</a></div>  <div class='tag'><a href='/tag/#ruby'>ruby</a></div>  <div class='tag'><a href='/tag/#security'>security</a></div>  <div class='tag'><a href='/tag/#sha256'>sha256</a></div>  <div class='tag'><a href='/tag/#swift'>swift</a></div>  <div class='tag'><a href='/tag/#shell'>shell</a></div> 
+</div>
+
+<div class="post-footer">
+  Notice a typo or something incorrect?<br>
+  Leave a comment or submit changes via <a href="https://github.com/jokecamp/jokecamp.com/tree/master/_posts/2012-10-22-examples-of-creating-base64-hashes-using-hmac-sha256-in-different-languages.markdown">GitHub</a>.
+</div>
+
+      </div>
+
+      <div class="footer" role="contentinfo">
+        <ul>
+          <li><a href="/atom.xml" title="Atom Feed">Atom Feed</a></li>
+          <li><a href="/rss.xml" title="RSS Feed">RSS Feed</a></li>
+          <li><a href="https://github.com/jokecamp/jokecamp.com/" title="View Source on GitHub">View Source</a></li>
+          <li><a href="mailto:joe.kampschmidt@gmail.com" title="email me">Contact me</a></li>
+        </ul>
+      </div>
+
+    </div> <!-- end container -->
+
+  </body>
+</html>

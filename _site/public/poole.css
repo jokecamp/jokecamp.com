@@ -343,3 +343,8 @@ nav ul { margin: 0; padding: 0; list-style-type: none; text-align: center; }
   display: table;
   clear: both;
 }
+
+
+.photo-gallery {
+  img { display: inline;}
+}
