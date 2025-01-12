@@ -3,8 +3,8 @@
 	<channel>
 		<title>Joe Kampschmidt&apos;s Code</title>
 		<description>a pragmatic approach to web and software development</description>
-		<link>http://localhost:4000</link>
-		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+		<link>https://www.jokecamp.com</link>
+		<atom:link href="https://www.jokecamp.com/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
 				<title>Building a Tree House</title>
@@ -13,12 +13,12 @@
 &lt;p&gt;I built a tree house in the backyard for my kids in the summer of 2021. I usuaully build in the digital world so this was a very satisfying project.&lt;/p&gt;
 
 &lt;div class=&quot;photo-gallery&quot;&gt;
-    &lt;img src=&quot;http://localhost:4000/public/treehouse/1.jpg&quot; title=&quot;Kids and the Treehouse in action&quot; /&gt;
-    &lt;img src=&quot;http://localhost:4000/public/treehouse/2.jpg&quot; title=&quot;Kids and the Treehouse in action&quot; /&gt;
-    &lt;img src=&quot;http://localhost:4000/public/treehous...</description>
+    &lt;img src=&quot;https://www.jokecamp.com/public/treehouse/1.jpg&quot; title=&quot;Kids and the Treehouse in action&quot; /&gt;
+    &lt;img src=&quot;https://www.jokecamp.com/public/treehouse/2.jpg&quot; title=&quot;Kids and the Treehouse in action&quot; /&gt;
+    &lt;img src=&quot;https://www.jokecamp.com/public...</description>
 				<pubDate>Sat, 11 Jan 2025 00:00:00 -0500</pubDate>
-				<link>http://localhost:4000/blog/building-a-tree-house</link>
-				<guid isPermaLink="true">http://localhost:4000/blog/building-a-tree-house</guid>
+				<link>https://www.jokecamp.com/blog/building-a-tree-house</link>
+				<guid isPermaLink="true">https://www.jokecamp.com/blog/building-a-tree-house</guid>
 			</item>
 		
 			<item>
@@ -31,8 +31,8 @@
   &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#nodejs&quot;&gt;Node.js&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#js&quot;&gt;Javascr...</description>
 				<pubDate>Sun, 17 Feb 2019 00:00:00 -0500</pubDate>
-				<link>http://localhost:4000/blog/code-examples-api-http-get-json-different-languages</link>
-				<guid isPermaLink="true">http://localhost:4000/blog/code-examples-api-http-get-json-different-languages</guid>
+				<link>https://www.jokecamp.com/blog/code-examples-api-http-get-json-different-languages</link>
+				<guid isPermaLink="true">https://www.jokecamp.com/blog/code-examples-api-http-get-json-different-languages</guid>
 			</item>
 		
 			<item>
@@ -43,8 +43,8 @@
 
 &lt;pre&gt;&lt;code class=&quot;language-javascrip...</description>
 				<pubDate>Sat, 22 Sep 2018 00:00:00 -0400</pubDate>
-				<link>http://localhost:4000/blog/typescript-real-world-examples</link>
-				<guid isPermaLink="true">http://localhost:4000/blog/typescript-real-world-examples</guid>
+				<link>https://www.jokecamp.com/blog/typescript-real-world-examples</link>
+				<guid isPermaLink="true">https://www.jokecamp.com/blog/typescript-real-world-examples</guid>
 			</item>
 		
 	</channel>

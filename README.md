@@ -13,6 +13,10 @@ Then browse to <http://localhost:4000/>
 
 Pull requests will be accepted for any typos or editing and your contribution will be credited.
 
+## Build
+
+`jekyll build`
+
 ## Asset Pipeline
 
 https://github.com/matthodan/jekyll-asset-pipeline/blob/master/README.md
