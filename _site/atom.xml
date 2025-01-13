@@ -4,7 +4,7 @@
  <title>Joe Kampschmidt's Code</title>
  <link href="https://www.jokecamp.com/atom.xml" rel="self"/>
  <link href="https://www.jokecamp.com/"/>
- <updated>2025-01-12T16:04:45-05:00</updated>
+ <updated>2025-01-12T21:20:29-05:00</updated>
  <id>https://www.jokecamp.com/</id>
  <author>
    <name>Joe Kampschmidt</name>
@@ -14,7 +14,7 @@
  
  <entry>
    <title>Building a Tree House</title>
-   <link href="https://www.jokecamp.com//blog/building-a-tree-house"/>
+   <link href="https://www.jokecamp.com//blog/building-a-tree-house/"/>
    <updated>2025-01-11T00:00:00-05:00</updated>
    <id>https://www.jokecamp.com/blog/building-a-tree-house</id>
    <content type="html">&lt;h1 id=&quot;tree-house-project&quot;&gt;Tree House Project&lt;/h1&gt;
@@ -29,7 +29,7 @@
  
  <entry>
    <title>Examples of calling an API HTTP GET for JSON in different languages</title>
-   <link href="https://www.jokecamp.com//blog/code-examples-api-http-get-json-different-languages"/>
+   <link href="https://www.jokecamp.com//blog/code-examples-api-http-get-json-different-languages/"/>
    <updated>2019-02-17T00:00:00-05:00</updated>
    <id>https://www.jokecamp.com/blog/code-examples-api-http-get-json-different-languages</id>
    <content type="html">&lt;p&gt;Downloading JSON via GET from a simple API should be the 2nd tutorial right after Hello World for every language. Below is an ever-growing collection of code examples to highlight the differences in different programming languages and serve as a practical reference.&lt;/p&gt;
@@ -37,13 +37,13 @@
 &lt;p&gt;Jump to an implementation:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#nodejs&quot;&gt;Node.js&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages#js&quot;&gt;Javascr...</content>
+  &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages/#nodejs&quot;&gt;Node.js&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/code-examples-api-http-get-json-different-languages/#js&quot;&gt;Javas...</content>
  </entry>
  
  <entry>
    <title>Typescript in the Wild - Real World Examples Part 1</title>
-   <link href="https://www.jokecamp.com//blog/typescript-real-world-examples"/>
+   <link href="https://www.jokecamp.com//blog/typescript-real-world-examples/"/>
    <updated>2018-09-22T00:00:00-04:00</updated>
    <id>https://www.jokecamp.com/blog/typescript-real-world-examples</id>
    <content type="html">&lt;p&gt;In an ongoing series I will be reading and discussing various Typescript code found in the wild. Reading other people’s code is a great way to learn and improve your own code. First up is a random class from the popular &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VS Code&lt;/a&gt; editor.&lt;/p&gt;

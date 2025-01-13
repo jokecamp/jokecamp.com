@@ -6,7 +6,7 @@ exclude:          ['.asset_pipeline', 'deploy.sh', 'server-script.sh']
 
 # Permalinks
 #permalink:        pretty
-permalink:        /blog/:title
+permalink:        /blog/:title/
 
 # Setup
 title:            Joe Kampschmidt's Code
