@@ -12,6 +12,14 @@ sitemap:
 [1]: https://github.com/jokecamp/epl-fantasy-geek
 [2]: http://jokecamp.github.io/epl-fantasy-geek/
 
+A few of the projects I've been working on...
+
+ - Architected and built a Digital Asset Management System to handle millions of media assets.
+
+ - Architected and built a distributed microservices orchestrator system to streamline media encoding pipelines for broadcast and podcast production.
+
+ - Content Production Appications for the newsroom.
+
  - [A Treehouse](../blog/building-a-tree-house) - My favorite project. I will still be reminding my kids twenty years later, "Remember that treehouse I built for you...?" (Summer 2021)
  
  - [PaulTenwalde.com](http://www.paultenwalde.com/) - Uses the [flickr API](http://www.flickr.com/services/api/) with PHP. Caching results and creating a photo gallery with jQuery. Built with a focus on unobtrusive javascript, clean html and CSS. Due for a design refresh. You could date this by the retro design.
