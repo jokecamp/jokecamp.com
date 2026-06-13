@@ -31,6 +31,7 @@ Jump to a specific source:
   - [WoSo (Womens) Stats](#woso)
   - [Other smaller projects/repos](#repos)
 - Free APIs
+  - [World Cup 2026 Tour](#worldcup2026tour) (RESTful API, OpenAPI)
   - [football-data.org](#footballdata) (RESTful API)
   - [Sports Open Data](#SportsOpenData) (RESTful API)
   - [openfooty API](#openfooty) (hard to get an API Key)
@@ -127,6 +128,17 @@ Women's Soccer Stats. Collecting, analyzing, and sharing data about women's socc
 
 <a name="free"></a>
 ###  Free APIs
+
+<a name="worldcup2026tour"></a>
+#### World Cup 2026 Tour
+
+[World Cup 2026 Tour](https://ay-worldcup2026.zeabur.app/developers) provides a free public JSON API for the 2026 FIFA World Cup schedule. It exposes all 104 fixtures, optional IANA time-zone conversion, match detail links, share-card links, dataset exports, and an [OpenAPI 3.1 spec](https://ay-worldcup2026.zeabur.app/openapi.json). No API key is required.
+
+Example endpoints:
+
+- <https://ay-worldcup2026.zeabur.app/api/public/v1/metadata>
+- <https://ay-worldcup2026.zeabur.app/api/public/v1/matches?timezone=Europe/London>
+- <https://ay-worldcup2026.zeabur.app/api/public/v1/next?timezone=America/New_York>
 
 <a name="footballdata"></a>
 #### football-data.org (beta)
