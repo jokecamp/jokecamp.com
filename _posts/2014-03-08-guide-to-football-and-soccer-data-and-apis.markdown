@@ -248,6 +248,17 @@ curl --get --include 'https://api-football-v1.p.mashape.com/seasons' \
    -H 'Accept: application/json'
 ```
 
+### Football Charts
+
+[Football Charts](https://www.football-charts.com/developers) is a free REST API covering 93 leagues — the big five plus a lot of second and third tiers (Serie C, 3. Liga, Primera/Segunda RFEF, National League, Scottish League Two, Ykkösliiga, K League 2…) and four women's leagues. Per league: results, standings, fixtures, goal timing (which minute goals are scored), Dixon-Coles model probabilities and a daily Monte Carlo season projection. The free key gives all 93 leagues, current + previous season, 5,000 requests/day; betting odds are excluded from the free tier. Attribution required ("Data by football-charts.com"). The same data is also exposed as an [MCP server](https://github.com/ddevetak/footballcharts-mcp) for AI assistants and a [LangChain toolkit](https://pypi.org/project/langchain-footballcharts/).
+
+Curl Example:
+
+```
+curl 'https://footballcharts-backend.onrender.com/api/v1/leagues/premier/table/?season=2026-2027' \
+   -H 'X-API-Key: YOUR_FREE_KEY'
+```
+
 <a name="commerical"></a>
 ### Subscription Services/APIs
 
