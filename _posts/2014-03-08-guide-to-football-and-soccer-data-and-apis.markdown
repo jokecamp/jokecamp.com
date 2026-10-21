@@ -125,6 +125,7 @@ Women's Soccer Stats. Collecting, analyzing, and sharing data about women's socc
  - [pssguy/epldata](https://github.com/pssguy/epldata) - Datasets of the English Premier League 1992-2018
  - [jalapic/engsoccerdata](https://github.com/jalapic/engsoccerdata) - English and European soccer results 1871-2017. Includes three English ones (League data, FA Cup data, Playoff data), several European leagues (Spain, Germany, Italy, Holland, France, Belgium, Portugal, Turkey, Scotland, Greece) as well as South Africa and MLS.
  - [gavinr/usa-soccer](https://github.com/gavinr/usa-soccer) - USA soccer teams and location data for MLS, NWSL, and USL conferences. CSV or GeoJSON can be used as an API.
+ - [FootInsights/footinsights-data](https://github.com/FootInsights/footinsights-data) - every pre-match probability [FootInsights](https://footinsights.com/data/) has published since August 2026 (1X2, over/under 2.5 and both-teams-to-score), settled against the final score. Append-only CSV with misses included, CC BY 4.0, refreshed weekly, with a DOI on Zenodo; the column reference and the live file are at [footinsights.com/data](https://footinsights.com/data/).
 
 <a name="free"></a>
 ###  Free APIs
