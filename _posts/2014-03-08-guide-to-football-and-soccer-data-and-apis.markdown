@@ -54,6 +54,7 @@ Jump to a specific source:
   - [fantasysportnet.com](#fantasysportnet)
   - [Goalserve.com](#goalserve)
   - [Soccer's API](#soccersapi)
+  - [OddsRelay](#oddsrelay)
 - Other Websites
   - [footballsquads.co.uk](#footballsquads.co.uk)
   - [Rec.Sport.Soccer Statistics Foundation (RSSSF)](#rsssf)
@@ -895,6 +896,11 @@ The service covers live scores for cups, football leagues, and intenational matc
 You can check [here](https://apifootball.com/documentation/) the API comprehensive and very easy to use [documentation](https://apifootball.com/documentation/)
 
 Their prices range from $25 for the european plan to $50 for worldwide plan. [Here](https://apifootball.com/) is  the complete [list](https://apifootball.com/) of prices and features.
+
+<a name="oddsrelay"></a>
+#### OddsRelay
+
+[OddsRelay](https://oddsrelay.io) is a REST API of pre-match odds from 60+ UK and Irish bookmakers, bet365 included, with each back price beside the best lay on Betfair, Smarkets and Matchbook and the liquidity there. Replies are JSON from one keyed API, with a public OpenAPI file and Python, JavaScript and R clients. Paid plans, and Free gives you 50,000 tokens for 14 days from sign-up. Docs: https://oddsrelay.io/docs
 
 <a name="other"></a>
 ###  Other Websites
